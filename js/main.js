@@ -17,6 +17,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize fullpage navigation
     initFullPageNavigation();
     
+    // Initialize section transitions
+    initSectionTransitions();
+    
+    // Add animation classes to text elements
+    addAnimationClassesToText();
+    
     // Remove preloader after content loads
     setTimeout(() => {
         document.querySelector('.preloader')?.classList.add('fade-out');
@@ -279,19 +285,17 @@ function initFullPageNavigation() {
     const sections = document.querySelectorAll('.content-section, #hero');
     const arrows = document.querySelectorAll('.section-arrow');
     
+    // Set initial active section
+    const currentSection = getCurrentSection();
+    if (currentSection) {
+        setActiveSection(currentSection.id);
+    }
+    
     // Handle section indicator clicks
     indicators.forEach(indicator => {
         indicator.addEventListener('click', () => {
             const targetId = indicator.getAttribute('data-section');
-            const targetSection = document.getElementById(targetId);
-            
-            if (targetSection) {
-                // Scroll to section smoothly
-                targetSection.scrollIntoView({ behavior: 'smooth' });
-                
-                // Update active indicator
-                updateActiveIndicator(targetId);
-            }
+            navigateToSection(targetId);
         });
     });
     
@@ -299,28 +303,25 @@ function initFullPageNavigation() {
     arrows.forEach(arrow => {
         arrow.addEventListener('click', () => {
             const targetId = arrow.getAttribute('data-target');
-            const targetSection = document.getElementById(targetId);
-            
-            if (targetSection) {
-                // Scroll to section smoothly
-                targetSection.scrollIntoView({ behavior: 'smooth' });
-                
-                // Update active indicator
-                updateActiveIndicator(targetId);
-            }
+            navigateToSection(targetId);
         });
     });
     
     // Update active indicator based on scroll position
     window.addEventListener('scroll', debounce(() => {
-        updateActiveIndicatorOnScroll();
+        // Only update indicator if not in transition
+        if (!document.body.classList.contains('is-transitioning')) {
+            updateActiveIndicatorOnScroll();
+        }
     }, 50));
-    
-    // Initial active indicator update
-    updateActiveIndicatorOnScroll();
     
     // Handle keyboard navigation
     window.addEventListener('keydown', (e) => {
+        // Only respond to arrow keys if not in transition
+        if (document.body.classList.contains('is-transitioning')) {
+            return;
+        }
+        
         if (e.key === 'ArrowDown') {
             navigateToNextSection();
         } else if (e.key === 'ArrowUp') {
@@ -329,18 +330,145 @@ function initFullPageNavigation() {
     });
 }
 
-// Update active section indicator based on scroll position
-function updateActiveIndicatorOnScroll() {
+// Initialize section transition effects
+function initSectionTransitions() {
+    // Add transition classes to all sections
+    document.querySelectorAll('.content-section, #hero').forEach(section => {
+        // Remove initial transition to prevent animation on page load
+        section.style.transition = 'none';
+        
+        // Set visible sections as active
+        if (isElementInViewport(section)) {
+            section.classList.add('section-active');
+            section.classList.remove('section-entering', 'section-exiting-up', 'section-exiting-down');
+        } else {
+            if (section.offsetTop > window.scrollY) {
+                section.classList.add('section-entering');
+            } else {
+                section.classList.add('section-exiting-up');
+            }
+        }
+        
+        // Restore transitions after initial setup
+        setTimeout(() => {
+            section.style.transition = '';
+        }, 100);
+    });
+    
+    // Listen for scroll events to update section states
+    window.addEventListener('scroll', debounce(() => {
+        updateSectionStates();
+    }, 50));
+    
+    // Initial update of section states
+    updateSectionStates();
+}
+
+// Add animation classes to text elements
+function addAnimationClassesToText() {
+    // Select all relevant text elements
+    const textElements = document.querySelectorAll(
+        'h1, h2, h3, p, .section-label, .feature-item, .teaser-item, .card'
+    );
+    
+    // Add animation class to all selected elements
+    textElements.forEach(element => {
+        element.classList.add('animate-text-element');
+    });
+}
+
+// Update section states based on viewport position
+function updateSectionStates() {
     const sections = document.querySelectorAll('.content-section, #hero');
-    const scrollPosition = window.scrollY + window.innerHeight / 2;
+    const windowMiddle = window.scrollY + (window.innerHeight / 2);
     
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
         const sectionBottom = sectionTop + section.offsetHeight;
         
-        if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-            updateActiveIndicator(section.id);
+        // Check if section is active (in viewport)
+        if (windowMiddle >= sectionTop && windowMiddle < sectionBottom) {
+            section.classList.add('section-active');
+            section.classList.remove('section-entering', 'section-exiting-up', 'section-exiting-down');
+        } 
+        // Section is above viewport
+        else if (windowMiddle >= sectionBottom) {
+            section.classList.add('section-exiting-up');
+            section.classList.remove('section-active', 'section-entering', 'section-exiting-down');
+        } 
+        // Section is below viewport
+        else {
+            section.classList.add('section-entering');
+            section.classList.remove('section-active', 'section-exiting-up', 'section-exiting-down');
         }
+    });
+}
+
+// Smoothly navigate to a section
+function navigateToSection(sectionId) {
+    const targetSection = document.getElementById(sectionId);
+    
+    if (!targetSection || document.body.classList.contains('is-transitioning')) {
+        return;
+    }
+    
+    // Mark body as transitioning to prevent multiple transitions
+    document.body.classList.add('is-transitioning');
+    
+    // Get current and target section positions
+    const currentSection = getCurrentSection();
+    const isScrollingDown = currentSection && targetSection.offsetTop > currentSection.offsetTop;
+    
+    // Set appropriate transition classes
+    if (currentSection) {
+        if (isScrollingDown) {
+            currentSection.classList.add('section-exiting-up');
+        } else {
+            currentSection.classList.add('section-exiting-down');
+        }
+        currentSection.classList.remove('section-active');
+    }
+    
+    targetSection.classList.add('section-entering');
+    targetSection.classList.remove('section-active');
+    
+    // Force browser to recognize the class changes
+    void targetSection.offsetWidth; 
+    
+    // Apply active class to trigger transition
+    targetSection.classList.remove('section-entering');
+    targetSection.classList.add('section-active');
+    
+    // Scroll to the section
+    targetSection.scrollIntoView({ behavior: 'smooth' });
+    
+    // Update active indicator
+    updateActiveIndicator(sectionId);
+    
+    // Remove transitioning flag after animation completes
+    setTimeout(() => {
+        document.body.classList.remove('is-transitioning');
+        updateSectionStates();
+    }, 1000);
+}
+
+// Update active section indicator based on scroll position
+function updateActiveIndicatorOnScroll() {
+    const currentSection = getCurrentSection();
+    if (currentSection) {
+        updateActiveIndicator(currentSection.id);
+    }
+}
+
+// Get current visible section
+function getCurrentSection() {
+    const sections = Array.from(document.querySelectorAll('.content-section, #hero'));
+    const scrollPosition = window.scrollY + (window.innerHeight / 2);
+    
+    return sections.find(section => {
+        const sectionTop = section.offsetTop;
+        const sectionBottom = sectionTop + section.offsetHeight;
+        return scrollPosition >= sectionTop && scrollPosition < sectionBottom;
     });
 }
 
@@ -359,60 +487,66 @@ function updateActiveIndicator(activeId) {
     });
 }
 
+// Set active section without animation
+function setActiveSection(sectionId) {
+    const section = document.getElementById(sectionId);
+    if (section) {
+        document.querySelectorAll('.content-section, #hero').forEach(s => {
+            s.classList.remove('section-active', 'section-entering', 'section-exiting-up', 'section-exiting-down');
+            
+            if (s.id === sectionId) {
+                s.classList.add('section-active');
+            } else if (s.offsetTop < section.offsetTop) {
+                s.classList.add('section-exiting-up');
+            } else {
+                s.classList.add('section-entering');
+            }
+        });
+        
+        // Update indicators
+        updateActiveIndicator(sectionId);
+    }
+}
+
 // Navigate to next section
 function navigateToNextSection() {
     const sections = Array.from(document.querySelectorAll('.content-section, #hero'));
-    const scrollPosition = window.scrollY + 10;
-    let nextSection = null;
+    const currentSection = getCurrentSection();
     
-    // Find the current section
-    for (let i = 0; i < sections.length; i++) {
-        const section = sections[i];
-        const sectionTop = section.offsetTop;
-        const sectionBottom = sectionTop + section.offsetHeight;
-        
-        if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-            // If there's a next section, set it
-            if (i < sections.length - 1) {
-                nextSection = sections[i + 1];
-            }
-            break;
+    if (currentSection) {
+        const currentIndex = sections.indexOf(currentSection);
+        if (currentIndex < sections.length - 1) {
+            const nextSection = sections[currentIndex + 1];
+            navigateToSection(nextSection.id);
         }
-    }
-    
-    // Scroll to next section if found
-    if (nextSection) {
-        nextSection.scrollIntoView({ behavior: 'smooth' });
-        updateActiveIndicator(nextSection.id);
     }
 }
 
 // Navigate to previous section
 function navigateToPrevSection() {
     const sections = Array.from(document.querySelectorAll('.content-section, #hero'));
-    const scrollPosition = window.scrollY + 10;
-    let prevSection = null;
+    const currentSection = getCurrentSection();
     
-    // Find the current section
-    for (let i = 0; i < sections.length; i++) {
-        const section = sections[i];
-        const sectionTop = section.offsetTop;
-        const sectionBottom = sectionTop + section.offsetHeight;
-        
-        if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-            // If there's a previous section, set it
-            if (i > 0) {
-                prevSection = sections[i - 1];
-            }
-            break;
+    if (currentSection) {
+        const currentIndex = sections.indexOf(currentSection);
+        if (currentIndex > 0) {
+            const prevSection = sections[currentIndex - 1];
+            navigateToSection(prevSection.id);
         }
     }
+}
+
+// Check if element is in viewport
+function isElementInViewport(el) {
+    const rect = el.getBoundingClientRect();
+    const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+    const windowWidth = window.innerWidth || document.documentElement.clientWidth;
     
-    // Scroll to previous section if found
-    if (prevSection) {
-        prevSection.scrollIntoView({ behavior: 'smooth' });
-        updateActiveIndicator(prevSection.id);
-    }
+    // Check if element center point is in viewport
+    const vertInView = (rect.top + rect.height / 2) >= 0 && (rect.top + rect.height / 2) < windowHeight;
+    const horInView = (rect.left + rect.width / 2) >= 0 && (rect.left + rect.width / 2) < windowWidth;
+    
+    return vertInView && horInView;
 }
 
 // Debounce function to limit scroll event firing

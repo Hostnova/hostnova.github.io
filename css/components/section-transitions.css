@@ -1,0 +1,242 @@
+/* ==========================================
+   Section Transitions & Animations
+   ==========================================
+   Advanced transitions between fullpage sections
+   ========================================== */
+
+/* Base transition styles for sections */
+.content-section, 
+.cinematic-section, 
+.section-orbital-bg,
+#brand-vision, 
+#features, 
+#hostara, 
+#gainchain, 
+#community, 
+#portfolio,
+#contact {
+  transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1), 
+              opacity 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+/* Section transition states */
+.section-entering {
+  opacity: 0;
+  transform: scale(1.1);
+  z-index: 5;
+}
+
+.section-active {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 10;
+}
+
+.section-exiting-up {
+  opacity: 0;
+  transform: scale(0.9);
+  z-index: 0;
+}
+
+.section-exiting-down {
+  opacity: 0;
+  transform: scale(0.9);
+  z-index: 0;
+}
+
+/* Text animation on section load */
+.animate-text-element {
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  transition-delay: var(--delay, 0s);
+}
+
+.section-active .animate-text-element {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Apply staggered animation delays to text elements */
+.section-active h1.animate-text-element,
+.section-active h2.animate-text-element {
+  --delay: 0.3s;
+}
+
+.section-active p.animate-text-element,
+.section-active .section-label.animate-text-element {
+  --delay: 0.5s;
+}
+
+.section-active .feature-item.animate-text-element:nth-child(1),
+.section-active .teaser-item.animate-text-element:nth-child(1) {
+  --delay: 0.6s;
+}
+
+.section-active .feature-item.animate-text-element:nth-child(2),
+.section-active .teaser-item.animate-text-element:nth-child(2) {
+  --delay: 0.7s;
+}
+
+.section-active .feature-item.animate-text-element:nth-child(3),
+.section-active .teaser-item.animate-text-element:nth-child(3) {
+  --delay: 0.8s;
+}
+
+/* Zoom effects for background elements */
+.section-active .orbital-decoration,
+.section-active .bg-orbital-rings,
+.section-active .constellation,
+.section-active .nebula {
+  animation: zoom-in-bg 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+@keyframes zoom-in-bg {
+  from {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+}
+
+/* Orbital elements special animations on section activation */
+.section-active .orbital-ring {
+  animation: orbit-ring-activate 1.2s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+}
+
+@keyframes orbit-ring-activate {
+  0% {
+    transform: scale(0.7) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1) rotate(180deg);
+    opacity: 0.6;
+  }
+}
+
+/* Satellite activation animation */
+.section-active .satellite {
+  animation: satellite-pop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes satellite-pop {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+/* Custom transition for the hero section */
+#hero.section-entering,
+#hero.section-active {
+  z-index: 20; /* Always keep hero on top during its transitions */
+}
+
+#hero.section-active .featured-logo-text {
+  animation: hero-text-appear 1s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+}
+
+@keyframes hero-text-appear {
+  0% {
+    letter-spacing: 0em;
+    opacity: 0;
+    filter: blur(10px);
+  }
+  50% {
+    letter-spacing: 0.3em;
+  }
+  100% {
+    letter-spacing: 0.2em;
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+/* Section background special effects */
+.section-active[data-bg-type="bg-cosmic"] .bg-mask {
+  animation: cosmic-bg-reveal 1.2s ease-out forwards;
+}
+
+@keyframes cosmic-bg-reveal {
+  0% {
+    opacity: 0;
+    background-position: 0% 0%;
+  }
+  100% {
+    opacity: 1;
+    background-position: 0% 100%;
+  }
+}
+
+/* Section dots navigation fade in on page load */
+.section-nav-indicators {
+  animation: fade-in-delayed 1.5s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes fade-in-delayed {
+  0% {
+    opacity: 0;
+    transform: translateY(-50%) translateX(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+  }
+}
+
+/* Media queries for reduced animations on mobile */
+@media (max-width: 768px) {
+  .content-section, 
+  .cinematic-section, 
+  .section-orbital-bg {
+    transition: opacity 0.5s ease;
+    transform: none !important;
+  }
+  
+  .section-entering,
+  .section-exiting-up,
+  .section-exiting-down {
+    opacity: 0;
+    transform: none !important;
+  }
+  
+  .section-active {
+    opacity: 1;
+    transform: none !important;
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .content-section, 
+  .cinematic-section, 
+  .section-orbital-bg,
+  .animate-text-element,
+  .section-nav-indicators,
+  .orbital-decoration,
+  .bg-orbital-rings,
+  .constellation,
+  .nebula,
+  .orbital-ring,
+  .satellite,
+  .featured-logo-text {
+    transition: opacity 0.3s ease !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}

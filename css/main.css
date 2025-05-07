@@ -35,6 +35,9 @@
 /* Fullpage section styles - add this new import */
 @import url('components/fullpage-sections.css');
 
+/* New section transitions with zoom effects */
+@import url('components/section-transitions.css');
+
 /* Custom Styles (overrides) */
 @import url('style.css');
 
