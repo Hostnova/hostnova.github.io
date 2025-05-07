@@ -1,0 +1,412 @@
+/* ==========================================
+   Cosmic Background Animations
+   ==========================================
+   Animated night sky with stars, comets, and celestial events
+   ========================================== */
+
+/* Container for the cosmic background */
+.cosmic-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+  background: linear-gradient(to bottom, 
+    #0F1622 0%, 
+    #0d1016 40%, 
+    #08080d 100%);
+  /* Remove any blurring filters */
+}
+
+/* Stars background with breathing effect */
+.star-field {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  animation: breathe 8s ease-in-out infinite alternate;
+  /* Stars should be sharp and crisp */
+  image-rendering: crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  pointer-events: none; /* Ensure it doesn't interfere with interactions */
+  z-index: 2; /* Make sure stars are above the background gradient */
+}
+
+/* Multiple star layers for parallax effect - ensuring sharp rendering */
+.star-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  will-change: transform; /* Optimize for animations */
+}
+
+/* Small twinkling stars - made sharper */
+.star {
+  position: absolute;
+  background-color: #ffffff;
+  border-radius: 50%;
+  /* Removed blur filter that was causing blurriness */
+  opacity: 0.9;
+}
+
+.star.tiny {
+  width: 1px;
+  height: 1px;
+}
+
+.star.small {
+  width: 2px;
+  height: 2px;
+}
+
+.star.medium {
+  width: 3px;
+  height: 3px;
+  background: #f0f0ff;
+}
+
+.star.large {
+  width: 4px;
+  height: 4px;
+  background: #f5f5ff;
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.7);
+}
+
+/* Bright stars with glow effect - improved clarity */
+.bright-star {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8), 0 0 12px rgba(255, 255, 255, 0.5);
+  /* Removed blur filter for sharper appearance */
+  opacity: 1;
+  animation: twinkle 4s infinite ease-in-out;
+}
+
+/* Shooting stars */
+.shooting-star {
+  position: absolute;
+  width: 150px; /* Increased length for more dramatic effect */
+  height: 2px;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0), #ffffff 80%);
+  border-radius: 50%;
+  filter: blur(1px);
+  opacity: 0;
+  transform-origin: left;
+  animation: shootingStar 15s linear infinite; /* Increased from 6s to 15s for slower movement */
+  z-index: 2;
+  box-shadow: 0 0 15px 2px rgba(76, 176, 243, 0.8);
+}
+
+.shooting-star:nth-child(2) { 
+  animation-delay: 5s;
+  top: 15%;
+  left: 30%;
+  transform: rotate(-15deg);
+  width: 180px;
+}
+
+.shooting-star:nth-child(3) { 
+  animation-delay: 10s;
+  top: 35%;
+  left: 10%;
+  width: 200px;
+  transform: rotate(25deg);
+}
+
+.shooting-star:nth-child(4) { 
+  animation-delay: 17s;
+  top: 65%;
+  left: 50%;
+  transform: rotate(-35deg);
+  width: 220px;
+}
+
+/* Comets with trails */
+.comet {
+  position: absolute;
+  z-index: 3;
+  opacity: 0;
+  animation: cometMove 25s linear infinite; /* Increased from 15s to 25s for slower movement */
+}
+
+.comet-head {
+  width: 8px; /* Slightly larger comet head */
+  height: 8px;
+  background-color: #4CB0F3;
+  border-radius: 50%;
+  box-shadow: 0 0 20px 6px rgba(76, 176, 243, 0.8);
+}
+
+.comet-tail {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 180px; /* Longer comet tail */
+  height: 3px;
+  background: linear-gradient(to left, rgba(76, 176, 243, 0), rgba(76, 176, 243, 0.8));
+  transform: translateY(-50%);
+  filter: blur(0.8px);
+}
+
+.comet:nth-child(1) {
+  top: 25%;
+  left: 10%;
+  animation-delay: 8s;
+  transform: rotate(15deg);
+}
+
+.comet:nth-child(2) {
+  top: 60%;
+  left: 70%;
+  animation-delay: 18s;
+  transform: rotate(210deg);
+}
+
+/* Cosmic nebula clouds */
+.nebula {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.15;
+  mix-blend-mode: screen;
+  z-index: 1;
+}
+
+.nebula-1 {
+  top: 20%;
+  left: 15%;
+  background: radial-gradient(
+    circle at center,
+    rgba(76, 176, 243, 0.4),
+    rgba(9, 80, 205, 0.2),
+    rgba(9, 80, 205, 0)
+  );
+  animation: drift 60s linear infinite alternate;
+}
+
+.nebula-2 {
+  top: 60%;
+  right: 15%;
+  background: radial-gradient(
+    circle at center,
+    rgba(111, 154, 211, 0.3),
+    rgba(9, 80, 205, 0.1),
+    rgba(9, 80, 205, 0)
+  );
+  animation: drift 80s linear infinite alternate-reverse;
+}
+
+/* Cosmic collision and explosion effects */
+.cosmic-collision {
+  position: absolute;
+  opacity: 0;
+  z-index: 4;
+  animation: collision 20s linear infinite;
+}
+
+.explosion {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.9),
+    rgba(76, 176, 243, 0.7) 20%,
+    rgba(9, 80, 205, 0.5) 40%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  transform: scale(0);
+  animation: explode 20s linear infinite;
+}
+
+.explosion-particles {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%);
+}
+
+.explosion-particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background-color: #ffffff;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  animation: particleExpand 20s linear infinite;
+  opacity: 0;
+}
+
+.explosion-particle:nth-child(1) { transform: rotate(0deg); }
+.explosion-particle:nth-child(2) { transform: rotate(45deg); }
+.explosion-particle:nth-child(3) { transform: rotate(90deg); }
+.explosion-particle:nth-child(4) { transform: rotate(135deg); }
+.explosion-particle:nth-child(5) { transform: rotate(180deg); }
+.explosion-particle:nth-child(6) { transform: rotate(225deg); }
+.explosion-particle:nth-child(7) { transform: rotate(270deg); }
+.explosion-particle:nth-child(8) { transform: rotate(315deg); }
+
+/* Breathing animation for the starfield */
+@keyframes breathe {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.8; }
+}
+
+/* Star twinkling animation */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.9; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
+}
+
+/* Shooting star animation - slower and more dramatic */
+@keyframes shootingStar {
+  0% { 
+    opacity: 0;
+    transform: translateX(0) scaleY(1);
+  }
+  2% { 
+    opacity: 1;
+    transform: translateX(5%) scaleY(1.2);
+  }
+  5% { 
+    opacity: 1;
+    transform: translateX(10%) scaleY(1);
+  }
+  8% { 
+    opacity: 0;
+    transform: translateX(20%) scaleY(1);
+  }
+  100% { 
+    opacity: 0;
+    transform: translateX(100%) scaleY(1);
+  }
+}
+
+/* Comet movement animation - slower and more visible */
+@keyframes cometMove {
+  0% {
+    transform-origin: center;
+    opacity: 0;
+    transform: translateX(0) translateY(0) rotate(0);
+  }
+  2% {
+    opacity: 1;
+  }
+  12% {
+    opacity: 1;
+  }
+  18% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(400px) translateY(150px) rotate(0);
+  }
+}
+
+/* Nebula drifting animation */
+@keyframes drift {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(50px, -30px); }
+  100% { transform: translate(10px, 30px); }
+}
+
+/* Cosmic collision animation */
+@keyframes collision {
+  0%, 85%, 100% { 
+    opacity: 0;
+    transform: translate(0, 0); 
+  }
+  88% { 
+    opacity: 1;
+    transform: translate(-20px, 10px);
+  }
+  90% { 
+    opacity: 1;
+    transform: translate(-5px, 2px);
+  }
+  92% { 
+    opacity: 0;
+  }
+}
+
+/* Explosion animation */
+@keyframes explode {
+  0%, 89%, 100% { 
+    opacity: 0;
+    transform: scale(0);
+  }
+  90% { 
+    opacity: 1;
+    transform: scale(1);
+  }
+  92% { 
+    opacity: 0.8;
+    transform: scale(1.3);
+  }
+  95% { 
+    opacity: 0;
+    transform: scale(1.5);
+  }
+}
+
+/* Particle explosion animation */
+@keyframes particleExpand {
+  0%, 89%, 100% { 
+    width: 2px;
+    left: 50%;
+    opacity: 0;
+  }
+  90% { 
+    width: 2px;
+    left: 50%;
+    opacity: 1;
+  }
+  93% { 
+    width: 40px;
+    left: calc(50% - 20px);
+    opacity: 0.8;
+  }
+  97% { 
+    width: 80px;
+    left: calc(50% - 40px);
+    opacity: 0;
+  }
+}
+
+/* Additional keyframes for orbital satellite animation */
+@keyframes orbit-satellite {
+  from {
+    transform: translateX(-50%) rotate(0deg) translateY(-200px) rotate(0deg);
+  }
+  to {
+    transform: translateX(-50%) rotate(360deg) translateY(-200px) rotate(-360deg);
+  }
+}
+
+/* Enhanced pulse effect for orbital elements */
+@keyframes orbital-pulse {
+  0%, 100% { 
+    opacity: 0.8;
+    box-shadow: 0 0 15px var(--color-primary);
+  }
+  50% { 
+    opacity: 1;
+    box-shadow: 0 0 30px var(--color-primary), 0 0 50px rgba(230, 181, 74, 0.3);
+  }
+}

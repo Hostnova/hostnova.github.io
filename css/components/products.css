@@ -1,0 +1,303 @@
+/* ==========================================
+   Products Section Styles
+   ==========================================
+   Matching the "Orbit Beyond Ordinary" theme
+   ========================================== */
+
+.products-section {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Orbital background elements */
+.products-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 20% 20%, rgba(0, 200, 255, 0.05) 0%, transparent 45%),
+    radial-gradient(circle at 80% 80%, rgba(230, 181, 74, 0.05) 0%, transparent 45%);
+  z-index: var(--z-back);
+  pointer-events: none;
+}
+
+/* Product orbital elements */
+.product-orbital {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 200, 255, 0.15);
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: var(--z-back);
+}
+
+.product-orbital-1 {
+  bottom: -100px;
+  right: 10%;
+  width: 350px;
+  height: 350px;
+  animation: orbit 30s linear infinite;
+}
+
+.product-orbital-2 {
+  top: 15%;
+  left: -150px;
+  width: 500px;
+  height: 500px;
+  border-color: rgba(230, 181, 74, 0.1);
+  animation: orbit 40s linear reverse infinite;
+}
+
+/* Product card styling */
+.product-card {
+  background: rgba(25, 25, 30, 0.6);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  transition: all var(--transition-base);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  z-index: var(--z-content);
+}
+
+.product-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 50px 50px 0;
+  border-color: transparent rgba(230, 181, 74, 0.2) transparent transparent;
+  transition: all var(--transition-base);
+  opacity: 0;
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.product-card:hover::after {
+  opacity: 1;
+}
+
+.product-logo {
+  height: 50px;
+  margin-bottom: 1.5rem;
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.3));
+  transition: all var(--transition-base);
+}
+
+.product-card:hover .product-logo {
+  transform: scale(1.05);
+}
+
+.product-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+  color: var(--color-text);
+  position: relative;
+  display: inline-block;
+}
+
+.product-card h3::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-primary), transparent);
+  transition: width var(--transition-base);
+}
+
+.product-card:hover h3::after {
+  width: 100%;
+}
+
+.product-card p {
+  color: var(--color-text-muted);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+/* Product metrics */
+.product-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  grid-gap: 1.5rem;
+  margin: 2rem 0;
+  position: relative;
+}
+
+.product-metric {
+  text-align: center;
+  padding: 1rem;
+  background: rgba(20, 20, 25, 0.4);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-base);
+}
+
+.product-metric:hover {
+  background: rgba(20, 20, 25, 0.7);
+  transform: translateY(-5px);
+}
+
+.product-metric-value {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-primary-light));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.product-metric-label {
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Product showcase */
+.product-showcase {
+  position: relative;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.product-showcase-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform var(--transition-base);
+}
+
+.product-showcase:hover .product-showcase-img {
+  transform: scale(1.03);
+}
+
+/* Product features */
+.product-features {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+
+.product-feature-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.product-feature-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+}
+
+/* Product CTA */
+.product-cta {
+  margin-top: 2rem;
+}
+
+.product-cta .btn-primary {
+  position: relative;
+  overflow: hidden;
+}
+
+.product-cta .btn-primary::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -100%;
+  width: 70%;
+  height: 200%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: rotate(30deg);
+  transition: all var(--transition-base);
+}
+
+.product-cta .btn-primary:hover::after {
+  left: 100%;
+}
+
+/* Product tabs */
+.product-tabs {
+  display: flex;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 2rem;
+  overflow-x: auto;
+}
+
+.product-tab {
+  padding: 1rem 1.5rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all var(--transition-base);
+  white-space: nowrap;
+}
+
+.product-tab.active {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+}
+
+.product-tab:hover:not(.active) {
+  color: var(--color-text);
+}
+
+.product-tab-content {
+  display: none;
+  animation: fadeIn 0.5s ease;
+}
+
+.product-tab-content.active {
+  display: block;
+}
+
+/* Specific product sections */
+#hostara-section,
+#gainchain-section {
+  padding: 6rem 0;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .product-orbital {
+    display: none;
+  }
+  
+  .product-card {
+    padding: 1.5rem;
+  }
+  
+  .product-metrics {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .product-tab {
+    padding: 0.75rem 1rem;
+  }
+}

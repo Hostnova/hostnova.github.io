@@ -1,0 +1,313 @@
+/* ==========================================
+   Text Visibility Fix
+   ==========================================
+   Ensures text is always visible regardless of theme
+   ========================================== */
+
+/* Force text visibility */
+body, p, h1, h2, h3, h4, h5, h6, 
+.hero-title, .hero-tagline, .hero-subtitle,
+.section-label, .feature-item, .highlight-text,
+.teaser-item, .gainchain-glitch-text {
+  color: #ffffff !important; /* Force white text */
+  opacity: 1 !important; /* Ensure opacity doesn't hide text */
+  visibility: visible !important; /* Make sure text is visible */
+}
+
+/* Ensure background contrast */
+body {
+  background-color: #0a0a0a !important; /* Force dark background */
+}
+
+/* Hostara specific fixes */
+.product-features .feature-tag,
+.coming-soon-badge {
+  color: #0a0a0a !important; /* Dark text on light backgrounds */
+}
+
+/* Force gradients to be visible */
+.gradient-text, .hero-title {
+  background: linear-gradient(135deg, #e6b54a 0%, #fccd68 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: #e6b54a !important; /* Fallback */
+}
+
+/* ==========================================
+   Text Visibility Emergency Fix
+   ==========================================
+   Forces text to be visible throughout the site
+   This file must be imported last in main.css
+   ========================================== */
+
+/* Force proper text colors to ensure visibility */
+.featured-logo-text, 
+.hero-title,
+.hero-subtitle,
+.section-title,
+h1, h2, h3, h4, h5, h6,
+p,
+.gradient-text {
+  color: #ffffff !important;
+  opacity: 1 !important;
+  text-shadow: 0 0 1px rgba(255, 255, 255, 0.2) !important;
+  visibility: visible !important;
+  display: block !important;
+}
+
+/* Hero title specific fix */
+.hero-title {
+  font-weight: 900 !important;
+  font-size: 3.5rem !important;
+  margin-bottom: 1.5rem !important;
+}
+
+/* Featured logo text specific fix */
+.featured-logo-text {
+  font-family: var(--font-display) !important;
+  font-weight: 900 !important;
+  font-size: 4rem !important;
+  color: #ffffff !important;
+  letter-spacing: 0.2em !important;
+}
+
+.featured-logo-accent {
+  color: var(--color-primary) !important;
+}
+
+/* Gradient text fix */
+.gradient-text {
+  background: linear-gradient(to right, #e6b54a, #fccd68) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+  display: inline-block !important;
+}
+
+/* Fix for text in buttons */
+.btn {
+  color: inherit !important;
+}
+
+.btn-primary {
+  color: var(--color-background) !important;
+}
+
+.btn-outline {
+  color: var(--color-primary) !important;
+}
+
+/* Fix for z-index issues that might be hiding text */
+.featured-logo-container, 
+.hero-content,
+.section-header,
+.featured-logo {
+  z-index: 20 !important;
+  position: relative !important;
+}
+
+/* High contrast mode for text to ensure visibility */
+@media (forced-colors: active) {
+  .featured-logo-text,
+  .hero-title,
+  .section-title,
+  h1, h2, h3, h4, h5, h6,
+  p {
+    forced-color-adjust: none !important;
+    color: CanvasText !important;
+  }
+}
+
+/* 
+===================================
+Text Visibility Fix
+===================================
+Fix for text not displaying properly in specific sections
+*/
+
+/* Fix for HOSTNOVA text in mission section */
+#brand-vision .featured-logo-text,
+#brand-vision h2,
+#brand-vision p {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+}
+
+/* Fix for text in current project section */
+#hostara .section-label,
+#hostara .section-title,
+#hostara p,
+#hostara h3 {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+}
+
+/* Fix for text in technology section */
+#features .section-label,
+#features .section-title,
+#features p,
+#features h3,
+#gainchain .section-label,
+#gainchain .section-title,
+#gainchain p,
+#gainchain h3,
+#gainchain h4,
+#gainchain ul.features-list li {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+}
+
+/* Fix for text in portfolio section */
+#portfolio .section-label,
+#portfolio h2, 
+#portfolio p,
+#portfolio h3,
+#portfolio .feature-highlights li,
+#portfolio .project-list li {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+}
+
+/* General text visibility fix for all sections */
+.section-label,
+.section-title,
+.reveal-item,
+.featured-logo-text,
+h1, h2, h3, h4, h5, h6,
+p, li, a {
+  opacity: 1 !important;
+  visibility: visible !important;
+  animation: none !important;
+  transition: none !important;
+}
+
+/* Ensure the HOSTNOVA logo text is always visible */
+.featured-logo-text {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+  animation: none !important;
+}
+
+/* 
+===================================
+Section Visibility Fix
+===================================
+Fix for sections not displaying properly
+*/
+
+/* Force all sections to be visible */
+.content-section,
+.cinematic-section,
+.pop-section,
+.section-orbital-bg,
+.dynamic-bg-section {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+  transform: none !important;
+  height: auto !important;
+}
+
+/* Make all background elements visible */
+.section-bg-container,
+.bg-mask,
+.bg-grid,
+.bg-nebula,
+.nebula-cloud,
+.nebula-stars,
+.bg-orbital-rings,
+.orbital-ring,
+.orbital-glow,
+.bg-digital-waves,
+.wave,
+.data-points {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+}
+
+/* Make sure orbital decorations are visible */
+.orbital-decoration,
+.orbital-ring,
+.mini-satellite,
+.floating-grid,
+.floating-particle {
+  opacity: 0.6 !important;
+  transform: scale(1) !important;
+}
+
+/* Force reveal sections to be visible */
+.reveal-section {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Force .in-view class on all elements that might need it */
+.reveal-item {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  visibility: visible !important;
+}
+
+/* Ensure that cinematic-section.visible elements are really visible */
+.cinematic-section.visible {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+}
+
+/* Force cards and feature items to display properly */
+.card,
+.card-content,
+.feature-item,
+.gainchain-preview,
+.media-card {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+}
+
+/* Make sure content in portfolio and other complex sections is visible */
+#portfolio .section-header,
+#portfolio .grid-layout,
+#portfolio .text-content,
+#portfolio .media-content,
+#portfolio .card,
+#gainchain .section-header,
+#gainchain .grid-layout,
+#gainchain .text-content,
+#gainchain .gainchain-preview,
+#hostara .section-header,
+#hostara .grid-layout,
+#hostara .text-content,
+#hostara .media-content,
+#community .section-header,
+#community .teaser-grid,
+#community .teaser-item {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+}
+
+/* Fix for grid layouts to ensure proper display */
+.grid-layout {
+  display: grid !important;
+}
+
+/* Ensure content in all sections is visible */
+.section-header {
+  margin-bottom: var(--spacing-lg);
+  opacity: 1 !important;
+  display: block !important;
+}
+
+/* Give every section a minimum height to ensure visibility */
+section {
+  min-height: 200px;
+}

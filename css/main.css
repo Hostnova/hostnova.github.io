@@ -1,0 +1,45 @@
+/* ==========================================
+   Main CSS Import File
+   ========================================== */
+
+/* Base Styles and Resets */
+@import url('base.css');
+
+/* Layout System */
+@import url('layout.css');
+
+/* Animation System */
+@import url('animations.css');
+
+/* New Color Palette */
+@import url('components/color-palette.css');
+
+/* Night Sky Background and Cosmic Effects */
+@import url('components/cosmic-background.css');
+
+/* Components */
+@import url('components/navigation.css');
+@import url('components/hero.css');
+@import url('components/buttons.css');
+@import url('components/cards.css');
+@import url('components/features.css');
+@import url('components/products.css');
+@import url('components/business-solutions.css');
+@import url('components/ai-interactions.css');
+@import url('components/orbital-elements.css');
+@import url('components/orbital-enhancements.css'); /* New orbital enhancements */
+@import url('components/community.css');
+@import url('components/team.css');
+@import url('components/footer.css');
+
+/* Fullpage section styles - add this new import */
+@import url('components/fullpage-sections.css');
+
+/* Custom Styles (overrides) */
+@import url('style.css');
+
+/* Position fixes for Nova Assistant and Footer */
+@import url('components/position-fix.css');
+
+/* Text visibility emergency fix - must be last */
+@import url('components/text-fix.css');

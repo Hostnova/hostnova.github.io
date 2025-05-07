@@ -1,0 +1,788 @@
+/* ==========================================
+   HostNova - Orbital Enhancements
+   ==========================================
+   Modern, space-themed orbital elements for all sections
+   ========================================== */
+
+/* Section orbital backgrounds */
+.section-orbital-bg {
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.5s ease;
+}
+
+.section-orbital-bg:hover .orbital-decoration {
+  animation-play-state: running;
+}
+
+/* Orbital decoration elements */
+.orbital-decoration {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  pointer-events: none;
+  z-index: var(--z-back);
+  opacity: 0.3;
+  transition: transform 0.2s ease-out;
+  will-change: transform;
+}
+
+.orbital-decoration.top-right {
+  top: 5%;
+  right: -5%;
+}
+
+.orbital-decoration.bottom-left {
+  bottom: 5%;
+  left: -5%;
+}
+
+.orbital-decoration.center-left {
+  top: 40%;
+  left: -10%;
+}
+
+.orbital-decoration.center-right {
+  top: 30%;
+  right: -8%;
+}
+
+.orbital-decoration:hover {
+  filter: drop-shadow(0 0 8px rgba(79, 220, 255, 0.8));
+  transform: scale(1.05);
+  z-index: 5;
+  cursor: pointer;
+}
+
+.orbital-decoration:hover .mini-satellite {
+  filter: brightness(1.5) drop-shadow(0 0 10px var(--color-primary));
+}
+
+/* Orbital rings with rotation */
+.orbital-ring {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  animation: rotate-orbit 30s linear infinite;
+  transition: transform 0.2s ease-out;
+  will-change: transform;
+}
+
+.orbital-ring:nth-child(1) {
+  width: 80%;
+  height: 80%;
+  top: 10%;
+  left: 10%;
+  animation-duration: 40s;
+}
+
+.orbital-ring:nth-child(2) {
+  animation-direction: reverse;
+  animation-duration: 35s;
+}
+
+.orbital-ring:nth-child(3) {
+  width: 120%;
+  height: 120%;
+  top: -10%;
+  left: -10%;
+  animation-duration: 45s;
+}
+
+/* Mini satellites that orbit around the rings */
+.mini-satellite {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-primary);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--color-glow);
+  transform: translate(-50%, -50%);
+  transition: transform 0.2s ease-out;
+  will-change: transform;
+}
+
+.mini-satellite:hover {
+  filter: drop-shadow(0 0 8px rgba(79, 220, 255, 0.8));
+  transform: scale(1.05);
+  z-index: 5;
+  cursor: pointer;
+}
+
+.mini-satellite::after {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 1px;
+  background-color: var(--color-primary);
+  opacity: 0.6;
+  left: 50%;
+  top: 50%;
+  transform-origin: center;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+/* Section connectors - vertical lines connecting sections */
+.section-connector {
+  position: absolute;
+  width: 2px;
+  height: 100px;
+  background: linear-gradient(to bottom, transparent, var(--color-border), transparent);
+  left: 50%;
+  bottom: -50px;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+/* Data streams - animated flowing dots */
+.data-stream-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: var(--z-back);
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.data-stream {
+  position: absolute;
+  width: 150px;
+  height: 2px;
+  background: linear-gradient(to right, transparent, var(--color-primary), transparent);
+  left: -150px;
+  animation: stream-flow 10s linear infinite;
+}
+
+.data-stream.enhanced {
+  stroke: rgba(79, 220, 255, 0.8);
+  stroke-width: 1.5px;
+  filter: drop-shadow(0 0 3px rgba(79, 220, 255, 0.6));
+  animation: enhanced-data-flow 8s linear infinite;
+}
+
+@keyframes stream-flow {
+  0% {
+    left: -150px;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes enhanced-data-flow {
+  0% {
+    stroke-dashoffset: 200;
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0.2;
+  }
+}
+
+/* Constellation background - dots and lines */
+.constellation-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: var(--z-back);
+  pointer-events: none;
+}
+
+.constellation-dot {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background-color: var(--color-primary);
+  border-radius: 50%;
+  opacity: 0.6;
+  filter: blur(0.5px);
+}
+
+.constellation-dot:nth-child(3n) {
+  width: 4px;
+  height: 4px;
+  opacity: 0.8;
+  animation: pulse 3s ease-in-out infinite;
+}
+
+.constellation-dot:nth-child(5n) {
+  width: 2px;
+  height: 2px;
+  opacity: 0.4;
+}
+
+.constellation-line {
+  position: absolute;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--color-border), transparent);
+  transform-origin: left center;
+  opacity: 0.3;
+  transition: transform 0.2s ease-out;
+  will-change: transform;
+}
+
+.constellation-line:hover {
+  stroke-width: 2px;
+  filter: drop-shadow(0 0 5px rgba(79, 220, 255, 0.6));
+}
+
+/* Flying orbital particles */
+.orbital-particle-fly {
+  position: absolute;
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(to right, transparent, var(--color-primary), transparent);
+  border-radius: 100px;
+  left: -100px;
+  filter: blur(1px);
+  animation: particle-fly 10s linear infinite;
+  opacity: 0.5;
+}
+
+@keyframes particle-fly {
+  0% {
+    left: -100px;
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    left: 100%;
+    transform: translateY(0);
+  }
+}
+
+/* Orbital highlight effect for feature items */
+.orbital-highlight {
+  position: relative;
+  overflow: hidden;
+}
+
+.orbital-highlight::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    var(--color-border) 90deg,
+    transparent 180deg,
+    var(--color-border) 270deg,
+    transparent 360deg
+  );
+  opacity: 0;
+  transition: opacity var(--transition-base);
+  animation: rotate-orbit 30s linear infinite;
+  z-index: -1;
+}
+
+.orbital-highlight:hover::before {
+  opacity: 0.2;
+}
+
+/* Glowing border effect */
+.glow-border {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.glow-border::after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  bottom: -1px;
+  background: transparent;
+  border-radius: inherit;
+  border: 1px solid var(--color-primary);
+  opacity: 0;
+  z-index: -1;
+  transition: opacity var(--transition-base);
+  box-shadow: 0 0 15px var(--color-glow);
+}
+
+.glow-border:hover::after {
+  opacity: 1;
+}
+
+/* Orbital markers - decorative elements for section headings */
+.orbital-marker {
+  width: 20px;
+  height: 20px;
+  position: relative;
+}
+
+.orbital-marker::before {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: var(--color-primary);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 10px var(--color-glow);
+}
+
+.orbital-marker::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: pulse 3s ease-in-out infinite;
+}
+
+/* Animation for rotating orbits */
+@keyframes rotate-orbit {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* NEW: Section orbit connectors */
+.section-orbit-connector {
+  position: absolute;
+  height: 2px;
+  background: linear-gradient(to right, transparent, var(--color-border), transparent);
+  transform-origin: left center;
+  z-index: 0;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+/* NEW: Section entry burst effect */
+.section-entry-burst {
+  position: fixed;
+  width: 0;
+  height: 0;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.section-entry-particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background-color: var(--color-primary);
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+  animation: particle-burst-out var(--duration) cubic-bezier(0.17, 0.67, 0.83, 0.97) var(--delay) forwards;
+  opacity: 0;
+}
+
+@keyframes particle-burst-out {
+  0% {
+    transform: translate(-50%, -50%) scale(0.2);
+    opacity: 1;
+  }
+  70% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(calc(-50% + var(--end-x)), calc(-50% + var(--end-y))) scale(0.5);
+    opacity: 0;
+  }
+}
+
+/* NEW: Mini satellite ripple effect */
+.mini-satellite-ripple {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  border: 1px solid var(--section-accent-color, var(--color-primary));
+  transform: scale(1);
+  opacity: 1;
+  animation: satellite-ripple 1s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes satellite-ripple {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* NEW: Data burst effect */
+.data-burst {
+  position: fixed;
+  width: 0;
+  height: 0;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.data-particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background-color: var(--color-accent-cyber-blue);
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 5px var(--color-accent-cyber-blue);
+  animation: data-particle-out 1.5s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes data-particle-out {
+  0% {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(calc(-50% + var(--end-x)), calc(-50% + var(--end-y)));
+    opacity: 0;
+  }
+}
+
+/* NEW: Enhanced data streams */
+.enhanced-data-stream-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: var(--z-back);
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.enhanced-data-stream {
+  position: absolute;
+  height: 2px;
+  background: linear-gradient(to right, transparent, var(--color-primary-gold), transparent);
+  left: -150px;
+  animation: enhanced-stream-flow 8s linear infinite;
+}
+
+@keyframes enhanced-stream-flow {
+  0% {
+    left: -150px;
+    opacity: 0.3;
+  }
+  10% {
+    opacity: 0.7;
+  }
+  90% {
+    opacity: 0.7;
+  }
+  100% {
+    left: 100%;
+    opacity: 0.3;
+  }
+}
+
+.enhanced-data-particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background-color: var(--color-accent-cyber-blue);
+  border-radius: 50%;
+  top: 0;
+  box-shadow: 0 0 8px var(--color-accent-cyber-blue);
+  animation: enhanced-particle-pulse 2s ease-in-out infinite;
+  opacity: 0.8;
+}
+
+@keyframes enhanced-particle-pulse {
+  0% {
+    transform: translateX(0);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateX(10px);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 0.4;
+  }
+}
+
+/* NEW: Floating orbs */
+.floating-orb {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 30% 30%,
+    transparent,
+    var(--color-primary-gold) 70%,
+    var(--color-accent-deep-purple)
+  );
+  opacity: 0.2;
+  filter: blur(5px);
+  pointer-events: none;
+  z-index: var(--z-back);
+}
+
+.orb-inner-light {
+  position: absolute;
+  width: 30%;
+  height: 30%;
+  top: 30%;
+  left: 30%;
+  border-radius: 50%;
+  background-color: var(--color-primary-gold);
+  filter: blur(5px);
+  animation: orb-pulse 3s ease-in-out infinite;
+}
+
+@keyframes orb-pulse {
+  0% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.3);
+  }
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+}
+
+/* NEW: Active state for orbital decorations */
+.orbital-decoration.active .orbital-ring {
+  opacity: 0.6;
+  animation-play-state: running;
+}
+
+.orbital-decoration.active .mini-satellite {
+  animation-play-state: running;
+  opacity: 1;
+}
+
+/* Add GSAP compatibility for floating orb animations */
+[data-gsap-orbital="true"] {
+  transition: none;
+}
+
+/* Animation for sections becoming visible */
+.section-orbital-bg:not(.visible) .orbital-decoration,
+.section-orbital-bg:not(.visible) .data-stream-container,
+.section-orbital-bg:not(.visible) .constellation-background {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.section-orbital-bg.visible .orbital-decoration,
+.section-orbital-bg.visible .data-stream-container,
+.section-orbital-bg.visible .constellation-background {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Section-specific accent colors */
+.section-orbital-bg#gainchain .orbital-decoration .mini-satellite,
+.section-orbital-bg#gainchain .orbital-marker::before {
+  background-color: var(--color-accent-neon);
+  box-shadow: 0 0 10px var(--color-accent-neon);
+}
+
+.section-orbital-bg#hostara .orbital-decoration .mini-satellite,
+.section-orbital-bg#hostara .orbital-marker::before {
+  background-color: var(--color-accent-cyber-blue);
+  box-shadow: 0 0 10px var(--color-accent-cyber-blue);
+}
+
+.section-orbital-bg#community .orbital-decoration .mini-satellite,
+.section-orbital-bg#community .orbital-marker::before {
+  background-color: var(--color-accent-deep-purple);
+  box-shadow: 0 0 10px var(--color-accent-deep-purple);
+}
+
+/* Orbital Parallax Effect Styles */
+.orbital-decoration,
+.orbital-ring,
+.mini-satellite,
+.constellation-line {
+  transition: transform 0.2s ease-out;
+  will-change: transform;
+}
+
+/* Interactive Pulse Wave Animation */
+.orbital-pulse-wave {
+  position: absolute;
+  pointer-events: none;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(79, 220, 255, 0.5) 0%,
+    rgba(79, 220, 255, 0.1) 60%,
+    rgba(79, 220, 255, 0) 100%
+  );
+  z-index: 10;
+  animation: pulse-expand 3s ease-out forwards;
+  opacity: 0;
+  --pulse-intensity: 1;
+}
+
+@keyframes pulse-expand {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+  10% {
+    opacity: calc(0.6 * var(--pulse-intensity));
+  }
+  100% {
+    width: 500px;
+    height: 500px;
+    opacity: 0;
+    transform: translateX(-50%) translateY(-50%) scale(2);
+  }
+}
+
+/* NEW: Interactive Orbital Pulse Animations */
+.orbital-pulse-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: var(--z-mid);
+  overflow: hidden;
+}
+
+.orbital-pulse {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(79, 220, 255, 0.5) 0%,
+    rgba(79, 220, 255, 0.1) 70%, 
+    transparent 100%
+  );
+  transform: translate(-50%, -50%);
+  animation: orbital-pulse-expand 2s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+  z-index: var(--z-mid);
+}
+
+@keyframes orbital-pulse-expand {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 0.8;
+  }
+  100% {
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+  }
+}
+
+/* NEW: Satellite Trails */
+.satellite-trail {
+  position: absolute;
+  width: 20px;
+  height: 3px;
+  background: linear-gradient(to right, var(--color-primary), transparent);
+  border-radius: 2px;
+  opacity: 0.6;
+  filter: blur(1px);
+  transform: translateX(-50%);
+  animation: trail-fade 1s ease-out forwards;
+  pointer-events: none;
+  z-index: var(--z-back);
+}
+
+@keyframes trail-fade {
+  0% {
+    width: 5px;
+    opacity: 0.8;
+  }
+  100% {
+    width: 30px;
+    opacity: 0;
+    transform: translateX(-80%);
+  }
+}
+
+/* Orbital Depth Perception for Parallax */
+[data-depth-factor] {
+  transition: transform 0.2s cubic-bezier(0.1, 0.7, 0.3, 1);
+  will-change: transform;
+}
+
+/* Different depth layers for parallax effect */
+.parallax-layer-1 {
+  --depth-factor: 0.02;
+}
+
+.parallax-layer-2 {
+  --depth-factor: 0.04;
+}
+
+.parallax-layer-3 {
+  --depth-factor: 0.06;
+}
+
+.parallax-layer-4 {
+  --depth-factor: 0.08;
+}
+
+/* Responsive adjustments for orbital elements */
+@media (max-width: 768px) {
+  .orbital-pulse-wave {
+    animation-duration: 2s;
+  }
+  
+  @keyframes pulse-expand {
+    100% {
+      width: 300px;
+      height: 300px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .orbital-decoration,
+  .orbital-ring,
+  .mini-satellite {
+    transform: scale(0.8);
+  }
+}

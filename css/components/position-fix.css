@@ -1,0 +1,88 @@
+/* ==========================================
+   Position Fixes
+   ==========================================
+   Fix positioning issues for Nova Assistant and Footer
+   ========================================== */
+
+/* Fix Nova Assistant positioning */
+.ai-assistant {
+  position: fixed !important;
+  bottom: 30px !important; 
+  right: 30px !important;
+  z-index: 9999 !important;
+  width: auto !important;
+  height: auto !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+/* Ensure the assistant panel displays correctly */
+.ai-panel {
+  display: none;
+  background: rgba(28, 32, 45, 0.95) !important;
+  border-radius: 15px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  width: 320px !important;
+  height: 400px !important;
+}
+
+.ai-assistant.active .ai-panel {
+  display: flex !important;
+}
+
+/* Fix toggle button */
+.ai-toggle {
+  display: flex !important;
+  align-items: center !important;
+  background: linear-gradient(135deg, rgba(40, 58, 128, 0.9), rgba(96, 120, 234, 0.9)) !important;
+  border-radius: 30px !important;
+  padding: 10px 20px !important;
+  cursor: pointer !important;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3) !important;
+  transition: all 0.3s ease !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+.ai-toggle:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 25px rgba(96, 120, 234, 0.4) !important;
+}
+
+/* Fix footer positioning */
+.site-footer {
+  position: relative !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  margin-top: 0 !important;
+  padding: var(--spacing-md) 0 !important;
+  z-index: 10 !important;
+}
+
+.site-footer .container {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+
+@media (max-width: 768px) {
+  .site-footer .container {
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 2rem !important;
+  }
+  
+  .footer-brand {
+    align-items: center !important;
+  }
+  
+  .footer-nav {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1rem !important;
+    align-items: center !important;
+  }
+}

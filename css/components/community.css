@@ -1,0 +1,227 @@
+/* ==========================================
+   Community Section Styles
+   ==========================================
+   Matching the "Orbit Beyond Ordinary" theme
+   ========================================== */
+
+.community-section {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Orbital background elements */
+.community-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 20% 40%, rgba(0, 200, 255, 0.05) 0%, transparent 40%),
+    radial-gradient(circle at 80% 60%, rgba(230, 181, 74, 0.04) 0%, transparent 50%);
+  z-index: var(--z-back);
+  pointer-events: none;
+}
+
+/* Orbital accent circles */
+.community-orbital {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 200, 255, 0.2);
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: var(--z-back);
+}
+
+.community-orbital-1 {
+  top: -50px;
+  right: 10%;
+  width: 250px;
+  height: 250px;
+  animation: orbit 30s linear infinite;
+}
+
+.community-orbital-2 {
+  bottom: -80px;
+  left: 5%;
+  width: 350px;
+  height: 350px;
+  border-color: rgba(230, 181, 74, 0.15);
+  animation: orbit 25s linear reverse infinite;
+}
+
+/* Community grid layout */
+.community-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 2rem;
+  position: relative;
+}
+
+/* Community card styling */
+.community-card {
+  background: rgba(25, 25, 30, 0.5);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  transition: all var(--transition-base);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.community-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary-dark), var(--color-primary-light));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-base);
+}
+
+.community-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.community-card:hover::before {
+  transform: scaleX(1);
+}
+
+.community-icon {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 1.5rem;
+  color: var(--color-primary);
+}
+
+.community-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--color-text);
+}
+
+.community-card p {
+  margin-bottom: 1.5rem;
+  color: var(--color-text-muted);
+  flex: 1;
+}
+
+/* Join community button with orbital effect */
+.join-community-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  background: rgba(230, 181, 74, 0.1);
+  color: var(--color-primary);
+  border: 1px solid rgba(230, 181, 74, 0.3);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  text-decoration: none;
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.join-community-btn::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: rgba(255, 255, 255, 0.1);
+  transform: rotate(45deg);
+  opacity: 0;
+  transition: opacity var(--transition-base), transform var(--transition-base);
+}
+
+.join-community-btn:hover {
+  background: rgba(230, 181, 74, 0.15);
+  border-color: rgba(230, 181, 74, 0.5);
+  transform: translateY(-2px);
+}
+
+.join-community-btn:hover::after {
+  opacity: 1;
+  transform: rotate(45deg) translate(10%, 10%);
+}
+
+.join-community-btn i {
+  margin-left: 0.5rem;
+  transition: transform var(--transition-base);
+}
+
+.join-community-btn:hover i {
+  transform: translateX(3px);
+}
+
+/* Testimonial quote styling */
+.community-quote {
+  position: relative;
+  padding: 2rem;
+  background: rgba(20, 20, 25, 0.6);
+  border-radius: var(--radius-lg);
+  margin: 3rem 0;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.community-quote::before {
+  content: '"';
+  position: absolute;
+  top: -30px;
+  left: 20px;
+  font-size: 6rem;
+  font-family: serif;
+  color: var(--color-primary);
+  opacity: 0.5;
+  line-height: 1;
+}
+
+.quote-text {
+  font-style: italic;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.quote-author {
+  display: flex;
+  align-items: center;
+}
+
+.quote-author-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 1rem;
+  border: 2px solid var(--color-primary);
+}
+
+.quote-author-name {
+  font-weight: 600;
+}
+
+.quote-author-title {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .community-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .community-orbital {
+    display: none;
+  }
+}

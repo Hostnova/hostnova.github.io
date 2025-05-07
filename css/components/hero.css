@@ -1,0 +1,311 @@
+/* ==========================================
+   Hero Section Styles
+   ==========================================
+   Matching the "Orbit Beyond Ordinary" theme
+   ========================================== */
+
+/* Hero container and layout - completely full screen */
+.hero-section {
+  height: 100vh; /* Full viewport height */
+  width: 100vw; /* Full viewport width */
+  min-height: 100vh; /* Ensure minimum height is also 100vh */
+  max-height: 100vh; /* Enforce maximum height */
+  max-width: 100%; /* Prevent horizontal overflow */
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center content horizontally too */
+  position: relative;
+  overflow: hidden;
+  margin: 0; /* Remove any margins */
+  padding: 0; /* Remove any padding */
+  box-sizing: border-box; /* Include padding and border in the element's dimensions */
+}
+
+/* Video background */
+.video-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: var(--z-back);
+}
+
+.hero-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: contrast(1.05) brightness(0.9);
+}
+
+.orbital-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, 
+    rgba(10, 10, 10, 0.5) 0%, 
+    rgba(10, 10, 10, 0.7) 50%,
+    rgba(10, 10, 10, 0.85) 100%);
+  z-index: 5;
+}
+
+/* Logo image container styles */
+.logo-image-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 15;
+}
+
+.logo-image {
+  max-width: 180px;
+  height: auto;
+  filter: drop-shadow(0 0 15px var(--color-glow));
+}
+
+/* Featured logo container with vertical layout */
+.featured-logo-container {
+  margin-bottom: 2rem;
+  position: relative;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.featured-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding: 1rem;
+}
+
+/* Removed animations and visibility effects for testing */
+.featured-logo-text {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+  animation: none !important;
+}
+
+.featured-logo-accent {
+  color: var(--color-primary) !important; /* Force gold color */
+  position: relative;
+  -webkit-text-fill-color: var(--color-primary); /* Force text color for WebKit browsers */
+  text-shadow: 0 0 15px var(--color-glow); /* Add glow */
+}
+
+/* Orbital ring animation */
+.logo-orbital-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  border: 1px solid rgba(230, 181, 74, 0.3);
+  box-shadow: 0 0 20px rgba(230, 181, 74, 0.2), inset 0 0 30px rgba(230, 181, 74, 0.1);
+  animation: orbit-rotate 30s linear infinite;
+  z-index: 5;
+}
+
+.logo-orbital-ring::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 50%;
+  border: 2px solid rgba(230, 181, 74, 0.2);
+  animation: orbit-rotate 20s linear infinite reverse;
+}
+
+.orbital-satellite {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: var(--color-primary);
+  border-radius: 50%;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 0 15px var(--color-primary);
+  animation: orbit-satellite 15s linear infinite;
+  z-index: 6;
+}
+
+@keyframes orbit-rotate {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes orbit-satellite {
+  from {
+    transform: translateX(-50%) rotate(0deg) translateY(-200px) rotate(0deg);
+  }
+  to {
+    transform: translateX(-50%) rotate(360deg) translateY(-200px) rotate(-360deg);
+  }
+}
+
+/* Hero content and text */
+.hero-content {
+  position: relative;
+  z-index: 10;
+  padding-top: 4rem;
+}
+
+.hero-text-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hero-title {
+  margin-bottom: 2rem;
+  font-weight: 900;
+  text-shadow: 0 0 40px rgba(76, 176, 243, 0.3);
+}
+
+.hero-subtitle {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  max-width: 700px;
+  margin: 0 auto 2.5rem;
+  color: var(--color-text-muted);
+}
+
+.hero-cta-group {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+/* Scroll indicator */
+.scroll-indicator-wrapper {
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+}
+
+.mouse-scroll-indicator {
+  width: 30px;
+  height: 50px;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  border-radius: 20px;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.scroll-dot {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--color-primary);
+  border-radius: 50%;
+  animation: scroll-animation 2s infinite;
+}
+
+@keyframes scroll-animation {
+  0% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  75% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+  76% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* Floating elements for depth */
+.floating-element {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, rgba(230, 181, 74, 0.2), transparent 70%);
+  filter: blur(20px);
+  pointer-events: none;
+}
+
+.floating-element-1 {
+  width: 400px;
+  height: 400px;
+  top: 10%;
+  right: -100px;
+  animation: float-element 25s infinite alternate ease-in-out;
+}
+
+.floating-element-2 {
+  width: 300px;
+  height: 300px;
+  bottom: 10%;
+  left: -50px;
+  animation: float-element 20s infinite alternate-reverse ease-in-out;
+}
+
+@keyframes float-element {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-50px) translateX(30px);
+    opacity: 0.2;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .featured-logo-text {
+    font-size: 2.5rem;
+  }
+  
+  .logo-orbital-ring {
+    width: 300px;
+    height: 300px;
+  }
+  
+  .floating-element {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .featured-logo-text {
+    font-size: 2rem;
+    letter-spacing: 0.1em;
+  }
+  
+  .logo-orbital-ring {
+    width: 250px;
+    height: 250px;
+  }
+}
