@@ -32,6 +32,7 @@
 
     <!-- Main Landing CSS -->
     <link rel="stylesheet" href="css/main-landing.css">
+    <link rel="stylesheet" href="css/components/hostara.css">
 </head>
 <body class="dark-theme">
     <!-- Custom Cursor Elements -->
@@ -39,6 +40,18 @@
     <div class="cursor-dot"></div>
 
     <main id="main-content">
+        <!-- Section Navigation Buttons -->
+        <div class="section-nav-buttons">
+            <button class="section-nav-button" data-section="0">
+                <span class="section-nav-dot active"></span>
+                <span class="section-nav-label">Home</span>
+            </button>
+            <button class="section-nav-button" data-section="1">
+                <span class="section-nav-dot"></span>
+                <span class="section-nav-label">Hostara</span>
+            </button>
+        </div>
+        
         <!-- Cinematic Hero Section -->
         <section id="hero" class="hero-section">
             <!-- Advanced background effects -->
@@ -197,6 +210,45 @@
                     <div class="mini-satellite"></div>
                 </div>
                 <div class="orbital-ring-magnetic"></div>
+            </div>
+        </section>
+
+        <!-- Hostara App Section -->
+        <section class="hostara-section">
+            <!-- Background elements -->
+            <div class="hostara-bg-glow hostara-bg-glow-1"></div>
+            <div class="hostara-bg-glow hostara-bg-glow-2"></div>
+            <div class="hostara-orbit hostara-orbit-1"></div>
+            <div class="hostara-orbit hostara-orbit-2"></div>
+            <div class="hostara-dot hostara-dot-1"></div>
+            <div class="hostara-dot hostara-dot-2"></div>
+            <div class="hostara-dot hostara-dot-3"></div>
+            
+            <!-- Logo -->
+            <div class="hostara-logo-container">
+                <img class="hostara-logo" src="images/svg/hostara-logo.svg" alt="Hostara Logo">
+            </div>
+            
+            <!-- Main content -->
+            <div class="hostara-content">
+                <div class="hostara-text">
+                    <h2 class="hostara-heading">Hostara App</h2>
+                    <h3 class="hostara-subheading">The future of hosting in your pocket</h3>
+                    <p class="hostara-description">
+                        Experience next-generation hosting with our intuitive mobile interface. 
+                        Monitor your nodes, manage resources, and earn rewards—all from your smartphone.
+                        Take full control of your hosting experience wherever you are.
+                    </p>
+                    <a href="/hostara-portal" class="hostara-button">Host your Hostara</a>
+                </div>
+                
+                <div class="hostara-app-container">
+                    <div class="hostara-phone">
+                        <div class="hostara-screen">
+                            <img class="hostara-screenshot" src="images/interfaces/hostara-interface-demo.jpg" alt="Hostara App Interface">
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
@@ -418,6 +470,170 @@
                     createCodeRain();
                 }
             });
+            
+            // Handle slide transitions for Hostara section
+            const handleSlideTransitions = () => {
+                const sections = document.querySelectorAll('.hostara-section, #hero');
+                let currentSectionIndex = 0;
+                let isAnimating = false;
+                
+                // Navigation buttons
+                const navButtons = document.querySelectorAll('.section-nav-button');
+                
+                // Update active dot
+                const updateActiveDot = (index) => {
+                    navButtons.forEach((btn, i) => {
+                        const dot = btn.querySelector('.section-nav-dot');
+                        if (i === index) {
+                            dot.classList.add('active');
+                        } else {
+                            dot.classList.remove('active');
+                        }
+                    });
+                };
+                
+                // Initial setup
+                sections.forEach((section, index) => {
+                    if (index !== currentSectionIndex) {
+                        section.style.display = 'none';
+                    }
+                });
+                
+                // Add click events to navigation buttons
+                navButtons.forEach((button, index) => {
+                    button.addEventListener('click', () => {
+                        if (isAnimating || currentSectionIndex === index) return;
+                        
+                        isAnimating = true;
+                        const direction = index > currentSectionIndex ? 1 : -1;
+                        
+                        // Current section exit transition
+                        sections[currentSectionIndex].classList.add(direction > 0 ? 'slide-exit-active' : 'slide-exit-up-active');
+                        
+                        setTimeout(() => {
+                            sections[currentSectionIndex].style.display = 'none';
+                            sections[currentSectionIndex].classList.remove(
+                                'slide-exit-active', 
+                                'slide-exit-up-active'
+                            );
+                            
+                            // Next section enter transition
+                            sections[index].style.display = 'flex';
+                            sections[index].classList.add(direction > 0 ? 'slide-enter-active' : 'slide-enter-down-active');
+                            
+                            currentSectionIndex = index;
+                            updateActiveDot(currentSectionIndex);
+                            
+                            setTimeout(() => {
+                                sections[currentSectionIndex].classList.remove(
+                                    'slide-enter-active', 
+                                    'slide-enter-down-active'
+                                );
+                                isAnimating = false;
+                            }, 800);
+                        }, 800);
+                    });
+                });
+                
+                // Add try hostara button click event in hero section
+                const tryHostaraBtn = document.querySelector('.hero-cta-group .btn-primary');
+                if (tryHostaraBtn) {
+                    tryHostaraBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        // Trigger the Hostara section navigation button click
+                        navButtons[1].click();
+                    });
+                }
+                
+                // Handle wheel events for slide transitions
+                document.addEventListener('wheel', (event) => {
+                    if (isAnimating) return;
+                    
+                    const direction = event.deltaY > 0 ? 1 : -1;
+                    const nextIndex = currentSectionIndex + direction;
+                    
+                    // Ensure next index is within bounds
+                    if (nextIndex >= 0 && nextIndex < sections.length) {
+                        isAnimating = true;
+                        
+                        // Current section exit transition
+                        sections[currentSectionIndex].classList.add(direction > 0 ? 'slide-exit-active' : 'slide-exit-up-active');
+                        
+                        setTimeout(() => {
+                            sections[currentSectionIndex].style.display = 'none';
+                            sections[currentSectionIndex].classList.remove(
+                                'slide-exit-active', 
+                                'slide-exit-up-active'
+                            );
+                            
+                            // Next section enter transition
+                            sections[nextIndex].style.display = 'flex';
+                            sections[nextIndex].classList.add(direction > 0 ? 'slide-enter-active' : 'slide-enter-down-active');
+                            
+                            currentSectionIndex = nextIndex;
+                            updateActiveDot(currentSectionIndex);
+                            
+                            setTimeout(() => {
+                                sections[currentSectionIndex].classList.remove(
+                                    'slide-enter-active', 
+                                    'slide-enter-down-active'
+                                );
+                                isAnimating = false;
+                            }, 800); // Match transition duration in CSS
+                        }, 800); // Match transition duration in CSS
+                    } else {
+                        isAnimating = false;
+                    }
+                });
+                
+                // Phone mockup interactive effects
+                const hostaraPhone = document.querySelector('.hostara-phone');
+                if (hostaraPhone) {
+                    hostaraPhone.addEventListener('mousemove', e => {
+                        if (window.innerWidth <= 768) return; // Disable on mobile
+                        
+                        const phoneRect = hostaraPhone.getBoundingClientRect();
+                        const centerX = phoneRect.left + phoneRect.width / 2;
+                        const centerY = phoneRect.top + phoneRect.height / 2;
+                        
+                        // Calculate rotation based on mouse position (reduced effect)
+                        const rotateY = ((e.clientX - centerX) / phoneRect.width) * 10;
+                        const rotateX = -((e.clientY - centerY) / phoneRect.height) * 5;
+                        
+                        hostaraPhone.style.transform = 
+                            `perspective(1000px) rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
+                    });
+                    
+                    // Reset on mouse leave
+                    hostaraPhone.addEventListener('mouseleave', () => {
+                        hostaraPhone.style.transform = 
+                            'perspective(1000px) rotateY(-15deg) rotateX(5deg)';
+                    });
+                }
+                
+                // Hostara button effects
+                const hostaraButton = document.querySelector('.hostara-button');
+                if (hostaraButton) {
+                    hostaraButton.addEventListener('mouseenter', () => {
+                        if (cursorFollower) {
+                            cursorFollower.style.width = '50px';
+                            cursorFollower.style.height = '50px';
+                            cursorFollower.style.borderColor = 'rgba(100, 255, 218, 0.5)';
+                        }
+                    });
+                    
+                    hostaraButton.addEventListener('mouseleave', () => {
+                        if (cursorFollower) {
+                            cursorFollower.style.width = '40px';
+                            cursorFollower.style.height = '40px';
+                            cursorFollower.style.borderColor = 'rgba(76, 176, 243, 0.3)';
+                        }
+                    });
+                }
+            };
+            
+            // Initialize slide transitions
+            handleSlideTransitions();
         });
     </script>
 </body>
