@@ -1,28 +1,26 @@
-// Main JavaScript file for HostNova website
+// Main JavaScript for HostNova - Orbit Beyond Ordinary
 
-// Document ready function
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialize components
+    console.log('HostNova initialized');
+    
+    // Initialize features
     initNavigation();
-    // initScrollEffects(); // Commented out to prevent scroll effects from hiding text
-    initNoAnimations(); // New function to ensure text visibility
+    initNoAnimations();
     initFloatingElements();
     initOrbitals();
     initSectionBackgrounds();
-    initCosmicBackground(); // Use this improved function
-    
-    // Make all sections visible immediately - fixes blank sections issue
+    initCosmicBackground();
     makeAllSectionsVisible();
-    
-    // Initialize fullpage navigation
     initFullPageNavigation();
-    
-    // Initialize section transitions
     initSectionTransitions();
-    
-    // Add animation classes to text elements
+    initInteractiveWidgets();
+    initStarField();
+    initRandomExplosions();
+    initBreathingNebulas();
+    initEnergyFlares();
     addAnimationClassesToText();
-    
+    initSectionBackgroundLoaders();
+
     // Remove preloader after content loads
     setTimeout(() => {
         document.querySelector('.preloader')?.classList.add('fade-out');
@@ -142,7 +140,97 @@ function initFloatingElements() {
 
 // Initialize orbital elements
 function initOrbitals() {
-    // Set up orbital animations and interactions
+    // Check for orbital systems
+    const orbitalSystem = document.querySelector('.orbital-system');
+    if (!orbitalSystem) return;
+    
+    // Add traveler nodes to orbits
+    const orbits = document.querySelectorAll('.orbit');
+    orbits.forEach(orbit => {
+        const traveler = document.createElement('div');
+        traveler.className = 'orbit-traveler';
+        
+        // Randomize color with slight variation
+        const hue = Math.random() > 0.5 ? '64, 220, 255' : '230, 181, 74';
+        traveler.style.background = `rgba(${hue}, 0.9)`;
+        traveler.style.boxShadow = `0 0 15px 4px rgba(${hue}, 0.6)`;
+        traveler.style.setProperty('--color-primary', `rgba(${hue}, 0.9)`);
+        
+        orbit.appendChild(traveler);
+        
+        // Create trail effect for orbit travelers
+        createOrbitTrailEffect(orbit, traveler);
+    });
+    
+    // Add stellar dust particles
+    addStellarDustParticles(orbitalSystem);
+}
+
+// Create trail effect for orbit travelers
+function createOrbitTrailEffect(orbit, traveler) {
+    // Create trails after the traveler
+    setInterval(() => {
+        const rect = traveler.getBoundingClientRect();
+        const orbitRect = orbit.getBoundingClientRect();
+        
+        // Get position relative to orbit
+        const x = rect.left + rect.width/2 - orbitRect.left;
+        const y = rect.top + rect.height/2 - orbitRect.top;
+        
+        createTrailParticle(orbit, x, y, getComputedStyle(traveler).background);
+    }, 150);
+}
+
+// Create trail particle
+function createTrailParticle(orbit, x, y, color) {
+    const trail = document.createElement('div');
+    trail.className = 'orbital-trail';
+    trail.style.left = `${x}px`;
+    trail.style.top = `${y}px`;
+    trail.style.background = color;
+    orbit.appendChild(trail);
+    
+    // Remove after animation
+    setTimeout(() => {
+        if (orbit.contains(trail)) {
+            orbit.removeChild(trail);
+        }
+    }, 3000);
+}
+
+// Add stellar dust particles floating around
+function addStellarDustParticles(container) {
+    // Create dust particles
+    for (let i = 0; i < 15; i++) {
+        const dust = document.createElement('div');
+        dust.className = 'stellar-dust-particle';
+        
+        // Random position around center
+        const angle = Math.random() * 360;
+        const distance = 30 + Math.random() * 80;
+        dust.style.setProperty('--angle', `${angle}deg`);
+        dust.style.setProperty('--distance', `${distance}px`);
+        
+        // Center initially
+        dust.style.top = '50%';
+        dust.style.left = '50%';
+        dust.style.transform = 'translate(-50%, -50%)';
+        
+        // Random animation duration
+        dust.style.setProperty('--float-duration', `${10 + Math.random() * 10}s`);
+        
+        // Random color/opacity
+        const opacity = 0.3 + Math.random() * 0.4;
+        dust.style.opacity = opacity;
+        
+        // Random size
+        const size = 1 + Math.random() * 2;
+        dust.style.width = `${size}px`;
+        dust.style.height = `${size}px`;
+        
+        // Add to container
+        container.appendChild(dust);
+    }
 }
 
 // Initialize section background effects
@@ -278,6 +366,217 @@ function initCosmicBackground() {
     }
 }
 
+// Enhanced Star Field Generation
+function initStarField() {
+    const starLayers = document.querySelectorAll('.star-layer');
+    
+    starLayers.forEach(layer => {
+        // Clear any existing stars
+        while (layer.firstChild) {
+            layer.removeChild(layer.firstChild);
+        }
+        
+        // Generate a random number of stars (more stars = more immersive but more resource intensive)
+        const starCount = window.innerWidth <= 768 ? 50 : 120;
+        
+        for (let i = 0; i < starCount; i++) {
+            createStar(layer);
+        }
+    });
+}
+
+// Create individual star with random properties
+function createStar(container) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    
+    // Random positions
+    const xPos = Math.random() * 100;
+    const yPos = Math.random() * 100;
+    
+    // Random size classes
+    const sizeClasses = ['tiny', 'medium', 'large'];
+    const sizeIndex = Math.floor(Math.random() * sizeClasses.length);
+    star.classList.add(sizeClasses[sizeIndex]);
+    
+    // Random color
+    const colorClasses = ['', 'blue', 'gold', 'red']; // Empty string means default white
+    const colorIndex = Math.floor(Math.random() * colorClasses.length);
+    if (colorClasses[colorIndex]) {
+        star.classList.add(colorClasses[colorIndex]);
+    }
+    
+    // Set custom properties for animation variation
+    star.style.setProperty('--twinkle-duration', 2 + Math.random() * 4 + 's');
+    star.style.setProperty('--min-opacity', 0.2 + Math.random() * 0.3);
+    star.style.setProperty('--max-opacity', 0.7 + Math.random() * 0.3);
+    star.style.setProperty('--min-scale', 0.6 + Math.random() * 0.3);
+    star.style.setProperty('--max-scale', 1 + Math.random() * 0.3);
+    
+    // Set star position
+    star.style.left = `${xPos}%`;
+    star.style.top = `${yPos}%`;
+    
+    // Random animation delay
+    star.style.animationDelay = `${Math.random() * 5}s`;
+    
+    // Add drift animation to some stars
+    if (Math.random() > 0.7) {
+        star.style.animationName = 'star-twinkle, star-drift';
+        star.style.animationDuration = `${star.style.getPropertyValue('--twinkle-duration')}, ${10 + Math.random() * 20}s`;
+        star.style.animationTimingFunction = 'ease-in-out, linear';
+        star.style.animationIterationCount = 'infinite, infinite';
+        star.style.animationDirection = 'alternate, alternate';
+        star.style.setProperty('--drift-x', `${-10 + Math.random() * 20}px`);
+    }
+    
+    // Append the star to the container
+    container.appendChild(star);
+    
+    return star;
+}
+
+// Initialize Random Cosmic Explosions
+function initRandomExplosions() {
+    const cosmicBackground = document.querySelector('.cosmic-background');
+    if (!cosmicBackground) return;
+    
+    // Create explosions at random intervals
+    setInterval(() => {
+        if (Math.random() > 0.7) { // 30% chance to create explosion
+            createRandomExplosion(cosmicBackground);
+        }
+    }, 2000);
+}
+
+// Create a random star explosion
+function createRandomExplosion(container) {
+    // Create explosion container
+    const explosion = document.createElement('div');
+    explosion.className = 'star-explosion';
+    
+    // Random position within the container
+    const xPos = 10 + Math.random() * 80; // Keep away from edges
+    const yPos = 10 + Math.random() * 80;
+    explosion.style.left = `${xPos}%`;
+    explosion.style.top = `${yPos}%`;
+    
+    // Random size and color
+    const size = 2 + Math.random() * 3;
+    explosion.style.width = `${size}px`;
+    explosion.style.height = `${size}px`;
+    
+    // Random color class
+    const colorClasses = ['blue', 'gold', 'red'];
+    const colorIndex = Math.floor(Math.random() * colorClasses.length);
+    const colorClass = colorClasses[colorIndex];
+    
+    // Create explosion particles
+    const particleCount = 6 + Math.floor(Math.random() * 8);
+    for (let i = 0; i < particleCount; i++) {
+        createExplosionParticle(explosion, colorClass);
+    }
+    
+    // Add to container
+    container.appendChild(explosion);
+    
+    // Remove after animation completes
+    setTimeout(() => {
+        if (container.contains(explosion)) {
+            container.removeChild(explosion);
+        }
+    }, 3000);
+}
+
+// Create individual explosion particle
+function createExplosionParticle(container, colorClass) {
+    const particle = document.createElement('div');
+    particle.className = `explosion-particle ${colorClass}`;
+    
+    // Random angle
+    const angle = Math.random() * 360;
+    particle.style.setProperty('--angle', `${angle}deg`);
+    
+    // Random distance
+    const distance = 30 + Math.random() * 50;
+    particle.style.setProperty('--distance', `${distance}px`);
+    
+    // Random duration
+    const duration = 1 + Math.random() * 1.5;
+    particle.style.setProperty('--particle-duration', `${duration}s`);
+    
+    // Add to container
+    container.appendChild(particle);
+}
+
+// Initialize Breathing Nebulas
+function initBreathingNebulas() {
+    const cosmicBackground = document.querySelector('.cosmic-background');
+    if (!cosmicBackground) return;
+    
+    // Create several nebulas
+    for (let i = 0; i < 3; i++) {
+        createBreathingNebula(cosmicBackground);
+    }
+}
+
+// Create a breathing nebula effect
+function createBreathingNebula(container) {
+    const nebula = document.createElement('div');
+    nebula.className = 'breathing-nebula';
+    
+    // Random position
+    nebula.style.left = `${Math.random() * 100}%`;
+    nebula.style.top = `${Math.random() * 100}%`;
+    
+    // Random size
+    const size = 200 + Math.random() * 300;
+    nebula.style.width = `${size}px`;
+    nebula.style.height = `${size}px`;
+    
+    // Random animation delay
+    nebula.style.animationDelay = `${Math.random() * 5}s`;
+    
+    // Add to container
+    container.appendChild(nebula);
+}
+
+// Initialize Energy Flares from the central star
+function initEnergyFlares() {
+    const orbitalCenter = document.querySelector('.orbital-center');
+    if (!orbitalCenter) return;
+    
+    setInterval(() => {
+        if (Math.random() > 0.7) {
+            createEnergyFlare(orbitalCenter.parentElement);
+        }
+    }, 3000);
+}
+
+// Create energy flare from central star
+function createEnergyFlare(container) {
+    const flare = document.createElement('div');
+    flare.className = 'energy-flare';
+    
+    // Random angle
+    const angle = Math.random() * 360;
+    flare.style.transform = `translate(-50%, -50%) rotate(${angle}deg)`;
+    
+    // Random properties
+    flare.style.opacity = 0.7 + Math.random() * 0.3;
+    flare.style.animationDuration = `${2 + Math.random() * 2}s`;
+    
+    // Add to container
+    container.appendChild(flare);
+    
+    // Remove after animation completes
+    setTimeout(() => {
+        if (container.contains(flare)) {
+            container.removeChild(flare);
+        }
+    }, 3000);
+}
+
 // Initialize full page navigation system
 function initFullPageNavigation() {
     // Get all section indicators and sections
@@ -330,38 +629,122 @@ function initFullPageNavigation() {
     });
 }
 
-// Initialize section transition effects
+// Initialize section transitions
 function initSectionTransitions() {
-    // Add transition classes to all sections
-    document.querySelectorAll('.content-section, #hero').forEach(section => {
-        // Remove initial transition to prevent animation on page load
-        section.style.transition = 'none';
-        
-        // Set visible sections as active
-        if (isElementInViewport(section)) {
-            section.classList.add('section-active');
-            section.classList.remove('section-entering', 'section-exiting-up', 'section-exiting-down');
-        } else {
-            if (section.offsetTop > window.scrollY) {
-                section.classList.add('section-entering');
-            } else {
-                section.classList.add('section-exiting-up');
+    // Implementation for smooth section transitions
+    const sections = document.querySelectorAll('.content-section, .hero-section');
+    const navIndicators = document.querySelectorAll('.section-indicator');
+    const sectionArrows = document.querySelectorAll('.section-arrow');
+    
+    // Setup intersection observer for sections
+    const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+                const sectionId = entry.target.id;
+                
+                // Update nav indicators
+                navIndicators.forEach(indicator => {
+                    if (indicator.dataset.section === sectionId) {
+                        indicator.classList.add('active');
+                    } else {
+                        indicator.classList.remove('active');
+                    }
+                });
+                
+                // Add visible class for animation
+                entry.target.classList.add('visible');
             }
-        }
-        
-        // Restore transitions after initial setup
-        setTimeout(() => {
-            section.style.transition = '';
-        }, 100);
+        });
+    }, { threshold: 0.5 });
+    
+    // Observe each section
+    sections.forEach(section => {
+        sectionObserver.observe(section);
     });
     
-    // Listen for scroll events to update section states
-    window.addEventListener('scroll', debounce(() => {
-        updateSectionStates();
-    }, 50));
+    // Set up click handlers for nav indicators
+    navIndicators.forEach(indicator => {
+        indicator.addEventListener('click', () => {
+            const targetSection = document.getElementById(indicator.dataset.section);
+            if (targetSection) {
+                animateTransitionToSection(targetSection);
+                smoothScrollToElement(targetSection);
+            }
+        });
+    });
     
-    // Initial update of section states
-    updateSectionStates();
+    // Set up click handlers for section arrows
+    sectionArrows.forEach(arrow => {
+        arrow.addEventListener('click', () => {
+            const targetSection = document.getElementById(arrow.dataset.target);
+            if (targetSection) {
+                animateTransitionToSection(targetSection);
+                smoothScrollToElement(targetSection);
+            }
+        });
+    });
+}
+
+// Animate transition between sections
+function animateTransitionToSection(targetSection) {
+    const transitionOverlay = document.querySelector('.section-transition-overlay');
+    const transitionCircles = document.querySelectorAll('.transition-circle');
+    
+    // Randomize which circle leads the transition
+    const randomIndex = Math.floor(Math.random() * transitionCircles.length);
+    
+    transitionOverlay.style.display = 'block';
+    transitionOverlay.style.opacity = '1';
+    
+    transitionCircles.forEach((circle, index) => {
+        circle.style.transitionDelay = `${(index + randomIndex) % transitionCircles.length * 0.08}s`;
+        circle.style.transform = 'scale(1)';
+    });
+    
+    setTimeout(() => {
+        transitionCircles.forEach((circle) => {
+            circle.style.transform = 'scale(0)';
+        });
+        
+        setTimeout(() => {
+            transitionOverlay.style.opacity = '0';
+            setTimeout(() => {
+                transitionOverlay.style.display = 'none';
+            }, 500);
+        }, 500);
+    }, 800);
+}
+
+// Smooth scroll to element
+function smoothScrollToElement(element) {
+    window.scrollTo({
+        top: element.offsetTop,
+        behavior: 'smooth'
+    });
+}
+
+// Initialize interactive section widgets
+function initInteractiveWidgets() {
+    const widgets = document.querySelectorAll('.section-widget');
+    
+    widgets.forEach(widget => {
+        widget.addEventListener('click', () => {
+            const targetSection = document.getElementById(widget.dataset.target);
+            if (targetSection) {
+                animateTransitionToSection(targetSection);
+                smoothScrollToElement(targetSection);
+            }
+        });
+        
+        // Add hover effects
+        widget.addEventListener('mouseenter', () => {
+            widget.classList.add('active');
+        });
+        
+        widget.addEventListener('mouseleave', () => {
+            widget.classList.remove('active');
+        });
+    });
 }
 
 // Add animation classes to text elements
@@ -374,6 +757,55 @@ function addAnimationClassesToText() {
     // Add animation class to all selected elements
     textElements.forEach(element => {
         element.classList.add('animate-text-element');
+    });
+    
+    // Special character-by-character animation for certain headings
+    initCharacterAnimation();
+    
+    // Typing effect for selected elements
+    initTypingEffect();
+}
+
+// Initialize character-by-character animation
+function initCharacterAnimation() {
+    // Target specific headings for character animation
+    const charAnimationElements = [
+        ...document.querySelectorAll('#hero .hero-title, #brand-vision h2, #features h2'),
+    ];
+    
+    charAnimationElements.forEach(element => {
+        // Skip already processed elements
+        if (element.querySelector('.animate-chars-container')) {
+            return;
+        }
+        
+        const text = element.textContent;
+        element.textContent = '';
+        
+        // Create a container for the animated characters
+        const container = document.createElement('span');
+        container.className = 'animate-chars-container';
+        
+        // Split text and create spans for each character
+        [...text].forEach((char, index) => {
+            const charSpan = document.createElement('span');
+            charSpan.className = 'animate-char';
+            charSpan.textContent = char;
+            charSpan.style.transitionDelay = `${0.03 * index}s`;
+            container.appendChild(charSpan);
+        });
+        
+        element.appendChild(container);
+    });
+}
+
+// Initialize typing effect animation
+function initTypingEffect() {
+    // Target elements for typing effect
+    const typingElements = document.querySelectorAll('.section-label, #gainchain h3, #portfolio h3');
+    
+    typingElements.forEach(element => {
+        element.classList.add('typing-text');
     });
 }
 
@@ -429,6 +861,9 @@ function navigateToSection(sectionId) {
         currentSection.classList.remove('section-active');
     }
     
+    // Trigger transition overlay effect based on section
+    triggerTransitionOverlay(sectionId);
+    
     targetSection.classList.add('section-entering');
     targetSection.classList.remove('section-active');
     
@@ -450,6 +885,52 @@ function navigateToSection(sectionId) {
         document.body.classList.remove('is-transitioning');
         updateSectionStates();
     }, 1000);
+}
+
+// Function to trigger transition overlay effect
+function triggerTransitionOverlay(sectionId) {
+    // Map of sections to their corresponding color class
+    const sectionColorMap = {
+        'hero': 'transition-color-gold',
+        'brand-vision': 'transition-color-blue',
+        'features': 'transition-color-cyan',
+        'hostara': 'transition-color-green',
+        'gainchain': 'transition-color-pink',
+        'community': 'transition-color-lime',
+        'portfolio': 'transition-color-amber',
+        'contact': 'transition-color-aqua'
+    };
+    
+    // Get overlay and all circles
+    const overlay = document.querySelector('.section-transition-overlay');
+    const circles = document.querySelectorAll('.transition-circle');
+    
+    // Hide all circles initially
+    circles.forEach(circle => {
+        circle.style.display = 'none';
+    });
+    
+    // Find target circle based on section
+    const targetColorClass = sectionColorMap[sectionId] || 'transition-color-gold';
+    const targetCircle = document.querySelector(`.${targetColorClass}`);
+    
+    if (targetCircle && overlay) {
+        // Position circle at click/widget position or center
+        const lastClickEvent = window.lastClickPosition || { clientX: window.innerWidth / 2, clientY: window.innerHeight / 2 };
+        
+        targetCircle.style.display = 'block';
+        targetCircle.style.left = `${lastClickEvent.clientX}px`;
+        targetCircle.style.top = `${lastClickEvent.clientY}px`;
+        
+        // Add active class to start animation
+        document.body.classList.add('transition-active');
+        
+        // Remove active class after animation completes
+        setTimeout(() => {
+            document.body.classList.remove('transition-active');
+            targetCircle.style.display = 'none';
+        }, 1200);
+    }
 }
 
 // Update active section indicator based on scroll position
@@ -561,3 +1042,439 @@ function debounce(func, wait) {
         }, wait);
     };
 }
+
+// Initialize interactive section widgets
+function initSectionWidgets() {
+    // Get all section widgets
+    const sectionWidgets = document.querySelectorAll('.section-widget');
+    
+    // Add click event listeners to all widgets
+    sectionWidgets.forEach(widget => {
+        widget.addEventListener('click', (e) => {
+            // Store click position for transition effect
+            window.lastClickPosition = {
+                clientX: e.clientX,
+                clientY: e.clientY
+            };
+            
+            // Get target section ID from the data-target attribute
+            const targetId = widget.getAttribute('data-target');
+            
+            // Navigate to that section with zoom effect
+            if (targetId) {
+                navigateToSection(targetId);
+                
+                // Add special click animation for the widget
+                widget.classList.add('widget-clicked');
+                
+                // Remove the animation class after animation completes
+                setTimeout(() => {
+                    widget.classList.remove('widget-clicked');
+                }, 700);
+            }
+        });
+        
+        // Add hover effect for widgets - parallax movement
+        widget.addEventListener('mousemove', (e) => {
+            // Only on desktop devices
+            if (window.innerWidth > 1024) {
+                const boundingRect = widget.getBoundingClientRect();
+                const widgetCenterX = boundingRect.left + boundingRect.width / 2;
+                const widgetCenterY = boundingRect.top + boundingRect.height / 2;
+                
+                // Calculate mouse position relative to widget center
+                const mouseX = e.clientX - widgetCenterX;
+                const mouseY = e.clientY - widgetCenterY;
+                
+                // Apply subtle transform based on mouse position
+                widget.style.transform = `translateX(-50%) perspective(500px) rotateY(${mouseX * 0.02}deg) rotateX(${-mouseY * 0.02}deg) scale(1.05)`;
+            }
+        });
+        
+        // Reset transform on mouse leave
+        widget.addEventListener('mouseleave', () => {
+            widget.style.transform = '';
+        });
+    });
+    
+    // Track all click positions for better transitions
+    document.addEventListener('click', (e) => {
+        window.lastClickPosition = {
+            clientX: e.clientX,
+            clientY: e.clientY
+        };
+    });
+    
+    // Add CSS for widget click animation
+    addWidgetClickStyleToDOM();
+}
+
+// Function to add widget click animation CSS dynamically
+function addWidgetClickStyleToDOM() {
+    const styleElement = document.createElement('style');
+    styleElement.textContent = `
+        .widget-clicked {
+            animation: widget-click 0.7s cubic-bezier(0.19, 1, 0.22, 1) forwards !important;
+        }
+        
+        @keyframes widget-click {
+            0% {
+                transform: translateX(-50%) scale(1);
+                filter: brightness(1);
+            }
+            20% {
+                transform: translateX(-50%) scale(0.8);
+                filter: brightness(1.5);
+            }
+            40% {
+                transform: translateX(-50%) scale(1.1);
+                filter: brightness(1.2);
+            }
+            100% {
+                transform: translateX(-50%) scale(0);
+                opacity: 0;
+                filter: brightness(2);
+            }
+        }
+    `;
+    document.head.appendChild(styleElement);
+}
+
+// Function to initialize section background loading animations
+function initSectionBackgroundLoaders() {
+    // Skip hero section as requested
+    const sections = document.querySelectorAll('#brand-vision, #features, #hostara, #gainchain, #community, #portfolio, #contact');
+    
+    sections.forEach(section => {
+        const sectionId = section.id;
+        
+        // Create loading animation container
+        const loaderContainer = document.createElement('div');
+        loaderContainer.className = 'section-loading-animation';
+        
+        // Create different loaders based on section ID
+        switch(sectionId) {
+            case 'brand-vision':
+                createNebulaLoader(loaderContainer);
+                break;
+            case 'features':
+                createMatrixLoader(loaderContainer);
+                break;
+            case 'hostara':
+                createNetworkLoader(loaderContainer);
+                break;
+            case 'gainchain':
+                createDigitalWaveLoader(loaderContainer);
+                break;
+            case 'community':
+                createCommunityLoader(loaderContainer);
+                break;
+            case 'portfolio':
+                createPortfolioLoader(loaderContainer);
+                break;
+            case 'contact':
+                createContactLoader(loaderContainer);
+                break;
+        }
+        
+        // Add loader container to section
+        section.appendChild(loaderContainer);
+    });
+}
+
+// Create nebula loader for Brand Vision section
+function createNebulaLoader(container) {
+    // Add nebula loader class
+    container.classList.add('nebula-loader');
+    
+    // Add nebula particles
+    for (let i = 0; i < 25; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'nebula-particle';
+        
+        // Random size
+        const size = 2 + Math.random() * 4;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        
+        // Random position
+        particle.style.top = `${Math.random() * 100}%`;
+        particle.style.left = `${Math.random() * 100}%`;
+        
+        // Random animation delay
+        particle.style.animationDelay = `${Math.random() * 8}s`;
+        
+        container.appendChild(particle);
+    }
+}
+
+// Create matrix loader for Features section
+function createMatrixLoader(container) {
+    // Add matrix loader class
+    container.classList.add('matrix-loader');
+    
+    // Add falling matrix lines
+    for (let i = 0; i < 20; i++) {
+        const line = document.createElement('div');
+        line.className = 'matrix-line';
+        
+        // Random position
+        line.style.left = `${Math.random() * 100}%`;
+        
+        // Random animation delay
+        line.style.animationDelay = `${Math.random() * 8}s`;
+        
+        // Random opacity
+        line.style.opacity = 0.3 + Math.random() * 0.5;
+        
+        container.appendChild(line);
+    }
+    
+    // Add matrix dots
+    for (let i = 0; i < 50; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'matrix-dot';
+        
+        // Random position
+        dot.style.top = `${Math.random() * 100}%`;
+        dot.style.left = `${Math.random() * 100}%`;
+        
+        // Random animation delay
+        dot.style.animationDelay = `${Math.random() * 4}s`;
+        
+        container.appendChild(dot);
+    }
+}
+
+// Create network loader for Hostara section
+function createNetworkLoader(container) {
+    // Add network loader class
+    container.classList.add('network-loader');
+    
+    // Create network nodes
+    const nodes = [];
+    for (let i = 0; i < 15; i++) {
+        const node = document.createElement('div');
+        node.className = 'network-node';
+        
+        // Random position
+        const x = 10 + Math.random() * 80; // Keep within 10-90% of container
+        const y = 10 + Math.random() * 80;
+        node.style.top = `${y}%`;
+        node.style.left = `${x}%`;
+        
+        container.appendChild(node);
+        nodes.push({ element: node, x, y });
+    }
+    
+    // Create connections between nodes
+    for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+            // Only connect some nodes (30% chance)
+            if (Math.random() > 0.7) {
+                const connection = document.createElement('div');
+                connection.className = 'network-connection';
+                
+                // Calculate position and length
+                const startX = nodes[i].x;
+                const startY = nodes[i].y;
+                const endX = nodes[j].x;
+                const endY = nodes[j].y;
+                
+                // Calculate distance and angle
+                const dx = endX - startX;
+                const dy = endY - startY;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+                
+                // Position connection line
+                connection.style.width = `${distance}%`;
+                connection.style.left = `${startX}%`;
+                connection.style.top = `${startY}%`;
+                connection.style.transform = `rotate(${angle}deg)`;
+                
+                // Random animation delay
+                connection.style.animationDelay = `${Math.random() * 2}s`;
+                
+                container.appendChild(connection);
+            }
+        }
+    }
+}
+
+// Create digital wave loader for GainChain section
+function createDigitalWaveLoader(container) {
+    // Add digital wave loader class
+    container.classList.add('digital-wave-loader');
+    
+    // Create digital waves
+    for (let i = 0; i < 3; i++) {
+        const wave = document.createElement('div');
+        wave.className = 'digital-wave';
+        
+        // Set different positions and delays
+        wave.style.top = `${20 + i * 30}%`;
+        wave.style.animationDelay = `${i * 5}s`;
+        
+        container.appendChild(wave);
+    }
+    
+    // Add digital glitch effects
+    for (let i = 0; i < 5; i++) {
+        const glitch = document.createElement('div');
+        glitch.className = 'digital-glitch';
+        
+        // Set random position
+        glitch.style.top = `${Math.random() * 100}%`;
+        
+        // Random animation delay
+        glitch.style.animationDelay = `${Math.random() * 10}s`;
+        
+        container.appendChild(glitch);
+    }
+}
+
+// Create community loader for Community section
+function createCommunityLoader(container) {
+    // Add community loader class
+    container.classList.add('community-loader');
+    
+    // Create community dots
+    const dots = [];
+    for (let i = 0; i < 20; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'community-dot';
+        
+        // Random position
+        const x = 10 + Math.random() * 80;
+        const y = 10 + Math.random() * 80;
+        dot.style.top = `${y}%`;
+        dot.style.left = `${x}%`;
+        
+        container.appendChild(dot);
+        dots.push({ element: dot, x, y });
+    }
+    
+    // Create pulse effects from random dots
+    for (let i = 0; i < 5; i++) {
+        const randomDotIndex = Math.floor(Math.random() * dots.length);
+        const randomDot = dots[randomDotIndex];
+        
+        const pulse = document.createElement('div');
+        pulse.className = 'community-pulse';
+        
+        // Position at dot
+        pulse.style.left = `${randomDot.x}%`;
+        pulse.style.top = `${randomDot.y}%`;
+        
+        // Random animation delay
+        pulse.style.animationDelay = `${i * 0.8}s`;
+        
+        container.appendChild(pulse);
+    }
+}
+
+// Create portfolio loader for Portfolio section
+function createPortfolioLoader(container) {
+    // Add portfolio loader class
+    container.classList.add('portfolio-loader');
+    
+    // Create floating portfolio frames
+    for (let i = 0; i < 10; i++) {
+        const frame = document.createElement('div');
+        frame.className = 'portfolio-frame';
+        
+        // Random position
+        frame.style.top = `${10 + Math.random() * 80}%`;
+        frame.style.left = `${10 + Math.random() * 80}%`;
+        
+        // Random size variation
+        const scaleVar = 0.7 + Math.random() * 0.6;
+        frame.style.transform = `scale(${scaleVar})`;
+        
+        // Random animation delay
+        frame.style.animationDelay = `${Math.random() * 6}s`;
+        
+        container.appendChild(frame);
+    }
+}
+
+// Create contact loader for Contact section
+function createContactLoader(container) {
+    // Add contact loader class
+    container.classList.add('contact-loader');
+    
+    // Create concentric rings
+    for (let i = 0; i < 3; i++) {
+        const ring = document.createElement('div');
+        ring.className = 'contact-ring';
+        
+        // Size variations
+        const size = 100 + (i * 50);
+        ring.style.width = `${size}px`;
+        ring.style.height = `${size}px`;
+        
+        // Animation delay
+        ring.style.animationDelay = `${i * 1.3}s`;
+        
+        container.appendChild(ring);
+    }
+    
+    // Create scanning beams
+    for (let i = 0; i < 3; i++) {
+        const beam = document.createElement('div');
+        beam.className = 'contact-beam';
+        
+        // Position and size
+        beam.style.top = '0';
+        beam.style.left = `${20 + (i * 30)}%`;
+        beam.style.height = `${150 + Math.random() * 150}px`;
+        
+        // Animation delay
+        beam.style.animationDelay = `${i * 2.5}s`;
+        
+        container.appendChild(beam);
+    }
+}
+
+// Handle scroll animations for reveal sections
+document.addEventListener('scroll', () => {
+    const revealSections = document.querySelectorAll('.reveal-section');
+    const revealItems = document.querySelectorAll('.reveal-item');
+    
+    revealSections.forEach(section => {
+        const sectionTop = section.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        
+        if (sectionTop < windowHeight * 0.85) {
+            section.classList.add('revealed');
+        }
+    });
+    
+    revealItems.forEach(item => {
+        const itemTop = item.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        
+        if (itemTop < windowHeight * 0.9) {
+            item.classList.add('revealed');
+        }
+    });
+});
+
+// Preload images for smoother experience
+function preloadImages() {
+    const images = [
+        'images/backgrounds/hero-poster.jpg',
+        'images/backgrounds/decentralized-network-abstract.jpg',
+        'images/interfaces/hostara-interface-demo.jpg',
+        'images/interfaces/gainchain-os-interface-concept.jpg'
+    ];
+    
+    images.forEach(src => {
+        const img = new Image();
+        img.src = src;
+    });
+}
+
+// Initialize preloading
+preloadImages();

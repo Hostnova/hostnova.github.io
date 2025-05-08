@@ -44,12 +44,13 @@
   z-index: 0;
 }
 
-/* Text animation on section load */
+/* Text animation on section load - more advanced effects */
 .animate-text-element {
   opacity: 0;
   transform: translateY(20px) scale(0.95);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
   transition-delay: var(--delay, 0s);
+  will-change: opacity, transform;
 }
 
 .section-active .animate-text-element {
@@ -57,30 +58,209 @@
   transform: translateY(0) scale(1);
 }
 
-/* Apply staggered animation delays to text elements */
-.section-active h1.animate-text-element,
-.section-active h2.animate-text-element {
+/* Special animation for heading elements */
+h1.animate-text-element,
+h2.animate-text-element {
   --delay: 0.3s;
+  transform: translateY(30px) scale(0.95);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  overflow: hidden;
 }
 
+h1.animate-text-element::after,
+h2.animate-text-element::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary), transparent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1s cubic-bezier(0.165, 0.84, 0.44, 1) 0.5s;
+}
+
+.section-active h1.animate-text-element::after,
+.section-active h2.animate-text-element::after {
+  transform: scaleX(1);
+}
+
+/* Character-by-character animation for headings */
+.animate-chars-container {
+  overflow: hidden;
+  display: inline-block;
+}
+
+.animate-char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(100%) rotateY(40deg);
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+              opacity 0.5s ease;
+}
+
+.section-active .animate-char {
+  opacity: 1;
+  transform: translateY(0) rotateY(0);
+}
+
+/* Apply staggered animation delays to text elements */
 .section-active p.animate-text-element,
 .section-active .section-label.animate-text-element {
   --delay: 0.5s;
 }
 
 .section-active .feature-item.animate-text-element:nth-child(1),
-.section-active .teaser-item.animate-text-element:nth-child(1) {
+.section-active .teaser-item.animate-text-element:nth-child(1),
+.section-active .card.animate-text-element:nth-child(1) {
   --delay: 0.6s;
 }
 
 .section-active .feature-item.animate-text-element:nth-child(2),
-.section-active .teaser-item.animate-text-element:nth-child(2) {
+.section-active .teaser-item.animate-text-element:nth-child(2),
+.section-active .card.animate-text-element:nth-child(2) {
   --delay: 0.7s;
 }
 
 .section-active .feature-item.animate-text-element:nth-child(3),
-.section-active .teaser-item.animate-text-element:nth-child(3) {
+.section-active .teaser-item.animate-text-element:nth-child(3),
+.section-active .card.animate-text-element:nth-child(3) {
   --delay: 0.8s;
+}
+
+/* Section-specific text animations */
+
+/* Hero section text reveal */
+#hero.section-active .hero-title {
+  animation: text-reveal 1.2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards 0.3s;
+}
+
+@keyframes text-reveal {
+  0% {
+    opacity: 0;
+    filter: blur(15px);
+    letter-spacing: 0.5em;
+  }
+  50% {
+    opacity: 0.5;
+    filter: blur(5px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    letter-spacing: normal;
+  }
+}
+
+/* Gradient text animation */
+.section-active .gradient-text {
+  background-size: 200% auto;
+  animation: gradient-shift 5s linear infinite;
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% center;
+  }
+  50% {
+    background-position: 100% center;
+  }
+  100% {
+    background-position: 0% center;
+  }
+}
+
+/* Typing effect for certain text elements */
+.typing-text {
+  position: relative;
+  display: inline-block;
+}
+
+.typing-text::after {
+  content: '|';
+  position: absolute;
+  right: -8px;
+  opacity: 0;
+}
+
+.section-active .typing-text::after {
+  animation: cursor-blink 1s step-end infinite;
+}
+
+@keyframes cursor-blink {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Glitch effect for GainChain section */
+#gainchain.section-active .gainchain-glitch-text {
+  animation: glitch 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both 0.5s;
+}
+
+@keyframes glitch {
+  0% {
+    transform: skewX(0deg);
+    text-shadow: none;
+    filter: hue-rotate(0deg);
+  }
+  5% {
+    transform: skewX(10deg) translateX(3px);
+    text-shadow: 2px 0 0 rgba(81, 162, 255, 0.8), -2px 0 0 rgba(255, 68, 68, 0.8);
+    filter: hue-rotate(60deg);
+  }
+  10% {
+    transform: skewX(-10deg) translateX(-3px);
+    text-shadow: -2px 0 0 rgba(81, 162, 255, 0.8), 2px 0 0 rgba(255, 68, 68, 0.8);
+  }
+  15%, 100% {
+    transform: skewX(0deg);
+    text-shadow: none;
+    filter: hue-rotate(0deg);
+  }
+}
+
+/* List item animations */
+.features-list li,
+.feature-highlights li {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.section-active .features-list li,
+.section-active .feature-highlights li {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.section-active .features-list li:nth-child(1),
+.section-active .feature-highlights li:nth-child(1) {
+  transition-delay: 0.6s;
+}
+
+.section-active .features-list li:nth-child(2),
+.section-active .feature-highlights li:nth-child(2) {
+  transition-delay: 0.7s;
+}
+
+.section-active .features-list li:nth-child(3),
+.section-active .feature-highlights li:nth-child(3) {
+  transition-delay: 0.8s;
+}
+
+.section-active .features-list li:nth-child(4),
+.section-active .feature-highlights li:nth-child(4) {
+  transition-delay: 0.9s;
+}
+
+.section-active .features-list li:nth-child(5),
+.section-active .feature-highlights li:nth-child(5) {
+  transition-delay: 1s;
 }
 
 /* Zoom effects for background elements */
@@ -197,6 +377,77 @@
     opacity: 1;
     transform: translateY(-50%) translateX(0);
   }
+}
+
+/* Transition overlay for more dramatic section changes */
+.section-transition-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.transition-circle {
+  position: absolute;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  will-change: transform;
+}
+
+.transition-active .section-transition-overlay {
+  opacity: 1;
+  visibility: visible;
+}
+
+.transition-active .transition-circle {
+  animation: circle-expand 1.2s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+}
+
+@keyframes circle-expand {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(3);
+  }
+}
+
+/* Widget-specific transition colors */
+.transition-color-gold {
+  background: radial-gradient(circle, rgba(230, 181, 74, 0.7) 0%, rgba(230, 181, 74, 0) 70%);
+}
+
+.transition-color-blue {
+  background: radial-gradient(circle, rgba(70, 120, 255, 0.7) 0%, rgba(70, 120, 255, 0) 70%);
+}
+
+.transition-color-cyan {
+  background: radial-gradient(circle, rgba(64, 220, 255, 0.7) 0%, rgba(64, 220, 255, 0) 70%);
+}
+
+.transition-color-green {
+  background: radial-gradient(circle, rgba(100, 220, 170, 0.7) 0%, rgba(100, 220, 170, 0) 70%);
+}
+
+.transition-color-pink {
+  background: radial-gradient(circle, rgba(255, 100, 200, 0.7) 0%, rgba(255, 100, 200, 0) 70%);
+}
+
+.transition-color-lime {
+  background: radial-gradient(circle, rgba(180, 230, 100, 0.7) 0%, rgba(180, 230, 100, 0) 70%);
+}
+
+.transition-color-amber {
+  background: radial-gradient(circle, rgba(255, 200, 100, 0.7) 0%, rgba(255, 200, 100, 0) 70%);
+}
+
+.transition-color-aqua {
+  background: radial-gradient(circle, rgba(80, 200, 255, 0.7) 0%, rgba(80, 200, 255, 0) 70%);
 }
 
 /* Media queries for reduced animations on mobile */

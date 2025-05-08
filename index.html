@@ -40,21 +40,26 @@
     <main id="main-content">
         <!-- Cinematic Hero Section -->
         <section id="hero" class="hero-section cinematic-section section-orbital-bg visible">
-            <!-- Cosmic Background with Night Sky Elements -->
+            <!-- Enhanced Cosmic Background with Night Sky Elements -->
             <div class="cosmic-background">
                 <div class="star-field">
-                    <div class="star-layer">
-                        <!-- Stars - will be generated with JS -->
+                    <div class="star-layer" id="star-layer-primary">
+                        <!-- Stars will be generated with JS -->
+                    </div>
+                    <div class="star-layer" id="star-layer-secondary">
+                        <!-- Secondary moving stars will be generated with JS -->
                     </div>
                 </div>
                 
-                <!-- Shooting Stars -->
+                <!-- Breathing Nebulas will be generated with JS -->
+                
+                <!-- Enhanced Shooting Stars -->
                 <div class="shooting-star"></div>
                 <div class="shooting-star"></div>
                 <div class="shooting-star"></div>
                 <div class="shooting-star"></div>
                 
-                <!-- Comets with Trails -->
+                <!-- Enhanced Comets with Trails -->
                 <div class="comet">
                     <div class="comet-head"></div>
                     <div class="comet-tail"></div>
@@ -64,11 +69,11 @@
                     <div class="comet-tail"></div>
                 </div>
                 
-                <!-- Nebula Elements -->
+                <!-- Enhanced Nebula Elements -->
                 <div class="nebula nebula-1"></div>
                 <div class="nebula nebula-2"></div>
                 
-                <!-- Cosmic Collision and Explosion -->
+                <!-- Enhanced Cosmic Collision and Explosion -->
                 <div class="cosmic-collision">
                     <div class="explosion">
                         <div class="explosion-particles">
@@ -93,7 +98,7 @@
                 </video>
                 <div class="orbital-overlay"></div>
                 
-                <!-- Enhanced orbital elements -->
+                <!-- Enhanced orbital elements with breathing effect -->
                 <div class="orbital-system">
                     <div class="orbital-center"></div>
                     <div class="orbit orbit-1">
@@ -110,7 +115,11 @@
                     </div>
                 </div>
                 
+                <!-- Enhanced nebula dust with more particles -->
                 <div class="nebula-dust">
+                    <div class="dust-particle"></div>
+                    <div class="dust-particle"></div>
+                    <div class="dust-particle"></div>
                     <div class="dust-particle"></div>
                     <div class="dust-particle"></div>
                     <div class="dust-particle"></div>
@@ -118,6 +127,7 @@
                     <div class="dust-particle"></div>
                 </div>
                 
+                <!-- Enhanced constellation -->
                 <div class="constellation">
                     <div class="constellation-line"></div>
                     <div class="constellation-line"></div>
@@ -127,9 +137,14 @@
                     <div class="constellation-dot"></div>
                     <div class="constellation-dot"></div>
                     <div class="constellation-dot"></div>
+                    <div class="constellation-dot"></div>
+                    <div class="constellation-dot"></div>
                 </div>
                 
+                <!-- Enhanced data stream -->
                 <div class="data-stream">
+                    <div class="stream-particle"></div>
+                    <div class="stream-particle"></div>
                     <div class="stream-particle"></div>
                     <div class="stream-particle"></div>
                     <div class="stream-particle"></div>
@@ -138,6 +153,7 @@
                 
                 <div class="accent-pulse accent-pulse-1"></div>
                 <div class="accent-pulse accent-pulse-2"></div>
+                <div class="accent-pulse accent-pulse-3"></div>
             </div>
             <div class="hero-content container">
                 <div class="hero-text-wrapper">
@@ -181,6 +197,12 @@
                 <div class="orbital-ring"></div>
                 <div class="orbital-ring"></div>
             </div>
+            
+            <!-- Interactive orbital portal widget -->
+            <div class="section-widget widget-orbital-portal" data-target="brand-vision">
+                <div class="widget-arrow"></div>
+            </div>
+            
             <div class="section-arrow next" data-target="brand-vision">▼</div>
         </section>
 
@@ -214,6 +236,12 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- Interactive cosmic sphere widget -->
+            <div class="section-widget widget-cosmic-sphere" data-target="features">
+                <div class="widget-arrow"></div>
+            </div>
+            
             <div class="section-arrow next" data-target="features">▼</div>
         </section>
 
@@ -283,6 +311,21 @@
                     <div class="orbital-ring"></div>
                 </div>
             </div>
+            
+            <!-- Interactive tech cube widget -->
+            <div class="section-widget widget-tech-cube" data-target="hostara">
+                <div class="widget-tech-cube-inner">
+                    <div class="widget-tech-cube-face widget-tech-cube-front">
+                        <div class="widget-arrow"></div>
+                    </div>
+                    <div class="widget-tech-cube-face widget-tech-cube-back"></div>
+                    <div class="widget-tech-cube-face widget-tech-cube-right"></div>
+                    <div class="widget-tech-cube-face widget-tech-cube-left"></div>
+                    <div class="widget-tech-cube-face widget-tech-cube-top"></div>
+                    <div class="widget-tech-cube-face widget-tech-cube-bottom"></div>
+                </div>
+            </div>
+            
             <div class="section-arrow next" data-target="hostara">▼</div>
         </section>
 
@@ -361,6 +404,17 @@
                     <div class="orbital-ring"></div>
                 </div>
             </div>
+            
+            <!-- Interactive network node widget -->
+            <div class="section-widget widget-network-node" data-target="gainchain">
+                <div class="widget-network-center"></div>
+                <div class="widget-network-connection connection-1"></div>
+                <div class="widget-network-connection connection-2"></div>
+                <div class="widget-network-connection connection-3"></div>
+                <div class="widget-network-connection connection-4"></div>
+                <div class="widget-arrow"></div>
+            </div>
+            
             <div class="section-arrow next" data-target="gainchain">▼</div>
         </section>
 
@@ -411,6 +465,17 @@
                     <div class="orbital-ring"></div>
                 </div>
             </div>
+            
+            <!-- Interactive digital pulse widget -->
+            <div class="section-widget widget-digital-pulse" data-target="community">
+                <div class="widget-pulse-dot dot-1"></div>
+                <div class="widget-pulse-dot dot-2"></div>
+                <div class="widget-pulse-dot dot-3"></div>
+                <div class="widget-pulse-dot dot-4"></div>
+                <div class="widget-pulse-dot dot-5"></div>
+                <div class="widget-arrow"></div>
+            </div>
+            
             <div class="section-arrow next" data-target="community">▼</div>
         </section>
 
@@ -463,6 +528,18 @@
                     <div class="orbital-ring"></div>
                 </div>
             </div>
+            
+            <!-- Interactive connected circles widget -->
+            <div class="section-widget widget-connected-circles" data-target="portfolio">
+                <div class="widget-circle circle-1"></div>
+                <div class="widget-circle circle-2"></div>
+                <div class="widget-circle circle-3"></div>
+                <div class="widget-connection-line line-1"></div>
+                <div class="widget-connection-line line-2"></div>
+                <div class="widget-connection-line line-3"></div>
+                <div class="widget-arrow"></div>
+            </div>
+            
             <div class="section-arrow next" data-target="portfolio">▼</div>
         </section>
 
@@ -530,6 +607,15 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- Interactive portfolio gallery widget -->
+            <div class="section-widget widget-portfolio-gallery" data-target="contact">
+                <div class="widget-portfolio-card card-1"></div>
+                <div class="widget-portfolio-card card-2"></div>
+                <div class="widget-portfolio-card card-3"></div>
+                <div class="widget-arrow"></div>
+            </div>
+            
             <div class="section-arrow next" data-target="contact">▼</div>
         </section>
 
@@ -560,6 +646,15 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- Interactive pulse beacon widget -->
+            <div class="section-widget widget-pulse-beacon" data-target="hero">
+                <div class="beacon-center"></div>
+                <div class="beacon-ring ring-1"></div>
+                <div class="beacon-ring ring-2"></div>
+                <div class="beacon-ring ring-3"></div>
+                <div class="widget-arrow"></div>
+            </div>
         </section>
     </main>
 
@@ -573,6 +668,18 @@
         <div class="section-indicator" data-section="community"></div>
         <div class="section-indicator" data-section="portfolio"></div>
         <div class="section-indicator" data-section="contact"></div>
+    </div>
+    
+    <!-- Section Transition Overlay -->
+    <div class="section-transition-overlay">
+        <div class="transition-circle transition-color-gold"></div>
+        <div class="transition-circle transition-color-blue"></div>
+        <div class="transition-circle transition-color-cyan"></div>
+        <div class="transition-circle transition-color-green"></div>
+        <div class="transition-circle transition-color-pink"></div>
+        <div class="transition-circle transition-color-lime"></div>
+        <div class="transition-circle transition-color-amber"></div>
+        <div class="transition-circle transition-color-aqua"></div>
     </div>
 
     <footer class="site-footer section-orbital-bg">

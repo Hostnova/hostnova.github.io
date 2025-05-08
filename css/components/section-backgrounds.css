@@ -29,6 +29,64 @@
   overflow: hidden;
   z-index: -1;
   pointer-events: none;
+  transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1), 
+              opacity 1s cubic-bezier(0.19, 1, 0.22, 1);
+  will-change: transform, opacity;
+}
+
+/* Zoom effect for section backgrounds */
+.section-entering .section-bg-container {
+  transform: scale(1.1);
+  opacity: 0;
+}
+
+.section-active .section-bg-container {
+  transform: scale(1);
+  opacity: 1;
+  animation: bg-pan 60s linear infinite alternate;
+}
+
+.section-exiting-up .section-bg-container,
+.section-exiting-down .section-bg-container {
+  transform: scale(0.9);
+  opacity: 0;
+}
+
+@keyframes bg-pan {
+  0% {
+    transform: scale(1) translateX(0) translateY(0);
+  }
+  50% {
+    transform: scale(1.05) translateX(-1%) translateY(-0.5%);
+  }
+  100% {
+    transform: scale(1.02) translateX(1%) translateY(0.5%);
+  }
+}
+
+/* Different background animations for each type */
+[data-bg-type="bg-cosmic"] .section-bg-container {
+  animation-duration: 80s;
+}
+
+[data-bg-type="bg-tech"] .section-bg-container {
+  animation-duration: 40s;
+}
+
+[data-bg-type="bg-network"] .section-bg-container {
+  animation-duration: 60s;
+}
+
+[data-bg-type="bg-digital"] .section-bg-container {
+  animation-duration: 50s;
+}
+
+[data-bg-type="bg-gradient"] .section-bg-container {
+  animation-duration: 70s;
+}
+
+[data-bg-type="bg-glass"] .section-bg-container {
+  animation-duration: 90s;
 }
 
 /* Individual element animations */
@@ -165,6 +223,10 @@
   animation-play-state: running;
 }
 
+.section-active .bg-grid {
+  animation: grid-pulse 4s ease-in-out infinite;
+}
+
 @keyframes gridFadeIn {
   from {
     opacity: 0;
@@ -173,6 +235,15 @@
   to {
     opacity: 0.4;
     transform: perspective(1000px) rotateX(60deg) scale(1.5);
+  }
+}
+
+@keyframes grid-pulse {
+  0%, 100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.4;
   }
 }
 
@@ -406,6 +477,22 @@
   opacity: 1;
 }
 
+.section-active .bg-nebula {
+  animation: nebula-glow 8s ease-in-out infinite alternate;
+}
+
+@keyframes nebula-glow {
+  0% {
+    filter: brightness(1) saturate(1);
+  }
+  50% {
+    filter: brightness(1.2) saturate(1.2);
+  }
+  100% {
+    filter: brightness(1) saturate(1);
+  }
+}
+
 .nebula-cloud {
   position: absolute;
   width: 100%;
@@ -595,18 +682,6 @@
 .pop-section.visible {
   opacity: 1;
   transform: translateY(0) scale(1);
-}
-
-/* Background Container */
-.section-bg-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  z-index: -1;
-  pointer-events: none;
 }
 
 /* Background Mask Styles */
@@ -816,4 +891,15 @@
 
 .section-orbital-bg:hover .orbital-decoration {
   animation-play-state: running;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .section-bg-container,
+  .bg-nebula,
+  .bg-grid {
+    animation: none !important;
+    transition: opacity 0.5s ease !important;
+    transform: none !important;
+  }
 }
