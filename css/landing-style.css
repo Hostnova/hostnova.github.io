@@ -61,6 +61,7 @@ h1, h2, h3, h4, h5, h6 {
   text-align: center;
   max-width: 900px;
   padding: 2rem;
+  transform-style: preserve-3d;
 }
 
 /* Main logo styling */
@@ -74,6 +75,13 @@ h1, h2, h3, h4, h5, h6 {
   flex-direction: column;
   align-items: center;
   padding: 1rem;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.featured-logo:hover {
+  transform: rotateX(5deg) rotateY(10deg);
 }
 
 .logo-image-container {
@@ -102,6 +110,74 @@ h1, h2, h3, h4, h5, h6 {
   color: #ffffff;
   margin: 0;
   line-height: 1.1;
+  position: relative;
+  z-index: 10;
+}
+
+.featured-logo-text:hover {
+  position: relative;
+}
+
+.featured-logo-text:hover::before,
+.featured-logo-text:hover::after {
+  content: 'HOSTNOVA';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
+}
+
+.featured-logo-text:hover::before {
+  color: #4CB0F3;
+  animation: glitch-animation 2s infinite linear alternate-reverse;
+  z-index: -1;
+}
+
+.featured-logo-text:hover::after {
+  color: #64ffda;
+  animation: glitch-animation 3s infinite linear alternate-reverse;
+  z-index: -2;
+}
+
+@keyframes glitch-animation {
+  0% {
+    clip-path: inset(0 0 0 0);
+    transform: translate(0);
+  }
+  5% {
+    clip-path: inset(80% 0 0 0);
+    transform: translate(-2px, 2px);
+  }
+  10% {
+    clip-path: inset(0 0 85% 0);
+    transform: translate(2px, -2px);
+  }
+  15% {
+    clip-path: inset(80% 0 0 0);
+    transform: translate(-2px, 2px);
+  }
+  20% {
+    clip-path: inset(0 0 85% 0);
+    transform: translate(2px, -2px);
+  }
+  25% {
+    clip-path: inset(40% 0 30% 0);
+    transform: translate(-2px, 2px);
+  }
+  30% {
+    clip-path: inset(10% 0 60% 0);
+    transform: translate(2px, -2px);
+  }
+  35% {
+    clip-path: inset(0 0 0 0);
+    transform: translate(0);
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+    transform: translate(0);
+  }
 }
 
 .featured-logo-accent {
@@ -180,6 +256,32 @@ h1, h2, h3, h4, h5, h6 {
   animation: pulse 2s ease-in-out infinite;
 }
 
+.orbital-satellite::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #0950CD;
+  border-radius: 50%;
+  opacity: 0.4;
+  filter: blur(5px);
+  animation: satellite-trail 4s linear infinite;
+  z-index: 5;
+}
+
+@keyframes satellite-trail {
+  0% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
 .orbital-satellite-secondary {
   position: absolute;
   width: 6px;
@@ -191,6 +293,29 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 0 10px rgba(100, 255, 218, 0.8);
   animation: orbit-satellite-secondary calc(var(--orbit-primary) * 0.6) linear infinite;
   z-index: 6;
+}
+
+/* Orbital satellite tertiary */
+.orbital-satellite-tertiary {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background-color: #FF5733;
+  border-radius: 50%;
+  bottom: 0;
+  left: 50%;
+  box-shadow: 0 0 10px #FF8A65;
+  animation: orbit-satellite-tertiary calc(var(--orbit-primary) * 0.8) linear infinite;
+  z-index: 6;
+}
+
+@keyframes orbit-satellite-tertiary {
+  from {
+    transform: rotate(0deg) translateX(180px) rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg) translateX(180px) rotate(360deg);
+  }
 }
 
 /* Add micro satellites */
@@ -275,6 +400,31 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/* Mini satellites for orbital decorations */
+.mini-satellite {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+  z-index: 6;
+  pointer-events: none;
+}
+
+.orbital-ring .mini-satellite:nth-child(1) {
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: mini-satellite-orbit 20s linear infinite;
+}
+
+@keyframes mini-satellite-orbit {
+  0% { transform: rotate(0deg) translateX(-50%) translateY(-50%) scale(1); }
+  50% { transform: rotate(180deg) translateX(-50%) translateY(-50%) scale(0.8); }
+  100% { transform: rotate(360deg) translateX(-50%) translateY(-50%) scale(1); }
+}
+
 /* Hero headline */
 .hero-title {
   font-size: clamp(2.5rem, 8vw, 4.5rem);
@@ -339,6 +489,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 0.95rem;
   position: relative;
   overflow: hidden;
+  isolation: isolate;
 }
 
 .btn::before {
@@ -369,6 +520,32 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+.btn.clicked::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: ripple 0.8s ease-out;
+}
+
+@keyframes ripple {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 0.8;
+  }
+  100% {
+    width: 200%;
+    height: 200%;
+    opacity: 0;
+  }
+}
+
 .btn-primary {
   background: linear-gradient(90deg, #0950CD, #4CB0F3);
   color: #ffffff;
@@ -392,10 +569,10 @@ h1, h2, h3, h4, h5, h6 {
   transform: translateY(-3px);
 }
 
-/* Scroll indicator */
+/* Scroll indicator - repositioned lower */
 .scroll-indicator-wrapper {
   position: absolute;
-  bottom: 3rem;
+  bottom: 1.5rem; /* Lowered from 3rem to 1.5rem */
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -951,6 +1128,159 @@ a:hover ~ .cursor-follower {
   }
 }
 
+/* Enhanced cosmic parallax */
+.parallax-element {
+  transition: transform 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Animated gradient borders for interactive elements */
+.interactive-hover {
+  position: relative;
+}
+
+.interactive-hover::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  z-index: -1;
+  background: linear-gradient(90deg, transparent, rgba(76, 176, 243, 0.3), transparent);
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.interactive-hover:hover::before {
+  opacity: 1;
+  animation: gradient-border-rotate 2s linear infinite;
+}
+
+@keyframes gradient-border-rotate {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+/* Floating ASCII effect for the tech-inspired background */
+.ascii-effect {
+  position: absolute;
+  color: rgba(76, 176, 243, 0.03);
+  font-family: monospace;
+  font-size: 12px;
+  pointer-events: none;
+  user-select: none;
+  overflow: hidden;
+  white-space: nowrap;
+  z-index: 1;
+  animation: ascii-float 60s linear infinite;
+}
+
+.ascii-effect:nth-child(odd) {
+  animation-direction: reverse;
+  animation-duration: 80s;
+}
+
+@keyframes ascii-float {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Holographic grid effect */
+.holographic-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(76, 176, 243, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(76, 176, 243, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.2;
+  animation: holo-grid-pulsate 10s infinite alternate;
+}
+
+@keyframes holo-grid-pulsate {
+  0% {
+    opacity: 0.1;
+    background-size: 20px 20px;
+  }
+  50% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 0.1;
+    background-size: 25px 25px;
+  }
+}
+
+/* Data Matrix Code Rain - Digital theme effect */
+.code-rain {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.07;
+}
+
+.code-column {
+  position: absolute;
+  top: -20px;
+  color: rgba(76, 176, 243, 0.5);
+  font-family: monospace;
+  font-size: 16px;
+  opacity: 0;
+  animation: code-fall linear infinite;
+}
+
+@keyframes code-fall {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.2;
+  }
+  90% {
+    opacity: 0.2;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+/* Text typewriter effect */
+.typewriter {
+  overflow: hidden;
+  border-right: .15em solid #0950CD;
+  white-space: nowrap;
+  margin: 0 auto;
+  letter-spacing: .15em;
+  animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: #0950CD; }
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .featured-logo-text {
@@ -1003,6 +1333,20 @@ a:hover ~ .cursor-follower {
   
   .comet-tail {
     width: 50px;
+  }
+
+  .featured-logo:hover {
+    transform: none;
+  }
+  
+  .holographic-grid,
+  .code-rain,
+  .ascii-effect {
+    display: none;
+  }
+  
+  .orbital-satellite-tertiary {
+    display: none;
   }
 }
 

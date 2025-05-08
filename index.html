@@ -41,6 +41,18 @@
     <main id="main-content">
         <!-- Cinematic Hero Section -->
         <section id="hero" class="hero-section">
+            <!-- Advanced background effects -->
+            <div class="holographic-grid"></div>
+            <div class="code-rain" id="code-rain"></div>
+            
+            <!-- ASCII Art Technology Background -->
+            <div class="ascii-effect" style="top: 10%;">010010111001 HOSTNOVA 10101010 DECENTRALIZED 01001010101 HOSTING 01010101</div>
+            <div class="ascii-effect" style="top: 25%;">101010 SECURITY 010101 PERFORMANCE 01010 CONTROL 1010 SCALABILITY 10101</div>
+            <div class="ascii-effect" style="top: 40%;">0101 NODE 1010 NETWORK 0101 DISTRIBUTED 1010 BLOCKCHAIN 01010 FUTURE 10101</div>
+            <div class="ascii-effect" style="top: 55%;">1010 ORBIT 0101 BEYOND 1010 ORDINARY 01010 TECHNOLOGY 10101 INNOVATION 01010</div>
+            <div class="ascii-effect" style="top: 70%;">01010 DISCOVER 10101 EXPLORE 01010 CONNECT 10101 BUILD 01010 TRANSFORM 10101</div>
+            <div class="ascii-effect" style="top: 85%;">1010 HOSTNOVA 0101 REVOLUTION 1010 FUTURE 0101 BEGINS 1010 NOW 0101 JOIN 1010</div>
+            
             <!-- Cosmic Background with Night Sky Elements -->
             <div class="cosmic-background">
                 <div class="star-field">
@@ -65,10 +77,12 @@
                 <div class="comet">
                     <div class="comet-head"></div>
                     <div class="comet-tail"></div>
+                    <div class="comet-trail"></div>
                 </div>
                 <div class="comet">
                     <div class="comet-head"></div>
                     <div class="comet-tail"></div>
+                    <div class="comet-trail"></div>
                 </div>
                 
                 <!-- Enhanced Nebula Elements -->
@@ -110,27 +124,34 @@
             </div>
             
             <!-- Hero Content -->
-            <div class="hero-content landing-container parallax-element">
-                <div class="featured-logo-container interactive-hover">
-                    <div class="featured-logo">
-                        <!-- Logo container -->
-                        <div class="logo-image-container">
-                            <img src="images/hostnova-logo.png" alt="HostNova Logo" class="logo-image">
+            <div class="hero-content landing-container">
+                <!-- 3D Tilt Card Effect -->
+                <div class="hero-card-3d" id="hero-tilt">
+                    <div class="hero-card-3d-inner">
+                        <div class="featured-logo-container interactive-hover">
+                            <div class="featured-logo">
+                                <!-- Logo container -->
+                                <div class="logo-image-container">
+                                    <img src="images/hostnova-logo.png" alt="HostNova Logo" class="logo-image">
+                                </div>
+                                <span class="featured-logo-text">HOST<span class="featured-logo-accent">NOVA</span></span>
+                                <div class="logo-orbital-ring"></div>
+                                <!-- Multiple orbital satellites -->
+                                <div class="orbital-satellite"></div>
+                                <div class="orbital-satellite-secondary"></div>
+                                <div class="orbital-satellite-tertiary"></div>
+                                <div class="micro-satellite micro-satellite-1"></div>
+                                <div class="micro-satellite micro-satellite-2"></div>
+                                <div class="micro-satellite micro-satellite-3"></div>
+                            </div>
                         </div>
-                        <span class="featured-logo-text">HOST<span class="featured-logo-accent">NOVA</span></span>
-                        <div class="logo-orbital-ring"></div>
-                        <!-- Multiple orbital satellites -->
-                        <div class="orbital-satellite"></div>
-                        <div class="orbital-satellite-secondary"></div>
-                        <div class="orbital-satellite-tertiary"></div>
-                        <div class="micro-satellite micro-satellite-1"></div>
-                        <div class="micro-satellite micro-satellite-2"></div>
-                        <div class="micro-satellite micro-satellite-3"></div>
+                
+                        <h1 class="hero-title tilt-element">Orbit Beyond <span class="gradient-text">Ordinary</span></h1>
+                        
+                        <!-- Typewriter effect for subtitle -->
+                        <p class="hero-subtitle typewriter">Experience the next generation of decentralized hosting technology.</p>
                     </div>
                 </div>
-                
-                <h1 class="hero-title parallax-element">Orbit Beyond <span class="gradient-text">Ordinary</span></h1>
-                <p class="hero-subtitle">Experience the next generation of decentralized hosting technology, designed for security, performance, and unparalleled user control.</p>
                 
                 <div class="hero-cta-group">
                     <a href="#" class="btn btn-primary interactive-hover">Try Hostara Now</a>
@@ -180,7 +201,7 @@
         </section>
     </main>
 
-    <!-- Enhanced JS with interactive cursor and parallax effects -->
+    <!-- Enhanced Interactive JS -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Create stars for the cosmic background
@@ -210,47 +231,77 @@
             };
             
             // Create stars for primary and secondary layers
-            createStars('star-layer-primary', 180, ['primary-star']);
-            createStars('star-layer-secondary', 120, ['secondary-star']);
+            createStars('star-layer-primary', 200, ['primary-star']);
+            createStars('star-layer-secondary', 150, ['secondary-star']);
             
-            // Interactive cursor effect
+            // Custom cursor effect with improved tracking speed
             const cursorDot = document.querySelector('.cursor-dot');
             const cursorFollower = document.querySelector('.cursor-follower');
             
-            document.addEventListener('mousemove', function(e) {
-                if (cursorDot && cursorFollower) {
-                    cursorDot.style.left = e.clientX + 'px';
-                    cursorDot.style.top = e.clientY + 'px';
-                    
-                    // Add slight delay to follower for smooth effect
-                    setTimeout(() => {
-                        cursorFollower.style.left = e.clientX + 'px';
-                        cursorFollower.style.top = e.clientY + 'px';
-                    }, 70);
-                }
-            });
+            let mouseX = 0, mouseY = 0;
+            let followerX = 0, followerY = 0;
             
-            // Parallax effect for floating elements
-            const parallaxElements = document.querySelectorAll('.parallax-element');
-            
-            document.addEventListener('mousemove', function(e) {
-                const mouseX = e.clientX / window.innerWidth;
-                const mouseY = e.clientY / window.innerHeight;
+            function animateCursor() {
+                // Increase easing for more responsive follower movement (0.1 to 0.3)
+                followerX += (mouseX - followerX) * 0.3;
+                followerY += (mouseY - followerY) * 0.3;
                 
-                parallaxElements.forEach(element => {
-                    const depth = 20;
-                    const moveX = (mouseX - 0.5) * depth;
-                    const moveY = (mouseY - 0.5) * depth;
+                if (cursorDot && cursorFollower) {
+                    // Dot follows cursor exactly with no delay
+                    cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
                     
-                    element.style.transform = `translate(${moveX}px, ${moveY}px)`;
-                });
+                    // Follower has just slight easing - reduced lag
+                    cursorFollower.style.transform = `translate(${followerX}px, ${followerY}px)`;
+                }
+                
+                requestAnimationFrame(animateCursor);
+            }
+            
+            document.addEventListener('mousemove', e => {
+                // Direct assignment for immediate response
+                mouseX = e.clientX;
+                mouseY = e.clientY;
             });
             
-            // Hover effect for interactive elements
-            const interactiveElements = document.querySelectorAll('.interactive-hover');
+            animateCursor(); // Start animation loop
             
-            interactiveElements.forEach(element => {
-                element.addEventListener('mouseenter', function() {
+            // 3D tilt effect for hero card
+            const tiltCard = document.getElementById('hero-tilt');
+            if (tiltCard) {
+                tiltCard.addEventListener('mousemove', e => {
+                    if (window.innerWidth <= 768) return; // Disable on mobile
+                    
+                    const cardRect = tiltCard.getBoundingClientRect();
+                    // Calculate mouse position relative to card center
+                    const centerX = cardRect.left + cardRect.width / 2;
+                    const centerY = cardRect.top + cardRect.height / 2;
+                    
+                    // Calculate rotation based on mouse position
+                    const rotateY = ((e.clientX - centerX) / cardRect.width) * 5;
+                    const rotateX = -((e.clientY - centerY) / cardRect.height) * 5;
+                    
+                    tiltCard.querySelector('.hero-card-3d-inner').style.transform = 
+                        `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                });
+                
+                // Reset on mouse leave
+                tiltCard.addEventListener('mouseleave', () => {
+                    tiltCard.querySelector('.hero-card-3d-inner').style.transform = 
+                        'perspective(1000px) rotateX(0) rotateY(0)';
+                });
+            }
+            
+            // Button ripple effect
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach(button => {
+                button.addEventListener('click', e => {
+                    button.classList.add('clicked');
+                    setTimeout(() => {
+                        button.classList.remove('clicked');
+                    }, 800);
+                });
+                
+                button.addEventListener('mouseenter', () => {
                     if (cursorFollower) {
                         cursorFollower.style.width = '50px';
                         cursorFollower.style.height = '50px';
@@ -258,7 +309,7 @@
                     }
                 });
                 
-                element.addEventListener('mouseleave', function() {
+                button.addEventListener('mouseleave', () => {
                     if (cursorFollower) {
                         cursorFollower.style.width = '40px';
                         cursorFollower.style.height = '40px';
@@ -266,20 +317,64 @@
                     }
                 });
             });
-
+            
+            // Create code rain (Matrix effect)
+            function createCodeRain() {
+                const codeRainContainer = document.getElementById('code-rain');
+                if (!codeRainContainer) return;
+                
+                // Don't create on mobile
+                if (window.innerWidth <= 768) return;
+                
+                const chars = '01'.split('');
+                const columnCount = Math.floor(window.innerWidth / 20);
+                
+                for (let i = 0; i < columnCount; i++) {
+                    const column = document.createElement('div');
+                    column.classList.add('code-column');
+                    
+                    // Randomize position and timing
+                    column.style.left = `${(i / columnCount) * 100}%`;
+                    column.style.animationDuration = `${Math.random() * 10 + 10}s`;
+                    column.style.animationDelay = `${Math.random() * 10}s`;
+                    
+                    // Create random code string
+                    let codeString = '';
+                    const codeLength = Math.floor(Math.random() * 15) + 5;
+                    
+                    for (let j = 0; j < codeLength; j++) {
+                        codeString += chars[Math.floor(Math.random() * chars.length)];
+                    }
+                    
+                    column.textContent = codeString;
+                    codeRainContainer.appendChild(column);
+                }
+            }
+            
+            createCodeRain();
+            
             // Interactive particles on click effect
             document.addEventListener('click', e => {
                 // Only on desktop
                 if (window.innerWidth <= 768) return;
                 
                 // Create particles
-                for (let i = 0; i < 8; i++) {
+                for (let i = 0; i < 12; i++) {
                     const particle = document.createElement('div');
                     particle.classList.add('interactive-particle');
                     
+                    // Random color
+                    const colors = ['#4CB0F3', '#64FFDA', '#FFFFFF'];
+                    particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    
+                    // Random size
+                    const size = Math.random() * 3 + 2;
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    
                     // Random position offsets
-                    const moveX = (Math.random() - 0.5) * 100;
-                    const moveY = (Math.random() - 0.5) * 100;
+                    const moveX = (Math.random() - 0.5) * 120;
+                    const moveY = (Math.random() - 0.5) * 120;
                     
                     // Set custom properties for the animation
                     particle.style.setProperty('--move-x', `${moveX}px`);
@@ -292,6 +387,35 @@
                     // Add to body and clean up after animation
                     document.body.appendChild(particle);
                     setTimeout(() => particle.remove(), 4000);
+                }
+            });
+            
+            // Parallax effect for floating elements
+            const parallaxElements = document.querySelectorAll('.tilt-element, .floating-element');
+            
+            document.addEventListener('mousemove', function(e) {
+                if (window.innerWidth <= 768) return; // Disable on mobile
+                
+                const mouseX = e.clientX / window.innerWidth;
+                const mouseY = e.clientY / window.innerHeight;
+                
+                parallaxElements.forEach(element => {
+                    // Different depths for different elements
+                    const depth = element.classList.contains('floating-element') ? 30 : 10;
+                    const moveX = (mouseX - 0.5) * depth;
+                    const moveY = (mouseY - 0.5) * depth;
+                    
+                    element.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                });
+            });
+            
+            // Window resize handler for responsive adjustments
+            window.addEventListener('resize', () => {
+                // Clear and recreate code rain on resize
+                const codeRainContainer = document.getElementById('code-rain');
+                if (codeRainContainer) {
+                    codeRainContainer.innerHTML = '';
+                    createCodeRain();
                 }
             });
         });

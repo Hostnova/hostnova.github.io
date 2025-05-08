@@ -491,3 +491,447 @@ h2.animate-text-element::after {
     animation: none !important;
   }
 }
+
+/* ==========================================
+   Section Transitions
+   ==========================================
+   Advanced section transitions for fluid page scrolling
+   ========================================== */
+
+/* Base Section Transition Classes */
+.section-transition {
+  position: relative;
+  overflow: hidden;
+  transition: 
+    transform 0.7s cubic-bezier(0.23, 1, 0.32, 1),
+    opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Entrance animations for sections */
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 
+    opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1),
+    transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.fade-in-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Customized entrance animations */
+.fade-in-left {
+  opacity: 0;
+  transform: translateX(-50px);
+}
+
+.fade-in-right {
+  opacity: 0;
+  transform: translateX(50px);
+}
+
+.fade-in-bottom {
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+.fade-in-top {
+  opacity: 0;
+  transform: translateY(-50px);
+}
+
+.fade-in-scale {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+/* Applied when elements become visible */
+.is-visible {
+  opacity: 1;
+  transform: translate(0) scale(1);
+}
+
+/* Staggered animation delays */
+.stagger-animation > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 
+    opacity 0.5s cubic-bezier(0.23, 1, 0.32, 1),
+    transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.stagger-animation.is-visible > *:nth-child(1) { transition-delay: 0.1s; }
+.stagger-animation.is-visible > *:nth-child(2) { transition-delay: 0.2s; }
+.stagger-animation.is-visible > *:nth-child(3) { transition-delay: 0.3s; }
+.stagger-animation.is-visible > *:nth-child(4) { transition-delay: 0.4s; }
+.stagger-animation.is-visible > *:nth-child(5) { transition-delay: 0.5s; }
+.stagger-animation.is-visible > *:nth-child(6) { transition-delay: 0.6s; }
+.stagger-animation.is-visible > *:nth-child(7) { transition-delay: 0.7s; }
+.stagger-animation.is-visible > *:nth-child(8) { transition-delay: 0.8s; }
+.stagger-animation.is-visible > *:nth-child(9) { transition-delay: 0.9s; }
+.stagger-animation.is-visible > *:nth-child(10) { transition-delay: 1s; }
+
+.stagger-animation.is-visible > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Section divider effect with cosmic theme */
+.section-divider {
+  position: relative;
+  height: 100px;
+  background-image: linear-gradient(to bottom, 
+    rgba(0, 0, 0, 0), 
+    rgba(76, 176, 243, 0.05) 40%,
+    rgba(76, 176, 243, 0.02) 60%, 
+    rgba(0, 0, 0, 0));
+  z-index: 5;
+  overflow: visible;
+}
+
+.section-divider::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(76, 176, 243, 0.2) 20%,
+    rgba(76, 176, 243, 0.5) 50%,
+    rgba(76, 176, 243, 0.2) 80%,
+    transparent);
+  transform: translateY(-50%);
+}
+
+.section-divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  background-color: rgba(76, 176, 243, 0.8);
+  border-radius: 50%;
+  box-shadow: 0 0 15px rgba(76, 176, 243, 0.7);
+  transform: translate(-50%, -50%);
+}
+
+/* Animated section divider with orbital motif */
+.orbital-divider {
+  position: relative;
+  height: 120px;
+  margin: 40px 0;
+}
+
+.orbital-divider-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 16px;
+  height: 16px;
+  background: radial-gradient(circle, rgba(100, 255, 218, 0.9) 0%, rgba(76, 176, 243, 0.7) 60%, transparent 100%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 20px rgba(76, 176, 243, 0.8);
+  z-index: 6;
+}
+
+.orbital-divider-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  border: 1px solid rgba(76, 176, 243, 0.5);
+  transform: translate(-50%, -50%);
+  z-index: 5;
+}
+
+.orbital-divider-ring:nth-child(1) {
+  width: 50px;
+  height: 50px;
+  animation: rotate-ring 15s linear infinite;
+  border-style: solid;
+}
+
+.orbital-divider-ring:nth-child(2) {
+  width: 100px;
+  height: 100px;
+  animation: rotate-ring 25s linear infinite reverse;
+  border-style: dashed;
+}
+
+.orbital-divider-ring:nth-child(3) {
+  width: 150px;
+  height: 150px;
+  animation: rotate-ring 35s linear infinite;
+  border-style: dotted;
+}
+
+.orbital-divider-line {
+  position: absolute;
+  top: 50%;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(76, 176, 243, 0.2) 10%, 
+    rgba(76, 176, 243, 0.5) 20%,
+    rgba(76, 176, 243, 0.5) 80%,
+    rgba(76, 176, 243, 0.2) 90%,
+    transparent);
+  z-index: 4;
+}
+
+.orbital-divider-line.left {
+  left: 0;
+  right: 50%;
+  margin-right: 85px;
+}
+
+.orbital-divider-line.right {
+  left: 50%;
+  right: 0;
+  margin-left: 85px;
+}
+
+@keyframes rotate-ring {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Smooth section scroll transitions */
+.scroll-transition {
+  position: relative;
+  transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* Parallax section elements */
+.parallax-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  will-change: transform;
+}
+
+.parallax-bg.layer-1 { transform: translateZ(-100px) scale(1.15); }
+.parallax-bg.layer-2 { transform: translateZ(-50px) scale(1.075); }
+.parallax-bg.layer-3 { transform: translateZ(-25px) scale(1.0375); }
+
+/* Reveal effects */
+.reveal-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.reveal-effect::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(76, 176, 243, 0.3), rgba(100, 255, 218, 0.3));
+  transform: translateX(-100%);
+  z-index: 10;
+}
+
+.reveal-effect.is-visible::after {
+  animation: reveal-sweep 1.2s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+@keyframes reveal-sweep {
+  0% { transform: translateX(-100%); }
+  60% { transform: translateX(0); }
+  100% { transform: translateX(100%); opacity: 0; }
+}
+
+/* Text reveal animation */
+.text-reveal {
+  overflow: hidden;
+}
+
+.text-reveal span {
+  display: inline-block;
+  transform: translateY(100%);
+  opacity: 0;
+  transition: 
+    transform 0.6s cubic-bezier(0.33, 1, 0.68, 1),
+    opacity 0.6s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.text-reveal.is-visible span {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Character-by-character text reveal */
+.char-reveal-text span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 
+    transform 0.4s cubic-bezier(0.33, 1, 0.68, 1),
+    opacity 0.4s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+/* Advanced section decorations */
+.section-corner {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-style: solid;
+  border-color: rgba(76, 176, 243, 0.3);
+  border-width: 0;
+  z-index: 2;
+  transition: all 0.5s ease;
+}
+
+.section-corner.top-left {
+  top: 20px;
+  left: 20px;
+  border-left-width: 1px;
+  border-top-width: 1px;
+}
+
+.section-corner.top-right {
+  top: 20px;
+  right: 20px;
+  border-right-width: 1px;
+  border-top-width: 1px;
+}
+
+.section-corner.bottom-left {
+  bottom: 20px;
+  left: 20px;
+  border-left-width: 1px;
+  border-bottom-width: 1px;
+}
+
+.section-corner.bottom-right {
+  bottom: 20px;
+  right: 20px;
+  border-right-width: 1px;
+  border-bottom-width: 1px;
+}
+
+.is-visible .section-corner {
+  width: 70px;
+  height: 70px;
+}
+
+/* Animation for section entry */
+.slide-up-distance {
+  transform: translateY(100px);
+  opacity: 0;
+  transition: 
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.slide-up-distance.is-visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Cosmic glow entry effect */
+.cosmic-glow-entry {
+  position: relative;
+  opacity: 0;
+  filter: brightness(1.5) blur(5px);
+  transition: 
+    opacity 0.8s ease,
+    filter 0.8s ease;
+}
+
+.cosmic-glow-entry.is-visible {
+  opacity: 1;
+  filter: brightness(1) blur(0);
+}
+
+/* Spotlight reveal for sections */
+.spotlight-reveal {
+  position: relative;
+  overflow: hidden;
+  clip-path: circle(0% at 50% 50%);
+  transition: clip-path 1.2s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.spotlight-reveal.is-visible {
+  clip-path: circle(150% at 50% 50%);
+}
+
+/* Advanced section fading effects */
+.fade-blur-in {
+  opacity: 0;
+  filter: blur(10px);
+  transition: 
+    opacity 1s ease-out,
+    filter 1s ease-out;
+}
+
+.fade-blur-in.is-visible {
+  opacity: 1;
+  filter: blur(0px);
+}
+
+/* Hover effects for interactive sections */
+.hover-glow {
+  transition: 
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 30px rgba(76, 176, 243, 0.4);
+  transform: translateY(-5px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .orbital-divider {
+    height: 80px;
+    margin: 20px 0;
+  }
+  
+  .orbital-divider-ring:nth-child(3) {
+    display: none;
+  }
+  
+  .section-divider {
+    height: 60px;
+  }
+  
+  .stagger-animation.is-visible > *:nth-child(n) {
+    transition-delay: calc(0.1s * var(--item-index, 1));
+  }
+}
+
+@media (max-width: 480px) {
+  .orbital-divider-ring:nth-child(2) {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .orbital-divider-line.left,
+  .orbital-divider-line.right {
+    margin-right: 50px;
+    margin-left: 50px;
+  }
+  
+  .section-corner {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .is-visible .section-corner {
+    width: 40px;
+    height: 40px;
+  }
+}
