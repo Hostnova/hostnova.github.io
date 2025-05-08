@@ -44,6 +44,59 @@
   z-index: 0;
 }
 
+/* Enhanced Section Transitions */
+
+/* Common transition properties */
+.section-transition {
+  transition-property: opacity, transform;
+  transition-timing-function: cubic-bezier(0.65, 0, 0.35, 1); /* Improved easing curve */
+  transition-duration: 1s; /* Slightly longer for smoother feel */
+  will-change: opacity, transform; /* Performance optimization */
+}
+
+/* Entry transitions */
+.slide-enter {
+  opacity: 0;
+  transform: translateY(30px); /* Smaller initial movement */
+  pointer-events: none;
+}
+
+.slide-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.slide-enter-down-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Exit transitions */
+.slide-exit {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: none;
+}
+
+.slide-exit-active {
+  opacity: 0;
+  transform: translateY(-30px); /* Smaller exit movement */
+}
+
+.slide-exit-up-active {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+/* Apply transition classes to all sections */
+#hero, .hostara-section, .business-hostara-section, .consumer-section {
+  position: absolute;
+  width: 100%;
+  min-height: 100vh;
+  top: 0;
+  left: 0;
+}
+
 /* Text animation on section load - more advanced effects */
 .animate-text-element {
   opacity: 0;
