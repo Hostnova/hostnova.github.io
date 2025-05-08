@@ -1,0 +1,26 @@
+/* ==========================================
+   Main Landing Page CSS Import File
+   ==========================================
+   Clean implementation with only landing page styling
+   ========================================== */
+
+/* Base Styles and Resets */
+@import './base.css';
+
+/* Layout System */
+@import './layout.css';
+
+/* Animation System */
+@import './animations.css';
+
+/* Color Palette */
+@import './components/color-palette.css';
+
+/* Core Components */
+@import './components/hero.css';
+@import './components/buttons.css';
+@import './components/cosmic-background.css';
+@import './components/orbital-elements.css';
+
+/* Custom Landing Styles */
+@import './landing-style.css';

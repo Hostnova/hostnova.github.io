@@ -369,18 +369,26 @@ function initCosmicBackground() {
 // Enhanced Star Field Generation
 function initStarField() {
     const starLayers = document.querySelectorAll('.star-layer');
-    
+
     starLayers.forEach(layer => {
         // Clear any existing stars
         while (layer.firstChild) {
             layer.removeChild(layer.firstChild);
         }
-        
-        // Generate a random number of stars (more stars = more immersive but more resource intensive)
-        const starCount = window.innerWidth <= 768 ? 50 : 120;
-        
+
+        const isSubtleLayer = layer.parentElement && layer.parentElement.classList.contains('star-field-subtle');
+        let starCount;
+
+        if (isSubtleLayer) {
+            // Fewer stars for subtle backgrounds
+            starCount = window.innerWidth <= 768 ? 15 : 30; 
+        } else {
+            // Original star count for main hero star fields
+            starCount = window.innerWidth <= 768 ? 50 : 120;
+        }
+
         for (let i = 0; i < starCount; i++) {
-            createStar(layer);
+            createStar(layer); 
         }
     });
 }
@@ -389,38 +397,49 @@ function initStarField() {
 function createStar(container) {
     const star = document.createElement('div');
     star.className = 'star';
-    
+
     // Random positions
     const xPos = Math.random() * 100;
     const yPos = Math.random() * 100;
-    
+
     // Random size classes
     const sizeClasses = ['tiny', 'medium', 'large'];
     const sizeIndex = Math.floor(Math.random() * sizeClasses.length);
     star.classList.add(sizeClasses[sizeIndex]);
-    
+
     // Random color
     const colorClasses = ['', 'blue', 'gold', 'red']; // Empty string means default white
     const colorIndex = Math.floor(Math.random() * colorClasses.length);
     if (colorClasses[colorIndex]) {
         star.classList.add(colorClasses[colorIndex]);
     }
-    
-    // Set custom properties for animation variation
-    star.style.setProperty('--twinkle-duration', 2 + Math.random() * 4 + 's');
-    star.style.setProperty('--min-opacity', 0.2 + Math.random() * 0.3);
-    star.style.setProperty('--max-opacity', 0.7 + Math.random() * 0.3);
-    star.style.setProperty('--min-scale', 0.6 + Math.random() * 0.3);
-    star.style.setProperty('--max-scale', 1 + Math.random() * 0.3);
-    
+
+    const isSubtle = container.parentElement && container.parentElement.classList.contains('star-field-subtle');
+
+    if (!isSubtle) {
+        // Set custom properties for animation variation for non-subtle stars
+        star.style.setProperty('--twinkle-duration', `${2 + Math.random() * 4}s`);
+        star.style.setProperty('--min-opacity', `${0.2 + Math.random() * 0.3}`);
+        star.style.setProperty('--max-opacity', `${0.7 + Math.random() * 0.3}`);
+        star.style.setProperty('--min-scale', `${0.6 + Math.random() * 0.3}`);
+        star.style.setProperty('--max-scale', `${1 + Math.random() * 0.3}`);
+    } else {
+        // Set custom properties for subtle animation variation, respecting the CSS base
+        star.style.setProperty('--twinkle-duration', `${4 + Math.random() * 2}s`); // Around 5s
+        star.style.setProperty('--min-opacity', `${0.1 + Math.random() * 0.1}`);   // Around 0.1-0.2
+        star.style.setProperty('--max-opacity', `${0.3 + Math.random() * 0.2}`);   // Around 0.3-0.5
+        star.style.setProperty('--min-scale', `${0.4 + Math.random() * 0.2}`);    // Around 0.4-0.6
+        star.style.setProperty('--max-scale', `${0.7 + Math.random() * 0.2}`);    // Around 0.7-0.9
+    }
+
     // Set star position
     star.style.left = `${xPos}%`;
     star.style.top = `${yPos}%`;
-    
+
     // Random animation delay
     star.style.animationDelay = `${Math.random() * 5}s`;
-    
-    // Add drift animation to some stars
+
+    // Add drift animation to some stars (applies to both subtle and non-subtle for now)
     if (Math.random() > 0.7) {
         star.style.animationName = 'star-twinkle, star-drift';
         star.style.animationDuration = `${star.style.getPropertyValue('--twinkle-duration')}, ${10 + Math.random() * 20}s`;
@@ -429,10 +448,10 @@ function createStar(container) {
         star.style.animationDirection = 'alternate, alternate';
         star.style.setProperty('--drift-x', `${-10 + Math.random() * 20}px`);
     }
-    
+
     // Append the star to the container
     container.appendChild(star);
-    
+
     return star;
 }
 

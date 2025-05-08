@@ -1,412 +1,590 @@
 /* ==========================================
-   Cosmic Background Animations
+   Cosmic Background & Sky Elements
    ==========================================
-   Animated night sky with stars, comets, and celestial events
+   Enhanced cosmic background with shooting stars, comets, and interactive effects
    ========================================== */
 
-/* Container for the cosmic background */
+/* Base cosmic background */
 .cosmic-background {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
   width: 100%;
   height: 100%;
+  background: linear-gradient(to bottom, #070B14 0%, #0C1018 100%);
+  z-index: -1;
   overflow: hidden;
-  z-index: 1;
-  background: linear-gradient(to bottom, 
-    #0F1622 0%, 
-    #0d1016 40%, 
-    #08080d 100%);
-  /* Remove any blurring filters */
+  pointer-events: none;
 }
 
-/* Stars background with breathing effect */
-.star-field {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  animation: breathe 8s ease-in-out infinite alternate;
-  /* Stars should be sharp and crisp */
-  image-rendering: crisp-edges;
-  image-rendering: -webkit-optimize-contrast;
-  pointer-events: none; /* Ensure it doesn't interfere with interactions */
-  z-index: 2; /* Make sure stars are above the background gradient */
-}
-
-/* Multiple star layers for parallax effect - ensuring sharp rendering */
-.star-layer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  will-change: transform; /* Optimize for animations */
-}
-
-/* Small twinkling stars - made sharper */
+/* Star field - base stars */
 .star {
   position: absolute;
-  background-color: #ffffff;
+  width: 2px;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.8);
   border-radius: 50%;
-  /* Removed blur filter that was causing blurriness */
-  opacity: 0.9;
-}
-
-.star.tiny {
-  width: 1px;
-  height: 1px;
 }
 
 .star.small {
-  width: 2px;
-  height: 2px;
+  width: 1px;
+  height: 1px;
+  opacity: 0.6;
 }
 
 .star.medium {
-  width: 3px;
-  height: 3px;
-  background: #f0f0ff;
+  width: 2px;
+  height: 2px;
+  opacity: 0.8;
 }
 
 .star.large {
-  width: 4px;
-  height: 4px;
-  background: #f5f5ff;
-  box-shadow: 0 0 4px rgba(255, 255, 255, 0.7);
-}
-
-/* Bright stars with glow effect - improved clarity */
-.bright-star {
-  position: absolute;
   width: 3px;
   height: 3px;
-  background-color: #ffffff;
-  border-radius: 50%;
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8), 0 0 12px rgba(255, 255, 255, 0.5);
-  /* Removed blur filter for sharper appearance */
   opacity: 1;
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
+}
+
+/* Twinkling stars animation */
+.star.twinkle {
   animation: twinkle 4s infinite ease-in-out;
 }
 
-/* Shooting stars */
+.star.twinkle-slow {
+  animation: twinkle 8s infinite ease-in-out;
+}
+
+.star.twinkle-fast {
+  animation: twinkle 2s infinite ease-in-out;
+}
+
+@keyframes twinkle {
+  0% { opacity: 0.3; }
+  50% { opacity: 1; }
+  100% { opacity: 0.3; }
+}
+
+/* Enhanced shooting stars */
+.shooting-star-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
 .shooting-star {
   position: absolute;
-  width: 150px; /* Increased length for more dramatic effect */
   height: 2px;
-  background: linear-gradient(to right, rgba(255, 255, 255, 0), #ffffff 80%);
-  border-radius: 50%;
-  filter: blur(1px);
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, 
+                                       rgba(255, 255, 255, 0.4) 50%, 
+                                       rgba(255, 255, 255, 0.8) 100%);
+  border-radius: 100px;
+  transform-origin: left center;
+  z-index: 1;
   opacity: 0;
-  transform-origin: left;
-  animation: shootingStar 15s linear infinite; /* Increased from 6s to 15s for slower movement */
-  z-index: 2;
-  box-shadow: 0 0 15px 2px rgba(76, 176, 243, 0.8);
+  filter: blur(0.5px);
+  animation: shooting-star-anim var(--duration, 1s) ease-in-out forwards;
+  --origin-x: 0;
+  --origin-y: 0;
+  --angle: 135deg;
+  --distance: 300px;
+  --speed: 1000ms;
+  --delay: 0ms;
+  --opacity: 0.7;
+  --blur: 0.8px;
+  --color: rgba(255, 255, 255, 0.8);
 }
 
-.shooting-star:nth-child(2) { 
-  animation-delay: 5s;
-  top: 15%;
-  left: 30%;
-  transform: rotate(-15deg);
-  width: 180px;
+.shooting-star.bright {
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%,
+                                       rgba(255, 255, 255, 0.7) 50%,
+                                       rgba(100, 255, 218, 1) 100%);
+  height: 3px;
+  box-shadow: 0 0 5px rgba(100, 255, 218, 0.5);
+  --opacity: 1;
+  --blur: 1px;
 }
 
-.shooting-star:nth-child(3) { 
-  animation-delay: 10s;
-  top: 35%;
-  left: 10%;
-  width: 200px;
-  transform: rotate(25deg);
+.shooting-star.colorful {
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%,
+                                       rgba(76, 176, 243, 0.7) 50%,
+                                       rgba(100, 255, 218, 1) 100%);
+  height: 2.5px;
+  box-shadow: 0 0 5px rgba(76, 176, 243, 0.5);
+  --opacity: 0.9;
+  --blur: 1.2px;
 }
 
-.shooting-star:nth-child(4) { 
-  animation-delay: 17s;
-  top: 65%;
-  left: 50%;
-  transform: rotate(-35deg);
-  width: 220px;
+@keyframes shooting-star-anim {
+  0% {
+    transform: 
+      translate(var(--origin-x), var(--origin-y)) 
+      rotate(var(--angle)) 
+      scaleX(0.1);
+    opacity: 0;
+  }
+  5% {
+    opacity: var(--opacity);
+    filter: blur(var(--blur));
+  }
+  90% {
+    opacity: var(--opacity);
+    filter: blur(var(--blur));
+  }
+  100% {
+    transform: 
+      translate(var(--origin-x), var(--origin-y)) 
+      rotate(var(--angle)) 
+      translate(var(--distance)) 
+      scaleX(1);
+    opacity: 0;
+    filter: blur(calc(var(--blur) * 1.5));
+  }
 }
 
-/* Comets with trails */
+/* Enhanced comet trail effects */
 .comet {
   position: absolute;
+  width: 6px;
+  height: 6px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+             0 0 20px rgba(255, 255, 255, 0.4);
+  opacity: 0;
+  filter: blur(0.3px);
+  pointer-events: none;
+  z-index: 2;
+  animation: comet-move var(--duration, 10s) linear forwards;
+  --path: path("M0,0 Q300,100 600,-100 T1200,100");
+  --start-time: 0s;
+}
+
+.comet::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 4px;
+  width: 40px;
+  height: 2px;
+  transform: translateY(-50%);
+  background: linear-gradient(to left, 
+                             rgba(255, 255, 255, 0.9),
+                             rgba(255, 255, 255, 0.1) 80%,
+                             transparent 100%);
+  border-radius: 100%;
+  filter: blur(1px);
+}
+
+.comet.blue {
+  background-color: rgba(76, 176, 243, 0.9);
+  box-shadow: 0 0 10px rgba(76, 176, 243, 0.8),
+             0 0 20px rgba(76, 176, 243, 0.4);
+}
+
+.comet.blue::after {
+  background: linear-gradient(to left,
+                             rgba(76, 176, 243, 0.9),
+                             rgba(76, 176, 243, 0.1) 80%,
+                             transparent 100%);
+}
+
+.comet.teal {
+  background-color: rgba(100, 255, 218, 0.9);
+  box-shadow: 0 0 10px rgba(100, 255, 218, 0.8),
+             0 0 20px rgba(100, 255, 218, 0.4);
+}
+
+.comet.teal::after {
+  background: linear-gradient(to left,
+                             rgba(100, 255, 218, 0.9),
+                             rgba(100, 255, 218, 0.1) 80%,
+                             transparent 100%);
+}
+
+@keyframes comet-move {
+  0% {
+    offset-distance: 0%;
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 1;
+  }
+  100% {
+    offset-distance: 100%;
+    opacity: 0;
+  }
+}
+
+/* Interactive shooting stars on click */
+.interactive-star {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background-color: rgba(100, 255, 218, 0.9);
+  border-radius: 50%;
+  filter: blur(0.3px);
+  box-shadow: 0 0 10px rgba(100, 255, 218, 0.8);
   z-index: 3;
   opacity: 0;
-  animation: cometMove 25s linear infinite; /* Increased from 15s to 25s for slower movement */
+  pointer-events: none;
+  animation: interactive-star-pulse 0.3s ease-out, 
+            interactive-star-move 1.2s cubic-bezier(0.22, 0.68, 0.01, 1.0) forwards;
 }
 
-.comet-head {
-  width: 8px; /* Slightly larger comet head */
-  height: 8px;
-  background-color: #4CB0F3;
-  border-radius: 50%;
-  box-shadow: 0 0 20px 6px rgba(76, 176, 243, 0.8);
-}
-
-.comet-tail {
+.interactive-star::after {
+  content: '';
   position: absolute;
   top: 50%;
   right: 0;
-  width: 180px; /* Longer comet tail */
-  height: 3px;
-  background: linear-gradient(to left, rgba(76, 176, 243, 0), rgba(76, 176, 243, 0.8));
+  width: 30px;
+  height: 1.5px;
   transform: translateY(-50%);
-  filter: blur(0.8px);
+  background: linear-gradient(to left, 
+                             rgba(100, 255, 218, 0.8),
+                             rgba(100, 255, 218, 0) 100%);
+  border-radius: 100px;
+  filter: blur(1px);
 }
 
-.comet:nth-child(1) {
-  top: 25%;
-  left: 10%;
-  animation-delay: 8s;
-  transform: rotate(15deg);
+@keyframes interactive-star-pulse {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
-.comet:nth-child(2) {
-  top: 60%;
-  left: 70%;
-  animation-delay: 18s;
-  transform: rotate(210deg);
+@keyframes interactive-star-move {
+  0% {
+    transform: translate(0, 0) rotate(var(--angle, 225deg));
+    opacity: 1;
+  }
+  95% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--distance-x, 300px), var(--distance-y, -300px)) rotate(var(--angle, 225deg));
+    opacity: 0;
+  }
 }
 
-/* Cosmic nebula clouds */
+/* Stardust particles for floating effects */
+.stardust {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  opacity: 0;
+  filter: blur(0.5px);
+  animation: stardust-float 15s linear infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes stardust-float {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.7;
+  }
+  90% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(-100px) translateX(50px);
+    opacity: 0;
+  }
+}
+
+/* Nebula cloud effects */
 .nebula {
   position: absolute;
-  width: 300px;
-  height: 300px;
   border-radius: 50%;
-  filter: blur(80px);
+  filter: blur(40px);
   opacity: 0.15;
-  mix-blend-mode: screen;
-  z-index: 1;
+  background: radial-gradient(circle at center, rgba(76, 176, 243, 0.5), rgba(100, 255, 218, 0.2), transparent 70%);
+  z-index: -1;
+  animation: nebula-pulse 20s ease-in-out infinite alternate;
 }
 
-.nebula-1 {
-  top: 20%;
-  left: 15%;
-  background: radial-gradient(
-    circle at center,
-    rgba(76, 176, 243, 0.4),
-    rgba(9, 80, 205, 0.2),
-    rgba(9, 80, 205, 0)
-  );
-  animation: drift 60s linear infinite alternate;
+.nebula.blue {
+  background: radial-gradient(circle at center, rgba(76, 176, 243, 0.4), rgba(41, 121, 255, 0.1), transparent 70%);
 }
 
-.nebula-2 {
-  top: 60%;
-  right: 15%;
-  background: radial-gradient(
-    circle at center,
-    rgba(111, 154, 211, 0.3),
-    rgba(9, 80, 205, 0.1),
-    rgba(9, 80, 205, 0)
-  );
-  animation: drift 80s linear infinite alternate-reverse;
+.nebula.purple {
+  background: radial-gradient(circle at center, rgba(134, 67, 230, 0.3), rgba(200, 113, 255, 0.1), transparent 70%);
 }
 
-/* Cosmic collision and explosion effects */
-.cosmic-collision {
+.nebula.gold {
+  background: radial-gradient(circle at center, rgba(250, 200, 52, 0.3), rgba(255, 215, 0, 0.1), transparent 70%);
+}
+
+@keyframes nebula-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.05;
+  }
+  50% {
+    opacity: 0.15;
+  }
+  100% {
+    transform: scale(1.2);
+    opacity: 0.1;
+  }
+}
+
+/* Interstellar cloud "fog" effects */
+.cosmic-fog {
   position: absolute;
-  opacity: 0;
-  z-index: 4;
-  animation: collision 20s linear infinite;
-}
-
-.explosion {
-  position: absolute;
-  width: 60px;
-  height: 60px;
-  background: radial-gradient(
-    circle at center,
-    rgba(255, 255, 255, 0.9),
-    rgba(76, 176, 243, 0.7) 20%,
-    rgba(9, 80, 205, 0.5) 40%,
-    transparent 70%
-  );
-  border-radius: 50%;
-  transform: scale(0);
-  animation: explode 20s linear infinite;
-}
-
-.explosion-particles {
-  position: absolute;
-  top: 50%;
-  left: 50%;
   width: 100%;
   height: 100%;
-  transform: translate(-50%, -50%);
+  top: 0;
+  left: 0;
+  background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSI+CiAgPGZpbHRlciBpZD0iY29zbWljLW5vaXNlIiBwcmltaXRpdmVVbml0cz0idXNlclNwYWNlT25Vc2UiIHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPgogICAgPGZlVHVyYnVsZW5jZSB0eXBlPSJmcmFjdGFsTm9pc2UiIGJhc2VGcmVxdWVuY3k9IjAuMDAzIiBudW1PY3RhdmVzPSI1IiBzdGl0Y2hUaWxlcz0ic3RpdGNoIiByZXN1bHQ9Im5vaXNlIiAvPgogICAgPGZlQ29sb3JNYXRyaXggaW49Im5vaXNlIiB0eXBlPSJsdW1pbmFuY2VUb0FscGhhIiByZXN1bHQ9Im5vaXNlQWxwaGEiLz4KICAgIDxmZUNvbXBvbmVudFRyYW5zZmVyIGluPSJub2lzZUFscGhhIiByZXN1bHQ9Im5vaXNlT3BhY2l0eSI+CiAgICAgIDxmZUZ1bmNBIHR5cGU9InRhYmxlIiB0YWJsZVZhbHVlcz0iMCAxIDEgMC41IDAuMyAwLjEgMCIvPgogICAgPC9mZUNvbXBvbmVudFRyYW5zZmVyPgogIDwvZmlsdGVyPgogIDxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNjb3NtaWMtbm9pc2UpIiBvcGFjaXR5PSIwLjA1IiAvPgo8L3N2Zz4=');
+  opacity: 0.1;
+  z-index: -1;
+  pointer-events: none;
+  animation: fog-drift 120s linear infinite;
 }
 
-.explosion-particle {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background-color: #ffffff;
-  box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
-  border-radius: 50%;
-  animation: particleExpand 20s linear infinite;
-  opacity: 0;
-}
-
-.explosion-particle:nth-child(1) { transform: rotate(0deg); }
-.explosion-particle:nth-child(2) { transform: rotate(45deg); }
-.explosion-particle:nth-child(3) { transform: rotate(90deg); }
-.explosion-particle:nth-child(4) { transform: rotate(135deg); }
-.explosion-particle:nth-child(5) { transform: rotate(180deg); }
-.explosion-particle:nth-child(6) { transform: rotate(225deg); }
-.explosion-particle:nth-child(7) { transform: rotate(270deg); }
-.explosion-particle:nth-child(8) { transform: rotate(315deg); }
-
-/* Breathing animation for the starfield */
-@keyframes breathe {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.05); opacity: 0.8; }
-}
-
-/* Star twinkling animation */
-@keyframes twinkle {
-  0%, 100% { opacity: 0.9; transform: scale(1); }
-  50% { opacity: 0.4; transform: scale(0.8); }
-}
-
-/* Shooting star animation - slower and more dramatic */
-@keyframes shootingStar {
-  0% { 
-    opacity: 0;
-    transform: translateX(0) scaleY(1);
-  }
-  2% { 
-    opacity: 1;
-    transform: translateX(5%) scaleY(1.2);
-  }
-  5% { 
-    opacity: 1;
-    transform: translateX(10%) scaleY(1);
-  }
-  8% { 
-    opacity: 0;
-    transform: translateX(20%) scaleY(1);
-  }
-  100% { 
-    opacity: 0;
-    transform: translateX(100%) scaleY(1);
-  }
-}
-
-/* Comet movement animation - slower and more visible */
-@keyframes cometMove {
+@keyframes fog-drift {
   0% {
-    transform-origin: center;
-    opacity: 0;
-    transform: translateX(0) translateY(0) rotate(0);
+    background-position: 0 0;
   }
-  2% {
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
+/* Aurora effect for special sections */
+.cosmic-aurora {
+  position: absolute;
+  bottom: -50%;
+  left: -10%;
+  width: 120%;
+  height: 70%;
+  background: linear-gradient(to top,
+                            rgba(76, 176, 243, 0.05) 0%,
+                            rgba(100, 255, 218, 0.03) 50%,
+                            transparent 100%);
+  opacity: 0;
+  filter: blur(30px);
+  transform-origin: bottom center;
+  animation: aurora-wave 20s ease-in-out infinite alternate;
+  z-index: -1;
+  pointer-events: none;
+}
+
+@keyframes aurora-wave {
+  0% {
+    opacity: 0.05;
+    transform: scaleX(0.8) scaleY(0.8);
+    background-position: 0% 0%;
+  }
+  50% {
+    opacity: 0.1;
+  }
+  100% {
+    opacity: 0.07;
+    transform: scaleX(1.2);
+    background-position: 100% 0%;
+  }
+}
+
+/* Interactive click-to-create particle effect */
+.cosmic-click-particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: rgba(100, 255, 218, 0.9);
+  box-shadow: 0 0 10px rgba(100, 255, 218, 0.5);
+  opacity: 1;
+  pointer-events: none;
+  z-index: 999;
+  transform: translate(-50%, -50%);
+  animation: cosmic-click-particle-anim 1.5s cubic-bezier(0.22, 0.68, 0.32, 1.0) forwards;
+}
+
+@keyframes cosmic-click-particle-anim {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
     opacity: 1;
   }
-  12% {
+  30% {
     opacity: 1;
-  }
-  18% {
-    opacity: 0;
+    transform: translate(-50%, -50%) scale(1);
   }
   100% {
     opacity: 0;
-    transform: translateX(400px) translateY(150px) rotate(0);
+    transform: translate(-50%, -50%) scale(2);
   }
 }
 
-/* Nebula drifting animation */
-@keyframes drift {
-  0% { transform: translate(0, 0); }
-  50% { transform: translate(50px, -30px); }
-  100% { transform: translate(10px, 30px); }
+/* 3D space dust */
+.space-dust {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  transform: translateZ(0);
+  animation: space-dust-drift var(--drift-duration, 20s) linear infinite;
+  opacity: var(--dust-opacity, 0.3);
+  filter: blur(var(--dust-blur, 0.5px));
 }
 
-/* Cosmic collision animation */
-@keyframes collision {
-  0%, 85%, 100% { 
-    opacity: 0;
-    transform: translate(0, 0); 
+.space-dust.layer-1 {
+  --drift-duration: 40s;
+  --dust-opacity: 0.4;
+  --dust-blur: 0.2px;
+  z-index: -1;
+}
+
+.space-dust.layer-2 {
+  --drift-duration: 60s;
+  --dust-opacity: 0.2;
+  --dust-blur: 0.6px;
+  z-index: -2;
+}
+
+.space-dust.layer-3 {
+  --drift-duration: 80s;
+  --dust-opacity: 0.1;
+  --dust-blur: 1px;
+  z-index: -3;
+}
+
+@keyframes space-dust-drift {
+  0% {
+    transform: translate3d(0, 0, 0);
   }
-  88% { 
-    opacity: 1;
-    transform: translate(-20px, 10px);
-  }
-  90% { 
-    opacity: 1;
-    transform: translate(-5px, 2px);
-  }
-  92% { 
-    opacity: 0;
+   100% {
+    transform: translate3d(var(--drift-x, 200px), var(--drift-y, 100px), 0);
   }
 }
 
-/* Explosion animation */
-@keyframes explode {
-  0%, 89%, 100% { 
+/* Cosmic event effects for special interactions */
+.cosmic-event {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, 
+                             rgba(100, 255, 218, 0.8) 0%, 
+                             rgba(76, 176, 243, 0.4) 30%, 
+                             rgba(76, 176, 243, 0.1) 60%, 
+                             transparent 100%);
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  filter: blur(5px);
+  z-index: 100;
+  animation: cosmic-event-expand 2s cubic-bezier(0.17, 0.67, 0.83, 0.97) forwards;
+  pointer-events: none;
+}
+
+@keyframes cosmic-event-expand {
+  0% {
+    width: 0;
+    height: 0;
     opacity: 0;
-    transform: scale(0);
   }
-  90% { 
-    opacity: 1;
-    transform: scale(1);
-  }
-  92% { 
+  30% {
     opacity: 0.8;
-    transform: scale(1.3);
   }
-  95% { 
-    opacity: 0;
-    transform: scale(1.5);
-  }
-}
-
-/* Particle explosion animation */
-@keyframes particleExpand {
-  0%, 89%, 100% { 
-    width: 2px;
-    left: 50%;
-    opacity: 0;
-  }
-  90% { 
-    width: 2px;
-    left: 50%;
-    opacity: 1;
-  }
-  93% { 
-    width: 40px;
-    left: calc(50% - 20px);
-    opacity: 0.8;
-  }
-  97% { 
-    width: 80px;
-    left: calc(50% - 40px);
+  100% {
+    width: 400px;
+    height: 400px;
     opacity: 0;
   }
 }
 
-/* Additional keyframes for orbital satellite animation */
-@keyframes orbit-satellite {
-  from {
-    transform: translateX(-50%) rotate(0deg) translateY(-200px) rotate(0deg);
+/* Interactive galaxy spiral effect */
+.galaxy-spiral {
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  z-index: 10;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj48ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9InNwaXJhbEdyYWRpZW50IiBjeD0iNTAlIiBjeT0iNTAlIiByPSI1MCUiIGZ4PSI1MCUiIGZ5PSI1MCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9InJnYmEoMTAwLCAyNTUsIDIxOCwgMC42KSIgLz48c3RvcCBvZmZzZXQ9IjQwJSIgc3RvcC1jb2xvcj0icmdiYSg3NiwgMTc2LCAyNDMsIDAuMykiIC8+PHN0b3Agb2Zmc2V0PSI3MCUiIHN0b3AtY29sb3I9InJnYmEoNzYsIDE3NiwgMjQzLCAwLjEpIiAvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0idHJhbnNwYXJlbnQiIC8+PC9yYWRpYWxHcmFkaWVudD48L2RlZnM+PHBhdGggZmlsbD0idXJsKCNzcGlyYWxHcmFkaWVudCkiIGQ9Ik0xMjUgMEMxMjUgMCAxNTAgMTAgMTc1IDI1QzIwMCA0MCAxOTAgNzUgMjIwIDkwQzI0MCAxMDAgMjUwIDEyNSAyNTAgMTI1QzI1MCAxMjUgMjQwIDE1MCAyMjUgMTc1QzIxMCAyMDAgMTc1IDE5MCAxNjAgMjIwQzE1MCAyNDAgMTI1IDI1MCAxMjUgMjUwQzEyNSAyNTAgMTAwIDI0MCA3NSAyMjVDNTAgMjEwIDYwIDE3NSAzMCAxNjBDMTAgMTUwIDAgMTI1IDAgMTI1QzAgMTI1IDEwIDEwMCAyNSA3NUM0MCA1MCA3NSA2MCA5MCAzMEMxMDAgMTAgMTI1IDAgMTI1IDBaIj48YW5pbWF0ZVRyYW5zZm9ybSBhdHRyaWJ1dGVOYW1lPSJ0cmFuc2Zvcm0iIHR5cGU9InJvdGF0ZSIgZnJvbT0iMCAxMjUgMTI1IiB0bz0iMzYwIDEyNSAxMjUiIGR1cj0iMzBzIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIgLz48L3BhdGg+PC9zdmc+');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  animation: galaxy-spiral-appear 10s ease-in-out forwards;
+}
+
+@keyframes galaxy-spiral-appear {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(0deg);
   }
-  to {
-    transform: translateX(-50%) rotate(360deg) translateY(-200px) rotate(-360deg);
+  10% {
+    opacity: 0.3;
+    width: 300px;
+    height: 300px;
+  }
+  90% {
+    opacity: 0.2;
+  }
+  100% {
+    width: 400px;
+    height: 400px;
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(180deg);
   }
 }
 
-/* Enhanced pulse effect for orbital elements */
-@keyframes orbital-pulse {
-  0%, 100% { 
-    opacity: 0.8;
-    box-shadow: 0 0 15px var(--color-primary);
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .cosmic-event {
+    animation-duration: 1.5s;
   }
-  50% { 
-    opacity: 1;
-    box-shadow: 0 0 30px var(--color-primary), 0 0 50px rgba(230, 181, 74, 0.3);
+  
+  @keyframes cosmic-event-expand {
+    100% {
+      width: 250px;
+      height: 250px;
+    }
+  }
+  
+  .nebula,
+  .cosmic-aurora {
+    filter: blur(20px);
+  }
+}
+
+@media (max-width: 480px) {
+  .comet {
+    display: none; /* Hide on very small screens to improve performance */
+  }
+  
+  .shooting-star {
+    height: 1px;
+    filter: blur(0.3px);
+  }
+  
+  .nebula {
+    filter: blur(30px);
   }
 }
