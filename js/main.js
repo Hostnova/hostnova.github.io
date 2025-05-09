@@ -4,13 +4,65 @@
  */
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Handle preloader immediately
+    handlePreloader();
+    
     // Initialize components
     initializeCosmicBackground();
     initializeInteractiveElements();
     initializeParallaxEffects();
     initializeOrbitalAnimations();
     initializeCustomCursor();
+    initializeBusinessSection();
+    handleSectionLoading();
 });
+
+// Handle preloader with better reliability
+function handlePreloader() {
+    const preloader = document.querySelector('.preloader');
+    
+    if (!preloader) return;
+    
+    // Force dismiss preloader after a safety timeout (5s) in case something goes wrong
+    const safetyTimeout = setTimeout(() => {
+        console.log('Safety timeout triggered for preloader');
+        forceHidePreloader();
+    }, 5000);
+    
+    // Normal preloader dismissal
+    window.addEventListener('load', () => {
+        clearTimeout(safetyTimeout);
+        hidePreloader();
+        
+        // Initialize section loading handlers after main preloader
+        handleSectionLoading();
+    });
+    
+    // Additional safety check - if window already loaded, hide immediately
+    if (document.readyState === 'complete') {
+        clearTimeout(safetyTimeout);
+        hidePreloader();
+        handleSectionLoading();
+    }
+    
+    function hidePreloader() {
+        setTimeout(() => {
+            preloader.classList.add('preloader-hidden');
+            setTimeout(() => {
+                preloader.style.display = 'none';
+                document.body.classList.add('loaded');
+            }, 600); // Match this with the CSS transition duration
+        }, 500); // Short delay to ensure content is ready
+    }
+    
+    function forceHidePreloader() {
+        preloader.classList.add('preloader-hidden');
+        setTimeout(() => {
+            preloader.style.display = 'none';
+            document.body.classList.add('loaded');
+        }, 100);
+    }
+}
 
 /**
  * Initialize the cosmic background with stars and effects
@@ -28,6 +80,116 @@ function initializeCosmicBackground() {
     
     // Setup animated data streams
     setupDataStreams();
+}
+
+/**
+ * Initialize business section with animations and effects for corporate appearance
+ */
+function initializeBusinessSection() {
+    // Immediately add visible class to all business cards and testimonials
+    document.querySelectorAll('.business-card.animate-text-element, .testimonial-card').forEach((el, index) => {
+        el.classList.add('visible');
+        // Add staggered animation delays for smoother entry
+        el.style.animationDelay = `${0.1 * index}s`;
+    });
+    
+    // Animate business elements on scroll
+    const animateBusinessElements = () => {
+        // Animate business cards
+        const elements = document.querySelectorAll('.animate-text-element');
+        elements.forEach(element => {
+            const elementTop = element.getBoundingClientRect().top;
+            const elementBottom = element.getBoundingClientRect().bottom;
+            const isVisible = elementTop < window.innerHeight - 100 && elementBottom > 0;
+            
+            if (isVisible) {
+                element.classList.add('visible');
+            }
+        });
+        
+        // Animate testimonial cards
+        const testimonials = document.querySelectorAll('.testimonial-card');
+        testimonials.forEach(testimonial => {
+            const testimonialTop = testimonial.getBoundingClientRect().top;
+            const testimonialBottom = testimonial.getBoundingClientRect().bottom;
+            const isVisible = testimonialTop < window.innerHeight - 100 && testimonialBottom > 0;
+            
+            if (isVisible) {
+                testimonial.classList.add('visible');
+            }
+        });
+          // Animate app mockups with staggered delays for a more professional appearance
+        const appMockups = document.querySelectorAll('.app-mockup');
+        appMockups.forEach((mockup, index) => {
+            const mockupTop = mockup.getBoundingClientRect().top;
+            const mockupBottom = mockup.getBoundingClientRect().bottom;
+            const isVisible = mockupTop < window.innerHeight - 100 && mockupBottom > 0;
+            
+            if (isVisible) {
+                mockup.style.opacity = '1';
+                mockup.style.animationDelay = `${0.2 * index}s`;
+                mockup.style.animationName = 'fadeInCorporate';
+            }
+        });
+          // Animate metrics with corporate progressive reveal
+        const metricItems = document.querySelectorAll('.metric-item');
+        metricItems.forEach((metric, index) => {
+            const metricTop = metric.getBoundingClientRect().top;
+            const metricBottom = metric.getBoundingClientRect().bottom;
+            const isVisible = metricTop < window.innerHeight - 100 && metricBottom > 0;
+            
+            if (isVisible) {
+                metric.style.opacity = '1';
+                metric.style.animationDelay = `${0.3 * index}s`;
+                metric.style.animationName = 'fadeInCorporate';
+                
+                // Add count-up animation to metric values for dashboard effect
+                setTimeout(() => {
+                    const valueElem = metric.querySelector('.metric-value');
+                    if (valueElem) {
+                        valueElem.classList.add('counting-animation');
+                    }
+                }, 300 * index);
+            }
+        });
+        
+        // Animate app cards with staggered reveal
+        const appCards = document.querySelectorAll('.app-card');
+        appCards.forEach((card, index) => {
+            const cardTop = card.getBoundingClientRect().top;
+            const cardBottom = card.getBoundingClientRect().bottom;
+            const isVisible = cardTop < window.innerHeight - 100 && cardBottom > 0;
+            
+            if (isVisible) {
+                card.style.opacity = '1';
+                card.style.animationDelay = `${0.15 * index}s`;
+            }
+        });
+        
+        // Animate app cards
+        const appCards = document.querySelectorAll('.app-card');
+        appCards.forEach(card => {
+            const cardTop = card.getBoundingClientRect().top;
+            const cardBottom = card.getBoundingClientRect().bottom;
+            const isVisible = cardTop < window.innerHeight - 100 && cardBottom > 0;
+            
+            if (isVisible) {
+                card.style.opacity = '1';
+            }
+        });
+    };
+    
+    // Add scroll event for animation
+    window.addEventListener('scroll', animateBusinessElements);
+    
+    // Make the Kenya map pulse with animation
+    const kenyaMap = document.querySelector('.business-kenya-map');
+    if (kenyaMap) {
+        kenyaMap.style.animation = 'kenyanMapPulse 4s infinite ease-in-out';
+    }
+    
+    // Trigger once for initial elements in view
+    setTimeout(animateBusinessElements, 100);
 }
 
 /**
@@ -379,5 +541,37 @@ function initializeCustomCursor() {
             cursorFollower.style.height = '40px';
             cursorFollower.style.borderColor = 'rgba(76, 176, 243, 0.3)';
         });
+    });
+}
+
+/**
+ * Mark sections as loaded to hide their loading indicators
+ */
+function handleSectionLoading() {
+    // Mark hero section as loaded after a short delay
+    setTimeout(() => {
+        const heroSection = document.getElementById('hero');
+        if (heroSection) {
+            heroSection.classList.add('loaded');
+        }
+    }, 1000);
+    
+    // Handle other sections based on visibility
+    const sections = document.querySelectorAll('section');
+    const markSectionAsLoaded = (entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('loaded');
+            }
+        });
+    };
+    
+    const observer = new IntersectionObserver(markSectionAsLoaded, {
+        root: null,
+        threshold: 0.1 // 10% of the section visible
+    });
+    
+    sections.forEach(section => {
+        observer.observe(section);
     });
 }

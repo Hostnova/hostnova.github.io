@@ -35,6 +35,44 @@
   }
 }
 
+/* Main preloader transitions */
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #080b14;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999; /* Increased z-index to ensure it's above everything */
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+  pointer-events: auto; /* Ensure it blocks interactions */
+}
+
+.preloader-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none; /* Ensure it doesn't block interactions when hidden */
+  z-index: -1; /* Move it behind everything once hidden */
+}
+
+.preloader-icon {
+  width: 80px;
+  height: 80px;
+  border: 4px solid rgba(65, 214, 255, 0.2);
+  border-top-color: #41d6ff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  box-shadow: 0 0 20px rgba(65, 214, 255, 0.3);
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 /* Brand Vision Section - Nebula Loading */
 .nebula-loader {
   background: radial-gradient(ellipse at center, 

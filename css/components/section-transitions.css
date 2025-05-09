@@ -49,6 +49,12 @@
   opacity: 0;
   transform: translateY(20px) scale(0.95);
   transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* Business section animation for visible elements */
+.animate-text-element.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
   transition-delay: var(--delay, 0s);
   will-change: opacity, transform;
 }

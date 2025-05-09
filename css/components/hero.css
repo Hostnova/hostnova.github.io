@@ -21,6 +21,36 @@
   box-sizing: border-box; /* Include padding and border in the element's dimensions */
 }
 
+/* Hero section loading indicators */
+.hero-section .section-loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 80px;
+}
+
+.hero-section .loading-spinner {
+  width: 60px;
+  height: 60px;
+  border: 3px solid rgba(65, 214, 255, 0.2);
+  border-top-color: #41d6ff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* Hide loading spinner when section is fully loaded */
+.hero-section.loaded .section-loading {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
 /* Video background */
 .video-background {
   position: absolute;

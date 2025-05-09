@@ -22,6 +22,40 @@
   }
 }
 
+/* Business section animations */
+@keyframes businessCardEnter {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes kenyanMapPulse {
+  0%, 100% {
+    opacity: 0.1;
+    filter: brightness(1);
+  }
+  50% {
+    opacity: 0.15;
+    filter: brightness(1.2);
+  }
+}
+
+@keyframes testimonialSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;

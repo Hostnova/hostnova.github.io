@@ -28,19 +28,50 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Orbitron:wght@400;500;700;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- Main Landing CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Orbitron:wght@400;500;700;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">    <!-- Main Landing CSS -->
     <link rel="stylesheet" href="css/main-landing.css">
     <link rel="stylesheet" href="css/components/hostara.css">
+    
+    <!-- Inline Preloader Fallback - Will ensure preloader disappears even if main script fails -->
+    <script>
+        // Safety fallback to prevent infinite loading
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                var preloader = document.getElementById('main-preloader');
+                if (preloader) {
+                    preloader.classList.add('preloader-hidden');
+                    setTimeout(function() {
+                        preloader.style.display = 'none';
+                    }, 600);
+                }
+            }, 1000);
+        });
+        
+        // Additional fallback - force hide after 8 seconds no matter what
+        setTimeout(function() {
+            var preloader = document.getElementById('main-preloader');
+            if (preloader && !preloader.classList.contains('preloader-hidden')) {
+                console.log("Forced preloader hiding via fallback");
+                preloader.classList.add('preloader-hidden');
+                preloader.style.display = 'none';
+            }
+        }, 8000);
+    </script>
 </head>
-<body class="dark-theme">
+<body class="dark-theme">    <!-- Preloader -->
+    <div class="preloader" id="main-preloader">
+        <div class="preloader-icon"></div>
+        <noscript>
+            <p style="color:#fff;text-align:center;margin-top:20px;">JavaScript is required to view this site properly.</p>
+        </noscript>
+    </div>
+    
     <!-- Custom Cursor Elements -->
     <div class="cursor-follower"></div>
     <div class="cursor-dot"></div>
 
     <main id="main-content">
-        <!-- Section Navigation Buttons -->
+    <!-- Section Navigation Buttons -->
         <div class="section-nav-buttons">
             <button class="section-nav-button" data-section="0">
                 <span class="section-nav-dot active"></span>
@@ -50,10 +81,18 @@
                 <span class="section-nav-dot"></span>
                 <span class="section-nav-label">Hostara</span>
             </button>
+            <button class="section-nav-button" data-section="2">
+                <span class="section-nav-dot"></span>
+                <span class="section-nav-label">Business</span>
+            </button>
         </div>
-        
-        <!-- Cinematic Hero Section -->
+          <!-- Cinematic Hero Section -->
         <section id="hero" class="hero-section">
+            <!-- Section loading indicator -->
+            <div class="section-loading">
+                <div class="loading-spinner"></div>
+            </div>
+            
             <!-- Advanced background effects -->
             <div class="holographic-grid"></div>
             <div class="code-rain" id="code-rain"></div>
@@ -210,8 +249,7 @@
                     <div class="mini-satellite"></div>
                 </div>
                 <div class="orbital-ring-magnetic"></div>
-            </div>
-        </section>
+            </div>        </section>
 
         <!-- Hostara App Section -->
         <section class="hostara-section">
@@ -246,6 +284,394 @@
                     <div class="hostara-phone">
                         <div class="hostara-screen">
                             <img class="hostara-screenshot" src="images/interfaces/hostara-interface-demo.jpg" alt="Hostara App Interface">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Business Hostara Section for Kenyan Market -->
+        <section class="business-hostara-section" id="business">
+            <!-- Background elements -->
+            <div class="business-bg-grid"></div>
+            <div class="business-bg-glow business-bg-glow-1 business-bg-element"></div>
+            <div class="business-bg-glow business-bg-glow-2 business-bg-element"></div>
+            <div class="business-kenya-map business-bg-element"></div>
+            
+            <!-- Main content -->
+            <div class="business-content">
+                <div class="business-header">
+                    <span class="business-badge">For Kenyan Innovators</span>
+                    <h2 class="business-title">AI-Powered Hosting That Cuts Costs, Not Corners</h2>
+                    <p class="business-subtitle">Launch your campus app in under 60 seconds. Trusted by over 100 Kenyan student startups.</p>
+                </div>
+                
+                <div class="business-value-props">                    <!-- AI Cost Savings -->
+                    <div class="business-card animate-text-element">
+                        <div class="business-card-icon">
+                            <img src="images/svg/icon-economy.svg" alt="Economy Icon">
+                        </div>
+                        <h3>AI-Optimized Cost Savings</h3>
+                        <p>Slash your hosting bill by up to 30% with AI-driven resource allocation. Our smart scaling ensures you only pay for what you use—perfect for lean campus budgets.</p>
+                        <div class="business-card-footer">
+                            <a href="/cost-savings" class="business-card-link">
+                                Learn more <span class="business-card-link-arrow">→</span>
+                            </a>
+                        </div>
+                    </div>
+                      <!-- One-Click Deployment -->
+                    <div class="business-card animate-text-element">
+                        <div class="business-card-icon">
+                            <img src="images/svg/icon-performance.svg" alt="Performance Icon">
+                        </div>
+                        <h3>One-Click Campus Deployment</h3>
+                        <p>Go live in seconds—no DevOps degree required. Simplify launch with canned templates for common campus apps like food delivery and event ticketing platforms.</p>
+                        <div class="business-card-footer">
+                            <a href="/one-click-deployment" class="business-card-link">
+                                Learn more <span class="business-card-link-arrow">→</span>
+                            </a>
+                        </div>
+                    </div>
+                      <!-- Guaranteed Uptime -->
+                    <div class="business-card animate-text-element">
+                        <div class="business-card-icon">
+                            <img src="images/svg/icon-security.svg" alt="Security Icon">
+                        </div>
+                        <h3>99.9% Uptime SLA</h3>
+                        <p>Keep your site running when it matters. Our guaranteed Service Level Agreement reassures student founders that campus projects stay accessible even under peak loads.</p>
+                        <div class="business-card-footer">
+                            <a href="/uptime-guarantee" class="business-card-link">
+                                Learn more <span class="business-card-link-arrow">→</span>
+                            </a>
+                        </div>
+                    </div>
+                      <!-- Edge Performance -->
+                    <div class="business-card animate-text-element">
+                        <div class="business-card-icon">
+                            <img src="images/svg/icon-scalability.svg" alt="Scalability Icon">
+                        </div>
+                        <h3>Kenya-Optimized Edge Performance</h3>
+                        <p>Serve users across Kenya—faster. Our local edge nodes cut latency for on-campus and off-campus users, vital for real-time services like delivery tracking or live events.</p>
+                        <div class="business-card-footer">
+                            <a href="/kenya-edge-network" class="business-card-link">
+                                Learn more <span class="business-card-link-arrow">→</span>
+                            </a>
+                        </div>
+                    </div>
+                      <!-- M-Pesa Integration -->
+                    <div class="business-card animate-text-element">
+                        <div class="business-card-icon">
+                            <img src="images/svg/icon-developers.svg" alt="Developers Icon">
+                        </div>
+                        <h3>Seamless M-Pesa Integration</h3>
+                        <p>Accept payments instantly with our pre-built M-Pesa integration. Plug-and-play with popular Kenyan payment solutions, plus GitHub, Slack, and other essential tools.</p>
+                        <div class="business-card-footer">
+                            <a href="/mpesa-integration" class="business-card-link">
+                                Learn more <span class="business-card-link-arrow">→</span>
+                            </a>
+                        </div>
+                    </div>
+                      <!-- 24/7 Support -->
+                    <div class="business-card animate-text-element">
+                        <div class="business-card-icon">
+                            <img src="images/svg/icon-control.svg" alt="Control Icon">
+                        </div>
+                        <h3>24/7 Campus Success Team</h3>
+                        <p>Get help when you need it. Our dedicated support team understands the unique needs of Kenyan student entrepreneurs and is available around the clock via chat, email, or call.</p>
+                        <div class="business-card-footer">
+                            <a href="/campus-support" class="business-card-link">
+                                Learn more <span class="business-card-link-arrow">→</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                  <div class="business-testimonials">
+                    <div class="testimonial-header">
+                        <h3>Trusted by Kenyan Innovators</h3>
+                        <p>See how student entrepreneurs across Kenya's universities are growing their businesses with Hostara</p>
+                    </div>
+                    <div class="testimonial-container">
+                        <div class="testimonial-card">
+                            <div class="testimonial-quote">
+                                "Hostara's AI-based auto-scaling saved our campus food-delivery app 25% on hosting costs—so we could reinvest in marketing and reach more students at Nairobi University."
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="testimonial-author-image">
+                                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="James Mwangi">
+                                </div>
+                                <div class="testimonial-author-details">
+                                    <h4>James Mwangi</h4>
+                                    <p>Co-founder, QuickBite</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="testimonial-card">
+                            <div class="testimonial-quote">
+                                "As a student developer with limited technical knowledge, Hostara's one-click deployment was a game-changer for my campus events platform. It now powers events across three major universities."
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="testimonial-author-image">
+                                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Faith Kamau">
+                                </div>
+                                <div class="testimonial-author-details">
+                                    <h4>Faith Kamau</h4>
+                                    <p>Founder, CampusVibe</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="testimonial-card">
+                            <div class="testimonial-quote">
+                                "The Kenya-optimized edge servers made our tutoring platform blazing fast across the country. Plus, the M-Pesa integration was seamless—essential for our business model."
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="testimonial-author-image">
+                                    <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="David Ochieng">
+                                </div>
+                                <div class="testimonial-author-details">
+                                    <h4>David Ochieng</h4>
+                                    <p>CEO, TutorConnect</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                  <!-- App Mockups Section -->
+                <div class="business-mockups">
+                    <div class="mockups-header">
+                        <h3>Enterprise-Ready App Templates</h3>
+                        <p>Launch your campus venture with pre-built templates optimized for Kenya's universities</p>
+                        <div class="mockups-header-actions">
+                            <a href="/app-templates" class="mockup-btn">View All Templates</a>
+                            <a href="/custom-development" class="mockup-btn">Request Custom Template</a>
+                        </div>
+                    </div>
+                    <div class="mockups-container">
+                        <!-- CampusEats App Mockup -->
+                        <div class="app-mockup">
+                            <div class="phone-frame">
+                                <div class="phone-screen">
+                                    <div class="app-header">
+                                        <div class="app-header-icon"></div>
+                                        <div class="app-header-text"></div>
+                                    </div>
+                                    <div class="app-content">
+                                        <div class="app-item"></div>
+                                        <div class="app-item"></div>
+                                        <div class="app-item"></div>
+                                        <div class="app-item"></div>
+                                    </div>
+                                    <div class="app-bottom-nav">
+                                        <div class="nav-item"></div>
+                                        <div class="nav-item"></div>
+                                        <div class="nav-item"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="app-caption">
+                                <div class="app-title">CampusEats</div>
+                                <div class="app-subtitle">Food Delivery</div>
+                            </div>
+                        </div>
+                        
+                        <!-- UniEvents App Mockup -->
+                        <div class="app-mockup">
+                            <div class="featured-label">Featured</div>
+                            <div class="phone-frame">
+                                <div class="phone-screen">
+                                    <div class="app-header">
+                                        <div class="app-header-icon"></div>
+                                        <div class="app-header-text"></div>
+                                    </div>
+                                    <div class="app-content">
+                                        <div class="app-item"></div>
+                                        <div class="app-item"></div>
+                                        <div class="app-item"></div>
+                                        <div class="app-item"></div>
+                                    </div>
+                                    <div class="app-bottom-nav">
+                                        <div class="nav-item"></div>
+                                        <div class="nav-item"></div>
+                                        <div class="nav-item"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="app-caption">
+                                <div class="app-title">UniEvents</div>
+                                <div class="app-subtitle">Event Ticketing</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                  <!-- Key Metrics Section -->
+                <div class="business-metrics">
+                    <div class="metrics-header">
+                        <h3>Enterprise Performance Metrics</h3>
+                        <p>Real-time statistics from our Kenya-optimized hosting infrastructure</p>
+                    </div>
+                    <div class="metrics-container">                        <div class="metric-item">
+                            <div class="metric-icon">
+                                <img src="images/svg/icon-developers.svg" alt="Apps Icon">
+                            </div>
+                            <div class="metric-value">200+</div>
+                            <div class="metric-label">Kenyan Student Apps</div>
+                            <div class="metric-trend">+15% growth this quarter</div>
+                        </div>
+                        
+                        <div class="metric-item">
+                            <div class="metric-icon">
+                                <img src="images/svg/icon-users.svg" alt="Users Icon">
+                            </div>
+                            <div class="metric-value">40k+</div>
+                            <div class="metric-label">Daily Users</div>
+                            <div class="metric-trend">+22% month-over-month</div>
+                        </div>
+                        
+                        <div class="metric-item">
+                            <div class="metric-icon">
+                                <img src="images/svg/icon-performance.svg" alt="Performance Icon">
+                            </div>
+                            <div class="metric-value">65ms</div>
+                            <div class="metric-label">Avg. Response Time</div>
+                            <div class="metric-trend">12ms faster than industry average</div>
+                        </div>
+                    </div>
+                </div>
+                  <!-- Popular Campus Apps Section -->
+                <div class="campus-apps">
+                    <div class="apps-header">
+                        <h3>Enterprise Showcase</h3>
+                        <p>Join these successful student ventures using Hostara's enterprise hosting solutions</p>
+                    </div>
+                    <div class="apps-grid">
+                        <div class="app-card">
+                            <div class="app-badge">Featured</div>
+                            <div class="app-icon app-icon-campuseats">CE</div>
+                            <div class="app-name">CampusEats</div>
+                            <div class="app-rating">
+                                <span class="app-rating-star">★</span>
+                                <span class="app-rating-star">★</span>
+                                <span class="app-rating-star">★</span>
+                                <span class="app-rating-star">★</span>
+                                <span class="app-rating-star">★</span>
+                            </div>
+                            <div class="app-stats">
+                                <div class="app-stat">
+                                    <div class="app-stat-value">12K+</div>
+                                    <div class="app-stat-label">Users</div>
+                                </div>
+                                <div class="app-stat">
+                                    <div class="app-stat-value">4</div>
+                                    <div class="app-stat-label">Campuses</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="app-card">
+                            <div class="app-icon app-icon-unievents">UE</div>
+                            <div class="app-name">UniEvents</div>
+                            <div class="app-rating">
+                                <span class="app-rating-star">★</span>
+                                <span class="app-rating-star">★</span>
+                                <span class="app-rating-star">★</span>
+                                <span class="app-rating-star">★</span>
+                                <span class="app-rating-star">★</span>
+                            </div>
+                            <div class="app-stats">
+                                <div class="app-stat">
+                                    <div class="app-stat-value">8K+</div>
+                                    <div class="app-stat-label">Users</div>
+                                </div>
+                                <div class="app-stat">
+                                    <div class="app-stat-value">6</div>
+                                    <div class="app-stat-label">Campuses</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="app-card">
+                            <div class="app-icon app-icon-studybuddy">SB</div>
+                            <div class="app-name">StudyBuddy</div>
+                            <div class="app-rating">
+                                <span class="app-rating-star">★</span>
+                                <span class="app-rating-star">★</span>
+                                <span class="app-rating-star">★</span>
+                                <span class="app-rating-star">★</span>
+                                <span class="app-rating-star">★</span>
+                            </div>
+                            <div class="app-stats">
+                                <div class="app-stat">
+                                    <div class="app-stat-value">15K+</div>
+                                    <div class="app-stat-label">Users</div>
+                                </div>
+                                <div class="app-stat">
+                                    <div class="app-stat-value">3</div>
+                                    <div class="app-stat-label">Campuses</div>
+                                </div>
+                            </div>
+                        </div>
+                          <div class="app-card">
+                            <div class="app-icon app-icon-campusride">CR</div>
+                            <div class="app-name">CampusRide</div>
+                            <div class="app-rating">
+                                <span class="app-rating-star">★</span>
+                                <span class="app-rating-star">★</span>
+                                <span class="app-rating-star">★</span>
+                                <span class="app-rating-star">★</span>
+                                <span class="app-rating-star">★</span>
+                            </div>
+                            <div class="app-stats">
+                                <div class="app-stat">
+                                    <div class="app-stat-value">5K+</div>
+                                    <div class="app-stat-label">Users</div>
+                                </div>
+                                <div class="app-stat">
+                                    <div class="app-stat-value">2</div>
+                                    <div class="app-stat-label">Campuses</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                  <div class="business-cta">
+                    <div class="business-cta-bg"></div>
+                    <div class="business-cta-content">
+                        <span class="mpesa-badge">Enterprise-Ready & M-Pesa Integrated</span>
+                        <h3>ACCELERATE YOUR BUSINESS GROWTH</h3>
+                        <p>Join Kenya's leading campus entrepreneurs and build your next great idea on Hostara's enterprise-grade platform</p>
+                        <div class="business-cta-button-group">
+                            <a href="/app-store" class="business-btn business-btn-store">
+                                <div class="store-icon app-store-icon"></div>
+                                <div class="store-text">
+                                    <span class="store-small-text">Download on the</span>
+                                    <span class="store-large-text">App Store</span>
+                                </div>
+                            </a>
+                            <a href="/play-store" class="business-btn business-btn-store">
+                                <div class="store-icon play-store-icon"></div>
+                                <div class="store-text">
+                                    <span class="store-small-text">GET IT ON</span>
+                                    <span class="store-large-text">Google Play</span>
+                                </div>
+                            </a>
+                        </div>                        <div class="business-secondary-cta">
+                            <a href="/start-free-trial" class="business-btn business-btn-primary">Start Enterprise 30-Day Trial</a>
+                            <a href="/executive-demo" class="business-btn business-btn-outline">Schedule Executive Demo</a>
+                        </div>
+                        <div class="business-cta-features">
+                            <div class="cta-feature">
+                                <div class="cta-feature-icon">✓</div>
+                                <span>No credit card required</span>
+                            </div>
+                            <div class="cta-feature">
+                                <div class="cta-feature-icon">✓</div>
+                                <span>Enterprise SLA included</span>
+                            </div>
+                            <div class="cta-feature">
+                                <div class="cta-feature-icon">✓</div>
+                                <span>Kenya-optimized infrastructure</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -473,7 +899,7 @@
             
             // Handle slide transitions for Hostara section
             const handleSlideTransitions = () => {
-                const sections = document.querySelectorAll('.hostara-section, #hero');
+                const sections = document.querySelectorAll('#hero, .hostara-section, #business');
                 let currentSectionIndex = 0;
                 let isAnimating = false;
                 
@@ -523,6 +949,10 @@
                             
                             currentSectionIndex = index;
                             updateActiveDot(currentSectionIndex);
+
+                            if (sections[currentSectionIndex].id === 'business') {
+                                initializeBusinessSection(); // Initialize animations when business section is active
+                            }
                             
                             setTimeout(() => {
                                 sections[currentSectionIndex].classList.remove(
@@ -572,6 +1002,10 @@
                             
                             currentSectionIndex = nextIndex;
                             updateActiveDot(currentSectionIndex);
+
+                            if (sections[currentSectionIndex].id === 'business') {
+                                initializeBusinessSection(); // Initialize animations when business section is active
+                            }
                             
                             setTimeout(() => {
                                 sections[currentSectionIndex].classList.remove(
