@@ -1,0 +1,433 @@
+/* ==========================================
+   Hostara App Section Styles
+   ==========================================
+   For Hostara - Orbit Beyond Ordinary theme
+   ========================================== */
+
+/* Full-screen section container */
+.hostara-section {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #0a0f18 0%, #1a2432 100%);
+  z-index: var(--z-content);
+}
+
+/* Content wrapper with proper spacing */
+.hostara-content {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5%;
+  z-index: 2;
+}
+
+@media (max-width: 992px) {
+  .hostara-content {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+/* Text content container */
+.hostara-text {
+  flex: 1;
+  padding-right: 3rem;
+}
+
+@media (max-width: 992px) {
+  .hostara-text {
+    padding-right: 0;
+    padding-bottom: 3rem;
+    order: 2;
+  }
+}
+
+/* Hostara headings */
+.hostara-heading {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  background: linear-gradient(90deg, #4cb0f3 0%, #64ffda 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.2;
+}
+
+.hostara-subheading {
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-bottom: 2rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* App description */
+.hostara-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Host your Hostara button */
+.hostara-button {
+  display: inline-block;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+  background: linear-gradient(90deg, #4cb0f3 0%, #64ffda 100%);
+  color: #0a0f18;
+  border-radius: 50px;
+  box-shadow: 0 0 20px rgba(76, 176, 243, 0.4);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.hostara-button:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #64ffda 0%, #4cb0f3 100%);
+  transition: left 0.3s ease;
+  z-index: -1;
+}
+
+.hostara-button:hover {
+  box-shadow: 0 0 30px rgba(76, 176, 243, 0.7);
+  transform: translateY(-3px);
+}
+
+.hostara-button:hover:before {
+  left: 0;
+}
+
+/* App visual container */
+.hostara-app-container {
+  flex: 1;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 992px) {
+  .hostara-app-container {
+    order: 1;
+    margin-bottom: 2rem;
+  }
+}
+
+/* Phone mockup */
+.hostara-phone {
+  position: relative;
+  width: 280px;
+  height: 570px;
+  background-color: #000;
+  border-radius: 36px;
+  padding: 12px;
+  box-shadow: 
+    0 0 0 1px rgba(255, 255, 255, 0.1),
+    0 20px 50px rgba(0, 0, 0, 0.5);
+  transform: perspective(1000px) rotateY(-15deg) rotateX(5deg);
+  transition: transform 0.5s ease;
+}
+
+.hostara-phone:hover {
+  transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
+}
+
+/* Phone screen */
+.hostara-screen {
+  width: 100%;
+  height: 100%;
+  border-radius: 24px;
+  overflow: hidden;
+  background-color: #141e2c;
+  position: relative;
+}
+
+.hostara-screenshot {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 24px;
+}
+
+/* Hostara logo */
+.hostara-logo-container {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 3;
+}
+
+.hostara-logo {
+  height: 40px;
+  width: auto;
+  filter: drop-shadow(0 0 10px rgba(76, 176, 243, 0.5));
+}
+
+/* Section background effects */
+.hostara-bg-glow {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(76, 176, 243, 0.1) 0%,
+    rgba(100, 255, 218, 0.05) 50%,
+    transparent 70%
+  );
+  filter: blur(50px);
+  z-index: 1;
+}
+
+.hostara-bg-glow-1 {
+  top: -10%;
+  left: 10%;
+}
+
+.hostara-bg-glow-2 {
+  bottom: -20%;
+  right: 15%;
+  width: 600px;
+  height: 600px;
+  opacity: 0.6;
+}
+
+/* Floating orbital decorations */
+.hostara-orbit {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(76, 176, 243, 0.3);
+  box-shadow: 0 0 10px rgba(76, 176, 243, 0.1);
+  z-index: 1;
+}
+
+.hostara-orbit-1 {
+  width: 300px;
+  height: 300px;
+  top: 20%;
+  left: 15%;
+  animation: float-orbit 20s linear infinite;
+}
+
+.hostara-orbit-2 {
+  width: 200px;
+  height: 200px;
+  bottom: 10%;
+  right: 10%;
+  border-style: dashed;
+  animation: float-orbit 15s linear infinite reverse;
+}
+
+/* Floating dots */
+.hostara-dot {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(100, 255, 218, 0.8);
+  box-shadow: 0 0 10px rgba(100, 255, 218, 0.6);
+  z-index: 1;
+}
+
+.hostara-dot-1 {
+  top: 30%;
+  left: 20%;
+  animation: float-dot 10s ease-in-out infinite alternate;
+}
+
+.hostara-dot-2 {
+  top: 70%;
+  left: 80%;
+  animation: float-dot 8s ease-in-out infinite alternate 1s;
+}
+
+.hostara-dot-3 {
+  top: 20%;
+  right: 25%;
+  animation: float-dot 12s ease-in-out infinite alternate 2s;
+}
+
+/* Slide transitions */
+.hostara-section.slide-enter {
+  opacity: 0;
+  transform: translateY(100vh);
+}
+
+.hostara-section.slide-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.hostara-section.slide-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hostara-section.slide-exit-active {
+  opacity: 0;
+  transform: translateY(-100vh);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* Animations */
+@keyframes float-orbit {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes float-dot {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(10px, -10px);
+  }
+  100% {
+    transform: translate(-10px, 10px);
+  }
+}
+
+/* Section Navigation Buttons */
+.section-nav-buttons {
+  position: fixed;
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  z-index: 100;
+}
+
+.section-nav-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  transition: all 0.3s ease;
+}
+
+.section-nav-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.3);
+  margin-right: 10px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.section-nav-dot::before {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.3s ease;
+}
+
+.section-nav-dot.active {
+  background: linear-gradient(90deg, #4cb0f3 0%, #64ffda 100%);
+  box-shadow: 0 0 10px rgba(100, 255, 218, 0.5);
+}
+
+.section-nav-dot.active::before {
+  transform: translate(-50%, -50%) scale(1);
+  border-color: rgba(100, 255, 218, 0.3);
+}
+
+.section-nav-label {
+  color: rgba(255, 255, 255, 0);
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.section-nav-button:hover .section-nav-dot {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.section-nav-button:hover .section-nav-label {
+  color: rgba(255, 255, 255, 0.8);
+  width: 70px;
+  margin-left: 5px;
+}
+
+@media (max-width: 768px) {
+  .hostara-heading {
+    font-size: 2.5rem;
+  }
+  
+  .hostara-subheading {
+    font-size: 1.2rem;
+  }
+  
+  .hostara-phone {
+    width: 240px;
+    height: 490px;
+  }
+
+  .section-nav-buttons {
+    right: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hostara-heading {
+    font-size: 2rem;
+  }
+  
+  .hostara-subheading {
+    font-size: 1.1rem;
+  }
+  
+  .hostara-phone {
+    width: 220px;
+    height: 450px;
+  }
+
+  .section-nav-buttons {
+    right: 10px;
+  }
+  
+  .section-nav-dot {
+    width: 10px;
+    height: 10px;
+  }
+}

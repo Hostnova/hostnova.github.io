@@ -1,0 +1,166 @@
+/* ==========================================
+   HostNova - Updated Color Palette
+   ========================================== */
+
+:root {
+  /* Background */
+  --bg-light: #FBFBFB; /* off-white canvas */
+
+  /* Orbit Ring Gradient */
+  --accent-sapphire: #0950CD; /* deep sapphire */
+  --accent-sky: #4CB0F3; /* vibrant sky blue */
+
+  /* Inner Icon (laptop & circuit) */
+  --icon-blue: #4CB0F3; /* same sky blue as the mid-tone */
+
+  /* Wordmark & Tagline */
+  --text-primary: #0B0B0B; /* near-black for "HOSTNOVA" */
+  --text-secondary: #747E89; /* cool grey for "Orbit Beyond Ordinary" */
+
+  /* Update core variables with new colors */
+  --color-primary: var(--accent-sapphire);
+  --color-primary-light: var(--accent-sky);
+  --color-primary-dark: #073e9d; /* darker sapphire */
+  --color-primary-gradient: linear-gradient(135deg, var(--accent-sapphire) 0%, var(--accent-sky) 100%);
+  
+  /* Text colors */
+  --color-text: var(--text-primary);
+  --color-text-muted: var(--text-secondary);
+  
+  /* Background colors - switching to light theme */
+  --color-background: var(--bg-light);
+  --color-background-alt: #F1F3F5; /* slightly darker than bg-light */
+  
+  /* Border and glow colors */
+  --color-border: rgba(9, 80, 205, 0.2); /* semi-transparent sapphire */
+  --color-glow: rgba(76, 176, 243, 0.6); /* sky blue glow effect */
+}
+
+/* Dark mode overrides */
+.dark-theme {
+  --color-background: #0F1622; /* dark blue instead of black */
+  --color-background-alt: #141D2B; /* slightly lighter dark blue */
+  --color-text: #FFFFFF;
+  --color-text-muted: #B8C3D1; /* lighter grey for better visibility on dark bg */
+}
+
+/* Special text treatment for headings */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary);
+}
+
+/* Update gradients for texts */
+.gradient-text, .hero-title {
+  background: var(--color-primary-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--accent-sapphire); /* Fallback */
+}
+
+/* Update section labels */
+.section-label {
+  color: var(--accent-sapphire);
+  border-bottom: var(--border-thin) solid var(--accent-sapphire);
+}
+
+/* Button styling updates */
+.btn-primary {
+  background: var(--color-primary-gradient);
+  color: white;
+  box-shadow: 0 4px 12px rgba(9, 80, 205, 0.3);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 8px 20px rgba(9, 80, 205, 0.4);
+}
+
+.btn-outline {
+  border: 2px solid var(--accent-sapphire);
+  color: var(--accent-sapphire);
+}
+
+.btn-outline:hover {
+  background: var(--accent-sapphire);
+}
+
+/* Update link colors */
+a {
+  color: var(--accent-sapphire);
+}
+
+a:hover {
+  color: var(--accent-sky);
+}
+
+/* Update logo accent */
+.logo-accent {
+  background: var(--color-primary-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Feature icon wrappers */
+.feature-icon-wrapper, 
+.teaser-icon-wrapper, 
+.highlight-icon {
+  background: linear-gradient(135deg, rgba(9, 80, 205, 0.1), rgba(76, 176, 243, 0.2));
+  border: 2px solid var(--color-border);
+}
+
+/* Update feature tags */
+.feature-tag, .coming-soon-badge {
+  background-color: var(--accent-sky);
+  color: white;
+}
+
+/* Social media icons */
+.social-icons a:hover {
+  border-color: var(--accent-sapphire);
+}
+
+/* Update animations */
+@keyframes pulse {
+  0% {
+    opacity: 0.4;
+    filter: blur(8px);
+  }
+  100% {
+    opacity: 0.2;
+    filter: blur(12px);
+  }
+}
+
+/* Update AI assistant colors */
+.ai-toggle {
+  background: linear-gradient(135deg, rgba(9, 80, 205, 0.9), rgba(76, 176, 243, 0.9)) !important;
+}
+
+.ai-toggle:hover {
+  box-shadow: 0 8px 25px rgba(76, 176, 243, 0.4) !important;
+}
+
+.ai-panel-header {
+  background: rgba(9, 80, 205, 0.8) !important;
+}
+
+.ai-avatar {
+  background: linear-gradient(135deg, #0950CD, #4CB0F3) !important;
+}
+
+.ai-outgoing .ai-avatar {
+  background: linear-gradient(135deg, #4CB0F3, #73c9ff) !important;
+}
+
+.ai-outgoing .ai-content {
+  background: rgba(76, 176, 243, 0.6) !important;
+}
+
+#ai-send-btn {
+  background: linear-gradient(135deg, #0950CD, #4CB0F3) !important;
+}
+
+#ai-send-btn:hover {
+  background: linear-gradient(135deg, #0A5FE2, #6BC0FF) !important;
+}

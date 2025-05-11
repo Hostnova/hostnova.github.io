@@ -1,0 +1,8 @@
+/* ==========================================
+   Animations CSS - Contains all animation styles
+   ==========================================
+   Centralized animation definitions
+   ========================================== */
+
+@import './animations.css';
+@import './components/section-transitions.css';

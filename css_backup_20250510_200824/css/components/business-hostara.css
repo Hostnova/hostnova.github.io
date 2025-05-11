@@ -1,0 +1,1393 @@
+/* ==========================================
+   Business Hostara Section Styles
+   ==========================================
+   Marketing section targeting Kenyan businesses
+   ========================================== */
+
+/* Container and layout */
+.business-hostara-section {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  background-color: #070a12; /* Darker background for corporate feel */
+  color: var(--color-text-primary, #f0f0f0);
+  padding: 6rem 3rem; /* Increased padding for better spacing */
+  font-family: var(--font-primary, 'Inter', sans-serif);
+}
+
+/* Business background elements */
+.business-bg-element {
+  position: absolute;
+  opacity: 0.15;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.business-bg-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(65, 214, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(65, 214, 255, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px;
+  opacity: 0.3;
+  z-index: 1;
+}
+
+.business-bg-glow {
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.15;
+  position: absolute;
+  z-index: 0;
+}
+
+.business-bg-glow-1 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(65, 214, 255, 0.2) 0%, rgba(65, 214, 255, 0) 70%);
+  top: 10%;
+  right: -10%;
+}
+
+.business-bg-glow-2 {
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(76, 171, 247, 0.15) 0%, rgba(76, 171, 247, 0) 70%);
+  bottom: 5%;
+  left: 2%;
+}
+
+.business-kenya-map {
+  position: absolute;
+  width: 220px; /* Slightly larger */
+  height: 320px;
+  background: url('../../images/svg/kenya-map-outline.svg') no-repeat center center;
+  background-size: contain;
+  opacity: 0.08; /* Subtler opacity */
+  right: 8%;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  /* Animation will be added via animations.css and js */
+}
+
+/* Main content container */
+.business-content {
+  max-width: 1400px; /* Increased max-width for better space utilization */
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6rem; /* Increased gap for better section separation */
+}
+
+/* Header and main value proposition */
+.business-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  position: relative;
+  width: 100%;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid rgba(65, 214, 255, 0.1);
+}
+
+.business-title {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: clamp(2.5rem, 5vw, 4rem); /* Larger responsive font size */
+  margin-bottom: 1.5rem;
+  background: linear-gradient(90deg, #4cabf7, #41d6ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+  letter-spacing: 2px; /* Increased letter spacing for corporate look */
+  line-height: 1.2;
+  font-weight: 700;
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.business-subtitle {
+  font-size: clamp(1.1rem, 2.5vw, 1.6rem); /* Larger responsive font size */
+  color: var(--color-text-secondary, #b0b0b0);
+  max-width: 800px; /* Increased max-width for better readability */
+  margin: 0 auto 2rem auto; /* Added bottom margin */
+  line-height: 1.6;
+  letter-spacing: 0.5px;
+}
+
+.business-badge {
+  background-color: rgba(65, 214, 255, 0.1);
+  border: 1px solid rgba(65, 214, 255, 0.2);
+  color: #41d6ff;
+  padding: 0.6rem 1.5rem; /* Increased padding */
+  border-radius: var(--radius-full, 30px);
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 1.8rem;
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* M-Pesa Badge */
+.mpesa-badge {
+  background-color: rgba(49, 161, 67, 0.15);
+  border: 1px solid rgba(49, 161, 67, 0.3);
+  color: #4ce063;
+  padding: 0.6rem 1.5rem;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 1.8rem;
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+/* Value props grid */
+.business-value-props {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Fixed 3-column layout for desktop */
+  gap: 2rem;
+  width: 100%;
+  position: relative;
+}
+
+.business-value-props::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, #4cabf7, #41d6ff);
+  border-radius: 2px;
+}
+
+/* Ensure business cards are visible and animated */
+.business-card.animate-text-element {
+  opacity: 1;
+  transform: translateY(0);
+  animation: businessCardEnter 0.7s ease-out forwards;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.business-card {
+  background-color: rgba(15, 22, 40, 0.7); /* Darker background for corporate feel */
+  border: 1px solid rgba(65, 214, 255, 0.15);
+  border-radius: 8px; /* Sharper corners for corporate style */
+  padding: 2.25rem;
+  transition: all var(--transition-base, 0.3s) ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Stronger shadow for depth */
+}
+
+.business-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 30px rgba(65, 214, 255, 0.1); /* Enhanced shadow */
+  border-color: rgba(65, 214, 255, 0.35);
+  z-index: 1;
+}
+
+.business-card-icon {
+  width: 65px;
+  height: 65px;
+  background-color: rgba(15, 22, 40, 0.95); /* Darker icon background */
+  border-radius: 12px; /* More squared for corporate feel */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.8rem;
+  border: 1px solid rgba(65, 214, 255, 0.2);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.business-card-icon img {
+  width: 32px;
+  height: 32px;
+  filter: invert(75%) sepia(100%) saturate(300%) hue-rotate(180deg) brightness(1.1);
+}
+
+.business-card h3 {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: 1.5rem; /* Slightly more compact */
+  margin-bottom: 1.2rem;
+  color: var(--color-text-primary, #f0f0f0);
+  line-height: 1.3;
+  text-transform: uppercase; /* Uppercase for corporate style */
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.business-card p {
+  color: var(--color-text-secondary, #b0b0b0);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+  flex-grow: 1; /* Allow text to expand and fill space */
+}
+
+.business-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, #4cabf7, #41d6ff);
+  opacity: 0.8;
+  transition: width var(--transition-base, 0.3s) ease;
+}
+
+.business-card:hover::before {
+  width: 100%;
+  opacity: 1;
+}
+
+/* Card footer with "Learn more" link */
+.business-card-footer {
+  margin-top: auto; /* Push to bottom of card */
+  border-top: 1px solid rgba(65, 214, 255, 0.08);
+  padding-top: 1.2rem;
+}
+
+.business-card-link {
+  color: #41d6ff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+
+.business-card-link:hover {
+  color: #5affff;
+  transform: translateX(5px);
+}
+
+.business-card-link-arrow {
+  margin-left: 0.5rem;
+  transition: transform 0.2s ease;
+}
+
+.business-card-link:hover .business-card-link-arrow {
+  transform: translateX(3px);
+}
+
+/* Key Metrics section */
+.business-metrics {
+  width: 100%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(15, 22, 40, 0.7);
+  border-radius: 12px;
+  padding: 3rem 2rem;
+  position: relative;
+  border: 1px solid rgba(65, 214, 255, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.metrics-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.metrics-header h3 {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: 2.2rem;
+  color: var(--color-text-primary, #f0f0f0);
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.metrics-header::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, #4cabf7, #41d6ff);
+  border-radius: 2px;
+}
+
+.metrics-container {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  max-width: 1200px;
+  position: relative;
+}
+
+.metrics-container::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(65, 214, 255, 0.1);
+  z-index: 0;
+}
+
+.metric-item {
+  text-align: center;
+  animation: fadeIn 0.8s ease-out forwards;
+  opacity: 0;
+  background-color: rgba(10, 15, 30, 0.8);
+  padding: 2.5rem 2rem;
+  border-radius: 8px;
+  position: relative;
+  z-index: 1;
+  width: 28%;
+  border: 1px solid rgba(65, 214, 255, 0.15);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.metric-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(65, 214, 255, 0.1);
+  border-color: rgba(65, 214, 255, 0.3);
+}
+
+.metric-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background: rgba(65, 214, 255, 0.08);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(65, 214, 255, 0.15);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.metric-icon img {
+  width: 24px;
+  height: 24px;
+  filter: invert(75%) sepia(100%) saturate(300%) hue-rotate(180deg) brightness(1.1);
+}
+
+.metric-value {
+  font-size: 3.8rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #4cabf7, #41d6ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.8rem;
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  line-height: 1;
+}
+
+.metric-label {
+  color: var(--color-text-secondary, #b0b0b0);
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 500;
+  margin-bottom: 1.2rem;
+}
+
+.metric-trend {
+  color: #4ce063;
+  font-size: 0.9rem;
+  font-weight: 500;
+  background-color: rgba(49, 161, 67, 0.08);
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+}
+
+/* Testimonial section */
+.business-testimonials {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 4rem;
+  position: relative;
+  padding-top: 1rem;
+}
+
+.business-testimonials::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, #4cabf7, #41d6ff);
+  border-radius: 2px;
+}
+
+.testimonial-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+  width: 100%;
+}
+
+.testimonial-header h3 {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: 2.2rem;
+  color: var(--color-text-primary, #f0f0f0);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+}
+
+.testimonial-header p {
+  color: var(--color-text-secondary, #b0b0b0);
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.testimonial-container {
+  display: flex;
+  gap: 2rem;
+  width: 100%;
+  overflow-x: auto; /* Enable horizontal scrolling for testimonials */
+  padding-bottom: 1.5rem; /* Space for scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(65, 214, 255, 0.3) transparent;
+  margin-bottom: 1rem;
+}
+
+/* Ensure testimonial cards are visible and animated */
+.testimonial-card {
+  opacity: 1; /* Override the opacity: 0 from section-transitions.css */
+  animation: fadeIn 0.7s ease-out forwards;
+  background: linear-gradient(145deg, rgba(20, 30, 50, 0.8), rgba(10, 15, 30, 0.8));
+  border-radius: 10px;
+  padding: 2rem;
+  min-width: 300px;
+  max-width: 380px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(65, 214, 255, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(65, 214, 255, 0.25);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.testimonial-card::before {
+  content: '"';
+  position: absolute;
+  top: -15px;
+  right: 10px;
+  font-size: 120px;
+  font-family: Georgia, serif;
+  color: rgba(65, 214, 255, 0.05);
+  line-height: 1;
+  z-index: 0;
+}
+
+.testimonial-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.testimonial-card:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+.testimonial-card:nth-child(3) {
+  animation-delay: 0.5s;
+}
+
+.testimonial-quote {
+  font-style: italic;
+  color: var(--color-text-secondary, #b0b0b0);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+  position: relative;
+  z-index: 1;
+  font-size: 1rem;
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border-top: 1px solid rgba(65, 214, 255, 0.1);
+  padding-top: 1.2rem;
+}
+
+.testimonial-author-image {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full, 50%);
+  overflow: hidden;
+  border: 2px solid rgba(65, 214, 255, 0.2);
+}
+
+.testimonial-author-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.testimonial-author-details h4 {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0.2rem;
+  color: var(--color-text-primary, #f0f0f0);
+}
+
+.testimonial-author-details p {
+  color: #41d6ff;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/* App Mockups Section */
+.business-mockups {
+  width: 100%;
+  margin-top: 0;
+  display: flex;
+  flex-direction: row; /* Changed to row for side-by-side layout */
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgba(10, 15, 30, 0.6);
+  border-radius: 12px;
+  padding: 4rem;
+  border: 1px solid rgba(65, 214, 255, 0.1);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.business-mockups::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(135deg, transparent, rgba(65, 214, 255, 0.03));
+  z-index: 0;
+}
+
+.mockups-header {
+  text-align: left;
+  width: 45%;
+  padding-right: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.mockups-header h3 {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: 2.5rem;
+  color: var(--color-text-primary, #f0f0f0);
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1.2;
+}
+
+.mockups-header p {
+  color: var(--color-text-secondary, #b0b0b0);
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+.mockups-header-actions {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.mockup-btn {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  background-color: rgba(65, 214, 255, 0.1);
+  color: #41d6ff;
+  border: 1px solid rgba(65, 214, 255, 0.2);
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.mockup-btn:hover {
+  background-color: rgba(65, 214, 255, 0.2);
+  transform: translateY(-3px);
+}
+
+.mockups-container {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 50%;
+  position: relative;
+  z-index: 1;
+}
+
+.app-mockup {
+  position: relative;
+  width: 230px; /* Slightly smaller to fit side-by-side */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeIn 0.8s ease-out forwards;
+  opacity: 0;
+  transform: perspective(800px) rotateY(5deg);
+  transition: transform 0.5s ease;
+}
+
+.app-mockup:hover {
+  transform: perspective(800px) rotateY(0deg) scale(1.05);
+}
+
+.app-mockup:nth-child(1) {
+  animation-delay: 0.2s;
+  transform: perspective(800px) rotateY(5deg) translateZ(20px);
+}
+
+.app-mockup:nth-child(2) {
+  animation-delay: 0.4s;
+  transform: perspective(800px) rotateY(-5deg) translateZ(20px);
+}
+
+.phone-frame {
+  background: linear-gradient(145deg, #1f2542, #131729);
+  border-radius: 25px;
+  padding: 12px;
+  border: 1px solid rgba(65, 214, 255, 0.2);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(65, 214, 255, 0.05) inset;
+  position: relative;
+  width: 100%;
+}
+
+.phone-screen {
+  background: #0a0d18;
+  border-radius: 15px;
+  overflow: hidden;
+  padding: 12px;
+  height: 420px;
+  position: relative;
+}
+
+/* Popular Campus Apps section */
+.campus-apps {
+  width: 100%;
+  margin-top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(15, 22, 40, 0.6);
+  border-radius: 12px;
+  padding: 4rem 3rem;
+  position: relative;
+  border: 1px solid rgba(65, 214, 255, 0.1);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+.apps-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+  position: relative;
+  max-width: 800px;
+}
+
+.apps-header::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, #4cabf7, #41d6ff);
+  border-radius: 2px;
+}
+
+.apps-header h3 {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: 2.2rem;
+  color: var(--color-text-primary, #f0f0f0);
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.apps-header p {
+  color: var(--color-text-secondary, #b0b0b0);
+  max-width: 600px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+.apps-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  width: 100%;
+  max-width: 1100px;
+}
+
+.app-card {
+  background: linear-gradient(145deg, rgba(20, 30, 50, 0.8), rgba(10, 15, 30, 0.8));
+  border: 1px solid rgba(65, 214, 255, 0.1);
+  border-radius: 10px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  transition: all 0.4s ease;
+  animation: fadeIn 0.8s ease-out forwards;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  height: 100%;
+}
+
+.app-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 0;
+  background: linear-gradient(90deg, #4cabf7, #41d6ff);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.app-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 30px rgba(65, 214, 255, 0.1);
+  border-color: rgba(65, 214, 255, 0.3);
+  background: linear-gradient(145deg, rgba(25, 35, 60, 0.9), rgba(15, 20, 40, 0.9));
+}
+
+.app-card:hover::before {
+  height: 4px;
+  opacity: 1;
+}
+
+.app-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 20px;
+  margin: 0 auto 1.5rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.app-name {
+  font-weight: 600;
+  margin: 1.2rem 0 0.8rem;
+  color: var(--color-text-primary, #f0f0f0);
+  font-size: 1.3rem;
+  letter-spacing: 0.5px;
+}
+
+.app-rating {
+  display: flex;
+  justify-content: center;
+  gap: 3px;
+  margin-bottom: 1rem;
+}
+
+.app-rating-star {
+  color: #FFD700;
+  font-size: 0.9rem;
+}
+
+.app-stats {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(65, 214, 255, 0.1);
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.app-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.app-stat-value {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #41d6ff;
+}
+
+.app-stat-label {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary, #b0b0b0);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* App Badge */
+.app-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(76, 171, 247, 0.15);
+  color: #4cabf7;
+  padding: 0.3rem 0.8rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* CTA Section */
+.business-cta {
+  margin-top: 1rem;
+  text-align: center;
+  background: linear-gradient(135deg, rgba(15, 25, 45, 0.9), rgba(10, 15, 30, 0.9));
+  border-radius: 12px;
+  padding: 5rem 4rem;
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid rgba(65, 214, 255, 0.15);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+  opacity: 1;
+  animation: fadeIn 0.8s ease-out forwards;
+  animation-delay: 0.8s;
+}
+
+.business-cta-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('../../images/svg/kenya-tech-pattern.svg') no-repeat center center;
+  background-size: cover;
+  opacity: 0.03;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Side wave decoration */
+.business-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30%;
+  height: 100%;
+  background: linear-gradient(to left, rgba(65, 214, 255, 0.05), transparent);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.business-cta-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+}
+
+.business-cta h3 {
+  font-family: var(--font-heading, 'Orbitron', sans-serif);
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  margin-bottom: 1.5rem;
+  color: var(--color-text-primary, #f0f0f0);
+  line-height: 1.3;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+
+.business-cta p {
+  color: var(--color-text-secondary, #b0b0b0);
+  margin-bottom: 3rem;
+  font-size: 1.2rem;
+  line-height: 1.7;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.business-cta-button-group {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+  width: 100%;
+  max-width: 800px;
+}
+
+/* Store buttons */
+.business-btn-store {
+  display: flex;
+  align-items: center;
+  background: rgba(10, 15, 25, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 0.8rem 1.8rem;
+  border-radius: 8px;
+  min-width: 180px;
+  transition: all 0.3s ease;
+}
+
+.business-btn-store:hover {
+  background-color: rgba(30, 40, 60, 0.8);
+  transform: translateY(-5px);
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.business-secondary-cta {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+  width: 100%;
+}
+
+.business-btn {
+  display: inline-block;
+  padding: 1.2rem 2.8rem; /* Larger buttons for corporate feel */
+  border-radius: 8px; /* More square corners for corporate style */
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-family: var(--font-primary, 'Inter', sans-serif);
+  text-align: center;
+  font-size: 1.1rem;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.business-btn-primary {
+  background: linear-gradient(90deg, #4cabf7, #41d6ff);
+  color: #080b14;
+  border: none;
+  box-shadow: 0 10px 25px rgba(65, 214, 255, 0.2);
+}
+
+.business-btn-primary:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(65, 214, 255, 0.3);
+}
+
+.business-btn-outline {
+  background: transparent;
+  color: #41d6ff;
+  border: 2px solid #41d6ff;
+}
+
+.business-btn-outline:hover {
+  background-color: rgba(65, 214, 255, 0.1);
+  transform: translateY(-5px);
+  color: #5affff;
+  box-shadow: 0 10px 25px rgba(65, 214, 255, 0.1);
+}
+
+/* CTA Features */
+.business-cta-features {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
+
+.cta-feature {
+  display: flex;
+  align-items: center;
+  color: var(--color-text-secondary, #b0b0b0);
+  font-size: 0.95rem;
+}
+
+.cta-feature-icon {
+  color: #41d6ff;
+  margin-right: 0.5rem;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+/* Store button styles */
+.store-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 0.8rem;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.app-store-icon {
+  background-image: url('../../images/svg/apple-logo.svg');
+}
+
+.play-store-icon {
+  background-image: url('../../images/svg/google-play-logo.svg');
+}
+
+.store-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.2;
+}
+
+.store-small-text {
+  font-size: 0.7rem;
+  opacity: 0.8;
+}
+
+.store-large-text {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* Corporate animations keyframes */
+@keyframes businessCardEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInCorporate {
+  0% {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseLight {
+  0% {
+    box-shadow: 0 0 0 0 rgba(65, 214, 255, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(65, 214, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(65, 214, 255, 0);
+  }
+}
+
+/* Smooth transitions for all elements */
+.business-card,
+.testimonial-card,
+.app-mockup,
+.metric-item,
+.app-card,
+.business-cta {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
+/* Add subtle hover effects to corporate elements */
+.business-btn:focus,
+.business-card-link:focus,
+.mockup-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(65, 214, 255, 0.5);
+}
+
+/* Corporate section separator */
+.section-separator {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(65, 214, 255, 0.2), transparent);
+  margin: 2rem 0;
+}
+
+/* Responsive styles */
+@media (max-width: 1200px) {
+  .business-value-props {
+    grid-template-columns: repeat(3, 1fr); /* Keep 3 columns on larger screens */
+    gap: 1.5rem;
+  }
+  
+  .business-card {
+    padding: 1.75rem;
+  }
+  
+  .business-mockups {
+    padding: 3rem;
+  }
+  
+  .apps-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .metric-item {
+    width: 30%;
+  }
+}
+
+@media (max-width: 992px) {
+  .business-hostara-section {
+    padding: 4rem 2rem;
+  }
+
+  .business-value-props {
+    grid-template-columns: repeat(2, 1fr); /* Switch to 2 columns on medium screens */
+    gap: 2rem;
+  }
+  
+  .business-card {
+    padding: 2rem;
+  }
+
+  .metrics-container {
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+  }
+  
+  .metric-item {
+    width: 80%;
+    margin-bottom: 0;
+  }
+  
+  .business-mockups {
+    flex-direction: column; /* Stack on medium screens */
+    padding: 3rem 2rem;
+  }
+  
+  .mockups-header {
+    width: 100%;
+    padding-right: 0;
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+  
+  .mockups-container {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .apps-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .business-cta {
+    padding: 4rem 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .business-hostara-section {
+    padding: 3rem 1.5rem;
+  }
+
+  .business-title {
+    font-size: clamp(2rem, 3vw, 2.5rem);
+    letter-spacing: 1px;
+    max-width: 100%;
+  }
+  
+  .business-subtitle {
+    font-size: 1rem;
+    max-width: 100%;
+  }
+
+  .business-value-props {
+    grid-template-columns: 1fr; /* Single column on small screens */
+    gap: 1.5rem;
+  }
+
+  .business-cta {
+    padding: 3rem 1.5rem;
+  }
+
+  .apps-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+  
+  .testimonial-container {
+    flex-direction: column; /* Stack testimonials on mobile */
+    align-items: center;
+    overflow-x: visible;
+  }
+  
+  .testimonial-card {
+    min-width: 100%; /* Full width on mobile */
+    max-width: 100%;
+    margin-bottom: 1.5rem;
+  }
+  
+  .business-cta h3 {
+    font-size: 1.8rem;
+  }
+  
+  .business-cta p {
+    font-size: 1rem;
+  }
+  
+  .business-cta-button-group {
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+  }
+  
+  .business-btn-store {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .business-secondary-cta {
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+  }
+  
+  .business-btn {
+    width: 100%;
+    padding: 1rem 2rem;
+  }
+  
+  .metric-item {
+    width: 100%;
+  }
+  
+  .metric-value {
+    font-size: 2.75rem;
+  }
+  
+  .app-mockup {
+    width: 200px;
+  }
+}
+
+@media (max-width: 576px) {
+  .business-hostara-section {
+    padding: 2.5rem 1rem;
+  }
+  
+  .business-title {
+    font-size: 1.8rem;
+    letter-spacing: 0.5px;
+  }
+  
+  .business-subtitle {
+    font-size: 0.95rem;
+  }
+  
+  .business-card {
+    padding: 1.5rem;
+  }
+  
+  .business-card h3 {
+    font-size: 1.2rem;
+  }
+  
+  .business-card p {
+    font-size: 0.9rem;
+  }
+  
+  .business-card-icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 1.2rem;
+  }
+  
+  .business-card-icon img {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .business-btn {
+    padding: 0.9rem 1.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .apps-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  
+  .app-card {
+    padding: 1.5rem 1rem;
+  }
+  
+  .testimonial-card {
+    padding: 1.5rem;
+  }
+  
+  .testimonial-quote {
+    font-size: 0.9rem;
+  }
+  
+  .mockups-header h3 {
+    font-size: 1.8rem;
+  }
+  
+  .mockups-header p {
+    font-size: 0.95rem;
+  }
+  
+  .mockups-container {
+    gap: 1.5rem;
+  }
+  
+  .app-mockup {
+    width: 180px;
+  }
+  
+  .business-cta {
+    padding: 2.5rem 1.5rem;
+  }
+}

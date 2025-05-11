@@ -1,0 +1,14 @@
+/* ==========================================
+   Visual Effects CSS - Contains cosmic and orbital elements 
+   ==========================================
+   All cosmic background and orbital animation styles
+   ========================================== */
+
+/* Cosmic background effects */
+@import './components/cosmic-background.css';
+
+/* Orbital elements and animations */
+@import './components/orbital-elements.css';
+
+/* Section loading effects */
+@import './components/section-background-loaders.css';

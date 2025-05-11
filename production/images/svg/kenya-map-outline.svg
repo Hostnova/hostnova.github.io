@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="300px" height="500px" viewBox="0 0 300 500" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Kenya Map Outline</title>
+    <g id="Kenya-Map-Outline" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M150,20 C120,40 100,80 90,120 C80,160 60,200 70,240 C80,280 70,320 90,350 C110,380 140,400 170,410 C200,420 230,400 240,370 C250,340 240,310 220,290 C200,270 190,240 200,210 C210,180 230,160 240,130 C250,100 240,70 220,50 C200,30 180,10 150,20 Z" id="Kenya-Shape" stroke="#41D6FF" stroke-width="2"></path>
+    </g>
+</svg>

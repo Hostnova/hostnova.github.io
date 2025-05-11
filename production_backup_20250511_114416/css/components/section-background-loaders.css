@@ -1,0 +1,513 @@
+/* ==========================================
+   Section Background Loading Animations
+   ==========================================
+   Advanced animations for section backgrounds while loading
+   ========================================== */
+
+/* Base loading animation for all sections (except hero) */
+.section-loading-animation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.6s ease-in-out;
+}
+
+.section-entering .section-loading-animation {
+  opacity: 1;
+}
+
+.section-active .section-loading-animation {
+  opacity: 0.5;
+  animation: pulse-opacity 4s infinite alternate ease-in-out;
+}
+
+@keyframes pulse-opacity {
+  0% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0.7;
+  }
+}
+
+/* Main preloader transitions */
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #080b14;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999; /* Increased z-index to ensure it's above everything */
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+  pointer-events: auto; /* Ensure it blocks interactions */
+}
+
+.preloader-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none; /* Ensure it doesn't block interactions when hidden */
+  z-index: -1; /* Move it behind everything once hidden */
+}
+
+.preloader-icon {
+  width: 80px;
+  height: 80px;
+  border: 4px solid rgba(65, 214, 255, 0.2);
+  border-top-color: #41d6ff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  box-shadow: 0 0 20px rgba(65, 214, 255, 0.3);
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Brand Vision Section - Nebula Loading */
+.nebula-loader {
+  background: radial-gradient(ellipse at center, 
+    rgba(70, 120, 255, 0.3) 0%, 
+    rgba(70, 120, 255, 0.1) 40%, 
+    transparent 75%);
+  filter: blur(40px);
+  transform: scale(1.2);
+}
+
+.nebula-particle {
+  position: absolute;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.7);
+  filter: blur(2px);
+  opacity: 0;
+  animation: nebula-particle 8s infinite linear;
+}
+
+.section-active .nebula-particle {
+  opacity: 1;
+}
+
+.section-active .nebula-loader {
+  animation: nebula-pulse 6s infinite alternate ease-in-out;
+}
+
+@keyframes nebula-particle {
+  0% {
+    transform: translateY(0) translateX(0) scale(0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.8;
+  }
+  80% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-200px) translateX(100px) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes nebula-pulse {
+  0% {
+    transform: scale(1.2) rotate(0deg);
+    filter: blur(40px) hue-rotate(0deg);
+  }
+  50% {
+    transform: scale(1.3) rotate(5deg);
+    filter: blur(50px) hue-rotate(30deg);
+  }
+  100% {
+    transform: scale(1.2) rotate(0deg);
+    filter: blur(40px) hue-rotate(0deg);
+  }
+}
+
+/* Features Section - Grid Matrix Loading */
+.matrix-loader {
+  background-color: rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+.matrix-line {
+  position: absolute;
+  height: 100%;
+  width: 1px;
+  background: linear-gradient(to bottom, 
+    transparent 0%, 
+    rgba(64, 220, 255, 0.5) 50%, 
+    transparent 100%);
+  animation: matrix-line-fall 8s infinite linear;
+  opacity: 0.7;
+}
+
+.matrix-dot {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background-color: rgba(64, 220, 255, 0.9);
+  box-shadow: 0 0 4px rgba(64, 220, 255, 0.6);
+  animation: matrix-dot-pulse 4s infinite alternate ease-in-out;
+}
+
+@keyframes matrix-line-fall {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes matrix-dot-pulse {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 8px rgba(64, 220, 255, 0.8);
+  }
+}
+
+/* Hostara Section - Network Loading */
+.network-loader {
+  background: radial-gradient(circle at center, 
+    rgba(100, 220, 170, 0.1) 0%, 
+    transparent 70%);
+}
+
+.network-node {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: rgba(100, 220, 170, 0.9);
+  box-shadow: 0 0 10px rgba(100, 220, 170, 0.6);
+}
+
+.network-connection {
+  position: absolute;
+  height: 1px;
+  background-color: rgba(100, 220, 170, 0.6);
+  transform-origin: left center;
+  animation: network-connection-appear 2s forwards ease-out;
+  opacity: 0;
+}
+
+.section-active .network-connection {
+  animation: network-connection-pulse 3s infinite alternate ease-in-out;
+  opacity: 1;
+}
+
+@keyframes network-connection-appear {
+  0% {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+@keyframes network-connection-pulse {
+  0% {
+    opacity: 0.4;
+    box-shadow: 0 0 2px rgba(100, 220, 170, 0.3);
+  }
+  100% {
+    opacity: 0.8;
+    box-shadow: 0 0 5px rgba(100, 220, 170, 0.6);
+  }
+}
+
+/* GainChain Section - Digital Wave Loading */
+.digital-wave-loader {
+  overflow: hidden;
+}
+
+.digital-wave {
+  position: absolute;
+  width: 200%;
+  height: 80px;
+  left: -50%;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 100, 200, 0.1) 50%, 
+    transparent 100%);
+  opacity: 0;
+  transform: translateY(0) scaleY(0.5);
+  animation: digital-wave-move 15s linear infinite, 
+             digital-wave-appear 2s forwards ease-out;
+}
+
+.section-active .digital-wave {
+  opacity: 0.6;
+}
+
+@keyframes digital-wave-move {
+  0% {
+    transform: translateX(0) scaleY(0.5);
+  }
+  50% {
+    transform: translateX(25%) scaleY(1);
+  }
+  100% {
+    transform: translateX(50%) scaleY(0.5);
+  }
+}
+
+@keyframes digital-wave-appear {
+  0% {
+    opacity: 0;
+    transform: scaleY(0.3);
+  }
+  100% {
+    opacity: 0.6;
+    transform: scaleY(1);
+  }
+}
+
+.digital-glitch {
+  position: absolute;
+  width: 100%;
+  height: 20px;
+  background-color: rgba(255, 100, 200, 0.2);
+  opacity: 0;
+  transform: translateX(-100%);
+  filter: blur(5px);
+}
+
+.section-active .digital-glitch {
+  animation: digital-glitch 10s infinite;
+  opacity: 1;
+}
+
+@keyframes digital-glitch {
+  0%, 100% {
+    transform: translateX(-100%);
+    opacity: 0;
+    height: 20px;
+  }
+  7%, 9% {
+    transform: translateX(10%);
+    opacity: 0.8;
+    height: 40px;
+  }
+  10% {
+    transform: translateX(100%);
+    opacity: 0;
+    height: 10px;
+  }
+  40%, 42% {
+    transform: translateX(-100%);
+    opacity: 0;
+    height: 5px;
+  }
+  45%, 48% {
+    transform: translateX(50%);
+    opacity: 0.6;
+    height: 30px;
+  }
+  50% {
+    transform: translateX(100%);
+    opacity: 0;
+    height: 30px;
+  }
+  80%, 83% {
+    transform: translateX(-50%);
+    opacity: 0.4;
+    height: 15px;
+  }
+  85% {
+    transform: translateX(100%);
+    opacity: 0;
+    height: 15px;
+  }
+}
+
+/* Community Section - Connected Dots Loading */
+.community-loader {
+  background: linear-gradient(135deg, 
+    rgba(180, 230, 100, 0.05) 0%, 
+    transparent 70%);
+}
+
+.community-dot {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background-color: rgba(180, 230, 100, 0.8);
+  box-shadow: 0 0 5px rgba(180, 230, 100, 0.4);
+}
+
+.community-pulse {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid rgba(180, 230, 100, 0.4);
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+}
+
+.section-active .community-pulse {
+  animation: community-pulse-expand 4s infinite;
+}
+
+@keyframes community-pulse-expand {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.8;
+    border-width: 2px;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(3);
+    opacity: 0;
+    border-width: 1px;
+  }
+}
+
+/* Portfolio Section - Gallery Loading */
+.portfolio-loader {
+  background: radial-gradient(circle at center, 
+    rgba(255, 200, 100, 0.1) 0%, 
+    transparent 70%);
+}
+
+.portfolio-frame {
+  position: absolute;
+  width: 50px;
+  height: 70px;
+  border: 1px solid rgba(255, 200, 100, 0.4);
+  background-color: rgba(255, 200, 100, 0.05);
+  transform-style: preserve-3d;
+  perspective: 500px;
+  opacity: 0;
+}
+
+.section-active .portfolio-frame {
+  animation: portfolio-frame-float 6s infinite ease-in-out;
+  opacity: 1;
+}
+
+@keyframes portfolio-frame-float {
+  0% {
+    transform: translateZ(0px) rotateY(0deg) translateY(0);
+  }
+  50% {
+    transform: translateZ(30px) rotateY(10deg) translateY(-10px);
+  }
+  100% {
+    transform: translateZ(0px) rotateY(0deg) translateY(0);
+  }
+}
+
+/* Contact Section - Pulse Loading */
+.contact-loader {
+  background: radial-gradient(circle at center, 
+    rgba(80, 200, 255, 0.1) 0%, 
+    transparent 70%);
+}
+
+.contact-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  border: 1px solid rgba(80, 200, 255, 0.4);
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+}
+
+.section-active .contact-ring {
+  animation: contact-ring-expand 4s infinite;
+}
+
+@keyframes contact-ring-expand {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2);
+    opacity: 0;
+  }
+}
+
+.contact-beam {
+  position: absolute;
+  width: 2px;
+  background: linear-gradient(to bottom, 
+    rgba(80, 200, 255, 0) 0%, 
+    rgba(80, 200, 255, 0.8) 50%, 
+    rgba(80, 200, 255, 0) 100%);
+  transform-origin: top center;
+  opacity: 0;
+}
+
+.section-active .contact-beam {
+  animation: contact-beam-scan 8s infinite;
+  opacity: 1;
+}
+
+@keyframes contact-beam-scan {
+  0% {
+    transform: translateX(-50vw) rotate(30deg);
+    height: 100px;
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.8;
+    height: 200px;
+  }
+  40% {
+    transform: translateX(50vw) rotate(-30deg);
+    height: 300px;
+    opacity: 0;
+  }
+  60% {
+    transform: translateX(30vw) rotate(45deg);
+    height: 150px;
+    opacity: 0;
+  }
+  80% {
+    opacity: 0.6;
+    height: 250px;
+  }
+  100% {
+    transform: translateX(-30vw) rotate(-45deg);
+    height: 100px;
+    opacity: 0;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .section-loading-animation,
+  .nebula-particle,
+  .nebula-loader,
+  .matrix-line,
+  .matrix-dot,
+  .network-connection,
+  .digital-wave,
+  .digital-glitch,
+  .community-pulse,
+  .portfolio-frame,
+  .contact-ring,
+  .contact-beam {
+    animation: none !important;
+    transition: opacity 0.3s ease-in-out !important;
+    transform: none !important;
+  }
+}

@@ -1,0 +1,17 @@
+/* ==========================================
+   Core CSS - Contains essential styles
+   ==========================================
+   Combines base, layout, and color palette
+   ========================================== */
+
+/* Base styles and resets */
+@import './base.css';
+
+/* Layout system */
+@import './layout.css';
+
+/* Color palette */
+@import './components/color-palette.css';
+
+/* Base buttons */
+@import './components/buttons.css';

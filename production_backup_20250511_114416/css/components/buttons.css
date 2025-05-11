@@ -1,0 +1,188 @@
+/* ==========================================
+   Button Styles
+   ==========================================
+   Designed for Hostara - Orbit Beyond Ordinary
+   ========================================== */
+
+.btn {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border: none;
+  font-family: var(--font-display);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Primary Button - Gold Gradient */
+.btn-primary {
+  background: var(--color-primary-gradient);
+  color: var(--color-background);
+  box-shadow: 0 4px 15px rgba(230, 181, 74, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(230, 181, 74, 0.4);
+  color: var(--color-background);
+}
+
+/* Outline Button */
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
+}
+
+.btn-outline:hover {
+  background: rgba(230, 181, 74, 0.1);
+  color: var(--color-primary);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Dark Button */
+.btn-dark {
+  background: rgba(28, 28, 30, 0.8);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+
+.btn-dark:hover {
+  background: rgba(28, 28, 30, 1);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  border-color: var(--color-primary);
+}
+
+/* Glowing Button for special actions */
+.btn-glow {
+  background: var(--color-background);
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+  position: relative;
+}
+
+.btn-glow:before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: inherit;
+  background: var(--color-primary-gradient);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.btn-glow:hover {
+  color: var(--color-background);
+  transform: translateY(-3px);
+  box-shadow: 0 0 15px var(--color-glow);
+}
+
+.btn-glow:hover:before {
+  opacity: 1;
+}
+
+/* Business Request Button */
+.btn-business {
+  background: linear-gradient(135deg, var(--color-primary) 0%, #d4a017 100%);
+  color: var(--color-background);
+  box-shadow: 0 4px 15px rgba(230, 181, 74, 0.3);
+  padding: 0.75rem 2rem;
+}
+
+.btn-business:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(230, 181, 74, 0.5);
+}
+
+.btn-business:after {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 300%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: rotate(35deg);
+  top: -100%;
+  left: -250%;
+  transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.btn-business:hover:after {
+  left: 120%;
+}
+
+/* Button Sizes */
+.btn-sm {
+  padding: 0.5rem 1.25rem;
+  font-size: 0.875rem;
+}
+
+.btn-lg {
+  padding: 1rem 2.5rem;
+  font-size: 1.125rem;
+}
+
+/* Button with Icon */
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.btn-icon svg,
+.btn-icon img {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* Button Group */
+.btn-group {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Full Width Button */
+.btn-full {
+  width: 100%;
+}
+
+/* Button States */
+.btn:active {
+  transform: translateY(-1px);
+}
+
+.btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(230, 181, 74, 0.25);
+}
+
+.btn.disabled,
+.btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .btn-group {
+    flex-direction: column;
+  }
+  
+  .btn {
+    width: 100%;
+  }
+}

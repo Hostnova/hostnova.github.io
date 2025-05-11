@@ -1,0 +1,17 @@
+/* ==========================================
+   Content Sections CSS - Contains section-specific styles
+   ==========================================
+   All section content styles
+   ========================================== */
+
+/* Hero section */
+@import './components/hero.css';
+
+/* Hostara section */
+@import './components/hostara.css';
+
+/* Business section */
+@import './components/business-hostara.css';
+
+/* Landing-specific styles */
+@import './landing-style.css';
