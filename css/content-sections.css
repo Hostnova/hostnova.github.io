@@ -10,8 +10,9 @@
 /* Hostara section */
 @import './components/hostara.css';
 
-/* Business section */
-@import './components/business-hostara.css';
+/* Business & Client sections */
+@import './components/client-section.css';
+@import './components/business-section.css';
 
 /* Landing-specific styles */
 @import './landing-style.css';

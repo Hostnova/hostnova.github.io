@@ -23,11 +23,12 @@
     <meta property="twitter:url" content="https://www.hostnova.io/">
     <meta property="twitter:title" content="HostNova - Orbit Beyond Ordinary">
     <meta property="twitter:description" content="HostNova is building a revolutionary decentralized hosting platform, offering unparalleled security, uptime, and user control. Join us in shaping the future of the internet.">
-    <meta property="twitter:image" content="https://www.hostnova.io/images/hostnova-twitter-card.png">
-
-    <!-- Fonts -->
+    <meta property="twitter:image" content="https://www.hostnova.io/images/hostnova-twitter-card.png">    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Orbitron:wght@400;500;700;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     
     <!-- Optimized CSS Structure -->
     <link rel="stylesheet" href="css/main.css">
@@ -76,10 +77,7 @@
     
     <!-- Custom Cursor Elements -->
     <div class="cursor-follower"></div>
-    <div class="cursor-dot"></div>
-
-    <main id="main-content">
-    <!-- Section Navigation Buttons -->
+    <div class="cursor-dot"></div>    <main id="main-content">    <!-- Section Navigation Buttons -->
         <div class="section-nav-buttons">
             <button class="section-nav-button" data-section="0">
                 <span class="section-nav-dot active"></span>
@@ -91,10 +89,17 @@
             </button>
             <button class="section-nav-button" data-section="2">
                 <span class="section-nav-dot"></span>
-                <span class="section-nav-label">Business</span>
+                <span class="section-nav-label">For Students</span>
             </button>
-        </div>
-          <!-- Cinematic Hero Section -->        <section id="hero" class="hero-section">
+            <button class="section-nav-button" data-section="3">
+                <span class="section-nav-dot"></span>
+                <span class="section-nav-label">For Business</span>
+            </button>
+            <button class="section-nav-button" data-section="4">
+                <span class="section-nav-dot"></span>
+                <span class="section-nav-label">Pricing</span>
+            </button>
+        </div><!-- Cinematic Hero Section -->        <section id="hero" class="hero-section fullpage-section">
             <!-- Section loading indicator -->
             <div class="section-loading">
                 <div class="loading-spinner">
@@ -213,11 +218,10 @@
                         <!-- Typewriter effect for subtitle -->
                         <p class="hero-subtitle typewriter">Experience the next generation of decentralized hosting technology.</p>
                     </div>
-                </div>
-                
-                <div class="hero-cta-group">
-                    <a href="#" class="btn btn-primary interactive-hover">Try Hostara Now</a>
-                    <a href="#" class="btn btn-outline interactive-hover">Explore Features</a>
+                </div>                  <div class="hero-cta-group">
+                    <a href="#hostara" class="btn btn-primary interactive-hover section-nav-link" data-section="1">Try Hostara Now</a>
+                    <a href="#clients" class="btn btn-outline interactive-hover section-nav-link" data-section="2">Explore Features</a>
+                    <a href="#pricing" class="btn btn-accent interactive-hover section-nav-link" data-section="4">View Pricing</a>
                 </div>
                 
                 <!-- Scroll Indicator -->
@@ -259,10 +263,15 @@
                     <div class="mini-satellite"></div>
                 </div>
                 <div class="orbital-ring-magnetic"></div>
-            </div>        </section>
-
-        <!-- Hostara App Section -->
-        <section class="hostara-section">
+            </div>        </section>        <!-- Hostara App Section -->
+        <section id="hostara" class="hostara-section fullpage-section">
+            <!-- Section loading indicator -->
+            <div class="section-loading">
+                <div class="loading-spinner">
+                    <div class="spinner-dot"></div>
+                </div>
+                <div class="section-loading-progress"></div>
+            </div>
             <!-- Background elements -->
             <div class="hostara-bg-glow hostara-bg-glow-1"></div>
             <div class="hostara-bg-glow hostara-bg-glow-2"></div>
@@ -277,17 +286,39 @@
                 <img class="hostara-logo" src="images/svg/hostara-logo.svg" alt="Hostara Logo">
             </div>
             
-            <!-- Main content -->
-            <div class="hostara-content">
+            <!-- Main content -->            <div class="hostara-content">
                 <div class="hostara-text">
                     <h2 class="hostara-heading">Hostara App</h2>
-                    <h3 class="hostara-subheading">The future of hosting in your pocket</h3>
-                    <p class="hostara-description">
-                        Experience next-generation hosting with our intuitive mobile interface. 
-                        Monitor your nodes, manage resources, and earn rewards—all from your smartphone.
-                        Take full control of your hosting experience wherever you are.
-                    </p>
-                    <a href="/hostara-portal" class="hostara-button">Host your Hostara</a>
+                    <div class="hostara-features-grid">
+                        <div class="hostara-feature">
+                            <i class="fas fa-mobile-alt feature-icon"></i>
+                            <span class="feature-label">Mobile Control</span>
+                        </div>
+                        <div class="hostara-feature">
+                            <i class="fas fa-chart-line feature-icon"></i>
+                            <span class="feature-label">Monitor Resources</span>
+                        </div>
+                        <div class="hostara-feature">
+                            <i class="fas fa-coins feature-icon"></i>
+                            <span class="feature-label">Earn Rewards</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Visual Stats Added to Hostara Section -->
+                    <div class="client-visual-stats">
+                        <div class="visual-stat">
+                            <div class="stat-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            <div class="stat-number">99.9%</div>
+                            <div class="stat-label">Uptime</div>
+                        </div>
+                        <div class="visual-stat">
+                            <div class="stat-icon"><i class="fas fa-server"></i></div>
+                            <div class="stat-number">450+</div>
+                            <div class="stat-label">Nodes</div>
+                        </div>
+                    </div>
+                    
+                    <a href="#clients" class="hostara-button section-nav-link" data-section="2">Launch Now</a>
                 </div>
                 
                 <div class="hostara-app-container">
@@ -298,107 +329,128 @@
                     </div>
                 </div>
             </div>
-        </section>
-        
-        <!-- Business Hostara Section for Kenyan Market -->
-        <section class="business-hostara-section" id="business">
+        </section>        <!-- Client Section for Individual Users -->
+        <section class="client-section fullpage-section" id="clients">
+            <!-- Section loading indicator -->
+            <div class="section-loading">
+                <div class="loading-spinner">
+                    <div class="spinner-dot"></div>
+                </div>
+                <div class="section-loading-progress"></div>
+            </div>
             <!-- Background elements -->
-            <div class="business-bg-grid"></div>
-            <div class="business-bg-glow business-bg-glow-1 business-bg-element"></div>
-            <div class="business-bg-glow business-bg-glow-2 business-bg-element"></div>
-            <div class="business-kenya-map business-bg-element"></div>
+            <div class="client-bg-grid"></div>
+            <div class="client-bg-glow client-bg-glow-1 client-bg-element"></div>
+            <div class="client-bg-glow client-bg-glow-2 client-bg-element"></div>
+            <div class="client-kenya-map client-bg-element"></div>
             
             <!-- Main content -->
-            <div class="business-content">
-                <div class="business-header">
-                    <span class="business-badge">For Kenyan Innovators</span>
-                    <h2 class="business-title">AI-Powered Hosting That Cuts Costs, Not Corners</h2>
-                    <p class="business-subtitle">Launch your campus app in under 60 seconds. Trusted by over 100 Kenyan student startups.</p>
+            <div class="client-content">                <div class="client-header">
+                    <span class="client-badge">For Kenyan Students</span>
+                    <h2 class="client-title">Student-Focused Hosting</h2>
+                    <div class="client-visual-stats">
+                        <div class="visual-stat">
+                            <div class="stat-icon"><i class="fas fa-bolt"></i></div>
+                            <div class="stat-number">60s</div>
+                            <div class="stat-label">Launch Time</div>
+                        </div>
+                        <div class="visual-stat">
+                            <div class="stat-icon"><i class="fas fa-users"></i></div>
+                            <div class="stat-number">100+</div>
+                            <div class="stat-label">Student Startups</div>
+                        </div>
+                        <div class="visual-stat">
+                            <div class="stat-icon"><i class="fas fa-percent"></i></div>
+                            <div class="stat-number">30%</div>
+                            <div class="stat-label">Cost Savings</div>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="business-value-props">                    <!-- AI Cost Savings -->
-                    <div class="business-card animate-text-element">
-                        <div class="business-card-icon">
+                <div class="client-value-props">
+                    <!-- AI Cost Savings -->
+                    <div class="client-card animate-text-element">
+                        <div class="client-card-icon">
                             <img src="images/svg/icon-economy.svg" alt="Economy Icon">
                         </div>
                         <h3>AI-Optimized Cost Savings</h3>
                         <p>Slash your hosting bill by up to 30% with AI-driven resource allocation. Our smart scaling ensures you only pay for what you use—perfect for lean campus budgets.</p>
-                        <div class="business-card-footer">
-                            <a href="/cost-savings" class="business-card-link">
-                                Learn more <span class="business-card-link-arrow">→</span>
+                        <div class="client-card-footer">
+                            <a href="/cost-savings" class="client-card-link">
+                                Learn more <span class="client-card-link-arrow">→</span>
                             </a>
                         </div>
                     </div>
                       <!-- One-Click Deployment -->
-                    <div class="business-card animate-text-element">
-                        <div class="business-card-icon">
+                    <div class="client-card animate-text-element">
+                        <div class="client-card-icon">
                             <img src="images/svg/icon-performance.svg" alt="Performance Icon">
                         </div>
                         <h3>One-Click Campus Deployment</h3>
                         <p>Go live in seconds—no DevOps degree required. Simplify launch with canned templates for common campus apps like food delivery and event ticketing platforms.</p>
-                        <div class="business-card-footer">
-                            <a href="/one-click-deployment" class="business-card-link">
-                                Learn more <span class="business-card-link-arrow">→</span>
+                        <div class="client-card-footer">
+                            <a href="/one-click-deployment" class="client-card-link">
+                                Learn more <span class="client-card-link-arrow">→</span>
                             </a>
                         </div>
                     </div>
                       <!-- Guaranteed Uptime -->
-                    <div class="business-card animate-text-element">
-                        <div class="business-card-icon">
+                    <div class="client-card animate-text-element">
+                        <div class="client-card-icon">
                             <img src="images/svg/icon-security.svg" alt="Security Icon">
                         </div>
                         <h3>99.9% Uptime SLA</h3>
                         <p>Keep your site running when it matters. Our guaranteed Service Level Agreement reassures student founders that campus projects stay accessible even under peak loads.</p>
-                        <div class="business-card-footer">
-                            <a href="/uptime-guarantee" class="business-card-link">
-                                Learn more <span class="business-card-link-arrow">→</span>
+                        <div class="client-card-footer">
+                            <a href="/uptime-guarantee" class="client-card-link">
+                                Learn more <span class="client-card-link-arrow">→</span>
                             </a>
                         </div>
                     </div>
                       <!-- Edge Performance -->
-                    <div class="business-card animate-text-element">
-                        <div class="business-card-icon">
+                    <div class="client-card animate-text-element">
+                        <div class="client-card-icon">
                             <img src="images/svg/icon-scalability.svg" alt="Scalability Icon">
                         </div>
                         <h3>Kenya-Optimized Edge Performance</h3>
                         <p>Serve users across Kenya—faster. Our local edge nodes cut latency for on-campus and off-campus users, vital for real-time services like delivery tracking or live events.</p>
-                        <div class="business-card-footer">
-                            <a href="/kenya-edge-network" class="business-card-link">
-                                Learn more <span class="business-card-link-arrow">→</span>
+                        <div class="client-card-footer">
+                            <a href="/kenya-edge-network" class="client-card-link">
+                                Learn more <span class="client-card-link-arrow">→</span>
                             </a>
                         </div>
                     </div>
                       <!-- M-Pesa Integration -->
-                    <div class="business-card animate-text-element">
-                        <div class="business-card-icon">
+                    <div class="client-card animate-text-element">
+                        <div class="client-card-icon">
                             <img src="images/svg/icon-developers.svg" alt="Developers Icon">
                         </div>
                         <h3>Seamless M-Pesa Integration</h3>
                         <p>Accept payments instantly with our pre-built M-Pesa integration. Plug-and-play with popular Kenyan payment solutions, plus GitHub, Slack, and other essential tools.</p>
-                        <div class="business-card-footer">
-                            <a href="/mpesa-integration" class="business-card-link">
-                                Learn more <span class="business-card-link-arrow">→</span>
+                        <div class="client-card-footer">
+                            <a href="/mpesa-integration" class="client-card-link">
+                                Learn more <span class="client-card-link-arrow">→</span>
                             </a>
                         </div>
                     </div>
                       <!-- 24/7 Support -->
-                    <div class="business-card animate-text-element">
-                        <div class="business-card-icon">
+                    <div class="client-card animate-text-element">
+                        <div class="client-card-icon">
                             <img src="images/svg/icon-control.svg" alt="Control Icon">
                         </div>
                         <h3>24/7 Campus Success Team</h3>
                         <p>Get help when you need it. Our dedicated support team understands the unique needs of Kenyan student entrepreneurs and is available around the clock via chat, email, or call.</p>
-                        <div class="business-card-footer">
-                            <a href="/campus-support" class="business-card-link">
-                                Learn more <span class="business-card-link-arrow">→</span>
+                        <div class="client-card-footer">
+                            <a href="/campus-support" class="client-card-link">
+                                Learn more <span class="client-card-link-arrow">→</span>
                             </a>
                         </div>
                     </div>
                 </div>
-                  <div class="business-testimonials">
+                  <div class="client-testimonials">
                     <div class="testimonial-header">
-                        <h3>Trusted by Kenyan Innovators</h3>
-                        <p>See how student entrepreneurs across Kenya's universities are growing their businesses with Hostara</p>
+                        <h3>Trusted by Kenyan Students</h3>
+                        <p>See how student entrepreneurs across Kenya's universities are growing their projects with Hostara</p>
                     </div>
                     <div class="testimonial-container">
                         <div class="testimonial-card">
@@ -448,10 +500,10 @@
                     </div>
                 </div>
                   <!-- App Mockups Section -->
-                <div class="business-mockups">
+                <div class="client-mockups">
                     <div class="mockups-header">
-                        <h3>Enterprise-Ready App Templates</h3>
-                        <p>Launch your campus venture with pre-built templates optimized for Kenya's universities</p>
+                        <h3>Ready-to-Launch App Templates</h3>
+                        <p>Launch your campus project with pre-built templates optimized for Kenya's universities</p>
                         <div class="mockups-header-actions">
                             <a href="/app-templates" class="mockup-btn">View All Templates</a>
                             <a href="/custom-development" class="mockup-btn">Request Custom Template</a>
@@ -515,12 +567,13 @@
                     </div>
                 </div>
                   <!-- Key Metrics Section -->
-                <div class="business-metrics">
+                <div class="client-metrics">
                     <div class="metrics-header">
-                        <h3>Enterprise Performance Metrics</h3>
+                        <h3>Performance Metrics</h3>
                         <p>Real-time statistics from our Kenya-optimized hosting infrastructure</p>
                     </div>
-                    <div class="metrics-container">                        <div class="metric-item">
+                    <div class="metrics-container">
+                        <div class="metric-item">
                             <div class="metric-icon">
                                 <img src="images/svg/icon-developers.svg" alt="Apps Icon">
                             </div>
@@ -544,144 +597,636 @@
                             </div>
                             <div class="metric-value">65ms</div>
                             <div class="metric-label">Avg. Response Time</div>
-                            <div class="metric-trend">12ms faster than industry average</div>
+                            <div class="metric-trend">12ms faster than average</div>
                         </div>
                     </div>
                 </div>
-                  <!-- Popular Campus Apps Section -->
-                <div class="campus-apps">
-                    <div class="apps-header">
-                        <h3>Enterprise Showcase</h3>
-                        <p>Join these successful student ventures using Hostara's enterprise hosting solutions</p>
-                    </div>
-                    <div class="apps-grid">
-                        <div class="app-card">
-                            <div class="app-badge">Featured</div>
-                            <div class="app-icon app-icon-campuseats">CE</div>
-                            <div class="app-name">CampusEats</div>
-                            <div class="app-rating">
-                                <span class="app-rating-star">★</span>
-                                <span class="app-rating-star">★</span>
-                                <span class="app-rating-star">★</span>
-                                <span class="app-rating-star">★</span>
-                                <span class="app-rating-star">★</span>
-                            </div>
-                            <div class="app-stats">
-                                <div class="app-stat">
-                                    <div class="app-stat-value">12K+</div>
-                                    <div class="app-stat-label">Users</div>
-                                </div>
-                                <div class="app-stat">
-                                    <div class="app-stat-value">4</div>
-                                    <div class="app-stat-label">Campuses</div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="app-card">
-                            <div class="app-icon app-icon-unievents">UE</div>
-                            <div class="app-name">UniEvents</div>
-                            <div class="app-rating">
-                                <span class="app-rating-star">★</span>
-                                <span class="app-rating-star">★</span>
-                                <span class="app-rating-star">★</span>
-                                <span class="app-rating-star">★</span>
-                                <span class="app-rating-star">★</span>
-                            </div>
-                            <div class="app-stats">
-                                <div class="app-stat">
-                                    <div class="app-stat-value">8K+</div>
-                                    <div class="app-stat-label">Users</div>
-                                </div>
-                                <div class="app-stat">
-                                    <div class="app-stat-value">6</div>
-                                    <div class="app-stat-label">Campuses</div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="app-card">
-                            <div class="app-icon app-icon-studybuddy">SB</div>
-                            <div class="app-name">StudyBuddy</div>
-                            <div class="app-rating">
-                                <span class="app-rating-star">★</span>
-                                <span class="app-rating-star">★</span>
-                                <span class="app-rating-star">★</span>
-                                <span class="app-rating-star">★</span>
-                                <span class="app-rating-star">★</span>
-                            </div>
-                            <div class="app-stats">
-                                <div class="app-stat">
-                                    <div class="app-stat-value">15K+</div>
-                                    <div class="app-stat-label">Users</div>
-                                </div>
-                                <div class="app-stat">
-                                    <div class="app-stat-value">3</div>
-                                    <div class="app-stat-label">Campuses</div>
-                                </div>
-                            </div>
-                        </div>
-                          <div class="app-card">
-                            <div class="app-icon app-icon-campusride">CR</div>
-                            <div class="app-name">CampusRide</div>
-                            <div class="app-rating">
-                                <span class="app-rating-star">★</span>
-                                <span class="app-rating-star">★</span>
-                                <span class="app-rating-star">★</span>
-                                <span class="app-rating-star">★</span>
-                                <span class="app-rating-star">★</span>
-                            </div>
-                            <div class="app-stats">
-                                <div class="app-stat">
-                                    <div class="app-stat-value">5K+</div>
-                                    <div class="app-stat-label">Users</div>
-                                </div>
-                                <div class="app-stat">
-                                    <div class="app-stat-value">2</div>
-                                    <div class="app-stat-label">Campuses</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                  <div class="business-cta">
-                    <div class="business-cta-bg"></div>
-                    <div class="business-cta-content">
-                        <span class="mpesa-badge">Enterprise-Ready & M-Pesa Integrated</span>
-                        <h3>ACCELERATE YOUR BUSINESS GROWTH</h3>
-                        <p>Join Kenya's leading campus entrepreneurs and build your next great idea on Hostara's enterprise-grade platform</p>
-                        <div class="business-cta-button-group">
-                            <a href="/app-store" class="business-btn business-btn-store">
+                  <div class="client-cta">
+                    <div class="client-cta-bg"></div>
+                    <div class="client-cta-content">
+                        <span class="mpesa-badge">M-Pesa Integrated</span>
+                        <h3>LAUNCH YOUR CAMPUS APP TODAY</h3>
+                        <p>Join Kenya's innovative student community and build your next great idea on Hostara's platform</p>
+                        <div class="client-cta-button-group">
+                            <a href="/app-store" class="client-btn-store">
                                 <div class="store-icon app-store-icon"></div>
                                 <div class="store-text">
                                     <span class="store-small-text">Download on the</span>
                                     <span class="store-large-text">App Store</span>
                                 </div>
                             </a>
-                            <a href="/play-store" class="business-btn business-btn-store">
+                            <a href="/play-store" class="client-btn-store">
                                 <div class="store-icon play-store-icon"></div>
                                 <div class="store-text">
                                     <span class="store-small-text">GET IT ON</span>
                                     <span class="store-large-text">Google Play</span>
                                 </div>
                             </a>
-                        </div>                        <div class="business-secondary-cta">
-                            <a href="/start-free-trial" class="business-btn business-btn-primary">Start Enterprise 30-Day Trial</a>
-                            <a href="/executive-demo" class="business-btn business-btn-outline">Schedule Executive Demo</a>
                         </div>
-                        <div class="business-cta-features">
+                        <div class="client-secondary-cta">
+                            <a href="/start-free-trial" class="client-btn client-btn-primary">Start 30-Day Free Trial</a>
+                            <a href="/live-demo" class="client-btn client-btn-outline">Schedule Live Demo</a>
+                        </div>
+                        <div class="client-cta-features">
                             <div class="cta-feature">
                                 <div class="cta-feature-icon">✓</div>
                                 <span>No credit card required</span>
                             </div>
                             <div class="cta-feature">
                                 <div class="cta-feature-icon">✓</div>
-                                <span>Enterprise SLA included</span>
+                                <span>Free SSL certificate</span>
                             </div>
                             <div class="cta-feature">
                                 <div class="cta-feature-icon">✓</div>
                                 <span>Kenya-optimized infrastructure</span>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+          <!-- Business Section for Kenyan Enterprises -->
+        <section class="business-section fullpage-section" id="business">
+            <!-- Section loading indicator -->
+            <div class="section-loading">
+                <div class="loading-spinner">
+                    <div class="spinner-dot"></div>
+                </div>
+                <div class="section-loading-progress"></div>
+            </div>
+            <!-- Background elements -->
+            <div class="business-bg-grid"></div>
+            <div class="business-bg-glow business-bg-glow-1 business-bg-element"></div>
+            <div class="business-bg-glow business-bg-glow-2 business-bg-element"></div>
+            <div class="business-kenya-map business-bg-element"></div>
+            
+            <!-- Main content -->
+            <div class="business-content">                <div class="business-header">
+                    <span class="business-badge">For Kenyan Enterprises</span>
+                    <h2 class="business-title">Enterprise Solutions</h2>
+                    <div class="business-visual-stats">
+                        <div class="visual-stat">
+                            <div class="stat-icon"><i class="fas fa-shield-alt"></i></div>
+                            <div class="stat-number">99.99%</div>
+                            <div class="stat-label">Uptime SLA</div>
+                        </div>
+                        <div class="visual-stat">
+                            <div class="stat-icon"><i class="fas fa-industry"></i></div>
+                            <div class="stat-number">50+</div>
+                            <div class="stat-label">Enterprise Clients</div>
+                        </div>
+                        <div class="visual-stat">
+                            <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
+                            <div class="stat-number">40%</div>
+                            <div class="stat-label">TCO Reduction</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="business-value-props">
+                    <!-- Cost Efficiency -->
+                    <div class="business-card animate-text-element">
+                        <div class="business-card-icon">
+                            <img src="images/svg/icon-economy.svg" alt="Economy Icon">
+                        </div>
+                        <h3>Cost-Optimized Infrastructure</h3>
+                        <p>Lower your TCO by up to 40% with our intelligent resource allocation. Our enterprise-grade solutions ensure you only pay for resources you actually use.</p>
+                        <div class="business-card-footer">
+                            <a href="/enterprise-cost-savings" class="business-card-link">
+                                Learn more <span class="business-card-link-arrow">→</span>
+                            </a>
+                        </div>
+                    </div>
+                      <!-- Reliability -->
+                    <div class="business-card animate-text-element">
+                        <div class="business-card-icon">
+                            <img src="images/svg/icon-security.svg" alt="Security Icon">
+                        </div>
+                        <h3>99.99% Enterprise SLA</h3>
+                        <p>Keep mission-critical systems running with our industry-leading uptime guarantee. Our redundant systems and fail-safe architecture ensure business continuity.</p>
+                        <div class="business-card-footer">
+                            <a href="/enterprise-sla" class="business-card-link">
+                                Learn more <span class="business-card-link-arrow">→</span>
+                            </a>
+                        </div>
+                    </div>
+                      <!-- Security -->
+                    <div class="business-card animate-text-element">
+                        <div class="business-card-icon">
+                            <img src="images/svg/icon-control.svg" alt="Control Icon">
+                        </div>
+                        <h3>Enterprise Security Solutions</h3>
+                        <p>Protect your business with advanced security features including DDoS protection, WAF, vulnerability scanning, and compliance with Kenya's data protection regulations.</p>
+                        <div class="business-card-footer">
+                            <a href="/enterprise-security" class="business-card-link">
+                                Learn more <span class="business-card-link-arrow">→</span>
+                            </a>
+                        </div>
+                    </div>
+                      <!-- Scalability -->
+                    <div class="business-card animate-text-element">
+                        <div class="business-card-icon">
+                            <img src="images/svg/icon-scalability.svg" alt="Scalability Icon">
+                        </div>
+                        <h3>Seamless Scalability</h3>
+                        <p>Grow without limits with our auto-scaling infrastructure. Handle traffic spikes effortlessly and scale from hundreds to millions of users without performance degradation.</p>
+                        <div class="business-card-footer">
+                            <a href="/enterprise-scalability" class="business-card-link">
+                                Learn more <span class="business-card-link-arrow">→</span>
+                            </a>
+                        </div>
+                    </div>
+                      <!-- Kenya-Optimized -->
+                    <div class="business-card animate-text-element">
+                        <div class="business-card-icon">
+                            <img src="images/svg/icon-performance.svg" alt="Performance Icon">
+                        </div>
+                        <h3>Kenya-Optimized Network</h3>
+                        <p>Deliver lightning-fast experiences across East Africa with our local edge servers and content delivery network optimized for Kenyan and regional audiences.</p>
+                        <div class="business-card-footer">
+                            <a href="/kenya-network" class="business-card-link">
+                                Learn more <span class="business-card-link-arrow">→</span>
+                            </a>
+                        </div>
+                    </div>
+                      <!-- Dedicated Support -->
+                    <div class="business-card animate-text-element">
+                        <div class="business-card-icon">
+                            <img src="images/svg/icon-developers.svg" alt="Support Icon">
+                        </div>
+                        <h3>Dedicated Success Manager</h3>
+                        <p>Get personalized enterprise support with a dedicated account manager. Our Kenya-based team provides 24/7 technical support, strategic guidance and implementation assistance.</p>
+                        <div class="business-card-footer">
+                            <a href="/enterprise-support" class="business-card-link">
+                                Learn more <span class="business-card-link-arrow">→</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                  <div class="business-testimonials">
+                    <div class="testimonial-header">
+                        <h3>Trusted by Leading Kenyan Businesses</h3>
+                        <p>See how enterprises across Kenya are accelerating growth with Hostara's business solutions</p>
+                    </div>
+                    <div class="testimonial-container">
+                        <div class="testimonial-card">
+                            <div class="testimonial-quote">
+                                "Hostara's enterprise platform helped us reduce infrastructure costs by 35% while improving reliability. Their Kenya-optimized network has been crucial for serving our growing East African customer base."
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="testimonial-author-image">
+                                    <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Michael Kamau">
+                                </div>
+                                <div class="testimonial-author-details">
+                                    <h4>Michael Kamau</h4>
+                                    <p>CTO, KenCommerce</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="testimonial-card">
+                            <div class="testimonial-quote">
+                                "The enterprise security features and compliance with local regulations have been invaluable for our financial services platform. The dedicated support team truly understands our business needs."
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="testimonial-author-image">
+                                    <img src="https://randomuser.me/api/portraits/women/28.jpg" alt="Sarah Ndung'u">
+                                </div>
+                                <div class="testimonial-author-details">
+                                    <h4>Sarah Ndung'u</h4>
+                                    <p>CEO, SafariPay</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="testimonial-card">
+                            <div class="testimonial-quote">
+                                "When our user base grew 300% in three months, Hostara's infrastructure scaled flawlessly. Their enterprise solutions have enabled us to focus on business growth rather than technical limitations."
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="testimonial-author-image">
+                                    <img src="https://randomuser.me/api/portraits/men/42.jpg" alt="John Waweru">
+                                </div>
+                                <div class="testimonial-author-details">
+                                    <h4>John Waweru</h4>
+                                    <p>Founder, LogisticsPlus</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                  <!-- Solution Showcase Section -->
+                <div class="business-solutions">
+                    <div class="solutions-header">
+                        <h3>Enterprise Solutions</h3>
+                        <p>Comprehensive infrastructure tailored for Kenya's growing businesses</p>
+                        <div class="solutions-header-actions">
+                            <a href="/enterprise-solutions" class="solution-btn">View All Solutions</a>
+                            <a href="/custom-enterprise-solutions" class="solution-btn">Request Custom Solution</a>
+                        </div>
+                    </div>
+                    <div class="solutions-container">
+                        <!-- Enterprise Dashboard Mockup -->
+                        <div class="solution-mockup">
+                            <div class="dashboard-frame">
+                                <div class="dashboard-screen">
+                                    <div class="dashboard-header"></div>
+                                    <div class="dashboard-sidebar"></div>
+                                    <div class="dashboard-content">
+                                        <div class="dashboard-widget"></div>
+                                        <div class="dashboard-widget"></div>
+                                        <div class="dashboard-widget"></div>
+                                        <div class="dashboard-widget"></div>
+                                        <div class="dashboard-widget"></div>
+                                        <div class="dashboard-widget"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="solution-caption">
+                                <div class="solution-title">Enterprise Dashboard</div>
+                                <div class="solution-subtitle">Control Center</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Security Portal Mockup -->
+                        <div class="solution-mockup">
+                            <div class="featured-label">Featured</div>
+                            <div class="dashboard-frame">
+                                <div class="dashboard-screen">
+                                    <div class="dashboard-header"></div>
+                                    <div class="dashboard-sidebar"></div>
+                                    <div class="dashboard-content">
+                                        <div class="dashboard-widget"></div>
+                                        <div class="dashboard-widget"></div>
+                                        <div class="dashboard-widget"></div>
+                                        <div class="dashboard-widget"></div>
+                                        <div class="dashboard-widget"></div>
+                                        <div class="dashboard-widget"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="solution-caption">
+                                <div class="solution-title">Security Portal</div>
+                                <div class="solution-subtitle">Threat Protection</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                  <!-- Key Metrics Section -->
+                <div class="business-metrics">
+                    <div class="metrics-header">
+                        <h3>Enterprise Performance Metrics</h3>
+                        <p>Real-time statistics from our Kenya-optimized business infrastructure</p>
+                    </div>
+                    <div class="metrics-container">
+                        <div class="metric-item">
+                            <div class="metric-icon">
+                                <img src="images/svg/icon-economy.svg" alt="Businesses Icon">
+                            </div>
+                            <div class="metric-value">50+</div>
+                            <div class="metric-label">Enterprise Clients</div>
+                            <div class="metric-trend">+30% growth this year</div>
+                        </div>
+                        
+                        <div class="metric-item">
+                            <div class="metric-icon">
+                                <img src="images/svg/icon-security.svg" alt="Uptime Icon">
+                            </div>
+                            <div class="metric-value">99.99%</div>
+                            <div class="metric-label">Enterprise Uptime</div>
+                            <div class="metric-trend">Industry-leading reliability</div>
+                        </div>
+                        
+                        <div class="metric-item">
+                            <div class="metric-icon">
+                                <img src="images/svg/icon-performance.svg" alt="Performance Icon">
+                            </div>
+                            <div class="metric-value">45ms</div>
+                            <div class="metric-label">Avg. E. Africa Response</div>
+                            <div class="metric-trend">20ms faster than regional average</div>
+                        </div>
+                    </div>
+                </div>                <div class="business-cta">
+                    <div class="business-cta-bg"></div>
+                    <div class="business-cta-content">
+                        <span class="mpesa-badge">Enterprise-Ready & M-Pesa Integrated</span>
+                        <h3>ACCELERATE YOUR BUSINESS GROWTH</h3>
+                        <p>Join Kenya's leading enterprises and power your company with Hostara's enterprise-grade infrastructure</p>
+                        <div class="business-secondary-cta">
+                            <a href="#pricing" class="business-btn business-btn-primary section-nav-link" data-section="4">View Pricing Plans</a>
+                            <a href="/executive-demo" class="business-btn business-btn-outline">Request Executive Demo</a>
+                        </div>
+                        <div class="business-cta-features">
+                            <div class="cta-feature">
+                                <div class="cta-feature-icon">✓</div>
+                                <span>Custom SLA available</span>
+                            </div>
+                            <div class="cta-feature">
+                                <div class="cta-feature-icon">✓</div>
+                                <span>Enterprise-grade security</span>
+                            </div>
+                            <div class="cta-feature">
+                                <div class="cta-feature-icon">✓</div>
+                                <span>Kenya-optimized infrastructure</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section class="pricing-section fullpage-section" id="pricing">
+            <!-- Section loading indicator -->
+            <div class="section-loading">
+                <div class="loading-spinner">
+                    <div class="spinner-dot"></div>
+                </div>
+                <div class="section-loading-progress"></div>
+            </div>
+            <!-- Visual elements for animation -->
+            <div class="pricing-orbiting-element"></div>
+            <!-- Background elements -->
+            <div class="pricing-bg-grid"></div>
+            <div class="pricing-bg-glow pricing-bg-glow-1 pricing-bg-element"></div>
+            <div class="pricing-bg-glow pricing-bg-glow-2 pricing-bg-element"></div>
+            
+            <!-- ASCII Art Technology Background for pricing section -->
+            <div class="ascii-effect" style="top: 10%;">010010111001 PRICING 10101010 PLANS 01001010101 M-PESA 01010101</div>
+            <div class="ascii-effect" style="top: 40%;">101010 STARTER 010101 GROWTH 01010 PRO 1010 HOSTARA 10101</div>
+            <div class="ascii-effect" style="top: 70%;">0101 VALUE 1010 SCALE 0101 PERFORMANCE 1010 SECURITY 01010 UPTIME 10101</div>
+            
+            <!-- Pricing accent glow -->
+            <div class="pricing-accent-glow"></div>
+
+            <!-- Additional visual elements for the pricing section -->
+            <div class="pricing-tech-element" style="top: 15%; left: 8%;">
+                <i class="fas fa-server"></i>
+            </div>
+            <div class="pricing-tech-element" style="top: 25%; right: 10%;">
+                <i class="fas fa-cloud"></i>
+            </div>
+            <div class="pricing-tech-element" style="bottom: 20%; left: 15%;">
+                <i class="fas fa-network-wired"></i>
+            </div>
+            <div class="pricing-tech-element" style="bottom: 30%; right: 12%;">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+
+            <!-- Main content -->
+            <div class="pricing-content">
+                <div class="pricing-header">
+                    <span class="pricing-badge">Flexible Plans</span>
+                    <h2 class="pricing-title">Hostara Pricing Plans</h2>
+                    <p class="pricing-subtitle">Choose the perfect plan for your business needs with transparent pricing and no hidden fees</p>
+                    
+                    <!-- Billing Toggle -->
+                    <div class="billing-toggle-container">
+                        <span class="billing-option">Monthly</span>
+                        <label class="billing-toggle">
+                            <input type="checkbox" id="billingToggle">
+                            <span class="billing-slider"></span>
+                        </label>
+                        <span class="billing-option active">Annual <span class="save-badge">Save 16%</span></span>
+                    </div>
+                </div>
+                
+                <div class="pricing-plans">
+                    <!-- Starter Plan -->
+                    <div class="pricing-plan">
+                        <div class="plan-header">
+                            <h3 class="plan-name">Starter</h3>
+                            <div class="plan-price">
+                                <span class="currency">KSh</span>
+                                <span class="amount" data-monthly="1,999" data-annual="1,666">1,999</span>
+                                <span class="period">/month</span>
+                            </div>
+                            <div class="plan-billing-note" data-annual="KSh 19,990 billed annually">Pay monthly</div>
+                        </div>
+                        
+                        <div class="plan-features">
+                            <div class="plan-feature">
+                                <i class="fas fa-check"></i>
+                                <span>Basic website (1-page site) with online ordering</span>
+                            </div>
+                            <div class="plan-feature">
+                                <i class="fas fa-check"></i>
+                                <span>CRM & customer database (up to 100 clients)</span>
+                            </div>
+                            <div class="plan-feature highlighted">
+                                <i class="fas fa-check"></i>
+                                <span><b>3 user accounts</b> included</span>
+                            </div>
+                            <div class="plan-feature">
+                                <i class="fas fa-check"></i>
+                                <span>Inventory tracking (up to 50 items)</span>
+                            </div>
+                            <div class="plan-feature">
+                                <i class="fas fa-check"></i>
+                                <span>Integrated M-Pesa/online payments</span>
+                            </div>
+                            <div class="plan-feature">
+                                <i class="fas fa-check"></i>
+                                <span>Email support</span>
+                            </div>
+                            <div class="plan-feature muted">
+                                <i class="fas fa-check"></i>
+                                <span>KSh 299 per additional user</span>
+                            </div>
+                        </div>
+                        
+                        <a href="#" class="plan-cta">Get Started</a>
+                        
+                        <div class="plan-addons">
+                            <div class="addon-title">Optional Add-ons:</div>
+                            <div class="addon-item">
+                                <span>White-label branding</span>
+                                <span>KSh 2,499/mo</span>
+                            </div>
+                            <div class="addon-item">
+                                <span>Advanced Analytics</span>
+                                <span>KSh 1,499/mo</span>
+                            </div>
+                            <div class="addon-item">
+                                <span>Premium 24/7 support</span>
+                                <span>KSh 1,999/mo</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Growth Plan -->
+                    <div class="pricing-plan featured">
+                        <div class="plan-tag">Most Popular</div>
+                        <div class="plan-header">
+                            <h3 class="plan-name">Growth</h3>
+                            <div class="plan-price">
+                                <span class="currency">KSh</span>
+                                <span class="amount" data-monthly="5,999" data-annual="4,999">5,999</span>
+                                <span class="period">/month</span>
+                            </div>
+                            <div class="plan-billing-note" data-annual="KSh 59,990 billed annually">Pay monthly</div>
+                        </div>
+                        
+                        <div class="plan-features">
+                            <div class="plan-feature">
+                                <i class="fas fa-check"></i>
+                                <span>Everything in Starter, plus:</span>
+                            </div>
+                            <div class="plan-feature highlighted">
+                                <i class="fas fa-check"></i>
+                                <span><b>10 user accounts</b> included</span>
+                            </div>
+                            <div class="plan-feature">
+                                <i class="fas fa-check"></i>
+                                <span>CRM for up to 500 clients</span>
+                            </div>
+                            <div class="plan-feature">
+                                <i class="fas fa-check"></i>
+                                <span>Inventory (up to 200 items)</span>
+                            </div>
+                            <div class="plan-feature">
+                                <i class="fas fa-check"></i>
+                                <span>SMS notifications</span>
+                            </div>
+                            <div class="plan-feature">
+                                <i class="fas fa-check"></i>
+                                <span>Basic analytics dashboard</span>
+                            </div>
+                            <div class="plan-feature">
+                                <i class="fas fa-check"></i>
+                                <span>Standard phone support</span>
+                            </div>
+                            <div class="plan-feature muted">
+                                <i class="fas fa-check"></i>
+                                <span>KSh 249 per additional user</span>
+                            </div>
+                        </div>
+                        
+                        <a href="#" class="plan-cta">Get Started</a>
+                        
+                        <div class="plan-addons">
+                            <div class="addon-title">Optional Add-ons:</div>
+                            <div class="addon-item">
+                                <span>White-label branding</span>
+                                <span>KSh 2,499/mo</span>
+                            </div>
+                            <div class="addon-item">
+                                <span>Advanced Analytics</span>
+                                <span>KSh 1,499/mo</span>
+                            </div>
+                            <div class="addon-item">
+                                <span>Premium 24/7 support</span>
+                                <span>KSh 1,999/mo</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Pro Plan -->
+                    <div class="pricing-plan">
+                        <div class="plan-header">
+                            <h3 class="plan-name">Pro</h3>
+                            <div class="plan-price">
+                                <span class="currency">KSh</span>
+                                <span class="amount" data-monthly="9,999" data-annual="8,333">9,999</span>
+                                <span class="period">/month</span>
+                            </div>
+                            <div class="plan-billing-note" data-annual="KSh 99,990 billed annually">Pay monthly</div>
+                        </div>
+                        
+                        <div class="plan-features">
+                            <div class="plan-feature">
+                                <i class="fas fa-check"></i>
+                                <span>All Growth features, plus:</span>
+                            </div>
+                            <div class="plan-feature highlighted">
+                                <i class="fas fa-check"></i>
+                                <span><b>Unlimited users</b> included</span>
+                            </div>
+                            <div class="plan-feature">
+                                <i class="fas fa-check"></i>
+                                <span>Unlimited clients</span>
+                            </div>
+                            <div class="plan-feature">
+                                <i class="fas fa-check"></i>
+                                <span>Unlimited inventory</span>
+                            </div>
+                            <div class="plan-feature">
+                                <i class="fas fa-check"></i>
+                                <span>Advanced analytics</span>
+                            </div>
+                            <div class="plan-feature">
+                                <i class="fas fa-check"></i>
+                                <span>API access</span>
+                            </div>
+                            <div class="plan-feature">
+                                <i class="fas fa-check"></i>
+                                <span>Priority support</span>
+                            </div>
+                            <div class="plan-feature">
+                                <i class="fas fa-check"></i>
+                                <span>Custom reporting</span>
+                            </div>
+                        </div>
+                        
+                        <a href="#" class="plan-cta">Get Started</a>
+                        
+                        <div class="plan-addons">
+                            <div class="addon-title">Optional Add-ons:</div>
+                            <div class="addon-item">
+                                <span>White-label branding</span>
+                                <span>KSh 2,499/mo</span>
+                            </div>
+                            <div class="addon-item">
+                                <span>Advanced Analytics</span>
+                                <span>KSh 1,499/mo</span>
+                            </div>
+                            <div class="addon-item">
+                                <span>Premium 24/7 support</span>
+                                <span>KSh 1,999/mo</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="pricing-guarantees">
+                    <div class="guarantee-item">
+                        <div class="guarantee-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="guarantee-text">
+                            <h4>30-Day Money-Back Guarantee</h4>
+                            <p>Try Hostara risk-free with our 30-day money-back guarantee</p>
+                        </div>
+                    </div>
+                    <div class="guarantee-item">
+                        <div class="guarantee-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <div class="guarantee-text">
+                            <h4>Dedicated Support Team</h4>
+                            <p>Our Kenyan support team is available to help you succeed</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="pricing-faq">
+                    <h3 class="faq-title">Frequently Asked Questions</h3>
+                    <div class="faq-grid">
+                        <div class="faq-item">
+                            <h4 class="faq-question">Can I upgrade or downgrade my plan?</h4>
+                            <p class="faq-answer">Yes, you can change your plan at any time. If you upgrade, we'll prorate the difference. If you downgrade, the new price takes effect on your next billing cycle.</p>
+                        </div>
+                        <div class="faq-item">
+                            <h4 class="faq-question">How do the optional add-ons work?</h4>
+                            <p class="faq-answer">Add-ons can be purchased with any plan and billed monthly. You can add or remove them at any time from your account dashboard.</p>
+                        </div>
+                        <div class="faq-item">
+                            <h4 class="faq-question">Is there a setup fee?</h4>
+                            <p class="faq-answer">No, Hostara has no setup fees or hidden charges. The price you see is the price you pay.</p>
+                        </div>
+                        <div class="faq-item">
+                            <h4 class="faq-question">Do you offer custom plans for larger businesses?</h4>
+                            <p class="faq-answer">Yes, please contact our sales team for custom enterprise solutions tailored to your specific business needs.</p>
                         </div>
                     </div>
                 </div>

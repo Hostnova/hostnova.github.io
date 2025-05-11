@@ -16,3 +16,9 @@
 
 /* Content sections */
 @import './content-sections.css';
+
+/* Transition overlay */
+@import './components/transition-overlay.css';
+
+/* Pricing section */
+@import './components/pricing-section.css';
