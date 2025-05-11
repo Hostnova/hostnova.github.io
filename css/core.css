@@ -15,3 +15,6 @@
 
 /* Base buttons */
 @import './components/buttons.css';
+
+/* Custom cursor */
+@import './components/cursor.css';

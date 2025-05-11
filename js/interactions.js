@@ -133,40 +133,27 @@ function initializeParallaxEffects() {
 }
 
 /**
- * Initialize custom cursor
+ * Initialize custom cursor with smooth performance
+ * 
+ * NOTE: This function is now deprecated.
+ * The cursor implementation has been moved to main.js for better performance and to avoid duplication.
+ * This function is kept here for reference but does nothing.
  */
 function initializeCustomCursor() {
-    const cursorDot = document.querySelector('.cursor-dot');
-    const cursorFollower = document.querySelector('.cursor-follower');
-    
-    if (!cursorDot || !cursorFollower) return;
-    
-    document.addEventListener('mousemove', function(e) {
-        // Set position directly for dot (fast follower)
-        cursorDot.style.left = e.clientX + 'px';
-        cursorDot.style.top = e.clientY + 'px';
-        
-        // Add slight delay to follower for smooth effect
-        setTimeout(() => {
-            cursorFollower.style.left = e.clientX + 'px';
-            cursorFollower.style.top = e.clientY + 'px';
-        }, 70);
-    });
+    // Implementation moved to main.js
+    // Do not initialize cursor here to avoid conflicts
+    return;
     
     // Change cursor appearance on interactive elements
     const interactiveElements = document.querySelectorAll('.interactive-hover, a, button');
     
     interactiveElements.forEach(element => {
         element.addEventListener('mouseenter', function() {
-            cursorFollower.style.width = '50px';
-            cursorFollower.style.height = '50px';
-            cursorFollower.style.borderColor = 'rgba(100, 255, 218, 0.5)';
+            cursorFollower.classList.add('expanded');
         });
         
         element.addEventListener('mouseleave', function() {
-            cursorFollower.style.width = '40px';
-            cursorFollower.style.height = '40px';
-            cursorFollower.style.borderColor = 'rgba(76, 176, 243, 0.3)';
+            cursorFollower.classList.remove('expanded');
         });
     });
 }

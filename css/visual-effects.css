@@ -10,5 +10,8 @@
 /* Orbital elements and animations */
 @import './components/orbital-elements.css';
 
-/* Section loading effects */
+/* Loading effects and indicators */
+@import './components/loaders.css';
+
+/* Legacy loading effects (keeping for compatibility) */
 @import './components/section-background-loaders.css';

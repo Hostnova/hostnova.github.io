@@ -32,11 +32,11 @@
     <!-- Optimized CSS Structure -->
     <link rel="stylesheet" href="css/main.css">
     
-    <!-- Modular JavaScript Files -->
-    <script src="js/core.js" defer></script>
+    <!-- Modular JavaScript Files -->    <script src="js/core.js" defer></script>
     <script src="js/visual-effects.js" defer></script>
     <script src="js/interactions.js" defer></script>
     <script src="js/sections.js" defer></script>
+    <script src="js/section-transitions.js" defer></script>
     <script src="js/main.min.js" defer></script>
     
     <!-- Inline Preloader Fallback - Will ensure preloader disappears even if main script fails -->
@@ -65,9 +65,10 @@
         }, 8000);
     </script>
 </head>
-<body class="dark-theme">    <!-- Preloader -->
-    <div class="preloader" id="main-preloader">
-        <div class="preloader-icon"></div>
+<body class="dark-theme">    <!-- Preloader -->    <div class="preloader" id="main-preloader">
+        <div class="preloader-icon">
+            <div class="inner-circle"></div>
+        </div>
         <noscript>
             <p style="color:#fff;text-align:center;margin-top:20px;">JavaScript is required to view this site properly.</p>
         </noscript>
@@ -93,11 +94,13 @@
                 <span class="section-nav-label">Business</span>
             </button>
         </div>
-          <!-- Cinematic Hero Section -->
-        <section id="hero" class="hero-section">
+          <!-- Cinematic Hero Section -->        <section id="hero" class="hero-section">
             <!-- Section loading indicator -->
             <div class="section-loading">
-                <div class="loading-spinner"></div>
+                <div class="loading-spinner">
+                    <div class="spinner-dot"></div>
+                </div>
+                <div class="section-loading-progress"></div>
             </div>
             
             <!-- Advanced background effects -->
@@ -718,37 +721,8 @@
             // Create stars for primary and secondary layers
             createStars('star-layer-primary', 200, ['primary-star']);
             createStars('star-layer-secondary', 150, ['secondary-star']);
-            
-            // Custom cursor effect with improved tracking speed
-            const cursorDot = document.querySelector('.cursor-dot');
-            const cursorFollower = document.querySelector('.cursor-follower');
-            
-            let mouseX = 0, mouseY = 0;
-            let followerX = 0, followerY = 0;
-            
-            function animateCursor() {
-                // Increase easing for more responsive follower movement (0.1 to 0.3)
-                followerX += (mouseX - followerX) * 0.3;
-                followerY += (mouseY - followerY) * 0.3;
-                
-                if (cursorDot && cursorFollower) {
-                    // Dot follows cursor exactly with no delay
-                    cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
-                    
-                    // Follower has just slight easing - reduced lag
-                    cursorFollower.style.transform = `translate(${followerX}px, ${followerY}px)`;
-                }
-                
-                requestAnimationFrame(animateCursor);
-            }
-            
-            document.addEventListener('mousemove', e => {
-                // Direct assignment for immediate response
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-            });
-            
-            animateCursor(); // Start animation loop
+              // Custom cursor is now handled by main.js
+            // This inline implementation has been removed to prevent conflicts
             
             // 3D tilt effect for hero card
             const tiltCard = document.getElementById('hero-tilt');
@@ -902,130 +876,41 @@
                     codeRainContainer.innerHTML = '';
                     createCodeRain();
                 }
-            });
-            
-            // Handle slide transitions for Hostara section
-            const handleSlideTransitions = () => {
-                const sections = document.querySelectorAll('#hero, .hostara-section, #business');
-                let currentSectionIndex = 0;
-                let isAnimating = false;
-                
-                // Navigation buttons
-                const navButtons = document.querySelectorAll('.section-nav-button');
-                
-                // Update active dot
-                const updateActiveDot = (index) => {
-                    navButtons.forEach((btn, i) => {
-                        const dot = btn.querySelector('.section-nav-dot');
-                        if (i === index) {
-                            dot.classList.add('active');
-                        } else {
-                            dot.classList.remove('active');
-                        }
+            });              // Section transitions are now handled by section-transitions.js
+            // This initializes any specific elements related to sections
+            const initSectionEffects = () => {
+                // For backward compatibility - this will be called by the SectionTransitionManager
+                window.initializeBusinessSection = function() {
+                    const businessCards = document.querySelectorAll('.business-card');
+                    businessCards.forEach((card, index) => {
+                        setTimeout(() => {
+                            card.classList.add('visible');
+                        }, index * 100);
+                    });
+                    
+                    const businessElements = document.querySelectorAll(
+                        '.business-header, .business-testimonials, .business-mockups, ' +
+                        '.business-metrics, .campus-apps, .business-cta'
+                    );
+                    
+                    businessElements.forEach((element, index) => {
+                        setTimeout(() => {
+                            element.classList.add('visible');
+                        }, 300 + index * 200);
                     });
                 };
                 
-                // Initial setup
-                sections.forEach((section, index) => {
-                    if (index !== currentSectionIndex) {
-                        section.style.display = 'none';
-                    }
-                });
-                
-                // Add click events to navigation buttons
-                navButtons.forEach((button, index) => {
-                    button.addEventListener('click', () => {
-                        if (isAnimating || currentSectionIndex === index) return;
-                        
-                        isAnimating = true;
-                        const direction = index > currentSectionIndex ? 1 : -1;
-                        
-                        // Current section exit transition
-                        sections[currentSectionIndex].classList.add(direction > 0 ? 'slide-exit-active' : 'slide-exit-up-active');
-                        
-                        setTimeout(() => {
-                            sections[currentSectionIndex].style.display = 'none';
-                            sections[currentSectionIndex].classList.remove(
-                                'slide-exit-active', 
-                                'slide-exit-up-active'
-                            );
-                            
-                            // Next section enter transition
-                            sections[index].style.display = 'flex';
-                            sections[index].classList.add(direction > 0 ? 'slide-enter-active' : 'slide-enter-down-active');
-                            
-                            currentSectionIndex = index;
-                            updateActiveDot(currentSectionIndex);
-
-                            if (sections[currentSectionIndex].id === 'business') {
-                                initializeBusinessSection(); // Initialize animations when business section is active
-                            }
-                            
-                            setTimeout(() => {
-                                sections[currentSectionIndex].classList.remove(
-                                    'slide-enter-active', 
-                                    'slide-enter-down-active'
-                                );
-                                isAnimating = false;
-                            }, 800);
-                        }, 800);
-                    });
-                });
-                
-                // Add try hostara button click event in hero section
+                // Try hostara button click event in hero section
                 const tryHostaraBtn = document.querySelector('.hero-cta-group .btn-primary');
                 if (tryHostaraBtn) {
                     tryHostaraBtn.addEventListener('click', (e) => {
                         e.preventDefault();
-                        // Trigger the Hostara section navigation button click
-                        navButtons[1].click();
+                        // Use the exported section transition manager
+                        if (window.sectionTransitionManager) {
+                            window.sectionTransitionManager.goToSection(1);
+                        }
                     });
                 }
-                
-                // Handle wheel events for slide transitions
-                document.addEventListener('wheel', (event) => {
-                    if (isAnimating) return;
-                    
-                    const direction = event.deltaY > 0 ? 1 : -1;
-                    const nextIndex = currentSectionIndex + direction;
-                    
-                    // Ensure next index is within bounds
-                    if (nextIndex >= 0 && nextIndex < sections.length) {
-                        isAnimating = true;
-                        
-                        // Current section exit transition
-                        sections[currentSectionIndex].classList.add(direction > 0 ? 'slide-exit-active' : 'slide-exit-up-active');
-                        
-                        setTimeout(() => {
-                            sections[currentSectionIndex].style.display = 'none';
-                            sections[currentSectionIndex].classList.remove(
-                                'slide-exit-active', 
-                                'slide-exit-up-active'
-                            );
-                            
-                            // Next section enter transition
-                            sections[nextIndex].style.display = 'flex';
-                            sections[nextIndex].classList.add(direction > 0 ? 'slide-enter-active' : 'slide-enter-down-active');
-                            
-                            currentSectionIndex = nextIndex;
-                            updateActiveDot(currentSectionIndex);
-
-                            if (sections[currentSectionIndex].id === 'business') {
-                                initializeBusinessSection(); // Initialize animations when business section is active
-                            }
-                            
-                            setTimeout(() => {
-                                sections[currentSectionIndex].classList.remove(
-                                    'slide-enter-active', 
-                                    'slide-enter-down-active'
-                                );
-                                isAnimating = false;
-                            }, 800); // Match transition duration in CSS
-                        }, 800); // Match transition duration in CSS
-                    } else {
-                        isAnimating = false;
-                    }
-                });
                 
                 // Phone mockup interactive effects
                 const hostaraPhone = document.querySelector('.hostara-phone');
@@ -1073,8 +958,8 @@
                 }
             };
             
-            // Initialize slide transitions
-            handleSlideTransitions();
+            // Initialize section-specific effects
+            initSectionEffects();
         });
     </script>
 </body>

@@ -15,6 +15,12 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeCustomCursor();
     initializeBusinessSection();
     handleSectionLoading();
+    
+    // Add window resize handler for responsive custom cursor
+    window.addEventListener('resize', handleCustomCursorResponsive);
+    
+    // Initial check for custom cursor
+    handleCustomCursorResponsive();
 });
 
 // Handle preloader with better reliability
@@ -501,16 +507,126 @@ function initializeCustomCursor() {
     
     if (!cursorDot || !cursorFollower) return;
     
+    // Check if we should use custom cursor (disable on mobile/touch devices)
+    const shouldUseCustomCursor = window.matchMedia('(min-width: 769px)').matches && 
+                                !('ontouchstart' in window);
+    
+    // Set initial cursor visibility based on device
+    document.body.classList.toggle('use-custom-cursor', shouldUseCustomCursor);
+    cursorDot.style.display = shouldUseCustomCursor ? 'block' : 'none';
+    cursorFollower.style.display = shouldUseCustomCursor ? 'block' : 'none';
+    
+    // If on mobile/touch device, exit early
+    if (!shouldUseCustomCursor) return;
+    
+    // Track mouse position
+    let mouseX = 0;
+    let mouseY = 0;
+    let followerX = 0;
+    let followerY = 0;
+    
+    // Performance optimization flags
+    let rafId = null;
+    let isMoving = false;
+    let lastMoveTime = 0;
+      // Update cursor position with each mouse movement
     document.addEventListener('mousemove', function(e) {
-        // Set position directly for dot (fast follower)
-        cursorDot.style.left = e.clientX + 'px';
-        cursorDot.style.top = e.clientY + 'px';
+        // Get accurate page-relative coordinates that account for scrolling
+        mouseX = e.pageX;
+        mouseY = e.pageY;
         
-        // Add slight delay to follower for smooth effect
+        // Update dot position immediately (direct positioning for reduced lag)
+        cursorDot.style.left = `${mouseX}px`;
+        cursorDot.style.top = `${mouseY}px`;
+        
+        // Flag that mouse is moving
+        isMoving = true;
+        lastMoveTime = performance.now();
+        
+        // Start animation loop if not running
+        if (!rafId) {
+            rafId = requestAnimationFrame(updateFollower);
+        }
+    });
+    
+    // Handle window resize to ensure cursor positioning remains accurate
+    window.addEventListener('resize', function() {
+        // Reset follower to prevent position glitches after resize
+        followerX = mouseX;
+        followerY = mouseY;
+        
+        cursorFollower.style.left = `${followerX}px`;
+        cursorFollower.style.top = `${followerY}px`;
+    });
+    
+    // Handle page scroll event to ensure correct positioning
+    document.addEventListener('scroll', function() {
+        // Reset follower to prevent lag during scrolling
+        if (cursorFollower) {
+            followerX = mouseX;
+            followerY = mouseY;
+            
+            cursorFollower.style.left = `${followerX}px`;
+            cursorFollower.style.top = `${followerY}px`;
+        }
+    }, { passive: true });
+    
+    // Use requestAnimationFrame for smooth follower updates
+    function updateFollower(timestamp) {
+        // Calculate the distance between current follower position and mouse position
+        const distX = mouseX - followerX;
+        const distY = mouseY - followerY;
+        
+        // Faster smoothing factor to reduce lag (0.25 instead of 0.15)
+        followerX += distX * 0.25;
+        followerY += distY * 0.25;
+        
+        // Apply position directly rather than transform for better accuracy
+        cursorFollower.style.left = `${followerX}px`;
+        cursorFollower.style.top = `${followerY}px`;
+        
+        // Continue animation loop only if needed (moving or settling)
+        if (isMoving || Math.abs(distX) > 0.1 || Math.abs(distY) > 0.1) {
+            // Check if mouse has stopped moving for a while
+            if (isMoving && timestamp - lastMoveTime > 100) {
+                isMoving = false;
+            }
+            
+            rafId = requestAnimationFrame(updateFollower);
+        } else {
+            rafId = null;
+        }
+    }
+    
+    // Start the animation loop
+    rafId = requestAnimationFrame(updateFollower);
+      // Add click effect
+    document.addEventListener('mousedown', function() {
+        cursorDot.classList.add('clicking');
+        setTimeout(() => cursorDot.classList.remove('clicking'), 300);
+    });
+    
+    // Handle page transition events to prevent cursor positioning issues
+    document.addEventListener('visibilitychange', function() {
+        if (document.visibilityState === 'visible') {
+            // Reset cursor position when returning to the page
+            setTimeout(() => {
+                followerX = mouseX;
+                followerY = mouseY;
+                cursorFollower.style.left = `${followerX}px`;
+                cursorFollower.style.top = `${followerY}px`;
+            }, 100);
+        }
+    });
+    
+    // Handle page navigation - this helps with SPA navigation
+    document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => {
-            cursorFollower.style.left = e.clientX + 'px';
-            cursorFollower.style.top = e.clientY + 'px';
-        }, 70);
+            followerX = mouseX;
+            followerY = mouseY;
+            cursorFollower.style.left = `${followerX}px`;
+            cursorFollower.style.top = `${followerY}px`;
+        }, 100);
     });
     
     // Change cursor appearance on interactive elements
@@ -518,17 +634,32 @@ function initializeCustomCursor() {
     
     interactiveElements.forEach(element => {
         element.addEventListener('mouseenter', function() {
-            cursorFollower.style.width = '50px';
-            cursorFollower.style.height = '50px';
-            cursorFollower.style.borderColor = 'rgba(100, 255, 218, 0.5)';
+            cursorFollower.classList.add('expanded');
         });
         
         element.addEventListener('mouseleave', function() {
-            cursorFollower.style.width = '40px';
-            cursorFollower.style.height = '40px';
-            cursorFollower.style.borderColor = 'rgba(76, 176, 243, 0.3)';
+            cursorFollower.classList.remove('expanded');
         });
     });
+}
+
+/**
+ * Handle responsive states for custom cursor
+ */
+function handleCustomCursorResponsive() {
+    const cursorDot = document.querySelector('.cursor-dot');
+    const cursorFollower = document.querySelector('.cursor-follower');
+    
+    if (!cursorDot || !cursorFollower) return;
+    
+    // Check if we should use custom cursor based on screen size and device type
+    const shouldUseCustomCursor = window.matchMedia('(min-width: 769px)').matches && 
+                                !('ontouchstart' in window);
+    
+    // Update body class and cursor elements visibility
+    document.body.classList.toggle('use-custom-cursor', shouldUseCustomCursor);
+    cursorDot.style.display = shouldUseCustomCursor ? 'block' : 'none';
+    cursorFollower.style.display = shouldUseCustomCursor ? 'block' : 'none';
 }
 
 /**

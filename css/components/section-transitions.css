@@ -16,33 +16,42 @@
 #portfolio,
 #contact {
   transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1), 
-              opacity 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+              opacity 0.8s cubic-bezier(0.645, 0.045, 0.355, 1),
+              filter 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+  will-change: transform, opacity, filter;
 }
 
 /* Section transition states */
 .section-entering {
   opacity: 0;
-  transform: scale(1.1);
+  transform: scale(1.05) translateY(20px);
+  filter: blur(3px);
   z-index: 5;
 }
 
 .section-active {
   opacity: 1;
-  transform: scale(1);
+  transform: scale(1) translateY(0);
+  filter: blur(0);
   z-index: 10;
 }
 
 .section-exiting-up {
   opacity: 0;
-  transform: scale(0.9);
+  transform: scale(0.95) translateY(-20px);
+  filter: blur(3px);
   z-index: 0;
 }
 
 .section-exiting-down {
   opacity: 0;
-  transform: scale(0.9);
+  transform: scale(0.95) translateY(20px);
+  filter: blur(3px);
   z-index: 0;
 }
+
+/* Import enhanced section transitions */
+@import './enhanced-section-transitions.css';
 
 /* Text animation on section load - more advanced effects */
 .animate-text-element {
