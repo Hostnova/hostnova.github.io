@@ -51,7 +51,144 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+    // Add event listeners to all section navigation buttons
+    const sectionNavButtons = document.querySelectorAll('.section-nav-button');
+    
+    sectionNavButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            const sectionIndex = parseInt(this.getAttribute('data-section'), 10);
+            
+            // Check if we have the section transition manager
+            if (window.sectionTransitionManager) {
+                window.sectionTransitionManager.goToSection(sectionIndex);
+                console.log('Navigating to section:', sectionIndex);
+            }
+            
+            // Update active state immediately for better UX
+            sectionNavButtons.forEach(btn => {
+                btn.classList.remove('active');
+                const dot = btn.querySelector('.section-nav-dot');
+                if (dot) dot.classList.remove('active');
+            });
+            
+            button.classList.add('active');
+            const activeDot = button.querySelector('.section-nav-dot');
+            if (activeDot) activeDot.classList.add('active');
+        });
+    });
 });
+
+/**
+ * Enhanced section navigation that ensures all sections can be accessed
+ */
+document.addEventListener('DOMContentLoaded', function() {
+  // Force initialize section navigation dots
+  const sectionNavButtons = document.querySelectorAll('.section-nav-button');
+  
+  if (sectionNavButtons.length > 0) {
+    sectionNavButtons.forEach(button => {
+      button.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        const sectionIndex = parseInt(this.getAttribute('data-section'), 10);
+        console.log("Section button clicked:", sectionIndex);
+        
+        // Use the section transition manager if available
+        if (window.sectionTransitionManager && !isNaN(sectionIndex)) {
+          // Force the section transition
+          window.sectionTransitionManager.goToSection(sectionIndex);
+          
+          // Update button active state
+          sectionNavButtons.forEach(btn => btn.classList.remove('active'));
+          button.classList.add('active');
+          
+          // Update dot active state
+          const dots = document.querySelectorAll('.section-nav-dot');
+          dots.forEach((dot, i) => {
+            if (i === sectionIndex) {
+              dot.classList.add('active');
+            } else {
+              dot.classList.remove('active');
+            }
+          });
+        }
+      });
+    });
+  }
+});
+
+/**
+ * Master function to ensure section navigation always works
+ * This function fixes issues with section navigation and ensures Business and Pricing sections can be accessed
+ */
+function ensureSectionNavigationWorks() {
+  console.log("Initializing enhanced section navigation");
+  
+  // 1. First ensure all section buttons have proper event listeners
+  const sectionNavButtons = document.querySelectorAll('.section-nav-button');
+  
+  if (sectionNavButtons.length > 0) {
+    sectionNavButtons.forEach(button => {
+      // Remove any existing click listeners to avoid duplication
+      const newButton = button.cloneNode(true);
+      button.parentNode.replaceChild(newButton, button);
+      
+      newButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        const sectionIndex = parseInt(this.getAttribute('data-section'), 10);
+        console.log("Section button clicked:", sectionIndex);
+        
+        if (!isNaN(sectionIndex)) {
+          // Force navigation to section
+          if (window.sectionTransitionManager) {
+            window.sectionTransitionManager.goToSection(sectionIndex);
+          }
+          
+          // Update button states
+          document.querySelectorAll('.section-nav-button').forEach(btn => {
+            btn.classList.remove('active');
+          });
+          
+          document.querySelectorAll('.section-nav-dot').forEach(dot => {
+            dot.classList.remove('active');
+          });
+          
+          // Set this button as active
+          this.classList.add('active');
+          const dot = this.querySelector('.section-nav-dot');
+          if (dot) dot.classList.add('active');
+          
+          // Force scroll to beginning of section for better UX
+          window.scrollTo(0, 0);
+        }
+      });
+    });
+  }
+  
+  // 2. Make sure section navigation container is visible
+  const navContainer = document.querySelector('.section-nav-container');
+  if (navContainer) {
+    navContainer.style.display = 'flex';
+    navContainer.style.visibility = 'visible';
+    navContainer.style.opacity = '1';
+    navContainer.style.zIndex = '9000';
+  }
+  
+  // 3. Verify all sections are properly configured
+  const sections = document.querySelectorAll('.fullpage-section');
+  sections.forEach((section, index) => {
+    section.setAttribute('data-section-index', index);
+  });
+}
+
+// Run when document is loaded and also after a short delay as a safety measure
+document.addEventListener('DOMContentLoaded', ensureSectionNavigationWorks);
+window.addEventListener('load', () => setTimeout(ensureSectionNavigationWorks, 1000));
 
 // Handle preloader with better reliability
 function handlePreloader() {
@@ -668,7 +805,8 @@ function createEnergyFlare() {
 }
 
 /**
- * Initialize custom cursor
+ * Optimized cursor follower for better performance
+ * Completely replaces the old implementation to fix lag issues
  */
 function initializeCustomCursor() {
     const cursorDot = document.querySelector('.cursor-dot');
@@ -682,133 +820,92 @@ function initializeCustomCursor() {
     
     // Set initial cursor visibility based on device
     document.body.classList.toggle('use-custom-cursor', shouldUseCustomCursor);
-    cursorDot.style.display = shouldUseCustomCursor ? 'block' : 'none';
-    cursorFollower.style.display = shouldUseCustomCursor ? 'block' : 'none';
     
-    // If on mobile/touch device, exit early
-    if (!shouldUseCustomCursor) return;
+    if (!shouldUseCustomCursor) {
+        cursorDot.style.display = 'none';
+        cursorFollower.style.display = 'none';
+        return;
+    }
     
-    // Track mouse position
+    cursorDot.style.display = 'block';
+    cursorFollower.style.display = 'block';
+    
+    // Variables for smooth movement
     let mouseX = 0;
     let mouseY = 0;
     let followerX = 0;
     let followerY = 0;
+    let frameId = null;
+      // Throttled mouse move handler to prevent excessive events
+    let lastMove = 0;
+    const throttleMs = 5; // 5ms throttle (200 updates per second max)
     
-    // Performance optimization flags
-    let rafId = null;
-    let isMoving = false;
-    let lastMoveTime = 0;
-      // Update cursor position with each mouse movement
-    document.addEventListener('mousemove', function(e) {
-        // Get accurate page-relative coordinates that account for scrolling
-        mouseX = e.pageX;
-        mouseY = e.pageY;
-        
-        // Update dot position immediately (direct positioning for reduced lag)
-        cursorDot.style.left = `${mouseX}px`;
-        cursorDot.style.top = `${mouseY}px`;
-        
-        // Flag that mouse is moving
-        isMoving = true;
-        lastMoveTime = performance.now();
-        
-        // Start animation loop if not running
-        if (!rafId) {
-            rafId = requestAnimationFrame(updateFollower);
-        }
-    });
-    
-    // Handle window resize to ensure cursor positioning remains accurate
-    window.addEventListener('resize', function() {
-        // Reset follower to prevent position glitches after resize
-        followerX = mouseX;
-        followerY = mouseY;
-        
-        cursorFollower.style.left = `${followerX}px`;
-        cursorFollower.style.top = `${followerY}px`;
-    });
-    
-    // Handle page scroll event to ensure correct positioning
-    document.addEventListener('scroll', function() {
-        // Reset follower to prevent lag during scrolling
-        if (cursorFollower) {
-            followerX = mouseX;
-            followerY = mouseY;
+    document.addEventListener('mousemove', (e) => {
+        const now = Date.now();
+        if (now - lastMove > throttleMs) {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            lastMove = now;
             
-            cursorFollower.style.left = `${followerX}px`;
-            cursorFollower.style.top = `${followerY}px`;
-        }
-    }, { passive: true });
-    
-    // Use requestAnimationFrame for smooth follower updates
-    function updateFollower(timestamp) {
-        // Calculate the distance between current follower position and mouse position
-        const distX = mouseX - followerX;
-        const distY = mouseY - followerY;
-        
-        // Faster smoothing factor to reduce lag (0.25 instead of 0.15)
-        followerX += distX * 0.25;
-        followerY += distY * 0.25;
-        
-        // Apply position directly rather than transform for better accuracy
-        cursorFollower.style.left = `${followerX}px`;
-        cursorFollower.style.top = `${followerY}px`;
-        
-        // Continue animation loop only if needed (moving or settling)
-        if (isMoving || Math.abs(distX) > 0.1 || Math.abs(distY) > 0.1) {
-            // Check if mouse has stopped moving for a while
-            if (isMoving && timestamp - lastMoveTime > 100) {
-                isMoving = false;
+            // Start animation loop if not running
+            if (!frameId) {
+                frameId = requestAnimationFrame(updateCursor);
             }
-            
-            rafId = requestAnimationFrame(updateFollower);
+        }
+    });
+    
+    // Efficient cursor update using requestAnimationFrame
+    function updateCursor() {
+        // Update dot with direct positioning (minimal lag)
+        cursorDot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
+        
+        // Calculate distance for smooth follower movement
+        const dx = mouseX - followerX;
+        const dy = mouseY - followerY;
+        
+        // Adjust easing based on distance - faster when further away
+        const distance = Math.sqrt(dx*dx + dy*dy);
+        const easing = Math.min(0.3, Math.max(0.12, distance * 0.005));
+          // Update follower position with easing
+        followerX += dx * easing;
+        followerY += dy * easing;
+        
+        // Apply transform for GPU acceleration
+        cursorFollower.style.transform = `translate3d(${followerX}px, ${followerY}px, 0)`;
+        
+        // Continue animation if there's still movement
+        if (distance > 0.1) {
+            frameId = requestAnimationFrame(updateCursor);
         } else {
-            rafId = null;
+            frameId = null;
         }
     }
     
-    // Start the animation loop
-    rafId = requestAnimationFrame(updateFollower);
-      // Add click effect
-    document.addEventListener('mousedown', function() {
-        cursorDot.classList.add('clicking');
-        setTimeout(() => cursorDot.classList.remove('clicking'), 300);
-    });
-    
-    // Handle page transition events to prevent cursor positioning issues
-    document.addEventListener('visibilitychange', function() {
+    // Reset on page visibility changes
+    document.addEventListener('visibilitychange', () => {
         if (document.visibilityState === 'visible') {
-            // Reset cursor position when returning to the page
-            setTimeout(() => {
-                followerX = mouseX;
-                followerY = mouseY;
-                cursorFollower.style.left = `${followerX}px`;
-                cursorFollower.style.top = `${followerY}px`;
-            }, 100);
+            followerX = mouseX;
+            followerY = mouseY;
+            cursorFollower.style.transform = `translate3d(${followerX}px, ${followerY}px, 0)`;
         }
     });
     
-    // Handle page navigation - this helps with SPA navigation
-    document.addEventListener('DOMContentLoaded', function() {
-        setTimeout(() => {
-            followerX = mouseX;
-            followerY = mouseY;
-            cursorFollower.style.left = `${followerX}px`;
-            cursorFollower.style.top = `${followerY}px`;
-        }, 100);
-    });
-    
-    // Change cursor appearance on interactive elements
-    const interactiveElements = document.querySelectorAll('.interactive-hover, a, button');
-    
+    // Handle interactive elements
+    const interactiveElements = document.querySelectorAll('a, button, input, select, textarea, .interactive-hover');
     interactiveElements.forEach(element => {
-        element.addEventListener('mouseenter', function() {
+        element.addEventListener('mouseenter', () => {
             cursorFollower.classList.add('expanded');
         });
         
-        element.addEventListener('mouseleave', function() {
+        element.addEventListener('mouseleave', () => {
             cursorFollower.classList.remove('expanded');
         });
+    });
+    
+    // Add click effect
+    document.addEventListener('mousedown', () => {
+        cursorDot.classList.add('clicking');
+        setTimeout(() => cursorDot.classList.remove('clicking'), 200);
     });
 }
 
@@ -867,12 +964,22 @@ function handleSectionLoading() {
  * Initialize section transitions system
  */
 function initializeSectionTransitions() {
-    // Create an instance of the SectionTransitionManager - already initialized in section-transitions.js
-    // Just make sure we have the proper event listeners and integrations
+    // Import our fixed section transitions script after verifying it's not already loaded
+    if (typeof window.sectionTransitionManager === 'undefined') {
+        console.log('Loading section transition manager dynamically');
+        const script = document.createElement('script');
+        script.src = 'js/fixed-section-transitions.js';
+        script.onload = function() {
+            console.log('Section transition manager loaded successfully');
+        };
+        document.head.appendChild(script);
+    } else {
+        console.log('Section transition manager already loaded');
+    }
     
     // Listen for section changes to update other UI elements
     document.addEventListener('sectionChanged', (event) => {
-        const { fromIndex, toIndex, sections } = event.detail;
+        const { fromIndex, toIndex, sections, toId, direction } = event.detail;
         
         // Update active state for navigation elements
         updateSectionNavButtons();
@@ -885,7 +992,7 @@ function initializeSectionTransitions() {
             window.updateHeaderState(toIndex);
         }
         
-        console.log(`Section changed from ${fromIndex} to ${toIndex}`);
+        console.log(`Section changed from ${fromIndex} to ${toIndex} (${toId}) - Direction: ${direction}`);
     });
     
     // Check for URL hash to navigate to specific section
@@ -1037,22 +1144,27 @@ function updateSectionNavButtons() {
         });
     }
     
-    // Update active state for nav buttons
+    // Update active state for nav buttons with enhanced animations
     const navButtons = document.querySelectorAll('.section-nav-button');
     navButtons.forEach((button, index) => {
         const dot = button.querySelector('.section-nav-dot');
         if (index === visibleSectionIndex) {
-            button.classList.add('active');
-            if (dot) dot.classList.add('active');
-            
-            // Add animation effect for active button
-            button.animate([
-                { transform: 'scale(1.05)' },
-                { transform: 'scale(1)' }
-            ], {
-                duration: 300,
-                easing: 'ease-out'
-            });
+            // Check if already active to avoid re-triggering animations
+            if (!button.classList.contains('active')) {
+                button.classList.add('active');
+                if (dot) {
+                    dot.classList.add('active');
+                    
+                    // Add spring animation effect for active button
+                    button.animate([
+                        { transform: 'scale(1.2)' },
+                        { transform: 'scale(1.1)' }
+                    ], {
+                        duration: 400,
+                        easing: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+                    });
+                }
+            }
         } else {
             button.classList.remove('active');
             if (dot) dot.classList.remove('active');
@@ -1075,3 +1187,63 @@ function updateSectionNavButtons() {
 // We don't need to manually call this on scroll anymore since transitions handle it
 // But we'll keep a periodic check as a safety net (less frequent)
 setInterval(updateSectionNavButtons, 2000); // Check every 2 seconds
+
+/**
+ * Enable drag-to-scroll functionality for horizontal scroll containers
+ */
+document.addEventListener('DOMContentLoaded', function() {
+  const scrollContainers = document.querySelectorAll('.client-visual-stats, .testimonial-container');
+  
+  scrollContainers.forEach(container => {
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+    
+    container.addEventListener('mousedown', (e) => {
+      isDown = true;
+      container.classList.add('active');
+      startX = e.pageX - container.offsetLeft;
+      scrollLeft = container.scrollLeft;
+      // Prevent text selection
+      e.preventDefault();
+    });
+    
+    container.addEventListener('mouseleave', () => {
+      isDown = false;
+      container.classList.remove('active');
+    });
+    
+    container.addEventListener('mouseup', () => {
+      isDown = false;
+      container.classList.remove('active');
+    });
+    
+    container.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - container.offsetLeft;
+      const walk = (x - startX) * 2; // Scroll speed multiplier
+      container.scrollLeft = scrollLeft - walk;
+    });
+    
+    // Also handle touch events for mobile
+    container.addEventListener('touchstart', (e) => {
+      isDown = true;
+      container.classList.add('active');
+      startX = e.touches[0].pageX - container.offsetLeft;
+      scrollLeft = container.scrollLeft;
+    });
+    
+    container.addEventListener('touchend', () => {
+      isDown = false;
+      container.classList.remove('active');
+    });
+    
+    container.addEventListener('touchmove', (e) => {
+      if (!isDown) return;
+      const x = e.touches[0].pageX - container.offsetLeft;
+      const walk = (x - startX) * 2;
+      container.scrollLeft = scrollLeft - walk;
+    });
+  });
+});

@@ -41,16 +41,18 @@ class SectionTransitionManager {
     // Initialize
     this.initialize();
   }
-
   initialize() {
     // Initial setup
     this.sections.forEach((section, index) => {
-      // Reset any transition classes to start clean
-      section.classList.remove(
+      // Reset any transition classes to start clean      section.classList.remove(
         'slide-enter-active', 
         'slide-enter-down-active',
         'slide-exit-active', 
-        'slide-exit-up-active'
+        'slide-exit-up-active',
+        'section-entering',
+        'section-active',
+        'section-exiting-up',
+        'section-exiting-down'
       );
       
       if (index !== this.currentSectionIndex) {

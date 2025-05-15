@@ -435,53 +435,131 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
-  margin: 2rem 0;
-}
-
-.hostara-feature {
-  background: rgba(9, 19, 36, 0.5);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(76, 171, 247, 0.2);
-  border-radius: 10px;
-  padding: 1.5rem 1rem;
-  text-align: center;
-  transition: all 0.3s ease;
-}
-
-.hostara-feature:hover {
-  transform: translateY(-8px);
-  border-color: rgba(76, 171, 247, 0.5);
-  box-shadow: 0 10px 25px rgba(76, 171, 247, 0.1);
-}
-
-.feature-icon {
-  font-size: 2rem;
-  color: #4cabf7;
-  margin-bottom: 1rem;
-  background: linear-gradient(135deg, #4cabf7, #837df7);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  display: block;
-}
-
-.feature-label {
-  display: block;
-  font-weight: 500;
-  font-size: 0.95rem;
-  letter-spacing: 0.5px;
+  margin-bottom: 2.5rem;
 }
 
 @media (max-width: 768px) {
   .hostara-features-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 1.2rem;
   }
 }
 
 @media (max-width: 480px) {
   .hostara-features-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1rem;
   }
+}
+
+/* Hostara feature item */
+.hostara-feature {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  transition: transform 0.3s ease, background 0.3s ease;
+  border: 1px solid rgba(76, 176, 243, 0.1);
+}
+
+.hostara-feature:hover {
+  transform: translateY(-5px);
+  background: rgba(76, 176, 243, 0.1);
+  border-color: rgba(76, 176, 243, 0.3);
+}
+
+.feature-icon {
+  font-size: 1.5rem;
+  color: #64ffda;
+  margin-right: 1rem;
+  background: rgba(100, 255, 218, 0.1);
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.hostara-feature:hover .feature-icon {
+  transform: scale(1.1);
+  background: rgba(100, 255, 218, 0.2);
+}
+
+.feature-label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Testimonial styling in Hostara section */
+.hostara-testimonial {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  position: relative;
+  border: 1px solid rgba(76, 176, 243, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hostara-testimonial:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  border-color: rgba(76, 176, 243, 0.3);
+}
+
+.hostara-testimonial::before {
+  content: '"';
+  position: absolute;
+  top: 0;
+  right: 20px;
+  font-size: 5rem;
+  color: rgba(100, 255, 218, 0.1);
+  line-height: 1;
+}
+
+.testimonial-quote {
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+}
+
+.testimonial-author-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 1rem;
+  border: 2px solid rgba(76, 176, 243, 0.3);
+}
+
+.testimonial-author-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.testimonial-author-details h4 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0 0 0.25rem 0;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.testimonial-author-details p {
+  font-size: 0.8rem;
+  margin: 0;
+  color: #64ffda;
 }
 
 @media (max-width: 768px) {

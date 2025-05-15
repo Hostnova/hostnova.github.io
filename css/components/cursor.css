@@ -1,13 +1,18 @@
 /* Custom cursor styling */
 .cursor-dot,
 .cursor-follower {
-    position: absolute; /* Changed from fixed to absolute for better positioning */
+    position: fixed;
     top: 0;
     left: 0;
     pointer-events: none;
     z-index: 9999;
-    will-change: left, top; /* Optimized for direct position changes */
-    transform: translate(-50%, -50%); /* Center both elements */
+    will-change: transform;
+    transform: translate3d(-50%, -50%, 0);
+    backface-visibility: hidden;
+    perspective: 1000;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-font-smoothing: subpixel-antialiased;
 }
 
 .cursor-dot {
@@ -15,8 +20,8 @@
     height: 8px;
     background-color: #64ffda;
     border-radius: 50%;
-    transition: transform 0.1s ease-out, opacity 0.2s;
-    box-shadow: 0 0 5px rgba(100, 255, 218, 0.6); /* Add subtle glow effect */
+    /* No transition property for direct position updates */
+    box-shadow: 0 0 5px rgba(100, 255, 218, 0.6);
 }
 
 .cursor-follower {
@@ -25,7 +30,10 @@
     background-color: transparent;
     border: 2px solid rgba(76, 176, 243, 0.3);
     border-radius: 50%;
-    transition: width 0.2s ease-out, height 0.2s ease-out, border-color 0.2s ease-out;
+    /* Smoother easing but no transition on positioning */
+    transition: width 0.2s cubic-bezier(0.215, 0.61, 0.355, 1),
+                height 0.2s cubic-bezier(0.215, 0.61, 0.355, 1),
+                border-color 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
 .cursor-follower.expanded {

@@ -17,6 +17,9 @@
 /* Content sections */
 @import './content-sections.css';
 
+/* Fixed Section Transitions */
+@import './components/fixed-section-transitions.css';
+
 /* Transition overlay */
 @import './components/transition-overlay.css';
 
