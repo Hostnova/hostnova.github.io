@@ -30,11 +30,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Orbitron:wght@400;500;700;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Main Landing CSS -->
-    <link rel="stylesheet" href="css/main-landing.css">
+    <!-- Main Landing CSS -->    <link rel="stylesheet" href="css/main-landing.css">
     <link rel="stylesheet" href="css/components/hostara.css">
     <link rel="stylesheet" href="css/components/business-hostara.css">
     <link rel="stylesheet" href="css/components/consumer-section.css">
+    <link rel="stylesheet" href="css/components/pricing-color-fix.css">
 </head>
 <body class="dark-theme">
     <!-- Custom Cursor Elements -->
@@ -1089,6 +1089,27 @@
             
             // Initialize slide transitions
             handleSlideTransitions();
+            
+            // Add performance optimization for JavaScript loading
+            if ('loading' in HTMLImageElement.prototype) {
+                // Browser supports native lazy loading
+                document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+                    if (!img.complete) {
+                        img.style.opacity = '0';
+                        img.onload = () => img.style.opacity = '1';
+                    }
+                });
+            }
+            
+            // Add accessibility enhancements
+            document.querySelectorAll('button, a[role="button"]').forEach(button => {
+                if (!button.hasAttribute('aria-label') && !button.textContent.trim()) {
+                    const nearestText = button.querySelector('*[class*="label"], *[class*="text"]')?.textContent;
+                    if (nearestText) {
+                        button.setAttribute('aria-label', nearestText.trim());
+                    }
+                }
+            });
         });
     </script>
 </body>

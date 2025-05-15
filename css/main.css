@@ -46,6 +46,9 @@
 /* Section background loaders */
 @import './components/section-background-loaders.css'; /* New section background loaders */
 
+/* Pricing section color fix */
+@import './components/pricing-color-fix.css';
+
 /* Custom Styles (overrides) */
 @import './style.css';
 
