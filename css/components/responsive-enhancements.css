@@ -1,0 +1,564 @@
+/* ==========================================
+   HostNova - Responsive Design Enhancements
+   ==========================================
+   Modern responsive patterns and mobile-first design
+   December 2024 - Performance Optimization Phase
+   ========================================== */
+
+/* ==========================================
+   Modern Fluid Typography
+   ========================================== */
+
+/* Fluid typography using clamp() for better scaling */
+:root {
+  /* Fluid typography scale */
+  --fluid-text-xs: clamp(0.75rem, 0.8vw + 0.6rem, 0.875rem);
+  --fluid-text-sm: clamp(0.875rem, 0.9vw + 0.7rem, 1rem);
+  --fluid-text-base: clamp(1rem, 1.2vw + 0.8rem, 1.125rem);
+  --fluid-text-lg: clamp(1.125rem, 1.5vw + 0.9rem, 1.25rem);
+  --fluid-text-xl: clamp(1.25rem, 2vw + 1rem, 1.5rem);
+  --fluid-text-2xl: clamp(1.5rem, 2.5vw + 1.2rem, 1.875rem);
+  --fluid-text-3xl: clamp(1.875rem, 3vw + 1.5rem, 2.25rem);
+  --fluid-text-4xl: clamp(2.25rem, 4vw + 1.8rem, 3rem);
+  --fluid-text-5xl: clamp(3rem, 5vw + 2.2rem, 3.75rem);
+  --fluid-text-6xl: clamp(3.75rem, 6vw + 2.8rem, 4.5rem);
+  
+  /* Fluid spacing scale */
+  --fluid-space-xs: clamp(0.5rem, 1vw, 0.75rem);
+  --fluid-space-sm: clamp(1rem, 2vw, 1.5rem);
+  --fluid-space-md: clamp(1.5rem, 3vw, 2.5rem);
+  --fluid-space-lg: clamp(2.5rem, 4vw, 4rem);
+  --fluid-space-xl: clamp(4rem, 6vw, 6rem);
+  --fluid-space-2xl: clamp(6rem, 8vw, 8rem);
+}
+
+/* Apply fluid typography to key elements */
+.hero-title,
+.featured-logo-text {
+  font-size: var(--fluid-text-6xl) !important;
+  line-height: 1.1;
+}
+
+.hostara-heading,
+.business-headline,
+.consumer-headline {
+  font-size: var(--fluid-text-5xl) !important;
+  line-height: 1.2;
+}
+
+.hostara-subheading,
+.business-subheadline,
+.consumer-subheadline {
+  font-size: var(--fluid-text-2xl) !important;
+  line-height: 1.3;
+}
+
+.section-label {
+  font-size: var(--fluid-text-sm) !important;
+}
+
+/* ==========================================
+   Enhanced Container System
+   ========================================== */
+
+/* Fluid container with better responsive behavior */
+.container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding-left: clamp(1rem, 3vw, 2rem);
+  padding-right: clamp(1rem, 3vw, 2rem);
+}
+
+/* Responsive container variants */
+.container-fluid {
+  width: 100%;
+  padding-left: clamp(0.5rem, 2vw, 1.5rem);
+  padding-right: clamp(0.5rem, 2vw, 1.5rem);
+}
+
+.container-narrow {
+  max-width: min(65ch, 100%);
+}
+
+/* ==========================================
+   Modern Grid Enhancements
+   ========================================== */
+
+/* Enhanced auto-responsive grid */
+.auto-grid-responsive {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+  gap: clamp(1rem, 3vw, 2rem);
+}
+
+/* Responsive grid utilities */
+.grid-responsive-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+  gap: var(--fluid-space-md);
+}
+
+.grid-responsive-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+  gap: var(--fluid-space-md);
+}
+
+.grid-responsive-4 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+  gap: var(--fluid-space-sm);
+}
+
+/* ==========================================
+   Enhanced Touch Interactions
+   ========================================== */
+
+/* Better touch targets for mobile */
+@media (pointer: coarse) {
+  .btn,
+  .nav-link,
+  .section-nav-button,
+  .app-store-button,
+  .social-link {
+    min-height: 44px;
+    min-width: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Enhanced tap areas for navigation */
+  .nav-link {
+    padding: 0.75rem 1rem;
+  }
+  
+  /* Larger form controls */
+  .form-input,
+  .form-textarea,
+  .form-select {
+    min-height: 44px;
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+}
+
+/* Improved hover states for touch devices */
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover,
+  .card:hover,
+  .feature-item:hover,
+  .consumer-benefit-card:hover {
+    transform: translateY(-2px);
+  }
+}
+
+/* ==========================================
+   Component-Specific Responsive Improvements
+   ========================================== */
+
+/* Enhanced Hero Section Responsiveness */
+.hero-section {
+  min-height: clamp(600px, 100vh, 1000px);
+  padding: var(--fluid-space-xl) 0;
+}
+
+.hero-content {
+  padding-top: clamp(2rem, 8vh, 4rem);
+}
+
+.hero-description {
+  font-size: var(--fluid-text-lg);
+  max-width: min(60ch, 90%);
+  margin: 0 auto var(--fluid-space-lg);
+}
+
+/* Responsive Navigation Improvements */
+@media (max-width: 992px) {
+  .nav-list {
+    width: min(85vw, 400px);
+    padding: clamp(4rem, 8vh, 6rem) var(--fluid-space-md) var(--fluid-space-md);
+  }
+  
+  .nav-link {
+    font-size: var(--fluid-text-lg);
+    padding: var(--fluid-space-sm) 0;
+  }
+}
+
+/* Enhanced Section Spacing */
+.content-section,
+.cinematic-section {
+  padding: var(--fluid-space-2xl) 0;
+}
+
+.section-header {
+  margin-bottom: var(--fluid-space-xl);
+}
+
+/* ==========================================
+   Card Component Enhancements
+   ========================================== */
+
+/* Responsive card layouts */
+.consumer-benefits {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+  gap: var(--fluid-space-md);
+}
+
+.consumer-benefit-card {
+  padding: var(--fluid-space-md);
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* App showcase responsive improvements */
+.apps-demo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--fluid-space-lg);
+  padding: var(--fluid-space-md);
+}
+
+.app-demo {
+  width: clamp(140px, 20vw, 160px);
+  height: clamp(280px, 40vw, 320px);
+  flex-shrink: 0;
+}
+
+/* ==========================================
+   Form and Input Improvements
+   ========================================== */
+
+/* Responsive form layouts */
+.request-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+  gap: var(--fluid-space-md);
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+/* Enhanced form controls */
+.form-input,
+.form-textarea,
+.form-select {
+  font-size: clamp(0.875rem, 1.2vw, 1rem);
+  padding: clamp(0.75rem, 1.5vw, 1rem);
+  border-radius: clamp(0.25rem, 0.5vw, 0.5rem);
+}
+
+/* ==========================================
+   Button Improvements
+   ========================================== */
+
+/* Responsive button groups */
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--fluid-space-sm);
+  justify-content: center;
+}
+
+.hero-cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--fluid-space-md);
+  justify-content: center;
+  align-items: center;
+  margin-bottom: var(--fluid-space-xl);
+}
+
+.btn {
+  padding: clamp(0.75rem, 1.5vw, 1rem) clamp(1.5rem, 3vw, 2rem);
+  font-size: var(--fluid-text-base);
+  border-radius: clamp(0.25rem, 0.8vw, 0.5rem);
+  min-width: 140px;
+}
+
+/* ==========================================
+   Advanced Mobile Optimizations
+   ========================================== */
+
+/* Improved mobile viewport handling */
+@media (max-width: 768px) {
+  /* Optimize for mobile viewports */
+  .hero-section {
+    min-height: 100svh; /* Use small viewport height when available */
+  }
+  
+  /* Reduce excessive animations on mobile */
+  .orbital-ring,
+  .floating-element,
+  .nebula,
+  .constellation {
+    animation-duration: 8s;
+    animation-iteration-count: 3;
+  }
+  
+  /* Optimize text for readability */
+  .hostara-description,
+  .business-description,
+  .consumer-description,
+  .benefit-description {
+    font-size: var(--fluid-text-base);
+    line-height: 1.6;
+  }
+  
+  /* Better mobile spacing */
+  .consumer-container,
+  .business-container,
+  .hostara-content {
+    width: 95%;
+    gap: var(--fluid-space-lg);
+  }
+  
+  /* Simplify complex layouts */
+  .consumer-content {
+    grid-template-columns: 1fr;
+    gap: var(--fluid-space-lg);
+  }
+  
+  .business-content {
+    grid-template-columns: 1fr;
+    gap: var(--fluid-space-lg);
+  }
+}
+
+/* Extra small devices optimization */
+@media (max-width: 480px) {
+  /* Ultra-compact spacing */
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* Optimize button sizes */
+  .btn {
+    width: 100%;
+    max-width: none;
+    margin-bottom: 0.5rem;
+  }
+  
+  .hero-cta-group,
+  .btn-group {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  /* Simplify app demos */
+  .apps-demo {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--fluid-space-md);
+  }
+  
+  /* Stack social proof elements */
+  .consumer-social-proof {
+    grid-template-columns: 1fr;
+  }
+  
+  .testimonials-container {
+    flex-direction: column;
+  }
+}
+
+/* ==========================================
+   High-DPI and Retina Display Optimizations
+   ========================================== */
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  /* Sharper images for high-DPI displays */
+  .logo-image,
+  .hostara-screenshot,
+  .app-icon {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+  
+  /* Thinner borders for high-DPI */
+  .consumer-benefit-card,
+  .business-feature-card,
+  .form-input,
+  .btn {
+    border-width: 0.5px;
+  }
+}
+
+/* ==========================================
+   Dark Mode and System Preferences
+   ========================================== */
+
+@media (prefers-color-scheme: dark) {
+  /* Enhanced dark mode support */
+  :root {
+    --color-text-contrast: #ffffff;
+    --color-background-contrast: #000000;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Respect user motion preferences */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transform: none !important;
+  }
+  
+  /* Keep essential animations but make them subtle */
+  .btn:hover,
+  .card:hover {
+    transform: none;
+    transition: box-shadow 0.2s ease;
+  }
+}
+
+/* ==========================================
+   Print Styles
+   ========================================== */
+
+@media print {
+  /* Optimize for printing */
+  .site-header,
+  .site-footer,
+  .nav-toggle,
+  .orbital-ring,
+  .floating-element,
+  .video-background,
+  .btn {
+    display: none !important;
+  }
+  
+  .container {
+    max-width: none;
+    padding: 0;
+  }
+  
+  .content-section {
+    page-break-inside: avoid;
+  }
+  
+  h1, h2, h3 {
+    page-break-after: avoid;
+  }
+}
+
+/* ==========================================
+   Future-Proof Container Queries
+   ========================================== */
+
+/* When container queries become more widely supported */
+@supports (container-type: inline-size) {
+  .responsive-container {
+    container-type: inline-size;
+  }
+  
+  @container (max-width: 600px) {
+    .adaptive-layout {
+      flex-direction: column;
+    }
+  }
+  
+  @container (min-width: 600px) {
+    .adaptive-layout {
+      flex-direction: row;
+    }
+  }
+}
+
+/* ==========================================
+   Utility Classes for Responsive Design
+   ========================================== */
+
+/* Show/hide utilities */
+.mobile-only {
+  display: block;
+}
+
+.desktop-only {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .mobile-only {
+    display: none;
+  }
+  
+  .desktop-only {
+    display: block;
+  }
+}
+
+/* Responsive text alignment */
+.text-center-mobile {
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .text-center-mobile {
+    text-align: left;
+  }
+}
+
+/* Responsive spacing utilities */
+.space-y-responsive > * + * {
+  margin-top: var(--fluid-space-md);
+}
+
+.space-x-responsive {
+  gap: var(--fluid-space-sm);
+}
+
+/* Aspect ratio utilities for responsive media */
+.aspect-ratio-16-9 {
+  aspect-ratio: 16 / 9;
+}
+
+.aspect-ratio-4-3 {
+  aspect-ratio: 4 / 3;
+}
+
+.aspect-ratio-1-1 {
+  aspect-ratio: 1 / 1;
+}
+
+/* Responsive image utility */
+.img-responsive {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* ==========================================
+   Performance Optimizations
+   ========================================== */
+
+/* GPU acceleration for smooth animations */
+.smooth-transform {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Optimize repaints for scrolling */
+.scroll-optimized {
+  contain: layout style paint;
+}
+
+/* Lazy loading optimization */
+.lazy-load {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.lazy-load.loaded {
+  opacity: 1;
+}

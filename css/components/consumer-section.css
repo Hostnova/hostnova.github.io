@@ -730,33 +730,133 @@
 
 @media (max-width: 768px) {
   .consumer-headline {
-    font-size: 2rem;
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+    line-height: 1.2;
+  }
+  
+  .consumer-subheadline {
+    font-size: clamp(1rem, 3vw, 1.2rem);
   }
   
   .consumer-benefits {
     grid-template-columns: 1fr;
+    gap: clamp(1rem, 3vw, 2rem);
   }
   
   .apps-demo {
     flex-direction: column;
     align-items: center;
-    gap: 3rem;
+    gap: clamp(2rem, 5vw, 3rem);
+  }
+  
+  .app-demo {
+    width: clamp(140px, 35vw, 180px);
+    height: clamp(280px, 70vw, 360px);
   }
   
   .stats-container {
     flex-direction: column;
+    gap: clamp(1rem, 3vw, 2rem);
+  }
+  
+  .developer-highlight {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .developer-image-container {
+    width: 100%;
+    max-width: 200px;
+    height: 150px;
+    margin: 0 auto;
+  }
+  
+  .consumer-cta-wrapper {
+    grid-template-columns: 1fr;
+    gap: clamp(1.5rem, 4vw, 2rem);
+  }
+  
+  .apps-grid {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
   }
 }
 
 @media (max-width: 480px) {
   .consumer-container {
-    padding: 1rem 0;
-    gap: 2rem;
+    padding: clamp(1rem, 3vw, 2rem) 0;
+    gap: clamp(1.5rem, 4vw, 2rem);
     width: 95%;
   }
   
   .consumer-headline {
-    font-size: 1.8rem;
+    font-size: clamp(1.5rem, 6vw, 2rem);
+  }
+  
+  .consumer-subheadline {
+    font-size: clamp(0.9rem, 3.5vw, 1.1rem);
+  }
+  
+  .consumer-benefits {
+    gap: 1.5rem;
+  }
+  
+  .consumer-benefit-card {
+    padding: clamp(1rem, 4vw, 1.5rem);
+    min-height: auto;
+  }
+  
+  .benefit-title {
+    font-size: clamp(1rem, 3vw, 1.2rem);
+  }
+  
+  .benefit-description {
+    font-size: clamp(0.85rem, 2.5vw, 1rem);
+  }
+  
+  .apps-demo {
+    gap: 2rem;
+  }
+  
+  .app-demo {
+    width: clamp(120px, 40vw, 160px);
+    height: clamp(240px, 80vw, 320px);
+  }
+  
+  .app-store-buttons {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.75rem;
+  }
+  
+  .app-store-button {
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+    padding: 1rem 1.5rem;
+    font-size: 0.95rem;
+  }
+  
+  .testimonials-container {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .apps-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+  
+  .app-card {
+    padding: 0.75rem;
+  }
+  
+  .app-icon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 0.5rem;
+  }
+}
   }
   
   .app-store-buttons {

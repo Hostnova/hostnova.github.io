@@ -1,0 +1,357 @@
+/* ==========================================
+   Core Web Vitals Optimization Component
+   Performance enhancements for LCP, FID, and CLS
+   ========================================== */
+
+/* Largest Contentful Paint (LCP) Optimizations */
+.lcp-optimized {
+  /* Critical elements for LCP improvement */
+  content-visibility: auto;
+  contain-intrinsic-size: 800px 600px;
+}
+
+.hero-lcp-priority {
+  /* Hero section LCP optimization */
+  loading: eager;
+  decoding: sync;
+  fetchpriority: high;
+  importance: high;
+  contain: layout style paint;
+}
+
+/* First Input Delay (FID) Optimizations */
+.interactive-ready {
+  /* Elements ready for user interaction */
+  pointer-events: auto;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.non-blocking-animation {
+  /* Animations that don't block main thread */
+  will-change: transform, opacity;
+  transform: translateZ(0); /* Force hardware acceleration */
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Cumulative Layout Shift (CLS) Prevention */
+.layout-stable {
+  /* Prevent layout shifts */
+  contain: layout;
+  min-height: fit-content;
+  box-sizing: border-box;
+}
+
+.aspect-ratio-preserved {
+  /* Maintain aspect ratios to prevent shifts */
+  aspect-ratio: var(--aspect-ratio, 16/9);
+  width: 100%;
+  height: auto;
+}
+
+/* Font loading optimization for CLS */
+.font-display-optimized {
+  font-display: swap;
+  font-synthesis: none;
+  text-rendering: optimizeSpeed;
+}
+
+/* Critical resource loading optimization */
+.critical-resource {
+  /* Critical CSS and JS resources */
+  loading: eager;
+  fetchpriority: high;
+  importance: high;
+}
+
+.preload-resource {
+  /* Resources to preload */
+  rel: preload;
+  as: style;
+  crossorigin: anonymous;
+}
+
+/* Render blocking resource optimization */
+.non-render-blocking {
+  /* Non-critical CSS that shouldn't block rendering */
+  media: print;
+  onload: "this.media='all'";
+  loading: lazy;
+}
+
+/* JavaScript performance optimizations */
+.js-optimized {
+  /* Non-blocking JavaScript execution */
+  loading: defer;
+  async: true;
+}
+
+/* Image performance for Core Web Vitals */
+.cwv-image-optimized {
+  /* Optimized images for better Web Vitals */
+  loading: lazy;
+  decoding: async;
+  fetchpriority: auto;
+  sizes: "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw";
+}
+
+.above-fold-image {
+  /* Images above the fold - critical for LCP */
+  loading: eager;
+  decoding: sync;
+  fetchpriority: high;
+  sizes: "100vw";
+}
+
+/* Performance monitoring helpers */
+.performance-marker {
+  /* Elements to measure performance */
+  data-performance-marker: true;
+}
+
+/* Connection speed adaptive loading */
+.connection-aware {
+  /* Adaptive based on connection speed */
+  content-visibility: auto;
+}
+
+@media (prefers-reduced-data: reduce) {
+  .connection-aware {
+    /* Reduce data usage on slow connections */
+    background-image: none;
+    filter: none;
+    animation: none;
+    transition: none;
+  }
+}
+
+/* GPU acceleration for smooth animations */
+.gpu-accelerated {
+  transform: translateZ(0);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  perspective: 1000px;
+  -webkit-transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  -webkit-perspective: 1000px;
+}
+
+/* Efficient scrolling performance */
+.smooth-scroll-optimized {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+/* Memory usage optimization */
+.memory-efficient {
+  /* Efficient memory usage */
+  contain: strict;
+  content-visibility: auto;
+  contain-intrinsic-size: 300px 200px;
+}
+
+/* Network resource hints */
+.dns-prefetch {
+  /* DNS prefetching for external resources */
+  rel: dns-prefetch;
+}
+
+.preconnect {
+  /* Preconnect to critical third-party origins */
+  rel: preconnect;
+  crossorigin: anonymous;
+}
+
+/* Critical rendering path optimization */
+.critical-path-optimized {
+  /* Elements in critical rendering path */
+  contain: layout style;
+  will-change: auto;
+}
+
+/* Progressive enhancement markers */
+.progressive-enhancement {
+  /* Base styles for progressive enhancement */
+  enhance: progressive;
+}
+
+.enhanced-experience {
+  /* Enhanced styles when JavaScript is available */
+  transition: all 0.3s ease;
+  transform: translateZ(0);
+}
+
+/* Intersection Observer optimization */
+.observe-visibility {
+  /* Elements for intersection observer */
+  content-visibility: auto;
+  contain-intrinsic-size: auto 200px;
+}
+
+/* Service Worker cache optimization */
+.cache-optimized {
+  /* Resources suitable for caching */
+  cache-control: public, max-age=31536000;
+}
+
+/* Bundle size optimization markers */
+.code-split-boundary {
+  /* Code splitting boundaries */
+  dynamic-import: supported;
+}
+
+/* Third-party script optimization */
+.third-party-optimized {
+  /* Third-party scripts optimization */
+  loading: lazy;
+  defer: true;
+  async: true;
+}
+
+/* CSS containment for performance */
+.contain-layout {
+  contain: layout;
+}
+
+.contain-style {
+  contain: style;
+}
+
+.contain-paint {
+  contain: paint;
+}
+
+.contain-size {
+  contain: size;
+}
+
+.contain-strict {
+  contain: strict;
+}
+
+/* Web Workers support indicators */
+.web-worker-supported {
+  /* Indicates Web Worker availability */
+  worker-support: true;
+}
+
+/* Resource prioritization */
+.priority-high {
+  fetchpriority: high;
+  importance: high;
+}
+
+.priority-low {
+  fetchpriority: low;
+  importance: low;
+}
+
+/* Preload strategies */
+.preload-critical {
+  /* Critical resources to preload */
+  rel: preload;
+  as: style;
+  importance: high;
+}
+
+.preload-fonts {
+  /* Font preloading */
+  rel: preload;
+  as: font;
+  type: "font/woff2";
+  crossorigin: anonymous;
+}
+
+/* Responsive images for performance */
+.responsive-performance {
+  /* Performance-optimized responsive images */
+  sizes: "(max-width: 480px) 100vw, (max-width: 768px) 50vw, 33vw";
+  loading: lazy;
+  decoding: async;
+}
+
+/* Animation performance optimization */
+.animation-optimized {
+  /* Optimized animations for 60fps */
+  animation-fill-mode: both;
+  animation-play-state: paused;
+  will-change: transform;
+  contain: layout;
+}
+
+.animation-optimized.visible {
+  animation-play-state: running;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .animation-optimized,
+  .non-blocking-animation,
+  .gpu-accelerated {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+/* Performance debugging helpers */
+.performance-debug {
+  /* Development mode performance debugging */
+  outline: 2px dashed rgba(255, 0, 0, 0.5);
+}
+
+.performance-debug::before {
+  content: 'PERF: ' attr(data-perf-metric);
+  position: absolute;
+  top: -20px;
+  left: 0;
+  font-size: 10px;
+  background: red;
+  color: white;
+  padding: 2px 4px;
+  z-index: 9999;
+}
+
+/* Mobile performance optimizations */
+@media (max-width: 768px) {
+  .mobile-optimized {
+    /* Mobile-specific performance optimizations */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+  
+  .gpu-accelerated {
+    /* Enhanced GPU acceleration on mobile */
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Network-aware loading */
+@media (prefers-reduced-data: reduce) {
+  .data-saver {
+    /* Data saver mode optimizations */
+    background-image: none;
+    filter: none;
+    box-shadow: none;
+    text-shadow: none;
+  }
+}
+
+/* Battery optimization */
+@media (prefers-reduced-motion: reduce) {
+  .battery-efficient {
+    /* Battery-efficient styles */
+    animation-duration: 0.1s;
+    transition-duration: 0.1s;
+    filter: none;
+    backdrop-filter: none;
+  }
+}

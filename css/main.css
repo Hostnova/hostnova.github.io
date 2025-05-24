@@ -29,6 +29,14 @@
 /* Section transitions for smooth scrolling */
 @import './components/section-transitions.css';
 
+/* Advanced responsive design enhancements */
+@import './components/responsive-enhancements.css';
+
+/* Performance optimizations */
+@import './components/image-optimization.css';
+@import './components/core-web-vitals.css';
+@import './components/pwa-enhancements.css';
+
 /* Custom Styles (overrides) */
 @import './style.css';
 

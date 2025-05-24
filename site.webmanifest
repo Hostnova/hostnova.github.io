@@ -1,19 +1,57 @@
 {
-  "name": "HostNova",
+  "name": "HostNova - Orbit Beyond Ordinary",
   "short_name": "HostNova",
+  "description": "Revolutionary decentralized hosting platform offering unparalleled security, uptime, and user control",
+  "lang": "en",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay"],
+  "orientation": "portrait-primary",
+  "theme_color": "#0a0f28",
+  "background_color": "#0a0f28",
   "icons": [
     {
       "src": "/images/icons/android-chrome-192x192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "/images/icons/android-chrome-512x512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/hostnova-logo.png",
+      "sizes": "150x150",
+      "type": "image/png",
+      "purpose": "any"
     }
   ],
-  "theme_color": "#0a0f28",
-  "background_color": "#0a0f28",
-  "display": "standalone"
+  "categories": ["business", "developer", "productivity"],
+  "screenshots": [
+    {
+      "src": "/images/interfaces/hostara-interface-demo.jpg",
+      "sizes": "300x600",
+      "type": "image/jpeg",
+      "form_factor": "narrow"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Hostara App",
+      "short_name": "Hostara",
+      "description": "Access the Hostara hosting interface",
+      "url": "/hostara-portal",
+      "icons": [
+        {
+          "src": "/images/hostnova-logo.png",
+          "sizes": "150x150"
+        }
+      ]
+    }
+  ],
+  "prefer_related_applications": false
 }

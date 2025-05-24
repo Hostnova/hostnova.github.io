@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
     <title>HostNova - Orbit Beyond Ordinary</title>
     <meta name="description" content="HostNova is building a revolutionary decentralized hosting platform, offering unparalleled security, uptime, and user control.">
     
@@ -32,6 +32,9 @@
     <link rel="stylesheet" href="css/components/hostara.css">
     <link rel="stylesheet" href="css/components/business-hostara.css">
     <link rel="stylesheet" href="css/components/consumer-section.css">
+    
+    <!-- Performance monitoring script -->
+    <script src="js/performance.js" defer></script>
 </head>
 <body class="dark-theme">
     <!-- Custom Cursor Elements -->
@@ -133,9 +136,8 @@
                 <div class="accent-pulse accent-pulse-2"></div>
             </div>
             
-            <!-- Video Background (optional) -->
-            <div class="video-background">
-                <video autoplay loop muted playsinline class="hero-video" poster="images/backgrounds/hero-poster.jpg">
+            <!-- Video Background (optional) -->            <div class="video-background">
+                <video autoplay loop muted playsinline class="hero-video optimized-video" poster="images/backgrounds/hero-poster.jpg">
                     <!-- Enable video source when available -->
                     <source src="videos/futuristic_network_animation.mp4" type="video/mp4">
                 </video>
@@ -149,9 +151,8 @@
                     <div class="hero-card-3d-inner">
                         <div class="featured-logo-container interactive-hover">
                             <div class="featured-logo">
-                                <!-- Logo container -->
-                                <div class="logo-image-container">
-                                    <img src="images/hostnova-logo.png" alt="HostNova Logo" class="logo-image">
+                                <!-- Logo container -->                                <div class="logo-image-container">
+                                    <img src="images/hostnova-logo.png" alt="HostNova Logo" class="logo-image responsive-image" loading="eager" width="150" height="150">
                                 </div>
                                 <span class="featured-logo-text">HOST<span class="featured-logo-accent">NOVA</span></span>
                                 <div class="logo-orbital-ring"></div>
@@ -250,7 +251,7 @@
                 <div class="hostara-app-container">
                     <div class="hostara-phone">
                         <div class="hostara-screen">
-                            <img class="hostara-screenshot" src="images/interfaces/hostara-interface-demo.jpg" alt="Hostara App Interface">
+                            <img class="hostara-screenshot responsive-image" src="images/interfaces/hostara-interface-demo.jpg" alt="Hostara App Interface" loading="lazy" width="300" height="600">
                         </div>
                     </div>
                 </div>
@@ -328,9 +329,8 @@
                     </div>
                     
                     <div class="business-testimonial">
-                        <div class="ceo-highlight">
-                            <div class="ceo-image-container">
-                                <img src="images\team\CEO-standing.png" alt="Simon Wandera - CEO" class="ceo-image">
+                        <div class="ceo-highlight">                            <div class="ceo-image-container">
+                                <img src="images/team/CEO-standing.png" alt="Simon Wandera - CEO" class="ceo-image responsive-image" loading="lazy" width="200" height="300">
                             </div>
                         </div>
                         <div class="testimonial-card">
@@ -343,9 +343,8 @@
                                 </svg>
                             </div>
                             <p class="testimonial-text">Hostara's AI-based auto-scaling saved our campus food-delivery app 25% on hosting costs—so we could reinvest in marketing.</p>
-                            <div class="testimonial-author">
-                                <div class="author-image-container">
-                                    <img src="images\team\CEO.png" alt="Simon Wandera - CEO" class="author-image">
+                            <div class="testimonial-author">                                <div class="author-image-container">
+                                    <img src="images/team/CEO.png" alt="Simon Wandera - CEO" class="author-image responsive-image" loading="lazy" width="60" height="60">
                                 </div>
                                 <div class="author-details">
                                     <p class="author-name">Simon Wandera</p>
@@ -509,9 +508,8 @@
                             </div>
                         </div>
 
-                        <div class="developer-highlight">
-                            <div class="developer-image-container">
-                                <img src="images/team/lead-dev.png" alt="Lead Developer" class="developer-image">
+                        <div class="developer-highlight">                            <div class="developer-image-container">
+                                <img src="images/team/CEO.png" alt="James Mwangi - Lead Developer" class="developer-image responsive-image" loading="lazy" width="150" height="150">
                             </div>
                             <div class="developer-info">
                                 <p class="developer-quote">"We built Hostara with the Kenyan mobile user in mind—optimized for speed, M-Pesa integration, and reliable performance even on variable connections."</p>
@@ -1090,8 +1088,7 @@
                     }
                 });
             }
-            
-            // Add accessibility enhancements
+              // Add accessibility enhancements
             document.querySelectorAll('button, a[role="button"]').forEach(button => {
                 if (!button.hasAttribute('aria-label') && !button.textContent.trim()) {
                     const nearestText = button.querySelector('*[class*="label"], *[class*="text"]')?.textContent;
@@ -1100,6 +1097,161 @@
                     }
                 }
             });
+
+            // Register Service Worker for PWA functionality
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', async () => {
+                    try {
+                        const registration = await navigator.serviceWorker.register('/sw.js');
+                        console.log('Service Worker registered successfully:', registration.scope);
+                        
+                        // Check for updates
+                        registration.addEventListener('updatefound', () => {
+                            const newWorker = registration.installing;
+                            newWorker.addEventListener('statechange', () => {
+                                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                    // Show update available notification
+                                    showUpdateNotification();
+                                }
+                            });
+                        });
+                    } catch (error) {
+                        console.log('Service Worker registration failed:', error);
+                    }
+                });
+            }
+
+            // PWA Install Prompt
+            let deferredPrompt;
+            window.addEventListener('beforeinstallprompt', (e) => {
+                e.preventDefault();
+                deferredPrompt = e;
+                showInstallPrompt();
+            });
+
+            function showInstallPrompt() {
+                // Create install prompt (if not already exists)
+                if (!document.querySelector('.pwa-install-prompt')) {
+                    const installPrompt = document.createElement('div');
+                    installPrompt.className = 'pwa-install-prompt';
+                    installPrompt.innerHTML = `
+                        <div class="install-prompt-content">
+                            <div class="install-prompt-icon">📱</div>
+                            <div class="install-prompt-text">
+                                <h3>Install HostNova</h3>
+                                <p>Get the full experience with our app!</p>
+                            </div>
+                            <div class="install-prompt-actions">
+                                <button class="install-btn">Install</button>
+                                <button class="dismiss-btn">×</button>
+                            </div>
+                        </div>
+                    `;
+                    
+                    document.body.appendChild(installPrompt);
+                    
+                    // Handle install button click
+                    installPrompt.querySelector('.install-btn').addEventListener('click', async () => {
+                        if (deferredPrompt) {
+                            deferredPrompt.prompt();
+                            const { outcome } = await deferredPrompt.userChoice;
+                            console.log('PWA install outcome:', outcome);
+                            deferredPrompt = null;
+                        }
+                        installPrompt.remove();
+                    });
+                    
+                    // Handle dismiss button click
+                    installPrompt.querySelector('.dismiss-btn').addEventListener('click', () => {
+                        installPrompt.remove();
+                    });
+                    
+                    // Auto-hide after 10 seconds
+                    setTimeout(() => {
+                        if (installPrompt.parentNode) {
+                            installPrompt.remove();
+                        }
+                    }, 10000);
+                }
+            }
+
+            function showUpdateNotification() {
+                // Create update notification
+                const updateNotification = document.createElement('div');
+                updateNotification.className = 'pwa-update-notification';
+                updateNotification.innerHTML = `
+                    <div class="update-notification-content">
+                        <div class="update-notification-text">
+                            <strong>Update Available</strong>
+                            <p>A new version of HostNova is ready!</p>
+                        </div>
+                        <div class="update-notification-actions">
+                            <button class="update-btn">Update</button>
+                            <button class="later-btn">Later</button>
+                        </div>
+                    </div>
+                `;
+                
+                document.body.appendChild(updateNotification);
+                
+                // Handle update button click
+                updateNotification.querySelector('.update-btn').addEventListener('click', () => {
+                    if (navigator.serviceWorker.controller) {
+                        navigator.serviceWorker.controller.postMessage({ type: 'SKIP_WAITING' });
+                    }
+                    window.location.reload();
+                });
+                
+                // Handle later button click
+                updateNotification.querySelector('.later-btn').addEventListener('click', () => {
+                    updateNotification.remove();
+                });
+                
+                // Auto-hide after 15 seconds
+                setTimeout(() => {
+                    if (updateNotification.parentNode) {
+                        updateNotification.remove();
+                    }
+                }, 15000);
+            }
+
+            // Connection status monitoring
+            function updateConnectionStatus() {
+                const isOnline = navigator.onLine;
+                document.body.classList.toggle('offline', !isOnline);
+                
+                if (!isOnline) {
+                    showOfflineNotification();
+                } else {
+                    hideOfflineNotification();
+                }
+            }
+
+            function showOfflineNotification() {
+                if (!document.querySelector('.offline-notification')) {
+                    const offlineNotification = document.createElement('div');
+                    offlineNotification.className = 'offline-notification';
+                    offlineNotification.innerHTML = `
+                        <div class="offline-content">
+                            <span class="offline-icon">📡</span>
+                            <span class="offline-text">You're offline. Some features may be limited.</span>
+                        </div>
+                    `;
+                    document.body.appendChild(offlineNotification);
+                }
+            }
+
+            function hideOfflineNotification() {
+                const offlineNotification = document.querySelector('.offline-notification');
+                if (offlineNotification) {
+                    offlineNotification.remove();
+                }
+            }
+
+            // Initialize connection monitoring
+            updateConnectionStatus();
+            window.addEventListener('online', updateConnectionStatus);
+            window.addEventListener('offline', updateConnectionStatus);
         });
     </script>
 </body>

@@ -198,27 +198,30 @@
 @media (max-width: 992px) {
   .nav-toggle {
     display: block;
+    z-index: var(--z-modal);
+    position: relative;
   }
   
   .nav-list {
     position: fixed;
     top: 0;
     right: -100%;
-    width: 80%;
-    max-width: 400px;
+    width: min(85vw, 400px);
     height: 100vh;
-    background: linear-gradient(135deg, rgba(28, 28, 30, 0.95), rgba(10, 10, 10, 0.98));
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    height: 100dvh; /* Use dynamic viewport height when available */
+    background: linear-gradient(135deg, rgba(28, 28, 30, 0.98), rgba(10, 10, 10, 0.99));
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     flex-direction: column;
-    padding: 6rem 2rem 2rem;
-    transition: right var(--transition-base);
+    padding: clamp(4rem, 8vh, 6rem) 2rem 2rem;
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: var(--z-front);
     box-shadow: -5px 0 30px rgba(0, 0, 0, 0.5);
     justify-content: flex-start;
     align-items: flex-start;
     overflow-y: auto;
-    gap: 2rem;
+    gap: 1.5rem;
+    border-left: 1px solid rgba(230, 181, 74, 0.2);
   }
   
   .nav-list.open {
@@ -226,10 +229,22 @@
   }
   
   .nav-link {
-    font-size: 1.1rem;
-    padding: 0.75rem 0;
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    padding: 1rem 0;
     width: 100%;
     border-bottom: 1px solid rgba(230, 181, 74, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    min-height: 44px; /* Better touch target */
+    display: flex;
+    align-items: center;
+  }
+  
+  .nav-link:hover,
+  .nav-link:focus {
+    color: var(--color-primary);
+    padding-left: 1rem;
+    border-bottom-color: var(--color-primary);
   }
   
   .nav-link::after {
@@ -238,9 +253,31 @@
   
   .cta-nav {
     margin-left: 0;
-    margin-top: 1rem;
+    margin-top: 2rem;
     width: 100%;
     text-align: center;
+    min-height: 48px; /* Enhanced touch target */
+  }
+  
+  /* Enhanced mobile menu overlay */
+  .nav-list::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: -100vw;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    transition: opacity 0.3s ease;
+    opacity: 0;
+    pointer-events: none;
+    z-index: -1;
+  }
+  
+  .nav-list.open::before {
+    left: 0;
+    opacity: 1;
+    pointer-events: all;
   }
 }
 
