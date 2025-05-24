@@ -28,13 +28,10 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Orbitron:wght@400;500;700;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- Main Landing CSS -->    <link rel="stylesheet" href="css/main-landing.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Orbitron:wght@400;500;700;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">    <!-- Main Landing CSS -->    <link rel="stylesheet" href="css/main-landing.css">
     <link rel="stylesheet" href="css/components/hostara.css">
     <link rel="stylesheet" href="css/components/business-hostara.css">
     <link rel="stylesheet" href="css/components/consumer-section.css">
-    <link rel="stylesheet" href="css/components/pricing-color-fix.css">
 </head>
 <body class="dark-theme">
     <!-- Custom Cursor Elements -->
@@ -55,8 +52,7 @@
             <button class="section-nav-button" data-section="2">
                 <span class="section-nav-dot"></span>
                 <span class="section-nav-label">Business</span>
-            </button>
-            <button class="section-nav-button" data-section="3">
+            </button>            <button class="section-nav-button" data-section="3">
                 <span class="section-nav-dot"></span>
                 <span class="section-nav-label">Consumers</span>
             </button>
@@ -233,10 +229,9 @@
             <div class="hostara-dot hostara-dot-1"></div>
             <div class="hostara-dot hostara-dot-2"></div>
             <div class="hostara-dot hostara-dot-3"></div>
-            
-            <!-- Logo -->
+              <!-- Logo -->
             <div class="hostara-logo-container">
-                <img class="hostara-logo" src="images/svg/hostara-logo.svg" alt="Hostara Logo">
+                <div class="hostara-logo-text">HOSTARA</div>
             </div>
             
             <!-- Main content -->
@@ -387,19 +382,18 @@
                 </div>
                 
                 <div class="campus-partners">
-                    <p class="partners-heading">TRUSTED BY CAMPUS INNOVATORS FROM</p>
-                    <div class="partners-logos">
+                    <p class="partners-heading">TRUSTED BY CAMPUS INNOVATORS FROM</p>                    <div class="partners-logos">
                         <div class="partner-logo">
-                            <img src="images/svg/university-of-nairobi.svg" alt="University of Nairobi">
+                            <span class="partner-name">University of Nairobi</span>
                         </div>
                         <div class="partner-logo">
-                            <img src="images/svg/strathmore-university.svg" alt="Strathmore University">
+                            <span class="partner-name">Strathmore University</span>
                         </div>
                         <div class="partner-logo">
-                            <img src="images/svg/kenyatta-university.svg" alt="Kenyatta University">
+                            <span class="partner-name">Kenyatta University</span>
                         </div>
                         <div class="partner-logo">
-                            <img src="images/svg/jomo-kenyatta-university.svg" alt="Jomo Kenyatta University">
+                            <span class="partner-name">JKUAT</span>
                         </div>
                     </div>
                 </div>
@@ -619,11 +613,9 @@
                                 </svg>
                                 <span>Google Play</span>
                             </a>
-                        </div>
-                    </div>
+                        </div>                    </div>
                 </div>
-            </div>
-        </section>
+            </div>        </section>
     </main>
 
     <!-- Enhanced Interactive JS -->
@@ -1084,12 +1076,10 @@
                             cursorFollower.style.borderColor = 'rgba(76, 176, 243, 0.3)';
                         }
                     });
-                }
-            };
-            
-            // Initialize slide transitions
+                }            };
+              // Initialize slide transitions
             handleSlideTransitions();
-            
+              
             // Add performance optimization for JavaScript loading
             if ('loading' in HTMLImageElement.prototype) {
                 // Browser supports native lazy loading
