@@ -51,8 +51,7 @@
             <button class="section-nav-button" data-section="1">
                 <span class="section-nav-dot"></span>
                 <span class="section-nav-label">Hostara</span>
-            </button>
-            <button class="section-nav-button" data-section="2">
+            </button>            <button class="section-nav-button" data-section="2">
                 <span class="section-nav-dot"></span>
                 <span class="section-nav-label">Business</span>
             </button>            <button class="section-nav-button" data-section="3">
@@ -173,9 +172,8 @@
                     </div>
                 </div>
                 
-                <div class="hero-cta-group">
-                    <a href="#" class="btn btn-primary interactive-hover">Try Hostara Now</a>
-                    <a href="#" class="btn btn-outline interactive-hover">Explore Features</a>
+                <div class="hero-cta-group">                    <a href="hostara.html" class="btn btn-primary blue-theme interactive-hover">Try Hostara Now</a>
+                    <a href="#" class="btn btn-outline blue-theme interactive-hover">Explore Features</a>
                 </div>
                 
                 <!-- Scroll Indicator -->
@@ -245,7 +243,7 @@
                         Monitor your nodes, manage resources, and earn rewards—all from your smartphone.
                         Take full control of your hosting experience wherever you are.
                     </p>
-                    <a href="/hostara-portal" class="hostara-button">Host your Hostara</a>
+                    <a href="hostara.html" class="hostara-button">Host your Hostara</a>
                 </div>
                 
                 <div class="hostara-app-container">
@@ -373,10 +371,9 @@
                 
                 <div class="business-cta">
                     <h3 class="cta-heading">Launch Your Campus App in Under 60 Seconds</h3>
-                    <p class="cta-description">Join 500+ Kenyan innovators powering their ideas with Hostara.</p>
-                    <div class="cta-buttons">
-                        <a href="/free-trial" class="cta-button primary">Start Your Free 30-Day Trial</a>
-                        <a href="/book-demo" class="cta-button secondary">Book a Demo</a>
+                    <p class="cta-description">Join 500+ Kenyan innovators powering their ideas with Hostara.</p>                    <div class="cta-buttons">
+                        <a href="hostara.html" class="cta-button primary">Start Your Free 30-Day Trial</a>
+                        <a href="pricing.html" class="cta-button secondary">View Pricing Plans</a>
                     </div>
                 </div>
                 
@@ -660,19 +657,15 @@
                 // Increase easing for more responsive follower movement (0.1 to 0.3)
                 followerX += (mouseX - followerX) * 0.3;
                 followerY += (mouseY - followerY) * 0.3;
-                
-                if (cursorDot && cursorFollower) {
-                    // Dot follows cursor exactly with no delay
-                    cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
-                    
-                    // Follower has just slight easing - reduced lag
-                    cursorFollower.style.transform = `translate(${followerX}px, ${followerY}px)`;
+                  if (cursorDot && cursorFollower) {
+                    // For fixed positioned elements, use translate3d for better performance
+                    // and account for any page-level transforms
+                    cursorDot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
+                    cursorFollower.style.transform = `translate3d(${followerX}px, ${followerY}px, 0)`;
                 }
                 
                 requestAnimationFrame(animateCursor);
-            }
-            
-            document.addEventListener('mousemove', e => {
+            }            document.addEventListener('mousemove', e => {
                 // Direct assignment for immediate response
                 mouseX = e.clientX;
                 mouseY = e.clientY;
@@ -832,11 +825,9 @@
                     codeRainContainer.innerHTML = '';
                     createCodeRain();
                 }
-            });
-            
-            // Handle slide transitions for Hostara section
+            });            // Handle slide transitions for Hostara section
             const handleSlideTransitions = () => {
-                const sections = document.querySelectorAll('.hostara-section, #hero, .business-hostara-section, .consumer-section');
+                const sections = document.querySelectorAll('#hero, .hostara-section, .business-hostara-section, .consumer-section');
                 let currentSectionIndex = 0;
                 let isAnimating = false;
                 let touchStartY = 0;
@@ -959,61 +950,110 @@
                     if (index !== currentSectionIndex) {
                         section.style.display = 'none';
                     }
-                });
-                
-                // Add click events to navigation buttons
-                navButtons.forEach((button, index) => {
+                });                  // Add click events to navigation buttons
+                navButtons.forEach((button) => {
                     button.addEventListener('click', () => {
-                        const direction = index > currentSectionIndex ? 1 : -1;
-                        transitionToSection(index, direction);
+                        const targetSection = parseInt(button.getAttribute('data-section'));
+                        
+                        // If Hostara button is clicked, navigate to hostara.html
+                        if (targetSection === 1) {
+                            window.location.href = 'hostara.html';
+                            return;
+                        }
+                        
+                        const direction = targetSection > currentSectionIndex ? 1 : -1;
+                        transitionToSection(targetSection, direction);
                     });
                 });
-                
-                // Add "Try Hostara Now" button click event in hero section
+                  // Add "Try Hostara Now" button click event in hero section
                 const tryHostaraBtn = document.querySelector('.hero-cta-group .btn-primary');
                 if (tryHostaraBtn) {
                     tryHostaraBtn.addEventListener('click', (e) => {
                         e.preventDefault();
-                        transitionToSection(1, 1); // Go to Hostara section
+                        window.location.href = 'hostara.html'; // Navigate to Hostara landing page
                     });
                 }
-                
-                // Handle wheel events with better throttling and smoother detection
+                  // Two-phase scrolling system: Handle wheel events with section vs content detection
                 let wheelTimer = null;
+                let scrollAccumulator = 0;
+                const scrollThreshold = 50; // Minimum scroll delta to trigger section transition
+                
+                const isScrollableSection = (sectionElement) => {
+                    const computedStyle = window.getComputedStyle(sectionElement);
+                    return computedStyle.overflowY === 'auto' || computedStyle.overflowY === 'scroll';
+                };
+                
+                const canScrollInDirection = (element, direction) => {
+                    if (direction > 0) {
+                        // Scrolling down - check if we can scroll more down
+                        return element.scrollTop < (element.scrollHeight - element.clientHeight);
+                    } else {
+                        // Scrolling up - check if we can scroll more up
+                        return element.scrollTop > 0;
+                    }
+                };
+                
                 document.addEventListener('wheel', (event) => {
                     // Clear existing timeout if any
                     if (wheelTimer) clearTimeout(wheelTimer);
                     
-                    // Set a small timeout to debounce rapid wheel events
+                    const currentSection = sections[currentSectionIndex];
+                    const isCurrentSectionScrollable = isScrollableSection(currentSection);
+                    const direction = event.deltaY > 0 ? 1 : -1;
+                    
+                    // Phase 1: Handle scrollable content within sections
+                    if (isCurrentSectionScrollable && canScrollInDirection(currentSection, direction)) {
+                        // Allow natural scrolling within the section
+                        scrollAccumulator = 0; // Reset accumulator
+                        return; // Let the browser handle the scroll
+                    }
+                    
+                    // Phase 2: Handle section transitions
+                    if (isAnimating) return;
+                    
+                    // Accumulate scroll delta for smoother transitions
+                    scrollAccumulator += Math.abs(event.deltaY);
+                    
+                    // Set a timeout to debounce rapid wheel events
                     wheelTimer = setTimeout(() => {
-                        if (isAnimating) return;
-                        
-                        const direction = event.deltaY > 0 ? 1 : -1;
-                        const nextIndex = currentSectionIndex + direction;
-                        
-                        transitionToSection(nextIndex, direction);
+                        // Only transition if we've accumulated enough scroll or this is a large scroll
+                        if (scrollAccumulator >= scrollThreshold || Math.abs(event.deltaY) > scrollThreshold) {
+                            const nextIndex = currentSectionIndex + direction;
+                            transitionToSection(nextIndex, direction);
+                            scrollAccumulator = 0; // Reset accumulator
+                        }
                     }, 50); // Small delay to debounce rapid wheel events
-                }, { passive: true }); // Improve scroll performance
+                }, { passive: false }); // Non-passive to allow preventDefault if needed
+                  // Touch support for mobile with two-phase scrolling
+                let touchStartTime = 0;
+                const touchTimeThreshold = 200; // ms - distinguish between scroll and swipe
                 
-                // Touch support for mobile
                 document.addEventListener('touchstart', (e) => {
                     touchStartY = e.touches[0].clientY;
+                    touchStartTime = Date.now();
                 }, { passive: true });
                 
                 document.addEventListener('touchend', (e) => {
                     touchEndY = e.changedTouches[0].clientY;
+                    const touchEndTime = Date.now();
+                    const touchDuration = touchEndTime - touchStartTime;
                     const diffY = touchStartY - touchEndY;
                     
-                    // If the swipe is significant enough (over 50px)
-                    if (Math.abs(diffY) > 50) {
-                        const direction = diffY > 0 ? 1 : -1; // Down or up
-                        const nextIndex = currentSectionIndex + direction;
-                        
-                        transitionToSection(nextIndex, direction);
+                    const currentSection = sections[currentSectionIndex];
+                    const isCurrentSectionScrollable = isScrollableSection(currentSection);
+                    const direction = diffY > 0 ? 1 : -1;
+                    
+                    // If touch duration is short and swipe is significant, treat as section navigation
+                    if (touchDuration < touchTimeThreshold && Math.abs(diffY) > 50) {
+                        // Quick swipe - navigate between sections
+                        if (!isAnimating) {
+                            const nextIndex = currentSectionIndex + direction;
+                            transitionToSection(nextIndex, direction);
+                        }
                     }
+                    // For longer touches or smaller movements, let the section handle internal scrolling
                 }, { passive: true });
-                
-                // Arrow key support
+                  // Arrow key support with two-phase scrolling
                 document.addEventListener('keydown', (e) => {
                     if (isAnimating) return;
                     
@@ -1027,6 +1067,17 @@
                         return; // Not an arrow key we care about
                     }
                     
+                    const currentSection = sections[currentSectionIndex];
+                    const isCurrentSectionScrollable = isScrollableSection(currentSection);
+                    
+                    // Check if we can scroll within the current section
+                    if (isCurrentSectionScrollable && canScrollInDirection(currentSection, direction)) {
+                        // Allow natural keyboard scrolling within the section
+                        return;
+                    }
+                    
+                    // Prevent default and navigate to next/previous section
+                    e.preventDefault();
                     const nextIndex = currentSectionIndex + direction;
                     transitionToSection(nextIndex, direction);
                 });
@@ -1066,16 +1117,123 @@
                             cursorFollower.style.borderColor = 'rgba(100, 255, 218, 0.5)';
                         }
                     });
-                    
-                    hostaraButton.addEventListener('mouseleave', () => {
+                      hostaraButton.addEventListener('mouseleave', () => {
                         if (cursorFollower) {
                             cursorFollower.style.width = '40px';
                             cursorFollower.style.height = '40px';
                             cursorFollower.style.borderColor = 'rgba(76, 176, 243, 0.3)';
                         }
+                    });                }
+                
+                // Add scroll indicators for scrollable sections
+                const addScrollIndicators = () => {
+                    sections.forEach((section, index) => {
+                        if (isScrollableSection(section)) {
+                            // Create scroll indicator container
+                            const indicatorContainer = document.createElement('div');
+                            indicatorContainer.className = 'scroll-indicator-container';
+                            
+                            // Create scroll track
+                            const scrollTrack = document.createElement('div');
+                            scrollTrack.className = 'scroll-indicator-track';
+                            
+                            // Create scroll thumb
+                            const scrollThumb = document.createElement('div');
+                            scrollThumb.className = 'scroll-indicator-thumb';
+                            
+                            // Create scroll hint
+                            const scrollHint = document.createElement('div');
+                            scrollHint.className = 'scroll-hint';
+                            scrollHint.innerHTML = `
+                                <div class="scroll-hint-icon">↕</div>
+                                <div class="scroll-hint-text">Scroll</div>
+                            `;
+                            
+                            // Assemble indicator
+                            scrollTrack.appendChild(scrollThumb);
+                            indicatorContainer.appendChild(scrollTrack);
+                            indicatorContainer.appendChild(scrollHint);
+                            section.appendChild(indicatorContainer);
+                            
+                            // Update scroll position indicator
+                            const updateScrollIndicator = () => {
+                                if (currentSectionIndex === index) {
+                                    const scrollPercent = section.scrollTop / (section.scrollHeight - section.clientHeight);
+                                    const thumbPosition = scrollPercent * (120 - 20); // track height - thumb height
+                                    scrollThumb.style.transform = `translateY(${thumbPosition}px)`;
+                                }
+                            };
+                            
+                            // Listen to scroll events
+                            section.addEventListener('scroll', updateScrollIndicator);
+                            
+                            // Mark navigation dot as scrollable
+                            if (navButtons[index]) {
+                                const dot = navButtons[index].querySelector('.section-nav-dot');
+                                section.addEventListener('scroll', () => {
+                                    if (section.scrollTop > 0) {
+                                        dot.classList.add('has-scrolled');
+                                    } else {
+                                        dot.classList.remove('has-scrolled');
+                                    }
+                                });
+                            }
+                            
+                            // Hide scroll hint after first interaction
+                            let hasScrolled = false;
+                            section.addEventListener('scroll', () => {
+                                if (!hasScrolled) {
+                                    hasScrolled = true;
+                                    scrollHint.style.opacity = '0.3';
+                                }
+                            }, { once: true });
+                        }
+                    });                };
+                
+                // Enhance smooth scrolling for internal section scrolling
+                const enhanceSmoothScrolling = () => {
+                    sections.forEach(section => {
+                        if (isScrollableSection(section)) {
+                            section.style.scrollBehavior = 'smooth';
+                            // Add scroll padding for better UX
+                            section.style.scrollPaddingTop = '2rem';
+                            section.style.scrollPaddingBottom = '2rem';
+                        }
                     });
-                }            };
-              // Initialize slide transitions
+                };
+                
+                // Handle internal scroll events for better performance
+                const handleInternalScroll = () => {
+                    // Throttle scroll indicator updates for performance
+                    let scrollUpdateTimer = null;
+                    
+                    sections.forEach((section, index) => {
+                        if (isScrollableSection(section)) {
+                            section.addEventListener('scroll', () => {
+                                if (scrollUpdateTimer) clearTimeout(scrollUpdateTimer);
+                                
+                                scrollUpdateTimer = setTimeout(() => {
+                                    // Update scroll indicators if this is the active section
+                                    if (currentSectionIndex === index) {
+                                        const indicator = section.querySelector('.scroll-indicator-thumb');
+                                        if (indicator) {
+                                            const scrollPercent = section.scrollTop / (section.scrollHeight - section.clientHeight);
+                                            const thumbPosition = scrollPercent * (120 - 20);
+                                            indicator.style.transform = `translateY(${thumbPosition}px)`;
+                                        }
+                                    }
+                                }, 16); // ~60fps
+                            }, { passive: true });
+                        }
+                    });
+                };
+                  // Initialize all scroll enhancements
+                addScrollIndicators();
+                enhanceSmoothScrolling();
+                handleInternalScroll();
+            };
+            
+            // Initialize slide transitions
             handleSlideTransitions();
               
             // Add performance optimization for JavaScript loading

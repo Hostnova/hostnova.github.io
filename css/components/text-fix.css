@@ -59,7 +59,7 @@ p,
 /* Hero title specific fix */
 .hero-title {
   font-weight: 900 !important;
-  font-size: 3.5rem !important;
+  font-size: var(--type-section-title) !important;
   margin-bottom: 1.5rem !important;
 }
 
@@ -67,9 +67,9 @@ p,
 .featured-logo-text {
   font-family: var(--font-display) !important;
   font-weight: 900 !important;
-  font-size: 4rem !important;
+  font-size: var(--type-hero-title) !important;
   color: #ffffff !important;
-  letter-spacing: 0.2em !important;
+  letter-spacing: var(--tracking-wider) !important;
 }
 
 .featured-logo-accent {

@@ -5,6 +5,9 @@
 /* Base Styles and Resets */
 @import './base.css';
 
+/* Consolidated Typography System */
+@import './components/typography.css';
+
 /* Layout System */
 @import './layout.css';
 
@@ -24,6 +27,7 @@
 @import './components/cards.css';
 @import './components/orbital-elements.css';
 @import './components/orbital-enhancements.css'; /* New orbital enhancements */
+@import './components/pricing-section.css'; /* Pricing section foundation */
 @import './components/footer.css';
 
 /* Section transitions for smooth scrolling */

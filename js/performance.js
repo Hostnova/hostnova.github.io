@@ -6,14 +6,13 @@ class HostNovaPerformanceMonitor {
         this.metrics = {};
         this.observers = [];
         this.init();
-    }
-
-    init() {
+    }    init() {
         // Initialize performance monitoring
         this.setupCoreWebVitals();
         this.setupIntersectionObserver();
         this.setupResourceTiming();
         this.setupLazyLoading();
+        this.setupScrollingMetrics(); // Add scrolling performance monitoring
         
         // Report metrics after page load
         window.addEventListener('load', () => {
@@ -298,12 +297,121 @@ class HostNovaPerformanceMonitor {
         return violations;
     }
 
-    // Report all metrics
+    // Two-Phase Scrolling Performance Monitoring
+    setupScrollingMetrics() {
+        this.scrollMetrics = {
+            sectionTransitions: 0,
+            internalScrollEvents: 0,
+            averageTransitionTime: 0,
+            scrollEventLatency: [],
+            gestureRecognitionTime: []
+        };
+        
+        // Monitor section transition performance
+        this.monitorSectionTransitions();
+        
+        // Monitor scroll event performance
+        this.monitorScrollEvents();
+        
+        // Monitor touch gesture performance
+        this.monitorTouchGestures();
+    }
+    
+    monitorSectionTransitions() {
+        const originalTransition = window.transitionToSection;
+        if (originalTransition) {
+            window.transitionToSection = (...args) => {
+                const startTime = performance.now();
+                this.scrollMetrics.sectionTransitions++;
+                
+                const result = originalTransition.apply(this, args);
+                
+                setTimeout(() => {
+                    const endTime = performance.now();
+                    const duration = endTime - startTime;
+                    
+                    // Update average transition time
+                    const currentAvg = this.scrollMetrics.averageTransitionTime;
+                    const count = this.scrollMetrics.sectionTransitions;
+                    this.scrollMetrics.averageTransitionTime = 
+                        (currentAvg * (count - 1) + duration) / count;
+                    
+                    // Log performance warning if transition is slow
+                    if (duration > 1000) {
+                        console.warn('Slow section transition detected:', duration + 'ms');
+                    }
+                }, 800); // Wait for transition to complete
+                
+                return result;
+            };
+        }
+    }
+    
+    monitorScrollEvents() {
+        let lastScrollTime = 0;
+        
+        document.addEventListener('scroll', () => {
+            const currentTime = performance.now();
+            if (lastScrollTime > 0) {
+                const latency = currentTime - lastScrollTime;
+                this.scrollMetrics.scrollEventLatency.push(latency);
+                
+                // Keep only last 100 measurements
+                if (this.scrollMetrics.scrollEventLatency.length > 100) {
+                    this.scrollMetrics.scrollEventLatency.shift();
+                }
+            }
+            lastScrollTime = currentTime;
+            this.scrollMetrics.internalScrollEvents++;
+        }, { passive: true });
+    }
+    
+    monitorTouchGestures() {
+        let touchStartTime = 0;
+        
+        document.addEventListener('touchstart', () => {
+            touchStartTime = performance.now();
+        }, { passive: true });
+        
+        document.addEventListener('touchend', () => {
+            if (touchStartTime > 0) {
+                const gestureTime = performance.now() - touchStartTime;
+                this.scrollMetrics.gestureRecognitionTime.push(gestureTime);
+                
+                // Keep only last 50 measurements
+                if (this.scrollMetrics.gestureRecognitionTime.length > 50) {
+                    this.scrollMetrics.gestureRecognitionTime.shift();
+                }
+            }
+        }, { passive: true });
+    }
+    
+    getScrollingPerformanceReport() {
+        const latencyAvg = this.scrollMetrics.scrollEventLatency.length > 0 
+            ? this.scrollMetrics.scrollEventLatency.reduce((a, b) => a + b, 0) / this.scrollMetrics.scrollEventLatency.length
+            : 0;
+            
+        const gestureAvg = this.scrollMetrics.gestureRecognitionTime.length > 0
+            ? this.scrollMetrics.gestureRecognitionTime.reduce((a, b) => a + b, 0) / this.scrollMetrics.gestureRecognitionTime.length
+            : 0;
+        
+        return {
+            sectionTransitions: this.scrollMetrics.sectionTransitions,
+            internalScrollEvents: this.scrollMetrics.internalScrollEvents,
+            averageTransitionTime: Math.round(this.scrollMetrics.averageTransitionTime),
+            averageScrollLatency: Math.round(latencyAvg * 100) / 100,
+            averageGestureTime: Math.round(gestureAvg * 100) / 100
+        };
+    }    // Report all metrics
     reportMetrics() {
         this.monitorMemory();
         this.detectNetworkQuality();
         
         console.log('HostNova Performance Metrics:', this.metrics);
+        
+        // Get scrolling performance report
+        const scrollingReport = this.getScrollingPerformanceReport();
+        console.log('Two-Phase Scrolling Performance:', scrollingReport);
         
         // Check performance budget
         const violations = this.checkPerformanceBudget();
@@ -311,7 +419,10 @@ class HostNovaPerformanceMonitor {
         // Send metrics to analytics (if configured)
         this.sendAnalytics();
         
-        return this.metrics;
+        return {
+            ...this.metrics,
+            scrollingPerformance: scrollingReport
+        };
     }
 
     // Send analytics (placeholder for real analytics)

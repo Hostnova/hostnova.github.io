@@ -151,38 +151,7 @@ select {
    Typography
    ========================================== */
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-display);
-  font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: 0.02em;
-  margin-bottom: 0.5em;
-  text-transform: uppercase;
-  color: var(--color-text);
-}
-
-h1 {
-  font-weight: 900;
-  font-size: clamp(2.5rem, 8vw, 5rem);
-  letter-spacing: 0.05em;
-}
-
-h2 {
-  font-size: clamp(2rem, 5vw, 3.5rem);
-}
-
-h3 {
-  font-size: clamp(1.5rem, 4vw, 2.25rem);
-}
-
-h4 {
-  font-size: clamp(1.25rem, 3vw, 1.75rem);
-}
-
-p {
-  margin-bottom: 1.5rem;
-  color: var(--color-text); /* Ensuring paragraph text is visible */
-}
+/* Typography moved to components/typography.css for consolidation */
 
 a {
   color: var(--color-primary);
@@ -297,7 +266,7 @@ ul, ol {
   align-items: center;
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 1.75rem;
+  font-size: var(--type-xl);
   text-decoration: none;
   color: var(--color-text);
   transition: transform var(--transition-fast);
@@ -468,20 +437,7 @@ ul, ol {
   animation: pulse 4s infinite alternate;
 }
 
-.hero-tagline {
-  font-size: clamp(1.5rem, 4vw, 2.5rem);
-  line-height: 1.2;
-  margin-bottom: 1.5rem;
-  font-weight: 700;
-  color: var(--color-text); /* Ensuring tagline text is visible */
-}
-
-.hero-subtitle {
-  font-size: clamp(1rem, 2vw, 1.25rem);
-  max-width: 700px;
-  margin: 0 auto 2.5rem;
-  color: var(--color-text-muted);
-}
+/* Hero typography moved to components/typography.css */
 
 .hero-cta-group {
   display: flex;
@@ -523,8 +479,8 @@ ul, ol {
 }
 
 .scroll-text {
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
+  font-size: var(--type-xs);
+  letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
   color: var(--color-text-muted);
 }
@@ -568,45 +524,6 @@ main > section:not(#hero):first-of-type {
 /* ==========================================
    Buttons & CTAs
    ========================================== */
-
-.btn {
-  display: inline-block;
-  padding: 0.75rem 2rem;
-  border-radius: var(--radius-md);
-  font-weight: 600;
-  text-decoration: none;
-  text-align: center;
-  cursor: pointer;
-  transition: all var(--transition-fast);
-  border: none;
-  font-family: var(--font-display);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
-.btn-primary {
-  background: var(--color-primary-gradient);
-  color: var(--color-background);
-  box-shadow: 0 4px 12px rgba(230, 181, 74, 0.3);
-}
-
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(230, 181, 74, 0.4);
-  color: var(--color-background);
-}
-
-.btn-outline {
-  background: transparent;
-  border: 2px solid var(--color-primary);
-  color: var(--color-primary);
-}
-
-.btn-outline:hover {
-  background: var(--color-primary);
-  color: var(--color-background);
-  transform: translateY(-2px);
-}
 
 /* ==========================================
    Cinematic Sections

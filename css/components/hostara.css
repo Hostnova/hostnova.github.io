@@ -8,13 +8,18 @@
 .hostara-section {
   position: relative;
   width: 100vw;
-  height: 100vh;
-  overflow: hidden;
+  min-height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   background: linear-gradient(135deg, #0a0f18 0%, #1a2432 100%);
   z-index: var(--z-content);
+  padding: 40px 0;
+  scroll-padding-top: 2rem;
+  scroll-padding-bottom: 2rem;
+  scroll-behavior: smooth;
 }
 
 /* Content wrapper with proper spacing */
@@ -54,18 +59,18 @@
 
 /* Hostara headings */
 .hostara-heading {
-  font-size: 3rem;
+  font-size: var(--type-3xl);
   font-weight: 700;
   margin-bottom: 1rem;
   background: linear-gradient(90deg, #4cb0f3 0%, #64ffda 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  line-height: 1.2;
+  line-height: var(--leading-snug);
 }
 
 .hostara-subheading {
-  font-size: 1.5rem;
+  font-size: var(--type-card-title);
   font-weight: 400;
   margin-bottom: 2rem;
   color: rgba(255, 255, 255, 0.8);
@@ -73,8 +78,8 @@
 
 /* App description */
 .hostara-description {
-  font-size: 1.1rem;
-  line-height: 1.6;
+  font-size: var(--type-lg);
+  line-height: var(--leading-relaxed);
   margin-bottom: 2.5rem;
   color: rgba(255, 255, 255, 0.7);
 }
@@ -83,7 +88,7 @@
 .hostara-button {
   display: inline-block;
   padding: 1rem 2rem;
-  font-size: 1.1rem;
+  font-size: var(--type-lg);
   font-weight: 600;
   text-decoration: none;
   text-align: center;
@@ -292,6 +297,26 @@
   transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
+/* Custom scrollbar styling for webkit browsers */
+.hostara-section::-webkit-scrollbar {
+  width: 8px;
+}
+
+.hostara-section::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+
+.hostara-section::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, rgba(76, 176, 243, 0.6), rgba(100, 255, 218, 0.6));
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hostara-section::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, rgba(76, 176, 243, 0.8), rgba(100, 255, 218, 0.8));
+}
+
 /* Animations */
 @keyframes float-orbit {
   0% {
@@ -394,28 +419,10 @@
     padding: 0 3%;
     gap: clamp(2rem, 5vw, 3rem);
   }
-  
-  .hostara-text {
+    .hostara-text {
     padding-right: 0;
     padding-bottom: 2rem;
     text-align: center;
-  }
-  
-  .hostara-heading {
-    font-size: clamp(2rem, 6vw, 2.5rem);
-    line-height: 1.1;
-  }
-  
-  .hostara-subheading {
-    font-size: clamp(1rem, 3vw, 1.3rem);
-    line-height: 1.3;
-  }
-  
-  .hostara-description {
-    font-size: clamp(0.95rem, 2.5vw, 1.1rem);
-    line-height: 1.6;
-    max-width: 90%;
-    margin: 0 auto 2rem;
   }
   
   .hostara-phone {
@@ -447,19 +454,6 @@
     padding: 0 5%;
   }
   
-  .hostara-heading {
-    font-size: clamp(1.8rem, 7vw, 2.2rem);
-  }
-  
-  .hostara-subheading {
-    font-size: clamp(0.9rem, 3.5vw, 1.2rem);
-  }
-  
-  .hostara-description {
-    font-size: clamp(0.9rem, 3vw, 1rem);
-    margin-bottom: 1.5rem;
-  }
-  
   .hostara-phone {
     width: clamp(180px, 55vw, 220px);
     height: clamp(360px, 110vw, 450px);
@@ -469,7 +463,6 @@
     width: 100%;
     max-width: 280px;
     padding: 0.9rem 1.5rem;
-    font-size: 0.95rem;
   }
 
   .section-nav-buttons {

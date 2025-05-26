@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Features Test - HostNova</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: #0f1622;
+            color: #ffffff;
+        }
+        .test-section {
+            background: rgba(76, 176, 243, 0.1);
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 10px;
+            border: 1px solid rgba(76, 176, 243, 0.2);
+        }
+        .test-link {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            margin: 0.5rem;
+            background: linear-gradient(90deg, #4CB0F3, #64FFDA);
+            color: #0f1622;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .test-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(76, 176, 243, 0.3);
+        }
+        .status {
+            font-size: 1.2rem;
+            margin: 1rem 0;
+        }
+        .success { color: #64FFDA; }
+        .info { color: #4CB0F3; }
+        h1, h2 { color: #4CB0F3; }
+    </style>
+</head>
+<body>
+    <h1>🚀 HostNova Interactive Features Test Suite</h1>
+    <p class="status info">Use this page to systematically test all interactive features across the HostNova platform.</p>
+
+    <div class="test-section">
+        <h2>📄 Page Navigation Tests</h2>
+        <p>Test navigation between all pages and sections:</p>
+        <a href="index.html" class="test-link">Main Landing Page</a>
+        <a href="hostara.html" class="test-link">Hostara Landing</a>
+        <a href="pricing.html" class="test-link">Pricing Page</a>
+        <a href="index.html#business" class="test-link">Business Section</a>
+        <a href="index.html#consumer" class="test-link">Consumer Section</a>
+    </div>
+
+    <div class="test-section">
+        <h2>💬 Hostara Chat Widget Tests</h2>
+        <p>Test the enhanced chat functionality on Hostara page:</p>
+        <a href="hostara.html#demo" class="test-link">Go to Chat Widget</a>
+        <div class="status">
+            <strong>Tests to perform:</strong>
+            <ul>
+                <li>Click question tags: "How does M-Pesa work?", "Setup time?", etc.</li>
+                <li>Type custom questions in chat input</li>
+                <li>Verify typing indicators appear</li>
+                <li>Check response accuracy and timing</li>
+                <li>Test Enter key functionality</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>📋 Form Interaction Tests</h2>
+        <p>Test enhanced form functionality:</p>
+        <a href="hostara.html#demo" class="test-link">Contact Form</a>
+        <div class="status">
+            <strong>Tests to perform:</strong>
+            <ul>
+                <li>Fill out contact form completely</li>
+                <li>Test form validation (try submitting incomplete)</li>
+                <li>Verify loading state ("Sending..." button text)</li>
+                <li>Check personalized thank you message</li>
+                <li>Confirm form resets after submission</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>🎨 Visual Interaction Tests</h2>
+        <p>Test cursor effects and animations:</p>
+        <a href="hostara.html" class="test-link">Hostara Visual Effects</a>
+        <a href="index.html" class="test-link">Main Page Effects</a>
+        <div class="status">
+            <strong>Tests to perform:</strong>
+            <ul>
+                <li>Move cursor over buttons and cards</li>
+                <li>Click anywhere to see ripple effects</li>
+                <li>Hover over pricing cards</li>
+                <li>Hover over feature cards</li>
+                <li>Test scroll animations (scroll down slowly)</li>
+                <li>Check parallax background movement</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>💳 Pricing Card Tests</h2>
+        <p>Test pricing card interactions:</p>
+        <a href="hostara.html#pricing" class="test-link">Hostara Pricing</a>
+        <a href="pricing.html" class="test-link">Main Pricing</a>
+        <div class="status">
+            <strong>Tests to perform:</strong>
+            <ul>
+                <li>Hover over different pricing cards</li>
+                <li>Check lift and scale animations</li>
+                <li>Verify shadow effects</li>
+                <li>Test "Choose Plan" button interactions</li>
+                <li>Check mobile responsiveness</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>📱 Mobile Responsiveness Tests</h2>
+        <p>Test mobile interactions (use browser dev tools or resize window):</p>
+        <div class="status">
+            <strong>Tests to perform:</strong>
+            <ul>
+                <li>Resize browser window to mobile width</li>
+                <li>Test touch interactions on mobile</li>
+                <li>Verify chat widget works on mobile</li>
+                <li>Check form usability on small screens</li>
+                <li>Test navigation on mobile</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>🔗 Social & Contact Link Tests</h2>
+        <p>Test enhanced link interactions:</p>
+        <a href="hostara.html#demo" class="test-link">Contact Channels</a>
+        <div class="status">
+            <strong>Tests to perform:</strong>
+            <ul>
+                <li>Hover over email, phone, WhatsApp links</li>
+                <li>Check slide and scale animations</li>
+                <li>Test social media link effects</li>
+                <li>Verify icon animations</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="test-section success">
+        <h2>✅ Expected Results</h2>
+        <p>All interactions should be:</p>
+        <ul>
+            <li><strong>Smooth:</strong> 60fps animations without lag</li>
+            <li><strong>Responsive:</strong> Immediate feedback on user actions</li>
+            <li><strong>Functional:</strong> All features working as intended</li>
+            <li><strong>Accessible:</strong> Keyboard navigation and screen reader friendly</li>
+            <li><strong>Professional:</strong> Polished, modern feel</li>
+        </ul>
+    </div>
+
+    <div class="test-section">
+        <h2>📊 Implementation Status</h2>
+        <div class="status success">
+            ✅ Chat Widget System - Complete<br>
+            ✅ Form Interactions - Complete<br>
+            ✅ Cursor Effects - Complete<br>
+            ✅ Card Animations - Complete<br>
+            ✅ Scroll Animations - Complete<br>
+            ✅ Parallax Effects - Complete<br>
+            ✅ Button Enhancements - Complete<br>
+            ✅ Mobile Optimization - Complete<br>
+            ✅ Performance Optimization - Complete<br>
+            ✅ Cross-page Navigation - Complete
+        </div>
+    </div>
+
+    <script>
+        console.log('🚀 HostNova Interactive Features Test Suite Loaded');
+        console.log('All interactive features have been successfully implemented and are ready for testing.');
+        
+        // Add smooth scrolling to hash links
+        document.querySelectorAll('a[href*="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href.includes('#') && !href.startsWith('#')) {
+                    // External link with hash - let it navigate normally
+                    return;
+                }
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Add hover effects to test links
+        document.querySelectorAll('.test-link').forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                link.style.transform = 'translateY(-2px) scale(1.05)';
+            });
+            link.addEventListener('mouseleave', () => {
+                link.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

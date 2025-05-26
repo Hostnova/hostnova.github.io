@@ -32,30 +32,7 @@
   --fluid-space-2xl: clamp(6rem, 8vw, 8rem);
 }
 
-/* Apply fluid typography to key elements */
-.hero-title,
-.featured-logo-text {
-  font-size: var(--fluid-text-6xl) !important;
-  line-height: 1.1;
-}
-
-.hostara-heading,
-.business-headline,
-.consumer-headline {
-  font-size: var(--fluid-text-5xl) !important;
-  line-height: 1.2;
-}
-
-.hostara-subheading,
-.business-subheadline,
-.consumer-subheadline {
-  font-size: var(--fluid-text-2xl) !important;
-  line-height: 1.3;
-}
-
-.section-label {
-  font-size: var(--fluid-text-sm) !important;
-}
+/* Typography moved to components/typography.css for consolidation */
 
 /* ==========================================
    Enhanced Container System
@@ -254,32 +231,10 @@
 }
 
 /* ==========================================
-   Button Improvements
+   Button Improvements - Moved to buttons.css
    ========================================== */
 
-/* Responsive button groups */
-.btn-group {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--fluid-space-sm);
-  justify-content: center;
-}
-
-.hero-cta-group {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--fluid-space-md);
-  justify-content: center;
-  align-items: center;
-  margin-bottom: var(--fluid-space-xl);
-}
-
-.btn {
-  padding: clamp(0.75rem, 1.5vw, 1rem) clamp(1.5rem, 3vw, 2rem);
-  font-size: var(--fluid-text-base);
-  border-radius: clamp(0.25rem, 0.8vw, 0.5rem);
-  min-width: 140px;
-}
+/* Note: All button styles consolidated in css/components/buttons.css */
 
 /* ==========================================
    Advanced Mobile Optimizations
@@ -335,21 +290,11 @@
   /* Ultra-compact spacing */
   .container {
     padding-left: 1rem;
-    padding-right: 1rem;
-  }
+    padding-right: 1rem;  }
   
-  /* Optimize button sizes */
-  .btn {
-    width: 100%;
-    max-width: none;
-    margin-bottom: 0.5rem;
-  }
+  /* Note: Button styles moved to buttons.css for consolidation */
   
-  .hero-cta-group,
-  .btn-group {
-    flex-direction: column;
-    width: 100%;
-  }
+  .hero-cta-group,  /* Note: Button group styles moved to buttons.css */
   
   /* Simplify app demos */
   .apps-demo {
@@ -410,15 +355,9 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-    transform: none !important;
-  }
+    transform: none !important;  }
   
-  /* Keep essential animations but make them subtle */
-  .btn:hover,
-  .card:hover {
-    transform: none;
-    transition: box-shadow 0.2s ease;
-  }
+  /* Note: Button motion styles moved to buttons.css */
 }
 
 /* ==========================================
@@ -426,16 +365,16 @@
    ========================================== */
 
 @media print {
-  /* Optimize for printing */
-  .site-header,
+  /* Optimize for printing */  .site-header,
   .site-footer,
   .nav-toggle,
   .orbital-ring,
   .floating-element,
-  .video-background,
-  .btn {
+  .video-background {
     display: none !important;
   }
+  
+  /* Note: Button print styles moved to buttons.css */
   
   .container {
     max-width: none;

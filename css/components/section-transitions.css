@@ -89,7 +89,7 @@
 }
 
 /* Apply transition classes to all sections */
-#hero, .hostara-section, .business-hostara-section, .consumer-section {
+#hero, .hostara-section, .business-hostara-section, .consumer-section, .pricing-section {
   position: absolute;
   width: 100%;
   min-height: 100vh;
@@ -946,45 +946,171 @@ h2.animate-text-element::after {
   transform: translateY(-5px);
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .orbital-divider {
-    height: 80px;
-    margin: 20px 0;
+/* ==========================================
+   Two-Phase Scrolling System Enhancements
+   ==========================================
+   Visual indicators and feedback for scrollable sections
+   ========================================== */
+
+/* Scroll indicator container */
+.scroll-indicator-container {
+  position: fixed;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Show scroll indicators only for active scrollable sections */
+.consumer-section.section-transition .scroll-indicator-container {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Scroll indicator track */
+.scroll-indicator-track {
+  position: relative;
+  width: 4px;
+  height: 120px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+/* Scroll indicator thumb */
+.scroll-indicator-thumb {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  background: linear-gradient(135deg, #4CB0F3, #64FFDA);
+  border-radius: 2px;
+  transition: transform 0.1s ease;
+  box-shadow: 0 0 10px rgba(76, 176, 243, 0.5);
+}
+
+/* Scroll hint */
+.scroll-hint {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  transition: opacity 0.3s ease;
+}
+
+.scroll-hint-icon {
+  font-size: var(--type-base);
+  color: rgba(255, 255, 255, 0.6);
+  animation: scroll-bounce 2s ease-in-out infinite;
+}
+
+.scroll-hint-text {
+  font-size: var(--type-xs);
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-widest);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+@keyframes scroll-bounce {
+  0%, 100% {
+    transform: translateY(0);
   }
-  
-  .orbital-divider-ring:nth-child(3) {
-    display: none;
-  }
-  
-  .section-divider {
-    height: 60px;
-  }
-  
-  .stagger-animation.is-visible > *:nth-child(n) {
-    transition-delay: calc(0.1s * var(--item-index, 1));
+  50% {
+    transform: translateY(5px);
   }
 }
 
-@media (max-width: 480px) {
-  .orbital-divider-ring:nth-child(2) {
-    width: 80px;
+/* Enhanced navigation dot styling for scrolled sections */
+.section-nav-dot.has-scrolled {
+  background: linear-gradient(135deg, #4CB0F3, #64FFDA);
+  box-shadow: 0 0 15px rgba(76, 176, 243, 0.7);
+  transform: scale(1.2);
+}
+
+.section-nav-dot.has-scrolled::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  height: 200%;
+  border: 1px solid rgba(76, 176, 243, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: pulse-ring 2s ease-out infinite;
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .scroll-indicator-container {
+    right: 1rem;
+    gap: 0.5rem;
+  }
+  
+  .scroll-indicator-track {
     height: 80px;
+    width: 3px;
   }
   
-  .orbital-divider-line.left,
-  .orbital-divider-line.right {
-    margin-right: 50px;
-    margin-left: 50px;
+  .scroll-indicator-thumb {
+    height: 15px;
   }
   
-  .section-corner {
-    width: 30px;
-    height: 30px;
+  .scroll-hint-text {
+    font-size: 0.65rem;
   }
-  
-  .is-visible .section-corner {
-    width: 40px;
-    height: 40px;
+}
+
+/* Hide scroll indicators on very small screens */
+@media (max-width: 480px) {
+  .scroll-indicator-container {
+    display: none;
   }
+}
+
+/* Smooth scrolling enhancement */
+.consumer-section {
+  scroll-padding-top: 2rem;
+  scroll-padding-bottom: 2rem;
+}
+
+/* Custom scrollbar styling for webkit browsers */
+.consumer-section::-webkit-scrollbar {
+  width: 8px;
+}
+
+.consumer-section::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+
+.consumer-section::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, rgba(76, 176, 243, 0.6), rgba(100, 255, 218, 0.6));
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.consumer-section::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, rgba(76, 176, 243, 0.8), rgba(100, 255, 218, 0.8));
 }

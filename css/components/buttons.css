@@ -1,13 +1,13 @@
 /* ==========================================
-   Button Styles
+   Consolidated Button System
    ==========================================
-   Designed for Hostara - Orbit Beyond Ordinary
+   Unified button styles for all pages and components
    ========================================== */
 
 .btn {
   display: inline-block;
-  padding: 0.75rem 2rem;
-  border-radius: var(--radius-md);
+  padding: clamp(0.75rem, 1.5vw, 1rem) clamp(1.5rem, 3vw, 2rem);
+  border-radius: clamp(0.25rem, 0.8vw, 0.5rem);
   font-weight: 600;
   text-decoration: none;
   text-align: center;
@@ -19,9 +19,68 @@
   text-transform: uppercase;
   position: relative;
   overflow: hidden;
+  isolation: isolate;
+  font-size: var(--fluid-text-base);
+  min-width: 140px;
 }
 
-/* Primary Button - Gold Gradient */
+/* Shine effect for all buttons */
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transform: translateX(-100%);
+  transition: none;
+}
+
+.btn:hover::before {
+  animation: btn-shine 1.5s ease;
+}
+
+@keyframes btn-shine {
+  0% {
+    transform: translateX(-100%);
+  }
+  20% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Click ripple effect */
+.btn.clicked::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: ripple 0.8s ease-out;
+}
+
+@keyframes ripple {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 0.8;
+  }
+  100% {
+    width: 200%;
+    height: 200%;
+    opacity: 0;
+  }
+}
+
+/* Primary Button - HostNova Gold Theme */
 .btn-primary {
   background: var(--color-primary-gradient);
   color: var(--color-background);
@@ -32,6 +91,18 @@
   transform: translateY(-3px);
   box-shadow: 0 8px 25px rgba(230, 181, 74, 0.4);
   color: var(--color-background);
+}
+
+/* Primary Button - Blue Theme (for landing pages) */
+.btn-primary.blue-theme {
+  background: linear-gradient(90deg, #0950CD, #4CB0F3);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(76, 176, 243, 0.3);
+}
+
+.btn-primary.blue-theme:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(76, 176, 243, 0.4);
 }
 
 /* Outline Button */
@@ -46,6 +117,18 @@
   color: var(--color-primary);
   transform: translateY(-3px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Outline Button - Blue Theme */
+.btn-outline.blue-theme {
+  border-color: #0950CD;
+  color: #0950CD;
+}
+
+.btn-outline.blue-theme:hover {
+  background: rgba(9, 80, 205, 0.1);
+  color: #4CB0F3;
+  transform: translateY(-3px);
 }
 
 /* Dark Button */
@@ -155,6 +238,7 @@
   gap: clamp(0.75rem, 2vw, 1rem);
   justify-content: center;
   align-items: center;
+  margin-bottom: clamp(1rem, 3vw, 3rem);
 }
 
 /* Full Width Button */
@@ -177,6 +261,28 @@
   opacity: 0.65;
   cursor: not-allowed;
   pointer-events: none;
+}
+
+/* ==========================================
+   Responsive Button Enhancements
+   ========================================== */
+
+/* Fluid button sizing */
+.btn {
+  padding: clamp(0.75rem, 1.5vw, 1rem) clamp(1.5rem, 3vw, 2rem);
+  font-size: var(--fluid-text-base);
+  border-radius: clamp(0.25rem, 0.8vw, 0.5rem);
+  min-width: 140px;
+}
+
+/* Button Group Responsive Layout */
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(0.75rem, 2vw, 1rem);
+  justify-content: center;
+  align-items: center;
+  margin-bottom: clamp(1rem, 3vw, 3rem);
 }
 
 /* Enhanced touch targets for mobile */
@@ -233,6 +339,9 @@
   .btn {
     font-size: 0.9rem;
     padding: 0.8rem 1.5rem;
+    width: 100%;
+    max-width: none;
+    margin-bottom: 0.5rem;
   }
   
   .btn-sm {
@@ -243,5 +352,41 @@
   .btn-lg {
     font-size: 1rem;
     padding: 0.9rem 1.75rem;
+  }
+  
+  .hero-cta-group,
+  .btn-group {
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+/* High-DPI display optimizations */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .btn {
+    border-width: 0.5px;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .btn:hover {
+    transform: none;
+    transition: box-shadow 0.2s ease;
+  }
+  
+  .btn::before {
+    animation: none;
+  }
+  
+  .btn.clicked::after {
+    animation: none;
+  }
+}
+
+/* Print styles */
+@media print {
+  .btn {
+    display: none !important;
   }
 }

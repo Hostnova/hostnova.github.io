@@ -1,0 +1,465 @@
+/* ==========================================
+   HostNova - Consolidated Typography System
+   ==========================================
+   Unified typography scale for entire project
+   December 2024 - CSS Cleanup Phase
+   ========================================== */
+
+/* ==========================================
+   Typography Foundation Variables
+   ========================================== */
+
+:root {
+  /* Enhanced Fluid Typography Scale */
+  /* Using clamp() for responsive behavior across all screen sizes */
+  
+  /* Base text sizes */
+  --type-xs: clamp(0.75rem, 0.8vw + 0.6rem, 0.875rem);      /* 12-14px */
+  --type-sm: clamp(0.875rem, 0.9vw + 0.7rem, 1rem);         /* 14-16px */
+  --type-base: clamp(1rem, 1.2vw + 0.8rem, 1.125rem);       /* 16-18px */
+  --type-md: clamp(1.125rem, 1.5vw + 0.9rem, 1.25rem);      /* 18-20px */
+  --type-lg: clamp(1.25rem, 2vw + 1rem, 1.5rem);            /* 20-24px */
+  
+  /* Display text sizes */
+  --type-xl: clamp(1.5rem, 2.5vw + 1.2rem, 1.875rem);       /* 24-30px */
+  --type-2xl: clamp(1.875rem, 3vw + 1.5rem, 2.25rem);       /* 30-36px */
+  --type-3xl: clamp(2.25rem, 4vw + 1.8rem, 3rem);           /* 36-48px */
+  --type-4xl: clamp(3rem, 5vw + 2.2rem, 3.75rem);           /* 48-60px */
+  --type-5xl: clamp(3.75rem, 6vw + 2.8rem, 4.5rem);         /* 60-72px */
+  --type-6xl: clamp(4.5rem, 8vw + 3.2rem, 5.5rem);          /* 72-88px */
+  
+  /* Semantic text sizes for specific components */
+  --type-hero-title: clamp(2.5rem, 8vw + 1rem, 5rem);       /* Hero titles */
+  --type-hero-subtitle: clamp(1rem, 2vw + 0.5rem, 1.25rem); /* Hero subtitles */
+  --type-section-title: clamp(2rem, 5vw + 1rem, 3.5rem);    /* Section titles */
+  --type-card-title: clamp(1.125rem, 2.5vw + 0.8rem, 1.5rem); /* Card titles */
+  --type-caption: clamp(0.8rem, 1vw + 0.6rem, 0.9rem);      /* Captions/labels */
+  
+  /* Typography families */
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Orbitron', sans-serif;
+  --font-accent: 'Poppins', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  
+  /* Line heights for different contexts */
+  --leading-tight: 1.1;
+  --leading-snug: 1.2;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.6;
+  --leading-loose: 1.8;
+  
+  /* Letter spacing for different contexts */
+  --tracking-tight: -0.025em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.02em;
+  --tracking-wider: 0.05em;
+  --tracking-widest: 0.1em;
+}
+
+/* ==========================================
+   Base Typography Reset & Styles
+   ========================================== */
+
+/* Reset and ensure consistency */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px; /* Base font size for rem calculations */
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-primary);
+  font-size: var(--type-base);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text, #ffffff);
+  background-color: var(--color-background, #0a0a0a);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
+}
+
+/* ==========================================
+   Unified Heading System
+   ========================================== */
+
+/* Base heading styles - applies to all headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-wide);
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  color: var(--color-text, #ffffff);
+  text-transform: uppercase;
+}
+
+/* Specific heading sizes using consolidated scale */
+h1 {
+  font-size: var(--type-hero-title);
+  font-weight: 900;
+  letter-spacing: var(--tracking-wider);
+  line-height: var(--leading-tight);
+}
+
+h2 {
+  font-size: var(--type-section-title);
+  font-weight: 700;
+  letter-spacing: var(--tracking-wide);
+}
+
+h3 {
+  font-size: var(--type-3xl);
+  font-weight: 600;
+}
+
+h4 {
+  font-size: var(--type-2xl);
+  font-weight: 600;
+}
+
+h5 {
+  font-size: var(--type-xl);
+  font-weight: 500;
+}
+
+h6 {
+  font-size: var(--type-lg);
+  font-weight: 500;
+}
+
+/* ==========================================
+   Body Text & Paragraph Styles
+   ========================================== */
+
+p {
+  font-size: var(--type-base);
+  line-height: var(--leading-relaxed);
+  margin-bottom: 1.5rem;
+  color: var(--color-text, #ffffff);
+  max-width: 65ch; /* Optimal reading width */
+}
+
+/* ==========================================
+   Specialized Typography Classes
+   ========================================== */
+
+/* Hero-specific typography */
+.hero-title {
+  font-family: var(--font-display);
+  font-size: var(--type-hero-title);
+  font-weight: 900;
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-wider);
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  background: linear-gradient(to right, var(--color-text, #ffffff), var(--color-primary, #e6b54a));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--color-text, #ffffff); /* Fallback */
+}
+
+.hero-subtitle {
+  font-size: var(--type-hero-subtitle);
+  font-weight: 400;
+  line-height: var(--leading-normal);
+  color: var(--color-text-muted, #a7a7a7);
+  max-width: 700px;
+  margin: 0 auto 2.5rem;
+}
+
+.hero-tagline {
+  font-size: var(--type-2xl);
+  font-weight: 700;
+  line-height: var(--leading-snug);
+  margin-bottom: 1.5rem;
+  color: var(--color-text, #ffffff);
+}
+
+/* Section typography */
+.section-title {
+  font-size: var(--type-section-title);
+  font-weight: 700;
+  line-height: var(--leading-tight);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.section-label {
+  font-family: var(--font-display);
+  font-size: var(--type-caption);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-widest);
+  color: var(--color-primary, #e6b54a);
+  margin-bottom: 0.5rem;
+  display: inline-block;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid var(--color-primary, #e6b54a);
+}
+
+/* Featured logo text */
+.featured-logo-text {
+  font-family: var(--font-display);
+  font-size: var(--type-6xl);
+  font-weight: 900;
+  letter-spacing: var(--tracking-widest);
+  line-height: var(--leading-tight);
+  color: var(--color-text, #ffffff);
+  text-transform: uppercase;
+}
+
+/* Component-specific typography */
+.hostara-heading,
+.business-headline,
+.consumer-headline {
+  font-size: var(--type-5xl);
+  font-weight: 700;
+  line-height: var(--leading-tight);
+  margin-bottom: 1rem;
+}
+
+.hostara-subheading,
+.business-subheadline,
+.consumer-subheadline {
+  font-size: var(--type-2xl);
+  font-weight: 400;
+  line-height: var(--leading-normal);
+  margin-bottom: 2rem;
+}
+
+/* Card typography */
+.card-title,
+.feature-title,
+.project-card-title {
+  font-size: var(--type-card-title);
+  font-weight: 600;
+  line-height: var(--leading-snug);
+  margin-bottom: 0.75rem;
+}
+
+.card-description,
+.feature-description,
+.project-card-description {
+  font-size: var(--type-sm);
+  line-height: var(--leading-relaxed);
+  margin-bottom: 1rem;
+}
+
+/* ==========================================
+   Utility Typography Classes
+   ========================================== */
+
+/* Font size utilities */
+.text-xs { font-size: var(--type-xs); }
+.text-sm { font-size: var(--type-sm); }
+.text-base { font-size: var(--type-base); }
+.text-md { font-size: var(--type-md); }
+.text-lg { font-size: var(--type-lg); }
+.text-xl { font-size: var(--type-xl); }
+.text-2xl { font-size: var(--type-2xl); }
+.text-3xl { font-size: var(--type-3xl); }
+.text-4xl { font-size: var(--type-4xl); }
+.text-5xl { font-size: var(--type-5xl); }
+.text-6xl { font-size: var(--type-6xl); }
+
+/* Font weight utilities */
+.font-light { font-weight: 300; }
+.font-normal { font-weight: 400; }
+.font-medium { font-weight: 500; }
+.font-semibold { font-weight: 600; }
+.font-bold { font-weight: 700; }
+.font-black { font-weight: 900; }
+
+/* Font family utilities */
+.font-primary { font-family: var(--font-primary); }
+.font-display { font-family: var(--font-display); }
+.font-accent { font-family: var(--font-accent); }
+.font-mono { font-family: var(--font-mono); }
+
+/* Line height utilities */
+.leading-tight { line-height: var(--leading-tight); }
+.leading-snug { line-height: var(--leading-snug); }
+.leading-normal { line-height: var(--leading-normal); }
+.leading-relaxed { line-height: var(--leading-relaxed); }
+.leading-loose { line-height: var(--leading-loose); }
+
+/* Letter spacing utilities */
+.tracking-tight { letter-spacing: var(--tracking-tight); }
+.tracking-normal { letter-spacing: var(--tracking-normal); }
+.tracking-wide { letter-spacing: var(--tracking-wide); }
+.tracking-wider { letter-spacing: var(--tracking-wider); }
+.tracking-widest { letter-spacing: var(--tracking-widest); }
+
+/* Text transform utilities */
+.uppercase { text-transform: uppercase; }
+.lowercase { text-transform: lowercase; }
+.capitalize { text-transform: capitalize; }
+.normal-case { text-transform: none; }
+
+/* ==========================================
+   Special Text Effects
+   ========================================== */
+
+/* Gradient text effect */
+.gradient-text {
+  background: linear-gradient(135deg, var(--color-primary, #e6b54a) 0%, var(--color-primary-light, #fccd68) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--color-primary, #e6b54a); /* Fallback */
+  display: inline-block;
+}
+
+/* Glowing text effect */
+.glow-text {
+  text-shadow: 
+    0 0 10px var(--color-glow, rgba(230, 181, 74, 0.6)),
+    0 0 20px var(--color-glow, rgba(230, 181, 74, 0.4)),
+    0 0 30px var(--color-glow, rgba(230, 181, 74, 0.2));
+}
+
+/* ==========================================
+   List Typography
+   ========================================== */
+
+ul, ol {
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
+  line-height: var(--leading-relaxed);
+}
+
+li {
+  margin-bottom: 0.5rem;
+  font-size: var(--type-base);
+}
+
+/* ==========================================
+   Link Typography
+   ========================================== */
+
+a {
+  color: var(--color-primary, #e6b54a);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+a:hover {
+  color: var(--color-primary-light, #f5d78b);
+  text-decoration: underline;
+}
+
+/* ==========================================
+   Code Typography
+   ========================================== */
+
+code, pre {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background-color: var(--color-background-alt, rgba(28, 28, 30, 0.6));
+  padding: 0.1em 0.3em;
+  border-radius: 0.25rem;
+  color: var(--color-text, #ffffff);
+}
+
+pre {
+  padding: 1rem;
+  overflow-x: auto;
+  line-height: var(--leading-normal);
+}
+
+/* ==========================================
+   Print Optimization
+   ========================================== */
+
+@media print {
+  /* Optimize typography for printing */
+  .hero-title,
+  .featured-logo-text {
+    font-size: 2rem !important;
+    color: black !important;
+    background: none !important;
+    -webkit-text-fill-color: initial !important;
+  }
+  
+  .section-title {
+    font-size: 1.5rem !important;
+    color: black !important;
+  }
+  
+  p, li {
+    font-size: 12pt !important;
+    line-height: 1.4 !important;
+    color: black !important;
+  }
+}
+
+/* ==========================================
+   Accessibility & Performance
+   ========================================== */
+
+/* High contrast mode support */
+@media (forced-colors: active) {
+  .hero-title,
+  .gradient-text,
+  .glow-text {
+    forced-color-adjust: none;
+    color: CanvasText !important;
+    background: none !important;
+    -webkit-text-fill-color: initial !important;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .gradient-text {
+    animation: none;
+  }
+}
+
+/* Dark mode optimization */
+@media (prefers-color-scheme: dark) {
+  body {
+    color: #ffffff;
+    background-color: #0a0a0a;
+  }
+  
+  .hero-subtitle {
+    color: #a7a7a7;
+  }
+}
+
+/* ==========================================
+   Font Loading Optimization
+   ========================================== */
+
+/* Font display optimization for performance */
+@font-face {
+  font-family: 'Orbitron';
+  font-display: swap; /* Improves loading performance */
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-display: swap;
+}
+
+/* Prevent layout shift during font loading */
+.font-loading {
+  font-synthesis: none;
+  text-rendering: optimizeSpeed;
+}
