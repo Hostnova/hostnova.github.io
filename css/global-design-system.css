@@ -1,0 +1,333 @@
+/* ===== HOSTARA GLOBAL DESIGN SYSTEM 3.0 ===== */
+/* Based on New Hostara Logo Color Palette - September 30, 2025 */
+/* Cultural Intelligence Color System with African Heritage Integration */
+
+:root {
+    /* ===== PRIMARY LOGO-BASED COLOR PALETTE ===== */
+    
+    /* Primary Colors - Extracted from New Logo */
+    --hostara-primary: #4A4A6A;           /* Dark purple/navy from logo text */
+    --hostara-secondary: #00D4FF;         /* Bright cyan/turquoise from orbital elements */
+    --hostara-accent: #6B73FF;            /* Blue from logo gradients */
+    --hostara-background: #E6D7FF;        /* Light lavender from logo background */
+    
+    /* Logo Gradient Colors */
+    --hostara-gradient-start: #6B73FF;    /* Blue start */
+    --hostara-gradient-mid: #00A8E8;      /* Mid blue */
+    --hostara-gradient-end: #00D4FF;      /* Cyan end */
+    
+    /* Supporting Colors from Logo */
+    --hostara-light-purple: #B19CD9;      /* Lighter purple tones */
+    --hostara-deep-blue: #003D82;         /* Deeper blue from logo shadows */
+    --hostara-soft-cyan: #7FEFFF;         /* Soft cyan for highlights */
+    --hostara-cloud-white: #FFFFFF;       /* Pure white from logo elements */
+    
+    /* ===== OPACITY VARIATIONS FOR CONSISTENCY ===== */
+    
+    /* Primary Color Opacities */
+    --hostara-primary-05: rgba(74, 74, 106, 0.05);
+    --hostara-primary-10: rgba(74, 74, 106, 0.1);
+    --hostara-primary-20: rgba(74, 74, 106, 0.2);
+    --hostara-primary-30: rgba(74, 74, 106, 0.3);
+    
+    /* Secondary Color Opacities */
+    --hostara-secondary-05: rgba(0, 212, 255, 0.05);
+    --hostara-secondary-10: rgba(0, 212, 255, 0.1);
+    --hostara-secondary-20: rgba(0, 212, 255, 0.2);
+    --hostara-secondary-30: rgba(0, 212, 255, 0.3);
+    
+    /* Accent Color Opacities */
+    --hostara-accent-05: rgba(107, 115, 255, 0.05);
+    --hostara-accent-10: rgba(107, 115, 255, 0.1);
+    --hostara-accent-20: rgba(107, 115, 255, 0.2);
+    --hostara-accent-30: rgba(107, 115, 255, 0.3);
+    
+    /* Cultural Background Variations */
+    --cultural-background-soft: rgba(230, 215, 255, 0.7);
+    --cultural-background-hover: rgba(230, 215, 255, 0.9);
+    --cultural-background-alpha: rgba(230, 215, 255, 0.95);
+    
+    /* White Opacity Variations */
+    --white-10: rgba(255, 255, 255, 0.1);
+    --white-20: rgba(255, 255, 255, 0.2);
+    --white-50: rgba(255, 255, 255, 0.5);
+    --white-70: rgba(255, 255, 255, 0.7);
+    --white-90: rgba(255, 255, 255, 0.9);
+    
+    /* ===== CULTURAL INTELLIGENCE ADAPTATION SYSTEM ===== */
+    
+    /* AI-Powered Cultural Adaptation Variables */
+    --cultural-primary: var(--hostara-primary);      /* Adapts based on cultural context */
+    --cultural-secondary: var(--hostara-secondary);  /* AI-adjusted for cultural preferences */
+    --cultural-accent: var(--hostara-accent);        /* Culturally appropriate accent color */
+    --cultural-background: var(--hostara-background); /* Cultural background adaptation */
+    
+    /* African Heritage Integration (Kenya Colors) */
+    --kenya-primary: #4A4A6A;             /* Maintains logo primary for consistency */
+    --kenya-secondary: #FF6B35;           /* Kenyan sunset orange for warmth */
+    --kenya-accent: #00D4FF;              /* Logo cyan maintains global connection */
+    --kenya-background: #FFF8F0;          /* Warm white for African warmth */
+    
+    /* Global Market Variations */
+    --global-primary: var(--hostara-primary);        /* Logo consistency globally */
+    --global-secondary: var(--hostara-secondary);    /* Universal cyan appeal */
+    --global-accent: var(--hostara-accent);          /* Logo blue globally recognized */
+    --global-background: var(--hostara-background);  /* Logo background globally */
+    
+    /* ===== GRADIENT SYSTEMS ===== */
+    
+    /* Primary Logo-Based Gradients */
+    --gradient-primary: linear-gradient(135deg, var(--hostara-gradient-start) 0%, var(--hostara-gradient-end) 100%);
+    --gradient-secondary: linear-gradient(135deg, var(--hostara-accent) 0%, var(--hostara-secondary) 100%);
+    --gradient-background: linear-gradient(135deg, var(--hostara-background) 0%, var(--hostara-cloud-white) 100%);
+    
+    /* Cultural Gradient Adaptations */
+    --gradient-cultural: var(--gradient-primary);    /* AI-adaptive gradient */
+    --gradient-kenya: linear-gradient(135deg, var(--hostara-primary) 0%, #FF6B35 50%, var(--hostara-secondary) 100%);
+    --gradient-global: var(--gradient-primary);      /* Logo gradient for global consistency */
+    
+    /* Cloud/Orbital Gradients (from logo design) */
+    --gradient-cloud: radial-gradient(ellipse at center, var(--hostara-gradient-start) 0%, var(--hostara-gradient-mid) 50%, var(--hostara-gradient-end) 100%);
+    --gradient-orbital: conic-gradient(from 45deg, var(--hostara-accent), var(--hostara-secondary), var(--hostara-gradient-start), var(--hostara-accent));
+    
+    /* ===== SEMANTIC COLORS ===== */
+    
+    /* Status Colors - Logo Color Inspired */
+    --success: #00D4AA;                   /* Cyan-green from logo palette */
+    --warning: #FFB800;                   /* Warm yellow complementing logo */
+    --error: #FF6B6B;                     /* Soft red maintaining logo harmony */
+    --info: var(--hostara-accent);        /* Logo blue for information */
+    
+    /* ===== NEUTRAL SCALE ===== */
+    
+    /* Grays based on logo primary color */
+    --white: #FFFFFF;
+    --gray-50: #F8F9FF;                   /* Very light purple tint */
+    --gray-100: #F0F2FF;                  /* Light purple tint */
+    --gray-200: #E6E8FF;                  /* Subtle purple tint */
+    --gray-300: #D1D5E8;                  /* Logo-inspired gray */
+    --gray-400: #9CA3AF;                  /* Neutral gray */
+    --gray-500: #6B7280;                  /* Medium gray */
+    --gray-600: var(--hostara-primary);   /* Logo primary as strong gray */
+    --gray-700: #374151;                  /* Darker gray */
+    --gray-800: #1F2937;                  /* Very dark gray */
+    --gray-900: #111827;                  /* Near black */
+    --black: #000000;
+    
+    /* ===== TYPOGRAPHY SYSTEM ===== */
+    
+    /* Global Font Stack - Multi-Cultural Support */
+    --font-primary: 'Inter Variable', 'Roboto Flex', 'Segoe UI Variable', 'Ubuntu', 'Noto Sans', sans-serif;
+    --font-display: 'Inter Variable', 'Roboto Flex', sans-serif;
+    --font-mono: 'JetBrains Mono Variable', 'SF Mono', 'Monaco', 'Inconsolata', monospace;
+    
+    /* Font Sizes - Responsive Scale */
+    --text-xs: clamp(0.75rem, 1vw, 0.875rem);
+    --text-sm: clamp(0.875rem, 1.2vw, 1rem);
+    --text-base: clamp(1rem, 1.5vw, 1.125rem);
+    --text-lg: clamp(1.125rem, 1.8vw, 1.25rem);
+    --text-xl: clamp(1.25rem, 2vw, 1.5rem);
+    --text-2xl: clamp(1.5rem, 2.5vw, 1.875rem);
+    --text-3xl: clamp(1.875rem, 3vw, 2.25rem);
+    --text-4xl: clamp(2.25rem, 4vw, 3rem);
+    --text-5xl: clamp(3rem, 5vw, 3.75rem);
+    --text-6xl: clamp(3.75rem, 6vw, 4.5rem);
+    
+    /* Font Weights */
+    --weight-thin: 100;
+    --weight-extralight: 200;
+    --weight-light: 300;
+    --weight-normal: 400;
+    --weight-medium: 500;
+    --weight-semibold: 600;
+    --weight-bold: 700;
+    --weight-extrabold: 800;
+    --weight-black: 900;
+    
+    /* Line Heights - Cultural Adaptation */
+    --leading-tight: 1.25;                /* Dense languages (Chinese, Japanese) */
+    --leading-snug: 1.375;               /* Compact text */
+    --leading-normal: 1.5;               /* Standard Western text */
+    --leading-relaxed: 1.625;            /* Comfortable reading */
+    --leading-loose: 1.75;               /* Arabic, Hindi scripts */
+    
+    /* ===== SPACING SYSTEM ===== */
+    
+    /* Spacing Scale - Logo Proportions Inspired */
+    --space-px: 1px;
+    --space-0: 0;
+    --space-1: 0.25rem;                  /* 4px */
+    --space-2: 0.5rem;                   /* 8px */
+    --space-3: 0.75rem;                  /* 12px */
+    --space-4: 1rem;                     /* 16px */
+    --space-5: 1.25rem;                  /* 20px */
+    --space-6: 1.5rem;                   /* 24px */
+    --space-8: 2rem;                     /* 32px */
+    --space-10: 2.5rem;                  /* 40px */
+    --space-12: 3rem;                    /* 48px */
+    --space-16: 4rem;                    /* 64px */
+    --space-20: 5rem;                    /* 80px */
+    --space-24: 6rem;                    /* 96px */
+    --space-32: 8rem;                    /* 128px */
+    
+    /* Container & Layout */
+    --container-max-width: 1200px;
+    --container-padding: var(--space-4);
+    --section-padding: var(--space-20) 0;
+    --card-padding: var(--space-6);
+    
+    /* ===== SHADOWS & ELEVATION ===== */
+    
+    /* Logo-Inspired Shadow System */
+    --shadow-sm: 0 1px 2px 0 rgba(74, 74, 106, 0.05);
+    --shadow: 0 1px 3px 0 rgba(74, 74, 106, 0.1), 0 1px 2px 0 rgba(74, 74, 106, 0.06);
+    --shadow-md: 0 4px 6px -1px rgba(74, 74, 106, 0.1), 0 2px 4px -1px rgba(74, 74, 106, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(74, 74, 106, 0.1), 0 4px 6px -2px rgba(74, 74, 106, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(74, 74, 106, 0.1), 0 10px 10px -5px rgba(74, 74, 106, 0.04);
+    --shadow-2xl: 0 25px 50px -12px rgba(74, 74, 106, 0.25);
+    
+    /* Colored Shadows - Logo Inspired */
+    --shadow-cyan: 0 10px 15px -3px rgba(0, 212, 255, 0.1), 0 4px 6px -2px rgba(0, 212, 255, 0.05);
+    --shadow-blue: 0 10px 15px -3px rgba(107, 115, 255, 0.1), 0 4px 6px -2px rgba(107, 115, 255, 0.05);
+    --shadow-purple: 0 10px 15px -3px rgba(230, 215, 255, 0.2), 0 4px 6px -2px rgba(230, 215, 255, 0.1);
+    
+    /* ===== BORDER RADIUS ===== */
+    
+    /* Border Radius - Logo Curve Inspired */
+    --radius-none: 0;
+    --radius-sm: 0.125rem;               /* 2px */
+    --radius: 0.375rem;                  /* 6px */
+    --radius-md: 0.5rem;                 /* 8px - logo element curves */
+    --radius-lg: 0.75rem;                /* 12px */
+    --radius-xl: 1rem;                   /* 16px */
+    --radius-2xl: 1.5rem;                /* 24px */
+    --radius-3xl: 2rem;                  /* 32px */
+    --radius-full: 9999px;               /* Full circle - logo orbital elements */
+    
+    /* ===== TRANSITIONS & ANIMATIONS ===== */
+    
+    /* Timing Functions - Cultural Adaptation */
+    --ease-linear: linear;
+    --ease-in: cubic-bezier(0.4, 0.0, 1, 1);
+    --ease-out: cubic-bezier(0.0, 0.0, 0.2, 1);
+    --ease-in-out: cubic-bezier(0.4, 0.0, 0.2, 1);
+    --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    
+    /* Durations - Cultural Pace Preferences */
+    --duration-75: 75ms;
+    --duration-100: 100ms;
+    --duration-150: 150ms;               /* Fast cultural adaptation */
+    --duration-200: 200ms;               /* Cultural content switching */
+    --duration-300: 300ms;               /* Standard transitions */
+    --duration-500: 500ms;               /* Smooth cultural animations */
+    --duration-700: 700ms;               /* Cultural storytelling */
+    --duration-1000: 1000ms;             /* Cultural narrative transitions */
+    
+    /* Cultural Animation Preferences */
+    --timing-cultural: var(--duration-300) var(--ease-in-out);
+    --timing-kenya: var(--duration-500) var(--ease-bounce);     /* Ubuntu rhythm */
+    --timing-global: var(--duration-200) var(--ease-out);      /* Efficient global */
+    
+    /* ===== Z-INDEX SCALE ===== */
+    
+    --z-hide: -1;
+    --z-auto: auto;
+    --z-base: 0;
+    --z-docked: 10;
+    --z-dropdown: 1000;
+    --z-sticky: 1020;
+    --z-banner: 1030;
+    --z-overlay: 1040;
+    --z-modal: 1050;
+    --z-popover: 1060;
+    --z-skiplink: 1070;
+    --z-toast: 1080;
+    --z-tooltip: 1090;
+    
+    /* ===== BREAKPOINTS ===== */
+    
+    --breakpoint-sm: 640px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 1024px;
+    --breakpoint-xl: 1280px;
+    --breakpoint-2xl: 1536px;
+}
+
+/* ===== CULTURAL INTELLIGENCE THEME VARIATIONS ===== */
+
+/* Kenya Cultural Theme */
+[data-cultural-theme="kenya"] {
+    --cultural-primary: var(--kenya-primary);
+    --cultural-secondary: var(--kenya-secondary);
+    --cultural-accent: var(--kenya-accent);
+    --cultural-background: var(--kenya-background);
+    --gradient-cultural: var(--gradient-kenya);
+    --timing-cultural: var(--timing-kenya);
+}
+
+/* Global Cultural Theme */
+[data-cultural-theme="global"] {
+    --cultural-primary: var(--global-primary);
+    --cultural-secondary: var(--global-secondary);
+    --cultural-accent: var(--global-accent);
+    --cultural-background: var(--global-background);
+    --gradient-cultural: var(--gradient-global);
+    --timing-cultural: var(--timing-global);
+}
+
+/* Auto Cultural Theme (Default) */
+[data-cultural-theme="auto"] {
+    --cultural-primary: var(--hostara-primary);
+    --cultural-secondary: var(--hostara-secondary);
+    --cultural-accent: var(--hostara-accent);
+    --cultural-background: var(--hostara-background);
+    --gradient-cultural: var(--gradient-primary);
+    --timing-cultural: var(--duration-300) var(--ease-in-out);
+}
+
+/* ===== DARK MODE SUPPORT ===== */
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --hostara-background: #1A1B2E;       /* Dark version of logo background */
+        --hostara-primary: #E6D7FF;          /* Light version of logo text */
+        --cultural-background: var(--hostara-background);
+        --cultural-primary: var(--hostara-primary);
+        
+        /* Adjust grays for dark mode */
+        --gray-50: #1F2937;
+        --gray-100: #374151;
+        --gray-200: #4B5563;
+        --gray-800: #E5E7EB;
+        --gray-900: #F9FAFB;
+    }
+}
+
+/* ===== REDUCED MOTION SUPPORT ===== */
+
+@media (prefers-reduced-motion: reduce) {
+    :root {
+        --duration-75: 0ms;
+        --duration-100: 0ms;
+        --duration-150: 0ms;
+        --duration-200: 0ms;
+        --duration-300: 0ms;
+        --duration-500: 0ms;
+        --duration-700: 0ms;
+        --duration-1000: 0ms;
+        --timing-cultural: 0ms;
+        --timing-kenya: 0ms;
+        --timing-global: 0ms;
+    }
+}
+
+/* ===== PRINT STYLES ===== */
+
+@media print {
+    :root {
+        --cultural-primary: var(--black);
+        --cultural-secondary: var(--gray-600);
+        --cultural-background: var(--white);
+        --gradient-cultural: none;
+    }
+}
