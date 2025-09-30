@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EliteStore - Premium Ecommerce Experience</title>
+    <meta name="description" content="Discover premium products at EliteStore. Shop the latest fashion, electronics, and lifestyle products with fast shipping and exceptional service.">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="css/style.css" as="style">
+    <link rel="preload" href="js/app.js" as="script">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="#" class="logo">
+                    <i class="fas fa-shopping-bag"></i>
+                    EliteStore
+                </a>
+            </div>
+            
+            <div class="nav-menu" id="nav-menu">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#products" class="nav-link">Products</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            
+            <div class="nav-actions">
+                <button class="search-btn" id="search-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button class="cart-btn" id="cart-btn">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cart-count">0</span>
+                </button>
+                <button class="nav-toggle" id="nav-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Search Bar -->
+        <div class="search-bar" id="search-bar">
+            <div class="search-container">
+                <input type="text" placeholder="Search products..." class="search-input" id="search-input">
+                <button class="search-submit">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <span class="hero-badge">New Collection 2024</span>
+                    <h1 class="hero-title">
+                        Discover Your
+                        <span class="gradient-text">Perfect Style</span>
+                    </h1>
+                    <p class="hero-description">
+                        Shop premium quality products with unbeatable prices. From fashion to electronics, 
+                        find everything you need with fast, free shipping and exceptional customer service.
+                    </p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary" onclick="scrollToSection('products')">
+                            Shop Now
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                        <button class="btn btn-secondary">
+                            <i class="fas fa-play"></i>
+                            Watch Video
+                        </button>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <span class="stat-number">50K+</span>
+                            <span class="stat-label">Happy Customers</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">1M+</span>
+                            <span class="stat-label">Products Sold</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">99%</span>
+                            <span class="stat-label">Satisfaction Rate</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="hero-image-container">
+                        <div class="floating-card card-1">
+                            <i class="fas fa-shipping-fast"></i>
+                            <span>Free Shipping</span>
+                        </div>
+                        <div class="floating-card card-2">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Secure Payment</span>
+                        </div>
+                        <div class="floating-card card-3">
+                            <i class="fas fa-headset"></i>
+                            <span>24/7 Support</span>
+                        </div>
+                        <div class="hero-image-bg">
+                            <div class="image-placeholder">
+                                <i class="fas fa-shopping-bag"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-scroll-indicator">
+            <div class="scroll-indicator">
+                <span>Scroll Down</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Why Choose Us</span>
+                <h2 class="section-title">Premium Shopping Experience</h2>
+                <p class="section-description">
+                    We're committed to providing you with the best online shopping experience through innovative features and exceptional service.
+                </p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3 class="feature-title">Fast Delivery</h3>
+                    <p class="feature-description">Free shipping on orders over $50. Express delivery available in major cities within 24 hours.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3 class="feature-title">Secure Payments</h3>
+                    <p class="feature-description">Your transactions are protected with bank-level security and SSL encryption.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-undo"></i>
+                    </div>
+                    <h3 class="feature-title">Easy Returns</h3>
+                    <p class="feature-description">30-day hassle-free returns with free return shipping on all products.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3 class="feature-title">Quality Guarantee</h3>
+                    <p class="feature-description">All products are carefully curated and backed by our quality guarantee.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3 class="feature-title">24/7 Support</h3>
+                    <p class="feature-description">Our customer service team is available round the clock to assist you.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Mobile App</h3>
+                    <p class="feature-description">Shop on the go with our mobile app, available on iOS and Android.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Best Sellers</span>
+                <h2 class="section-title">Featured Products</h2>
+                <p class="section-description">
+                    Discover our most popular products, carefully selected for quality and style.
+                </p>
+            </div>
+            
+            <!-- Product Filters -->
+            <div class="product-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="fashion">Fashion</button>
+                <button class="filter-btn" data-filter="electronics">Electronics</button>
+                <button class="filter-btn" data-filter="home">Home & Living</button>
+                <button class="filter-btn" data-filter="sports">Sports</button>
+            </div>
+            
+            <!-- Products Grid -->
+            <div class="products-grid" id="products-grid">
+                <!-- Product 1 -->
+                <div class="product-card" data-category="fashion">
+                    <div class="product-image">
+                        <div class="product-badge">New</div>
+                        <div class="product-image-placeholder">
+                            <i class="fas fa-tshirt"></i>
+                        </div>
+                        <div class="product-overlay">
+                            <button class="quick-view-btn">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="wishlist-btn">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Premium Cotton T-Shirt</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span class="rating-count">(124)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$29.99</span>
+                            <span class="original-price">$39.99</span>
+                        </div>
+                        <button class="add-to-cart-btn" data-product="Premium Cotton T-Shirt" data-price="29.99">
+                            <i class="fas fa-shopping-cart"></i>
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card" data-category="electronics">
+                    <div class="product-image">
+                        <div class="product-badge sale">Sale</div>
+                        <div class="product-image-placeholder">
+                            <i class="fas fa-headphones"></i>
+                        </div>
+                        <div class="product-overlay">
+                            <button class="quick-view-btn">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="wishlist-btn">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Wireless Noise-Canceling Headphones</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span class="rating-count">(89)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$149.99</span>
+                            <span class="original-price">$199.99</span>
+                        </div>
+                        <button class="add-to-cart-btn" data-product="Wireless Noise-Canceling Headphones" data-price="149.99">
+                            <i class="fas fa-shopping-cart"></i>
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card" data-category="home">
+                    <div class="product-image">
+                        <div class="product-image-placeholder">
+                            <i class="fas fa-couch"></i>
+                        </div>
+                        <div class="product-overlay">
+                            <button class="quick-view-btn">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="wishlist-btn">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Modern Accent Chair</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span class="rating-count">(67)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$299.99</span>
+                        </div>
+                        <button class="add-to-cart-btn" data-product="Modern Accent Chair" data-price="299.99">
+                            <i class="fas fa-shopping-cart"></i>
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="product-card" data-category="sports">
+                    <div class="product-image">
+                        <div class="product-badge">Popular</div>
+                        <div class="product-image-placeholder">
+                            <i class="fas fa-running"></i>
+                        </div>
+                        <div class="product-overlay">
+                            <button class="quick-view-btn">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="wishlist-btn">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Performance Running Shoes</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span class="rating-count">(203)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$89.99</span>
+                            <span class="original-price">$119.99</span>
+                        </div>
+                        <button class="add-to-cart-btn" data-product="Performance Running Shoes" data-price="89.99">
+                            <i class="fas fa-shopping-cart"></i>
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Product 5 -->
+                <div class="product-card" data-category="electronics">
+                    <div class="product-image">
+                        <div class="product-image-placeholder">
+                            <i class="fas fa-laptop"></i>
+                        </div>
+                        <div class="product-overlay">
+                            <button class="quick-view-btn">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="wishlist-btn">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Ultra-Slim Laptop</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span class="rating-count">(156)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$899.99</span>
+                        </div>
+                        <button class="add-to-cart-btn" data-product="Ultra-Slim Laptop" data-price="899.99">
+                            <i class="fas fa-shopping-cart"></i>
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Product 6 -->
+                <div class="product-card" data-category="fashion">
+                    <div class="product-image">
+                        <div class="product-image-placeholder">
+                            <i class="fas fa-gem"></i>
+                        </div>
+                        <div class="product-overlay">
+                            <button class="quick-view-btn">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="wishlist-btn">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Designer Watch</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span class="rating-count">(78)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$199.99</span>
+                            <span class="original-price">$249.99</span>
+                        </div>
+                        <button class="add-to-cart-btn" data-product="Designer Watch" data-price="199.99">
+                            <i class="fas fa-shopping-cart"></i>
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="load-more-container">
+                <button class="btn btn-secondary" id="load-more-btn">
+                    Load More Products
+                    <i class="fas fa-plus"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <span class="section-badge">About EliteStore</span>
+                    <h2 class="section-title">Your Trusted Shopping Partner</h2>
+                    <p class="about-description">
+                        Founded in 2020, EliteStore has become a leading destination for quality products 
+                        and exceptional customer service. We believe in providing our customers with 
+                        carefully curated products that combine style, functionality, and value.
+                    </p>
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Premium Quality Products</span>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Competitive Pricing</span>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Fast & Reliable Shipping</span>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Exceptional Customer Service</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary">
+                        Learn More About Us
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                <div class="about-image">
+                    <div class="about-image-container">
+                        <div class="about-image-placeholder">
+                            <i class="fas fa-store"></i>
+                        </div>
+                        <div class="about-stats">
+                            <div class="about-stat">
+                                <span class="stat-number">4.9</span>
+                                <span class="stat-label">Rating</span>
+                            </div>
+                            <div class="about-stat">
+                                <span class="stat-number">50K+</span>
+                                <span class="stat-label">Customers</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <div class="newsletter-text">
+                    <h2 class="newsletter-title">Stay Updated with Our Latest Offers</h2>
+                    <p class="newsletter-description">
+                        Subscribe to our newsletter and get exclusive deals, early access to new products, 
+                        and special promotions delivered to your inbox.
+                    </p>
+                </div>
+                <div class="newsletter-form">
+                    <form class="email-form" id="newsletter-form">
+                        <input type="email" placeholder="Enter your email address" class="email-input" required>
+                        <button type="submit" class="btn btn-primary">
+                            Subscribe
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                    <p class="newsletter-note">
+                        <i class="fas fa-lock"></i>
+                        We respect your privacy. Unsubscribe at any time.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Get In Touch</span>
+                <h2 class="section-title">Contact Us</h2>
+                <p class="section-description">
+                    Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+                </p>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Visit Our Store</h3>
+                            <p>123 Shopping Street<br>New York, NY 10001</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Call Us</h3>
+                            <p>+1 (555) 123-4567<br>Mon-Fri: 9AM-6PM</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Email Us</h3>
+                            <p>support@elitestore.com<br>orders@elitestore.com</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <input type="text" placeholder="Your Name" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Your Email" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="Subject" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Your Message" class="form-textarea" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            Send Message
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <a href="#" class="logo">
+                            <i class="fas fa-shopping-bag"></i>
+                            EliteStore
+                        </a>
+                    </div>
+                    <p class="footer-description">
+                        Your trusted partner for premium quality products and exceptional shopping experience.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-title">Categories</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Fashion</a></li>
+                        <li><a href="#">Electronics</a></li>
+                        <li><a href="#">Home & Living</a></li>
+                        <li><a href="#">Sports</a></li>
+                        <li><a href="#">Beauty</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-title">Customer Service</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Size Guide</a></li>
+                        <li><a href="#">Track Order</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p class="copyright">
+                        © 2024 EliteStore. All rights reserved.
+                    </p>
+                    <div class="footer-bottom-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Shopping Cart Sidebar -->
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3>Shopping Cart</h3>
+            <button class="cart-close" id="cart-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-content" id="cart-content">
+            <div class="empty-cart">
+                <i class="fas fa-shopping-cart"></i>
+                <p>Your cart is empty</p>
+                <button class="btn btn-primary" onclick="scrollToSection('products')">
+                    Start Shopping
+                </button>
+            </div>
+        </div>
+        <div class="cart-footer" id="cart-footer" style="display: none;">
+            <div class="cart-total">
+                <span>Total: $<span id="cart-total">0.00</span></span>
+            </div>
+            <button class="btn btn-primary cart-checkout">
+                Proceed to Checkout
+                <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Cart Overlay -->
+    <div class="cart-overlay" id="cart-overlay"></div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Loading Spinner -->
+    <div class="loading-spinner" id="loading-spinner">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/app.js"></script>
+</body>
+</html>
