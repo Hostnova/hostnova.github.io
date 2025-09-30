@@ -2,30 +2,18 @@
 const navbar = document.getElementById('navbar');
 const navToggle = document.getElementById('nav-toggle');
 const navMenu = document.getElementById('nav-menu');
-const searchBtn = document.getElementById('search-btn');
-const searchBar = document.getElementById('search-bar');
-const searchInput = document.getElementById('search-input');
-const cartBtn = document.getElementById('cart-btn');
-const cartSidebar = document.getElementById('cart-sidebar');
-const cartOverlay = document.getElementById('cart-overlay');
-const cartClose = document.getElementById('cart-close');
-const cartContent = document.getElementById('cart-content');
-const cartFooter = document.getElementById('cart-footer');
-const cartCount = document.getElementById('cart-count');
-const cartTotal = document.getElementById('cart-total');
 const backToTop = document.getElementById('back-to-top');
 const loadingSpinner = document.getElementById('loading-spinner');
-const filterBtns = document.querySelectorAll('.filter-btn');
-const productsGrid = document.getElementById('products-grid');
-const loadMoreBtn = document.getElementById('load-more-btn');
-const addToCartBtns = document.querySelectorAll('.add-to-cart-btn');
+const googlePlayBtn = document.getElementById('google-play-btn');
+const appStoreBtn = document.getElementById('app-store-btn');
 const newsletterForm = document.getElementById('newsletter-form');
 const contactForm = document.getElementById('contact-form');
 
 // ===== STATE MANAGEMENT =====
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
-let currentFilter = 'all';
-let isSearchOpen = false;
+let downloadClicks = JSON.parse(localStorage.getItem('downloadClicks')) || {
+    googlePlay: 0,
+    appStore: 0
+};
 
 // ===== UTILITY FUNCTIONS =====
 const debounce = (func, wait) => {
@@ -202,231 +190,76 @@ const handleSearch = (e) => {
     }
 };
 
-// ===== CART FUNCTIONS =====
-const updateCartDisplay = () => {
-    cartCount.textContent = cart.reduce((total, item) => total + item.quantity, 0);
+// ===== APP DOWNLOAD FUNCTIONS =====
+const trackDownload = (platform) => {
+    downloadClicks[platform]++;
+    localStorage.setItem('downloadClicks', JSON.stringify(downloadClicks));
     
-    if (cart.length === 0) {
-        cartContent.innerHTML = `
-            <div class="empty-cart">
-                <i class="fas fa-shopping-cart"></i>
-                <p>Your cart is empty</p>
-                <button class="btn btn-primary" onclick="scrollToSection('products')">
-                    Start Shopping
-                </button>
-            </div>
-        `;
-        cartFooter.style.display = 'none';
-    } else {
-        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-        cartTotal.textContent = total.toFixed(2);
-        
-        cartContent.innerHTML = cart.map(item => `
-            <div class="cart-item" data-id="${item.id}">
-                <div class="cart-item-image">
-                    <i class="fas fa-box"></i>
-                </div>
-                <div class="cart-item-details">
-                    <div class="cart-item-title">${item.name}</div>
-                    <div class="cart-item-price">$${item.price.toFixed(2)}</div>
-                    <div class="cart-item-controls">
-                        <div class="quantity-controls">
-                            <button class="quantity-btn" onclick="updateQuantity('${item.id}', ${item.quantity - 1})">
-                                <i class="fas fa-minus"></i>
-                            </button>
-                            <span class="quantity">${item.quantity}</span>
-                            <button class="quantity-btn" onclick="updateQuantity('${item.id}', ${item.quantity + 1})">
-                                <i class="fas fa-plus"></i>
-                            </button>
-                        </div>
-                        <button class="remove-item" onclick="removeFromCart('${item.id}')">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        `).join('');
-        
-        cartFooter.style.display = 'block';
-    }
+    // Send analytics event (in real app, this would go to Google Analytics or similar)
+    console.log(`Download tracked: ${platform}, Total clicks: ${downloadClicks[platform]}`);
     
-    // Save to localStorage
-    localStorage.setItem('cart', JSON.stringify(cart));
-};
-
-const addToCart = (name, price) => {
-    const id = name.toLowerCase().replace(/\s+/g, '-');
-    const existingItem = cart.find(item => item.id === id);
+    // Show user feedback
+    showNotification(`Redirecting to ${platform === 'googlePlay' ? 'Google Play Store' : 'App Store'}...`, 'success');
     
-    if (existingItem) {
-        existingItem.quantity += 1;
-    } else {
-        cart.push({
-            id,
-            name,
-            price: parseFloat(price),
-            quantity: 1
-        });
-    }
+    // In production, these would be actual store URLs
+    const storeUrls = {
+        googlePlay: 'https://play.google.com/store/apps/details?id=com.hostnova.hostara',
+        appStore: 'https://apps.apple.com/app/hostara/id123456789'
+    };
     
-    updateCartDisplay();
-    showNotification(`${name} added to cart!`, 'success');
-    
-    // Animate cart button
-    cartBtn.style.transform = 'scale(1.2)';
+    // For now, show coming soon message
     setTimeout(() => {
-        cartBtn.style.transform = 'scale(1)';
-    }, 200);
-};
-
-const updateQuantity = (id, newQuantity) => {
-    if (newQuantity <= 0) {
-        removeFromCart(id);
-        return;
-    }
+        showNotification('App stores are reviewing our submission. You\'ll be notified when available!', 'warning');
+    }, 2000);
     
-    const item = cart.find(item => item.id === id);
-    if (item) {
-        item.quantity = newQuantity;
-        updateCartDisplay();
-    }
+    // Uncomment when app is live:
+    // window.open(storeUrls[platform], '_blank');
 };
 
-const removeFromCart = (id) => {
-    const itemIndex = cart.findIndex(item => item.id === id);
-    if (itemIndex !== -1) {
-        const itemName = cart[itemIndex].name;
-        cart.splice(itemIndex, 1);
-        updateCartDisplay();
-        showNotification(`${itemName} removed from cart`, 'warning');
-    }
+const updateDownloadStats = () => {
+    // Update download counts in localStorage for analytics
+    const totalDownloads = downloadClicks.googlePlay + downloadClicks.appStore;
+    console.log(`Total download clicks: ${totalDownloads}`);
 };
 
-const toggleCart = () => {
-    const isActive = cartSidebar.classList.contains('active');
-    
-    if (isActive) {
-        cartSidebar.classList.remove('active');
-        cartOverlay.classList.remove('active');
-        document.body.style.overflow = '';
-    } else {
-        cartSidebar.classList.add('active');
-        cartOverlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-};
-
-const closeCart = () => {
-    cartSidebar.classList.remove('active');
-    cartOverlay.classList.remove('active');
-    document.body.style.overflow = '';
-};
-
-// ===== PRODUCT FUNCTIONS =====
-const filterProducts = (query = '') => {
-    const productCards = document.querySelectorAll('.product-card');
-    
-    productCards.forEach(card => {
-        const category = card.dataset.category;
-        const title = card.querySelector('.product-title').textContent.toLowerCase();
-        const matchesFilter = currentFilter === 'all' || category === currentFilter;
-        const matchesSearch = query === '' || title.includes(query.toLowerCase());
-        
-        if (matchesFilter && matchesSearch) {
-            card.style.display = 'block';
-            card.style.animation = 'fadeInUp 0.5s ease-out';
-        } else {
-            card.style.display = 'none';
+// ===== BUSINESS TIER FUNCTIONS =====
+const showTierInfo = (tierName) => {
+    const tierDetails = {
+        student: {
+            name: 'Student Tier',
+            setup: 'KES 1,000',
+            monthly: 'KES 0',
+            clients: '100 max',
+            features: ['Basic service creation', 'Mobile app access', 'M-Pesa integration', 'Student verification badge']
+        },
+        starter: {
+            name: 'Starter Tier',
+            setup: 'KES 1,500',
+            monthly: 'KES 2,500',
+            clients: '500 max',
+            features: ['Everything in Student', 'Enhanced analytics', 'Priority support', 'Marketing guidance']
+        },
+        growth: {
+            name: 'Growth Tier',
+            setup: 'KES 3,000',
+            monthly: 'KES 9,000',
+            clients: '2,000 max',
+            features: ['Everything in Starter', 'Multi-agent management', 'API integrations', 'Dedicated account manager']
+        },
+        enterprise: {
+            name: 'Enterprise Tier',
+            setup: 'KES 10,000',
+            monthly: 'KES 39,000',
+            clients: 'Unlimited',
+            features: ['Everything in Growth', 'Custom integrations', 'Enterprise security', 'Multi-location management']
         }
-    });
-};
-
-const setActiveFilter = (filter) => {
-    currentFilter = filter;
+    };
     
-    // Update filter button states
-    filterBtns.forEach(btn => {
-        btn.classList.remove('active');
-        if (btn.dataset.filter === filter) {
-            btn.classList.add('active');
-        }
-    });
-    
-    // Filter products with animation
-    showLoading();
-    setTimeout(() => {
-        filterProducts();
-        hideLoading();
-    }, 300);
-};
-
-const loadMoreProducts = () => {
-    showLoading();
-    
-    // Simulate loading more products
-    setTimeout(() => {
-        const moreProducts = [
-            { name: 'Smart Watch', price: 249.99, category: 'electronics', icon: 'fas fa-watch' },
-            { name: 'Yoga Mat', price: 39.99, category: 'sports', icon: 'fas fa-dumbbell' },
-            { name: 'Coffee Maker', price: 129.99, category: 'home', icon: 'fas fa-coffee' },
-            { name: 'Wireless Earbuds', price: 79.99, category: 'electronics', icon: 'fas fa-headphones' }
-        ];
-        
-        moreProducts.forEach(product => {
-            const productCard = document.createElement('div');
-            productCard.className = 'product-card';
-            productCard.dataset.category = product.category;
-            productCard.innerHTML = `
-                <div class="product-image">
-                    <div class="product-image-placeholder">
-                        <i class="${product.icon}"></i>
-                    </div>
-                    <div class="product-overlay">
-                        <button class="quick-view-btn">
-                            <i class="fas fa-eye"></i>
-                        </button>
-                        <button class="wishlist-btn">
-                            <i class="far fa-heart"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-title">${product.name}</h3>
-                    <div class="product-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="far fa-star"></i>
-                        <span class="rating-count">(45)</span>
-                    </div>
-                    <div class="product-price">
-                        <span class="current-price">$${product.price}</span>
-                    </div>
-                    <button class="add-to-cart-btn" data-product="${product.name}" data-price="${product.price}">
-                        <i class="fas fa-shopping-cart"></i>
-                        Add to Cart
-                    </button>
-                </div>
-            `;
-            
-            productsGrid.appendChild(productCard);
-            
-            // Add event listener to new add to cart button
-            const newAddToCartBtn = productCard.querySelector('.add-to-cart-btn');
-            newAddToCartBtn.addEventListener('click', (e) => {
-                const name = e.target.dataset.product;
-                const price = e.target.dataset.price;
-                addToCart(name, price);
-            });
-        });
-        
-        hideLoading();
-        showNotification('More products loaded!', 'success');
-        
-        // Hide load more button after loading
-        loadMoreBtn.style.display = 'none';
-    }, 1500);
+    const tier = tierDetails[tierName];
+    if (tier) {
+        const message = `${tier.name}: Setup ${tier.setup}, Monthly ${tier.monthly}, ${tier.clients} clients. Features: ${tier.features.join(', ')}`;
+        showNotification(message, 'success');
+    }
 };
 
 // ===== FORM FUNCTIONS =====
@@ -505,40 +338,28 @@ const addEventListeners = () => {
         });
     });
     
-    // Search events
-    searchBtn?.addEventListener('click', toggleSearch);
-    searchBar?.querySelector('form')?.addEventListener('submit', handleSearch);
-    
-    // Close search when clicking outside
-    document.addEventListener('click', (e) => {
-        if (isSearchOpen && !searchBar.contains(e.target) && !searchBtn.contains(e.target)) {
-            toggleSearch();
-        }
+    // App download events
+    googlePlayBtn?.addEventListener('click', (e) => {
+        e.preventDefault();
+        trackDownload('googlePlay');
     });
     
-    // Cart events
-    cartBtn?.addEventListener('click', toggleCart);
-    cartClose?.addEventListener('click', closeCart);
-    cartOverlay?.addEventListener('click', closeCart);
+    appStoreBtn?.addEventListener('click', (e) => {
+        e.preventDefault();
+        trackDownload('appStore');
+    });
     
-    // Product filter events
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            setActiveFilter(btn.dataset.filter);
+    // Business tier card events
+    document.querySelectorAll('.tier-card').forEach(card => {
+        card.addEventListener('click', () => {
+            const tierClass = Array.from(card.classList).find(cls => 
+                ['student', 'starter', 'growth', 'enterprise'].includes(cls)
+            );
+            if (tierClass) {
+                showTierInfo(tierClass);
+            }
         });
     });
-    
-    // Add to cart events
-    addToCartBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const name = e.target.dataset.product;
-            const price = e.target.dataset.price;
-            addToCart(name, price);
-        });
-    });
-    
-    // Load more button
-    loadMoreBtn?.addEventListener('click', loadMoreProducts);
     
     // Form events
     newsletterForm?.addEventListener('submit', handleNewsletterSubmit);
@@ -553,36 +374,19 @@ const addEventListeners = () => {
     document.addEventListener('keydown', (e) => {
         // Close modals with Escape key
         if (e.key === 'Escape') {
-            if (cartSidebar.classList.contains('active')) {
-                closeCart();
-            }
-            if (isSearchOpen) {
-                toggleSearch();
-            }
             if (navMenu.classList.contains('active')) {
                 closeMobileMenu();
             }
         }
     });
     
-    // Wishlist button events
-    document.addEventListener('click', (e) => {
-        if (e.target.classList.contains('wishlist-btn') || e.target.parentElement.classList.contains('wishlist-btn')) {
-            const btn = e.target.classList.contains('wishlist-btn') ? e.target : e.target.parentElement;
-            const icon = btn.querySelector('i');
-            
-            if (icon.classList.contains('far')) {
-                icon.classList.remove('far');
-                icon.classList.add('fas');
-                btn.style.color = '#ef4444';
-                showNotification('Added to wishlist!', 'success');
-            } else {
-                icon.classList.remove('fas');
-                icon.classList.add('far');
-                btn.style.color = '';
-                showNotification('Removed from wishlist!', 'warning');
-            }
-        }
+    // External link tracking
+    document.querySelectorAll('a[href^="http"]').forEach(link => {
+        link.addEventListener('click', (e) => {
+            const url = link.href;
+            console.log(`External link clicked: ${url}`);
+            // In production, send to analytics
+        });
     });
 };
 

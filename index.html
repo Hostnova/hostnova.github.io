@@ -3,17 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EliteStore - Premium Ecommerce Experience</title>
-    <meta name="description" content="Discover premium products at EliteStore. Shop the latest fashion, electronics, and lifestyle products with fast shipping and exceptional service.">
+    <title>Hostara - Host Your Hustle | By Hostnova</title>
+    <meta name="description" content="Hostara is Kenya's premier multi-service marketplace platform. Host your hustle and connect with customers seamlessly. Download our mobile app and start growing your business today.">
+    <meta name="keywords" content="Kenya marketplace, business services, mobile app, Hostara, Hostnova, host your hustle, service platform">
+    <meta name="author" content="Hostnova - Orbit Beyond Ordinary">
     
-    <!-- Preload critical resources -->
+    <!-- Preload critical resources i -->
     <link rel="preload" href="css/style.css" as="style">
     <link rel="preload" href="js/app.js" as="script">
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="css/style.css">
     
-    <!-- Fonts -->
+    <!-- Fonts kk-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -30,27 +32,27 @@
         <div class="nav-container">
             <div class="nav-logo">
                 <a href="#" class="logo">
-                    <i class="fas fa-shopping-bag"></i>
-                    EliteStore
+                    <i class="fas fa-rocket"></i>
+                    <div class="logo-text">
+                        <span class="brand-main">Hostara</span>
+                        <span class="brand-sub">by Hostnova</span>
+                    </div>
                 </a>
             </div>
             
             <div class="nav-menu" id="nav-menu">
                 <a href="#home" class="nav-link active">Home</a>
-                <a href="#products" class="nav-link">Products</a>
+                <a href="#app" class="nav-link">Download App</a>
                 <a href="#features" class="nav-link">Features</a>
                 <a href="#about" class="nav-link">About</a>
                 <a href="#contact" class="nav-link">Contact</a>
             </div>
             
             <div class="nav-actions">
-                <button class="search-btn" id="search-btn">
-                    <i class="fas fa-search"></i>
-                </button>
-                <button class="cart-btn" id="cart-btn">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span class="cart-count" id="cart-count">0</span>
-                </button>
+                <a href="#app" class="btn btn-primary nav-cta">
+                    <i class="fas fa-download"></i>
+                    Get Started
+                </a>
                 <button class="nav-toggle" id="nav-toggle">
                     <span></span>
                     <span></span>
@@ -59,15 +61,7 @@
             </div>
         </div>
         
-        <!-- Search Bar -->
-        <div class="search-bar" id="search-bar">
-            <div class="search-container">
-                <input type="text" placeholder="Search products..." class="search-input" id="search-input">
-                <button class="search-submit">
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
-        </div>
+
     </nav>
 
     <!-- Hero Section -->
@@ -75,58 +69,63 @@
         <div class="hero-container">
             <div class="hero-content">
                 <div class="hero-text">
-                    <span class="hero-badge">New Collection 2024</span>
+                    <span class="hero-badge">Launching October 1, 2025</span>
                     <h1 class="hero-title">
-                        Discover Your
-                        <span class="gradient-text">Perfect Style</span>
+                        <span class="gradient-text">Host Your Hustle</span>
+                        on Kenya's Premier Platform
                     </h1>
                     <p class="hero-description">
-                        Shop premium quality products with unbeatable prices. From fashion to electronics, 
-                        find everything you need with fast, free shipping and exceptional customer service.
+                        Hostara connects businesses with customers across Kenya. Whether you're a student entrepreneur 
+                        or an established business, our platform makes it easy to showcase your services, 
+                        process payments via M-Pesa, and grow your customer base.
                     </p>
                     <div class="hero-buttons">
-                        <button class="btn btn-primary" onclick="scrollToSection('products')">
-                            Shop Now
-                            <i class="fas fa-arrow-right"></i>
-                        </button>
-                        <button class="btn btn-secondary">
+                        <a href="#app" class="btn btn-primary">
+                            <i class="fas fa-mobile-alt"></i>
+                            Download Mobile App
+                        </a>
+                        <button class="btn btn-secondary" onclick="scrollToSection('features')">
                             <i class="fas fa-play"></i>
-                            Watch Video
+                            See How It Works
                         </button>
                     </div>
                     <div class="hero-stats">
                         <div class="stat">
-                            <span class="stat-number">50K+</span>
-                            <span class="stat-label">Happy Customers</span>
+                            <span class="stat-number">4</span>
+                            <span class="stat-label">Business Tiers</span>
                         </div>
                         <div class="stat">
-                            <span class="stat-number">1M+</span>
-                            <span class="stat-label">Products Sold</span>
+                            <span class="stat-number">6</span>
+                            <span class="stat-label">User Roles</span>
                         </div>
                         <div class="stat">
-                            <span class="stat-number">99%</span>
-                            <span class="stat-label">Satisfaction Rate</span>
+                            <span class="stat-number">100%</span>
+                            <span class="stat-label">Kenyan Built</span>
                         </div>
                     </div>
                 </div>
                 <div class="hero-image">
                     <div class="hero-image-container">
                         <div class="floating-card card-1">
-                            <i class="fas fa-shipping-fast"></i>
-                            <span>Free Shipping</span>
+                            <i class="fas fa-mobile-alt"></i>
+                            <span>Mobile First</span>
                         </div>
                         <div class="floating-card card-2">
                             <i class="fas fa-shield-alt"></i>
-                            <span>Secure Payment</span>
+                            <span>M-Pesa Secure</span>
                         </div>
                         <div class="floating-card card-3">
-                            <i class="fas fa-headset"></i>
-                            <span>24/7 Support</span>
+                            <i class="fas fa-users"></i>
+                            <span>Multi-Service</span>
                         </div>
                         <div class="hero-image-bg">
                             <div class="image-placeholder">
-                                <i class="fas fa-shopping-bag"></i>
+                                <i class="fas fa-rocket"></i>
                             </div>
+                        </div>
+                        <div class="company-tagline">
+                            <span>Hostnova</span>
+                            <small>Orbit Beyond Ordinary</small>
                         </div>
                     </div>
                 </div>
@@ -144,310 +143,169 @@
     <section class="features" id="features">
         <div class="container">
             <div class="section-header">
-                <span class="section-badge">Why Choose Us</span>
-                <h2 class="section-title">Premium Shopping Experience</h2>
+                <span class="section-badge">Platform Features</span>
+                <h2 class="section-title">Everything You Need to Succeed</h2>
                 <p class="section-description">
-                    We're committed to providing you with the best online shopping experience through innovative features and exceptional service.
+                    Hostara provides powerful tools and features designed specifically for the Kenyan market, 
+                    helping businesses of all sizes thrive in the digital economy.
                 </p>
             </div>
             
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-truck"></i>
-                    </div>
-                    <h3 class="feature-title">Fast Delivery</h3>
-                    <p class="feature-description">Free shipping on orders over $50. Express delivery available in major cities within 24 hours.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-lock"></i>
-                    </div>
-                    <h3 class="feature-title">Secure Payments</h3>
-                    <p class="feature-description">Your transactions are protected with bank-level security and SSL encryption.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-undo"></i>
-                    </div>
-                    <h3 class="feature-title">Easy Returns</h3>
-                    <p class="feature-description">30-day hassle-free returns with free return shipping on all products.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-award"></i>
-                    </div>
-                    <h3 class="feature-title">Quality Guarantee</h3>
-                    <p class="feature-description">All products are carefully curated and backed by our quality guarantee.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-headset"></i>
-                    </div>
-                    <h3 class="feature-title">24/7 Support</h3>
-                    <p class="feature-description">Our customer service team is available round the clock to assist you.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
                         <i class="fas fa-mobile-alt"></i>
                     </div>
-                    <h3 class="feature-title">Mobile App</h3>
-                    <p class="feature-description">Shop on the go with our mobile app, available on iOS and Android.</p>
+                    <h3 class="feature-title">Mobile-First Design</h3>
+                    <p class="feature-description">Our Flutter-based mobile app ensures seamless performance on both Android and iOS devices, optimized for Kenyan users.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <h3 class="feature-title">M-Pesa Integration</h3>
+                    <p class="feature-description">Secure payment processing through M-Pesa Daraja API, enabling direct business-to-customer transactions.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="feature-title">Multi-Role System</h3>
+                    <p class="feature-description">Support for 6 distinct user roles including guests, clients, agents, managers, and administrators.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h3 class="feature-title">Business Tiers</h3>
+                    <p class="feature-description">Flexible pricing tiers from Student (KES 1,000) to Enterprise (KES 10,000) setup, designed for every business size.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <h3 class="feature-title">Campus Focus</h3>
+                    <p class="feature-description">Special features for university campuses and student entrepreneurs across Kenya's major institutions.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="feature-title">Real-Time Analytics</h3>
+                    <p class="feature-description">Comprehensive business analytics, order tracking, and performance insights to help grow your business.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Products Section -->
-    <section class="products" id="products">
+    <!-- App Download Section -->
+    <section class="app-download" id="app">
         <div class="container">
             <div class="section-header">
-                <span class="section-badge">Best Sellers</span>
-                <h2 class="section-title">Featured Products</h2>
+                <span class="section-badge">Get Started Today</span>
+                <h2 class="section-title">Download the Hostara Mobile App</h2>
                 <p class="section-description">
-                    Discover our most popular products, carefully selected for quality and style.
+                    Available for Android and iOS. Start hosting your hustle or discover amazing services in your area.
                 </p>
             </div>
             
-            <!-- Product Filters -->
-            <div class="product-filters">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="fashion">Fashion</button>
-                <button class="filter-btn" data-filter="electronics">Electronics</button>
-                <button class="filter-btn" data-filter="home">Home & Living</button>
-                <button class="filter-btn" data-filter="sports">Sports</button>
-            </div>
-            
-            <!-- Products Grid -->
-            <div class="products-grid" id="products-grid">
-                <!-- Product 1 -->
-                <div class="product-card" data-category="fashion">
-                    <div class="product-image">
-                        <div class="product-badge">New</div>
-                        <div class="product-image-placeholder">
-                            <i class="fas fa-tshirt"></i>
+            <div class="app-showcase">
+                <div class="app-preview">
+                    <div class="phone-mockup">
+                        <div class="phone-screen">
+                            <div class="app-interface">
+                                <div class="app-header">
+                                    <i class="fas fa-rocket"></i>
+                                    <span>Hostara</span>
+                                </div>
+                                <div class="app-features">
+                                    <div class="app-feature">
+                                        <i class="fas fa-store"></i>
+                                        <span>Browse Services</span>
+                                    </div>
+                                    <div class="app-feature">
+                                        <i class="fas fa-mobile-alt"></i>
+                                        <span>M-Pesa Payments</span>
+                                    </div>
+                                    <div class="app-feature">
+                                        <i class="fas fa-chart-bar"></i>
+                                        <span>Business Analytics</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="product-overlay">
-                            <button class="quick-view-btn">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                            <button class="wishlist-btn">
-                                <i class="far fa-heart"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Premium Cotton T-Shirt</h3>
-                        <div class="product-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <span class="rating-count">(124)</span>
-                        </div>
-                        <div class="product-price">
-                            <span class="current-price">$29.99</span>
-                            <span class="original-price">$39.99</span>
-                        </div>
-                        <button class="add-to-cart-btn" data-product="Premium Cotton T-Shirt" data-price="29.99">
-                            <i class="fas fa-shopping-cart"></i>
-                            Add to Cart
-                        </button>
                     </div>
                 </div>
                 
-                <!-- Product 2 -->
-                <div class="product-card" data-category="electronics">
-                    <div class="product-image">
-                        <div class="product-badge sale">Sale</div>
-                        <div class="product-image-placeholder">
-                            <i class="fas fa-headphones"></i>
+                <div class="app-info">
+                    <div class="tier-preview">
+                        <h3>Choose Your Business Tier</h3>
+                        <div class="tier-cards">
+                            <div class="tier-card student">
+                                <h4>🎓 Student</h4>
+                                <div class="price">KES 1,000</div>
+                                <div class="features">
+                                    <span>100 clients max</span>
+                                    <span>KES 0 monthly</span>
+                                </div>
+                            </div>
+                            <div class="tier-card starter">
+                                <h4>🚀 Starter</h4>
+                                <div class="price">KES 1,500</div>
+                                <div class="features">
+                                    <span>500 clients max</span>
+                                    <span>KES 2,500 monthly</span>
+                                </div>
+                            </div>
+                            <div class="tier-card growth">
+                                <h4>📈 Growth</h4>
+                                <div class="price">KES 3,000</div>
+                                <div class="features">
+                                    <span>2,000 clients max</span>
+                                    <span>KES 9,000 monthly</span>
+                                </div>
+                            </div>
+                            <div class="tier-card enterprise">
+                                <h4>🏢 Enterprise</h4>
+                                <div class="price">KES 10,000</div>
+                                <div class="features">
+                                    <span>Unlimited clients</span>
+                                    <span>KES 39,000 monthly</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="product-overlay">
-                            <button class="quick-view-btn">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                            <button class="wishlist-btn">
-                                <i class="far fa-heart"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Wireless Noise-Canceling Headphones</h3>
-                        <div class="product-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <span class="rating-count">(89)</span>
-                        </div>
-                        <div class="product-price">
-                            <span class="current-price">$149.99</span>
-                            <span class="original-price">$199.99</span>
-                        </div>
-                        <button class="add-to-cart-btn" data-product="Wireless Noise-Canceling Headphones" data-price="149.99">
-                            <i class="fas fa-shopping-cart"></i>
-                            Add to Cart
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Product 3 -->
-                <div class="product-card" data-category="home">
-                    <div class="product-image">
-                        <div class="product-image-placeholder">
-                            <i class="fas fa-couch"></i>
-                        </div>
-                        <div class="product-overlay">
-                            <button class="quick-view-btn">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                            <button class="wishlist-btn">
-                                <i class="far fa-heart"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Modern Accent Chair</h3>
-                        <div class="product-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
-                            <span class="rating-count">(67)</span>
-                        </div>
-                        <div class="product-price">
-                            <span class="current-price">$299.99</span>
-                        </div>
-                        <button class="add-to-cart-btn" data-product="Modern Accent Chair" data-price="299.99">
-                            <i class="fas fa-shopping-cart"></i>
-                            Add to Cart
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Product 4 -->
-                <div class="product-card" data-category="sports">
-                    <div class="product-image">
-                        <div class="product-badge">Popular</div>
-                        <div class="product-image-placeholder">
-                            <i class="fas fa-running"></i>
-                        </div>
-                        <div class="product-overlay">
-                            <button class="quick-view-btn">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                            <button class="wishlist-btn">
-                                <i class="far fa-heart"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Performance Running Shoes</h3>
-                        <div class="product-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <span class="rating-count">(203)</span>
-                        </div>
-                        <div class="product-price">
-                            <span class="current-price">$89.99</span>
-                            <span class="original-price">$119.99</span>
-                        </div>
-                        <button class="add-to-cart-btn" data-product="Performance Running Shoes" data-price="89.99">
-                            <i class="fas fa-shopping-cart"></i>
-                            Add to Cart
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Product 5 -->
-                <div class="product-card" data-category="electronics">
-                    <div class="product-image">
-                        <div class="product-image-placeholder">
-                            <i class="fas fa-laptop"></i>
-                        </div>
-                        <div class="product-overlay">
-                            <button class="quick-view-btn">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                            <button class="wishlist-btn">
-                                <i class="far fa-heart"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Ultra-Slim Laptop</h3>
-                        <div class="product-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <span class="rating-count">(156)</span>
-                        </div>
-                        <div class="product-price">
-                            <span class="current-price">$899.99</span>
-                        </div>
-                        <button class="add-to-cart-btn" data-product="Ultra-Slim Laptop" data-price="899.99">
-                            <i class="fas fa-shopping-cart"></i>
-                            Add to Cart
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Product 6 -->
-                <div class="product-card" data-category="fashion">
-                    <div class="product-image">
-                        <div class="product-image-placeholder">
-                            <i class="fas fa-gem"></i>
-                        </div>
-                        <div class="product-overlay">
-                            <button class="quick-view-btn">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                            <button class="wishlist-btn">
-                                <i class="far fa-heart"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Designer Watch</h3>
-                        <div class="product-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
-                            <span class="rating-count">(78)</span>
-                        </div>
-                        <div class="product-price">
-                            <span class="current-price">$199.99</span>
-                            <span class="original-price">$249.99</span>
-                        </div>
-                        <button class="add-to-cart-btn" data-product="Designer Watch" data-price="199.99">
-                            <i class="fas fa-shopping-cart"></i>
-                            Add to Cart
-                        </button>
                     </div>
                 </div>
             </div>
             
-            <div class="load-more-container">
-                <button class="btn btn-secondary" id="load-more-btn">
-                    Load More Products
-                    <i class="fas fa-plus"></i>
-                </button>
+            <div class="download-buttons">
+                <h3>Download Now</h3>
+                <div class="store-buttons">
+                    <a href="#" class="store-btn google-play" id="google-play-btn">
+                        <i class="fab fa-google-play"></i>
+                        <div class="store-text">
+                            <span class="store-subtitle">Get it on</span>
+                            <span class="store-title">Google Play</span>
+                        </div>
+                    </a>
+                    <a href="#" class="store-btn app-store" id="app-store-btn">
+                        <i class="fab fa-apple"></i>
+                        <div class="store-text">
+                            <span class="store-subtitle">Download on the</span>
+                            <span class="store-title">App Store</span>
+                        </div>
+                    </a>
+                </div>
+                <p class="coming-soon">
+                    <i class="fas fa-info-circle"></i>
+                    Apps will be available on respective stores after vendor approval. 
+                    Currently in review process.
+                </p>
             </div>
         </div>
     </section>
@@ -457,49 +315,56 @@
         <div class="container">
             <div class="about-content">
                 <div class="about-text">
-                    <span class="section-badge">About EliteStore</span>
-                    <h2 class="section-title">Your Trusted Shopping Partner</h2>
+                    <span class="section-badge">About Hostara</span>
+                    <h2 class="section-title">Empowering Kenya's Digital Economy</h2>
                     <p class="about-description">
-                        Founded in 2020, EliteStore has become a leading destination for quality products 
-                        and exceptional customer service. We believe in providing our customers with 
-                        carefully curated products that combine style, functionality, and value.
+                        Hostara, powered by Hostnova, is Kenya's premier multi-service marketplace platform. 
+                        We're building the future of business services, connecting entrepreneurs with customers 
+                        across universities, communities, and cities throughout Kenya.
                     </p>
                     <div class="about-features">
                         <div class="about-feature">
                             <i class="fas fa-check-circle"></i>
-                            <span>Premium Quality Products</span>
+                            <span>Built specifically for the Kenyan market</span>
                         </div>
                         <div class="about-feature">
                             <i class="fas fa-check-circle"></i>
-                            <span>Competitive Pricing</span>
+                            <span>M-Pesa integrated payment system</span>
                         </div>
                         <div class="about-feature">
                             <i class="fas fa-check-circle"></i>
-                            <span>Fast & Reliable Shipping</span>
+                            <span>Student-friendly pricing tiers</span>
                         </div>
                         <div class="about-feature">
                             <i class="fas fa-check-circle"></i>
-                            <span>Exceptional Customer Service</span>
+                            <span>Campus-focused service delivery</span>
                         </div>
                     </div>
-                    <button class="btn btn-primary">
-                        Learn More About Us
-                        <i class="fas fa-arrow-right"></i>
-                    </button>
+                    <div class="company-info">
+                        <div class="company-brand">
+                            <div class="brand-logo">
+                                <i class="fas fa-rocket"></i>
+                                <div>
+                                    <strong>Hostnova</strong>
+                                    <small>Orbit Beyond Ordinary</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="about-image">
                     <div class="about-image-container">
                         <div class="about-image-placeholder">
-                            <i class="fas fa-store"></i>
+                            <i class="fas fa-users"></i>
                         </div>
                         <div class="about-stats">
                             <div class="about-stat">
-                                <span class="stat-number">4.9</span>
-                                <span class="stat-label">Rating</span>
+                                <span class="stat-number">Oct 1</span>
+                                <span class="stat-label">Launch Date</span>
                             </div>
                             <div class="about-stat">
-                                <span class="stat-number">50K+</span>
-                                <span class="stat-label">Customers</span>
+                                <span class="stat-number">Kenya</span>
+                                <span class="stat-label">First Market</span>
                             </div>
                         </div>
                     </div>
@@ -554,8 +419,8 @@
                             <i class="fas fa-map-marker-alt"></i>
                         </div>
                         <div class="contact-details">
-                            <h3>Visit Our Store</h3>
-                            <p>123 Shopping Street<br>New York, NY 10001</p>
+                            <h3>Our Location</h3>
+                            <p>Nairobi, Kenya<br>Serving all major cities and universities</p>
                         </div>
                     </div>
                     
@@ -564,8 +429,8 @@
                             <i class="fas fa-phone"></i>
                         </div>
                         <div class="contact-details">
-                            <h3>Call Us</h3>
-                            <p>+1 (555) 123-4567<br>Mon-Fri: 9AM-6PM</p>
+                            <h3>Contact Support</h3>
+                            <p>+254 XXX XXX XXX<br>Mon-Fri: 8AM-6PM EAT</p>
                         </div>
                     </div>
                     
@@ -574,8 +439,8 @@
                             <i class="fas fa-envelope"></i>
                         </div>
                         <div class="contact-details">
-                            <h3>Email Us</h3>
-                            <p>support@elitestore.com<br>orders@elitestore.com</p>
+                            <h3>Email Support</h3>
+                            <p>support@hostara.com<br>business@hostara.com</p>
                         </div>
                     </div>
                 </div>
@@ -611,12 +476,16 @@
                 <div class="footer-section">
                     <div class="footer-logo">
                         <a href="#" class="logo">
-                            <i class="fas fa-shopping-bag"></i>
-                            EliteStore
+                            <i class="fas fa-rocket"></i>
+                            <div class="logo-text">
+                                <span class="brand-main">Hostara</span>
+                                <span class="brand-sub">by Hostnova</span>
+                            </div>
                         </a>
                     </div>
                     <p class="footer-description">
-                        Your trusted partner for premium quality products and exceptional shopping experience.
+                        Host your hustle on Kenya's premier multi-service marketplace platform. 
+                        Orbit beyond ordinary with Hostnova.
                     </p>
                     <div class="social-links">
                         <a href="#" class="social-link">
@@ -638,7 +507,7 @@
                     <h3 class="footer-title">Quick Links</h3>
                     <ul class="footer-links">
                         <li><a href="#home">Home</a></li>
-                        <li><a href="#products">Products</a></li>
+                        <li><a href="#app">Download App</a></li>
                         <li><a href="#features">Features</a></li>
                         <li><a href="#about">About</a></li>
                         <li><a href="#contact">Contact</a></li>
@@ -646,24 +515,24 @@
                 </div>
                 
                 <div class="footer-section">
-                    <h3 class="footer-title">Categories</h3>
+                    <h3 class="footer-title">Platform</h3>
                     <ul class="footer-links">
-                        <li><a href="#">Fashion</a></li>
-                        <li><a href="#">Electronics</a></li>
-                        <li><a href="#">Home & Living</a></li>
-                        <li><a href="#">Sports</a></li>
-                        <li><a href="#">Beauty</a></li>
+                        <li><a href="#business-tiers">Business Tiers</a></li>
+                        <li><a href="#student-program">Student Program</a></li>
+                        <li><a href="#campus-services">Campus Services</a></li>
+                        <li><a href="#api-docs" target="_blank">API Documentation</a></li>
+                        <li><a href="#developer-portal">Developer Portal</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-section">
-                    <h3 class="footer-title">Customer Service</h3>
+                    <h3 class="footer-title">Legal & Support</h3>
                     <ul class="footer-links">
-                        <li><a href="#">Help Center</a></li>
-                        <li><a href="#">Shipping Info</a></li>
-                        <li><a href="#">Returns</a></li>
-                        <li><a href="#">Size Guide</a></li>
-                        <li><a href="#">Track Order</a></li>
+                        <li><a href="terms-and-conditions.html">Terms & Conditions</a></li>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="user-regulations.html">User Regulations</a></li>
+                        <li><a href="#help-center">Help Center</a></li>
+                        <li><a href="#business-support">Business Support</a></li>
                     </ul>
                 </div>
             </div>
@@ -671,48 +540,20 @@
             <div class="footer-bottom">
                 <div class="footer-bottom-content">
                     <p class="copyright">
-                        © 2024 EliteStore. All rights reserved.
+                        © 2025 Hostnova Limited. All rights reserved. Hostara is a trademark of Hostnova.
                     </p>
                     <div class="footer-bottom-links">
-                        <a href="#">Privacy Policy</a>
-                        <a href="#">Terms of Service</a>
-                        <a href="#">Cookie Policy</a>
+                        <a href="privacy.html">Privacy Policy</a>
+                        <a href="terms.html">Terms of Service</a>
+                        <a href="user-regulations.html">User Regulations</a>
+                        <a href="#kenya-compliance">Kenya Compliance</a>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Shopping Cart Sidebar -->
-    <div class="cart-sidebar" id="cart-sidebar">
-        <div class="cart-header">
-            <h3>Shopping Cart</h3>
-            <button class="cart-close" id="cart-close">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        <div class="cart-content" id="cart-content">
-            <div class="empty-cart">
-                <i class="fas fa-shopping-cart"></i>
-                <p>Your cart is empty</p>
-                <button class="btn btn-primary" onclick="scrollToSection('products')">
-                    Start Shopping
-                </button>
-            </div>
-        </div>
-        <div class="cart-footer" id="cart-footer" style="display: none;">
-            <div class="cart-total">
-                <span>Total: $<span id="cart-total">0.00</span></span>
-            </div>
-            <button class="btn btn-primary cart-checkout">
-                Proceed to Checkout
-                <i class="fas fa-arrow-right"></i>
-            </button>
-        </div>
-    </div>
 
-    <!-- Cart Overlay -->
-    <div class="cart-overlay" id="cart-overlay"></div>
 
     <!-- Back to Top Button -->
     <button class="back-to-top" id="back-to-top">
