@@ -1,0 +1,420 @@
+/* ============================================
+   HERO PAGE - RESPONSIVE OVERRIDES
+   Mobile-first responsive adjustments
+   ============================================ */
+
+/* ========================================
+   EXTRA SMALL MOBILE (< 480px)
+   ======================================== */
+
+@media (max-width: 479px) {
+  .hero-container {
+    padding: var(--space-6) var(--space-3);
+  }
+  
+  .hero-logo img {
+    height: 40px;
+  }
+  
+  .hero-title {
+    font-size: clamp(1.75rem, 8vw, 2.25rem);
+    margin-bottom: var(--space-3);
+  }
+  
+  .hero-subtitle {
+    font-size: var(--text-sm);
+    line-height: var(--leading-normal);
+  }
+  
+  .hero-features {
+    gap: var(--space-2);
+  }
+  
+  .hero-feature {
+    font-size: var(--text-sm);
+    gap: var(--space-2);
+  }
+  
+  .hero-cta {
+    gap: var(--space-2);
+  }
+  
+  .hero-cta .btn {
+    padding: var(--space-3) var(--space-5);
+    font-size: var(--text-sm);
+    height: 48px; /* Touch-friendly size */
+  }
+  
+  .hero-trust {
+    gap: var(--space-4);
+  }
+  
+  .hero-trust-item {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .hero-trust-number {
+    font-size: var(--text-2xl);
+  }
+  
+  .hero-visual {
+    max-width: 250px;
+  }
+  
+  .hero-badge {
+    position: static;
+    margin-top: var(--space-4);
+    justify-content: center;
+  }
+}
+
+/* ========================================
+   SMALL MOBILE (480px - 639px)
+   ======================================== */
+
+@media (min-width: 480px) and (max-width: 639px) {
+  .hero-container {
+    padding: var(--space-8) var(--space-4);
+  }
+  
+  .hero-title {
+    font-size: var(--text-3xl);
+  }
+  
+  .hero-subtitle {
+    font-size: var(--text-base);
+  }
+  
+  .hero-visual {
+    max-width: 300px;
+  }
+}
+
+/* ========================================
+   TABLET PORTRAIT (640px - 767px)
+   ======================================== */
+
+@media (min-width: 640px) and (max-width: 767px) {
+  .hero-container {
+    padding: var(--space-10) var(--space-6);
+  }
+  
+  .hero-title {
+    font-size: var(--text-4xl);
+  }
+  
+  .hero-subtitle {
+    font-size: var(--text-lg);
+    max-width: 500px;
+  }
+  
+  .hero-cta {
+    flex-direction: row;
+    justify-content: center;
+  }
+  
+  .hero-cta .btn {
+    flex: 0 1 auto;
+    min-width: 180px;
+  }
+  
+  .hero-visual {
+    max-width: 350px;
+  }
+}
+
+/* ========================================
+   TABLET LANDSCAPE (768px - 1023px)
+   ======================================== */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hero-container {
+    grid-template-columns: 1fr;
+    max-width: 700px;
+    gap: var(--space-10);
+    padding: var(--space-12) var(--space-8);
+  }
+  
+  .hero-content {
+    text-align: center;
+    align-items: center;
+  }
+  
+  .hero-title {
+    font-size: var(--text-5xl);
+    max-width: 600px;
+  }
+  
+  .hero-subtitle {
+    font-size: var(--text-xl);
+    max-width: 550px;
+  }
+  
+  .hero-features {
+    align-items: center;
+  }
+  
+  .hero-cta {
+    flex-direction: row;
+    justify-content: center;
+    max-width: 100%;
+  }
+  
+  .hero-trust {
+    justify-content: center;
+    gap: var(--space-10);
+  }
+  
+  .hero-visual {
+    order: -1;
+    max-width: 380px;
+    margin: 0 auto;
+  }
+}
+
+/* ========================================
+   SMALL DESKTOP (1024px - 1279px)
+   ======================================== */
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .hero-container {
+    max-width: 1200px;
+    gap: var(--space-10);
+  }
+  
+  .hero-title {
+    font-size: var(--text-5xl);
+  }
+  
+  .hero-subtitle {
+    font-size: var(--text-lg);
+  }
+  
+  .hero-visual {
+    max-width: 380px;
+  }
+}
+
+/* ========================================
+   LARGE DESKTOP (1280px - 1535px)
+   ======================================== */
+
+@media (min-width: 1280px) and (max-width: 1535px) {
+  .hero-container {
+    max-width: 1300px;
+  }
+  
+  .hero-title {
+    font-size: var(--text-6xl);
+  }
+  
+  .hero-subtitle {
+    font-size: var(--text-xl);
+  }
+}
+
+/* ========================================
+   EXTRA LARGE DESKTOP (≥ 1536px)
+   ======================================== */
+
+@media (min-width: 1536px) {
+  .hero-container {
+    max-width: 1400px;
+    gap: var(--space-16);
+  }
+  
+  .hero-content {
+    gap: var(--space-10);
+  }
+  
+  .hero-title {
+    font-size: clamp(3.75rem, 5vw, 4.5rem);
+  }
+  
+  .hero-subtitle {
+    font-size: var(--text-2xl);
+    max-width: 700px;
+  }
+  
+  .hero-phone-mockup {
+    max-width: 450px;
+  }
+}
+
+/* ========================================
+   LANDSCAPE ORIENTATION (MOBILE/TABLET)
+   ======================================== */
+
+@media (max-width: 1023px) and (orientation: landscape) {
+  .hero-page {
+    min-height: auto;
+  }
+  
+  .hero-container {
+    padding-top: var(--space-6);
+    padding-bottom: var(--space-6);
+  }
+  
+  .hero-visual {
+    max-width: 280px;
+  }
+  
+  .hero-scroll-indicator {
+    display: none;
+  }
+  
+  .hero-gradient-orb {
+    opacity: 0.15;
+  }
+}
+
+/* ========================================
+   ULTRA-WIDE DISPLAYS (≥ 1920px)
+   ======================================== */
+
+@media (min-width: 1920px) {
+  .hero-container {
+    max-width: 1600px;
+  }
+  
+  .hero-gradient-orb-1 {
+    width: 800px;
+    height: 800px;
+  }
+  
+  .hero-gradient-orb-2 {
+    width: 700px;
+    height: 700px;
+  }
+}
+
+/* ========================================
+   SHORT VIEWPORTS (Height < 700px)
+   ======================================== */
+
+@media (max-height: 700px) {
+  .hero-page {
+    min-height: auto;
+    padding: var(--space-6) 0;
+  }
+  
+  .hero-container {
+    padding-top: var(--space-8);
+    padding-bottom: var(--space-8);
+  }
+  
+  .hero-content {
+    gap: var(--space-4);
+  }
+  
+  .hero-title {
+    margin-bottom: var(--space-2);
+  }
+  
+  .hero-subtitle {
+    margin-bottom: var(--space-4);
+  }
+  
+  .hero-cta {
+    margin-top: var(--space-3);
+    margin-bottom: var(--space-4);
+  }
+  
+  .hero-trust {
+    padding-top: var(--space-4);
+  }
+  
+  .hero-scroll-indicator {
+    display: none;
+  }
+}
+
+/* ========================================
+   TOUCH DEVICES - ENHANCE TAP TARGETS
+   ======================================== */
+
+@media (hover: none) and (pointer: coarse) {
+  /* Ensure minimum 44x44px touch targets */
+  .hero-cta .btn {
+    min-height: 48px;
+    padding: var(--space-4) var(--space-8);
+  }
+  
+  .hero-scroll-link {
+    min-height: 48px;
+    min-width: 48px;
+    padding: var(--space-2);
+  }
+  
+  /* Remove hover effects on touch devices */
+  .hero-phone-mockup:hover .hero-phone-image,
+  .hero-cta .btn:hover,
+  .hero-feature:hover .hero-feature-icon {
+    transform: none;
+  }
+  
+  /* Add tap feedback */
+  .hero-cta .btn:active {
+    transform: scale(0.98);
+    opacity: 0.9;
+  }
+}
+
+/* ========================================
+   PRINT STYLES
+   ======================================== */
+
+@media print {
+  .hero-page {
+    min-height: auto;
+    background: white;
+    color: black;
+  }
+  
+  .hero-background,
+  .hero-gradient-orb,
+  .hero-scroll-indicator,
+  .hero-badge {
+    display: none;
+  }
+  
+  .hero-title,
+  .hero-subtitle,
+  .hero-feature {
+    color: black;
+    text-shadow: none;
+  }
+  
+  .hero-cta {
+    display: none;
+  }
+  
+  .hero-phone-image {
+    filter: none;
+  }
+}
+
+/* ========================================
+   ACCESSIBILITY - HIGH CONTRAST MODE
+   ======================================== */
+
+@media (prefers-contrast: high) {
+  .hero-title .text-gradient {
+    -webkit-text-fill-color: var(--color-white);
+    background: none;
+  }
+  
+  .hero-subtitle,
+  .hero-feature {
+    color: var(--color-white);
+  }
+  
+  .hero-cta .btn {
+    border: 2px solid currentColor;
+  }
+  
+  .hero-gradient-orb {
+    display: none;
+  }
+}
