@@ -1,0 +1,431 @@
+/* ============================================
+   ANIMATIONS & TRANSITIONS
+   Based on WEBSITE_DESIGN_SPEC.md
+   ============================================ */
+
+/* ========================================
+   KEYFRAME ANIMATIONS
+   ======================================== */
+
+/* Fade in from bottom */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade in from top */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade in from left */
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Fade in from right */
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Simple fade in */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Scale in */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Slide in from right */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Slide in from left */
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Spin (for loading) */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Pulse */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Bounce */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Skeleton loading shimmer */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* Gradient animation */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Float animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* ========================================
+   SCROLL-TRIGGERED ANIMATIONS
+   Applied via JavaScript Intersection Observer
+   ======================================== */
+
+/* Initial state - hidden */
+[data-animate] {
+  opacity: 0;
+}
+
+/* Fade in animations */
+[data-animate="fade-in"] {
+  animation: fadeIn var(--duration-slow) var(--ease-out) forwards;
+}
+
+[data-animate="fade-up"] {
+  animation: fadeInUp var(--duration-slow) var(--ease-out) forwards;
+}
+
+[data-animate="fade-down"] {
+  animation: fadeInDown var(--duration-slow) var(--ease-out) forwards;
+}
+
+[data-animate="fade-left"] {
+  animation: fadeInLeft var(--duration-slow) var(--ease-out) forwards;
+}
+
+[data-animate="fade-right"] {
+  animation: fadeInRight var(--duration-slow) var(--ease-out) forwards;
+}
+
+[data-animate="scale-in"] {
+  animation: scaleIn var(--duration-slow) var(--ease-out) forwards;
+}
+
+/* Stagger delays for sequential animations */
+[data-animate-delay="100"] {
+  animation-delay: 100ms;
+}
+
+[data-animate-delay="200"] {
+  animation-delay: 200ms;
+}
+
+[data-animate-delay="300"] {
+  animation-delay: 300ms;
+}
+
+[data-animate-delay="400"] {
+  animation-delay: 400ms;
+}
+
+[data-animate-delay="500"] {
+  animation-delay: 500ms;
+}
+
+/* ========================================
+   LOADING STATES
+   ======================================== */
+
+/* Spinner */
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--color-gray-200);
+  border-top-color: var(--color-cyan-500);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.spinner-sm {
+  width: 20px;
+  height: 20px;
+  border-width: 2px;
+}
+
+.spinner-lg {
+  width: 60px;
+  height: 60px;
+  border-width: 6px;
+}
+
+/* Skeleton loader */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-gray-200) 0%,
+    var(--color-gray-100) 50%,
+    var(--color-gray-200) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--radius-base);
+}
+
+.skeleton-text {
+  height: 1em;
+  margin-bottom: var(--space-2);
+}
+
+.skeleton-heading {
+  height: 2em;
+  margin-bottom: var(--space-4);
+}
+
+.skeleton-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+
+/* ========================================
+   HOVER EFFECTS
+   ======================================== */
+
+/* Lift on hover */
+.hover-lift {
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+}
+
+/* Glow effect */
+.hover-glow {
+  transition: box-shadow var(--duration-base) var(--ease-out);
+}
+
+.hover-glow:hover {
+  box-shadow: var(--shadow-cyan);
+}
+
+/* Scale on hover */
+.hover-scale {
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+/* Brightness on hover */
+.hover-brighten {
+  transition: filter var(--duration-base) var(--ease-out);
+}
+
+.hover-brighten:hover {
+  filter: brightness(1.1);
+}
+
+/* ========================================
+   CONTINUOUS ANIMATIONS
+   ======================================== */
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-bounce {
+  animation: bounce 1s infinite;
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease infinite;
+}
+
+/* ========================================
+   TRANSITION UTILITIES
+   ======================================== */
+
+.transition-all {
+  transition: all var(--duration-base) var(--ease-out);
+}
+
+.transition-colors {
+  transition: color var(--duration-base) var(--ease-out),
+              background-color var(--duration-base) var(--ease-out),
+              border-color var(--duration-base) var(--ease-out);
+}
+
+.transition-transform {
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.transition-opacity {
+  transition: opacity var(--duration-base) var(--ease-out);
+}
+
+.transition-fast {
+  transition-duration: var(--duration-fast);
+}
+
+.transition-slow {
+  transition-duration: var(--duration-slow);
+}
+
+/* ========================================
+   PAGE TRANSITIONS
+   ======================================== */
+
+.page-enter {
+  animation: fadeIn var(--duration-slow) var(--ease-out);
+}
+
+.page-exit {
+  animation: fadeIn var(--duration-slow) var(--ease-out) reverse;
+}
+
+/* ========================================
+   HERO SECTION SPECIFIC ANIMATIONS
+   ======================================== */
+
+.hero-title-enter {
+  animation: fadeInUp 0.8s var(--ease-smooth) forwards;
+  animation-delay: 0.2s;
+}
+
+.hero-subtitle-enter {
+  animation: fadeInUp 0.8s var(--ease-smooth) forwards;
+  animation-delay: 0.4s;
+}
+
+.hero-cta-enter {
+  animation: fadeInUp 0.8s var(--ease-smooth) forwards;
+  animation-delay: 0.6s;
+}
+
+.hero-image-enter {
+  animation: fadeInRight 1s var(--ease-smooth) forwards;
+  animation-delay: 0.4s;
+}
+
+/* ========================================
+   ACCESSIBILITY - REDUCED MOTION
+   Already defined in reset.css, but component overrides here
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  /* Override continuous animations */
+  .animate-pulse,
+  .animate-bounce,
+  .animate-spin,
+  .animate-float,
+  .animate-gradient {
+    animation: none;
+  }
+  
+  /* Disable scroll animations */
+  [data-animate] {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+  
+  /* Simplify transitions */
+  .hover-lift:hover,
+  .hover-scale:hover {
+    transform: none;
+  }
+}

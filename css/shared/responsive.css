@@ -1,0 +1,431 @@
+/* ============================================
+   RESPONSIVE DESIGN SYSTEM
+   Mobile-First Approach for Kenya Market
+   Based on WEBSITE_DESIGN_SPEC.md
+   ============================================ */
+
+/* ========================================
+   MOBILE BASE (< 640px)
+   Default styles already mobile-optimized
+   ======================================== */
+
+/* ========================================
+   SMALL TABLETS (≥ 640px)
+   ======================================== */
+@media (min-width: 640px) {
+  /* Typography adjustments */
+  body {
+    font-size: var(--text-base);
+  }
+  
+  /* Grid adjustments */
+  .sm\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  
+  /* Layout */
+  .sm\:flex {
+    display: flex;
+  }
+  
+  .sm\:hidden {
+    display: none;
+  }
+  
+  .sm\:block {
+    display: block;
+  }
+  
+  /* Text alignment */
+  .sm\:text-center {
+    text-align: center;
+  }
+  
+  .sm\:text-left {
+    text-align: left;
+  }
+}
+
+/* ========================================
+   TABLETS (≥ 768px)
+   ======================================== */
+@media (min-width: 768px) {
+  /* Typography scale increase */
+  h1 {
+    line-height: var(--leading-tight);
+  }
+  
+  /* Grid systems */
+  .md\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  
+  .md\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  
+  .md\:col-span-2 {
+    grid-column: span 2 / span 2;
+  }
+  
+  /* Flexbox */
+  .md\:flex {
+    display: flex;
+  }
+  
+  .md\:flex-row {
+    flex-direction: row;
+  }
+  
+  .md\:items-center {
+    align-items: center;
+  }
+  
+  .md\:justify-between {
+    justify-content: space-between;
+  }
+  
+  /* Display */
+  .md\:hidden {
+    display: none;
+  }
+  
+  .md\:block {
+    display: block;
+  }
+  
+  /* Text */
+  .md\:text-left {
+    text-align: left;
+  }
+  
+  .md\:text-center {
+    text-align: center;
+  }
+  
+  /* Spacing */
+  .md\:px-8 {
+    padding-left: var(--space-8);
+    padding-right: var(--space-8);
+  }
+  
+  .md\:py-12 {
+    padding-top: var(--space-12);
+    padding-bottom: var(--space-12);
+  }
+  
+  /* Card adjustments */
+  .card {
+    padding: var(--space-8);
+  }
+  
+  .card-feature {
+    padding: var(--space-10);
+  }
+}
+
+/* ========================================
+   LAPTOPS/SMALL DESKTOPS (≥ 1024px)
+   ======================================== */
+@media (min-width: 1024px) {
+  /* Hero section - 60/40 split */
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 60% 40%;
+    gap: var(--space-12);
+    align-items: center;
+  }
+  
+  /* Grid systems */
+  .lg\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  
+  .lg\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  
+  .lg\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  
+  .lg\:col-span-2 {
+    grid-column: span 2 / span 2;
+  }
+  
+  /* Flexbox */
+  .lg\:flex {
+    display: flex;
+  }
+  
+  .lg\:flex-row {
+    flex-direction: row;
+  }
+  
+  .lg\:items-center {
+    align-items: center;
+  }
+  
+  .lg\:justify-between {
+    justify-content: space-between;
+  }
+  
+  /* Display */
+  .lg\:hidden {
+    display: none;
+  }
+  
+  .lg\:block {
+    display: block;
+  }
+  
+  /* Text */
+  .lg\:text-left {
+    text-align: left;
+  }
+  
+  /* Spacing */
+  .lg\:px-12 {
+    padding-left: var(--space-12);
+    padding-right: var(--space-12);
+  }
+  
+  .lg\:py-16 {
+    padding-top: var(--space-16);
+    padding-bottom: var(--space-16);
+  }
+  
+  /* Button adjustments */
+  .btn-lg {
+    min-width: 200px;
+  }
+  
+  /* Hover states enabled on desktop */
+  .hover-lift:hover {
+    transform: translateY(-4px);
+  }
+}
+
+/* ========================================
+   LARGE DESKTOPS (≥ 1280px)
+   ======================================== */
+@media (min-width: 1280px) {
+  /* Grid systems */
+  .xl\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  
+  .xl\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  
+  /* Display */
+  .xl\:block {
+    display: block;
+  }
+  
+  /* Spacing increases for larger screens */
+  .section {
+    padding-top: var(--space-28);
+    padding-bottom: var(--space-28);
+  }
+  
+  /* Card tier featured scale */
+  .card-tier.featured {
+    transform: scale(1.08);
+  }
+}
+
+/* ========================================
+   EXTRA LARGE DESKTOPS (≥ 1536px)
+   ======================================== */
+@media (min-width: 1536px) {
+  /* Maximum content width enforced */
+  .container {
+    max-width: var(--container-2xl);
+  }
+  
+  /* Grid systems */
+  .\32xl\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* ========================================
+   MOBILE-SPECIFIC OPTIMIZATIONS
+   ======================================== */
+@media (max-width: 767px) {
+  /* Stack everything vertically on mobile */
+  .mobile-stack {
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+  
+  /* Full width buttons on mobile */
+  .btn-mobile-full {
+    width: 100%;
+    display: flex;
+  }
+  
+  /* Reduce padding on mobile for cards */
+  .card {
+    padding: var(--space-4);
+  }
+  
+  /* Mobile navigation adjustments */
+  .navbar-container {
+    height: 64px;
+  }
+  
+  /* Hide desktop navigation */
+  .navbar-menu {
+    display: none;
+  }
+  
+  /* Show mobile menu toggle */
+  .navbar-toggle {
+    display: flex;
+  }
+  
+  /* Reduce hero section height on mobile */
+  .hero-section {
+    min-height: 100vh;
+    padding-top: var(--space-12);
+    padding-bottom: var(--space-12);
+  }
+  
+  /* Mobile typography adjustments */
+  h1 {
+    font-size: var(--text-4xl);
+  }
+  
+  h2 {
+    font-size: var(--text-3xl);
+  }
+  
+  /* Reduce gap in grids */
+  .grid {
+    gap: var(--space-4);
+  }
+  
+  /* Mobile forms - larger touch targets */
+  .form-input,
+  .form-textarea,
+  .form-select {
+    font-size: 16px; /* Prevents iOS zoom on focus */
+    padding: var(--space-4);
+    min-height: 48px; /* Better touch target */
+  }
+  
+  .btn {
+    min-height: 48px; /* Better touch target */
+  }
+}
+
+/* ========================================
+   TABLET LANDSCAPE SPECIFIC
+   ======================================== */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .tablet\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  
+  .tablet\:px-6 {
+    padding-left: var(--space-6);
+    padding-right: var(--space-6);
+  }
+}
+
+/* ========================================
+   TOUCH DEVICE OPTIMIZATIONS
+   ======================================== */
+@media (hover: none) and (pointer: coarse) {
+  /* Larger touch targets for mobile */
+  .btn,
+  .navbar-link,
+  .form-input,
+  .form-select,
+  .form-checkbox,
+  .form-radio {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Remove hover effects on touch devices */
+  .hover-lift:hover {
+    transform: none;
+  }
+  
+  .hover-glow:hover {
+    box-shadow: var(--shadow-md);
+  }
+  
+  /* Tap highlight color */
+  * {
+    -webkit-tap-highlight-color: rgba(0, 212, 255, 0.2);
+  }
+}
+
+/* ========================================
+   PRINT STYLES
+   ======================================== */
+@media print {
+  /* Hide navigation and interactive elements */
+  .navbar,
+  .navbar-mobile,
+  .btn,
+  .form-input,
+  .form-textarea,
+  .form-select {
+    display: none;
+  }
+  
+  /* Optimize for print */
+  body {
+    background: white;
+    color: black;
+    font-size: 12pt;
+  }
+  
+  /* Remove shadows */
+  * {
+    box-shadow: none !important;
+  }
+  
+  /* Page breaks */
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+  }
+  
+  .card {
+    page-break-inside: avoid;
+  }
+}
+
+/* ========================================
+   LANDSCAPE ORIENTATION (MOBILE)
+   ======================================== */
+@media (max-width: 767px) and (orientation: landscape) {
+  /* Reduce vertical padding in landscape */
+  .hero-section {
+    min-height: auto;
+    padding-top: var(--space-8);
+    padding-bottom: var(--space-8);
+  }
+  
+  .section {
+    padding-top: var(--space-8);
+    padding-bottom: var(--space-8);
+  }
+}
+
+/* ========================================
+   HIGH RESOLUTION DISPLAYS
+   ======================================== */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  /* Optimize for retina displays */
+  .navbar-logo,
+  img {
+    image-rendering: -webkit-optimize-contrast;
+  }
+}

@@ -1,0 +1,465 @@
+/* ============================================
+   ACCESSIBILITY UTILITIES
+   WCAG 2.1 AA Compliance
+   Based on WEBSITE_DESIGN_SPEC.md
+   ============================================ */
+
+/* ========================================
+   SCREEN READER UTILITIES
+   ======================================== */
+
+/* Visually hidden but accessible to screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Focusable when navigated to via keyboard */
+.sr-only-focusable:focus,
+.sr-only-focusable:active {
+  position: static;
+  width: auto;
+  height: auto;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* Screen reader specific text */
+.sr-text {
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+}
+
+/* ========================================
+   FOCUS INDICATORS
+   ======================================== */
+
+/* Enhanced focus styles for keyboard navigation */
+*:focus {
+  outline: 2px solid var(--color-cyan-500);
+  outline-offset: 2px;
+}
+
+/* Focus visible (only when using keyboard) */
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+*:focus-visible {
+  outline: 3px solid var(--color-cyan-500);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* Focus within containers */
+.focus-within:focus-within {
+  outline: 2px solid var(--color-cyan-500);
+  outline-offset: 2px;
+}
+
+/* Specific component focus styles */
+.btn:focus-visible,
+.navbar-link:focus-visible,
+a:focus-visible {
+  outline: 3px solid var(--color-cyan-500);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.2);
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+  outline: none;
+  border-color: var(--color-cyan-500);
+  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+}
+
+/* ========================================
+   SKIP LINKS
+   ======================================== */
+
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background-color: var(--color-cyan-600);
+  color: var(--color-white);
+  padding: var(--space-3) var(--space-6);
+  text-decoration: none;
+  font-weight: var(--font-bold);
+  border-radius: var(--radius-base);
+  z-index: var(--z-tooltip);
+  transition: top var(--duration-base) var(--ease-out);
+}
+
+.skip-link:focus {
+  top: var(--space-4);
+  left: var(--space-4);
+  outline: 3px solid var(--color-white);
+}
+
+/* ========================================
+   REDUCED MOTION
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  /* Disable all animations */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  /* Remove transform animations */
+  .hover-lift:hover,
+  .hover-scale:hover {
+    transform: none;
+  }
+  
+  /* Keep essential transitions */
+  .form-input,
+  .form-textarea,
+  .form-select,
+  .btn {
+    transition: border-color 0.1s ease, box-shadow 0.1s ease;
+  }
+}
+
+/* ========================================
+   HIGH CONTRAST MODE
+   ======================================== */
+
+@media (prefers-contrast: high) {
+  /* Increase border visibility */
+  .btn,
+  .form-input,
+  .form-textarea,
+  .form-select,
+  .card {
+    border: 2px solid currentColor;
+  }
+  
+  /* Increase focus indicator contrast */
+  *:focus-visible {
+    outline-width: 4px;
+    outline-color: var(--color-cyan-600);
+  }
+  
+  /* Ensure text has sufficient contrast */
+  body {
+    color: var(--color-black);
+  }
+  
+  a {
+    text-decoration: underline;
+  }
+  
+  .btn-primary,
+  .btn-secondary {
+    border: 2px solid var(--color-white);
+  }
+}
+
+/* ========================================
+   DARK MODE SUPPORT
+   (For future implementation)
+   ======================================== */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: var(--color-gray-900);
+    --color-text: var(--color-gray-100);
+  }
+  
+  /* Dark mode adjustments can be added here when needed */
+}
+
+/* ========================================
+   KEYBOARD NAVIGATION
+   ======================================== */
+
+/* Improve tab navigation visibility */
+[tabindex="0"]:focus,
+[tabindex="-1"]:focus {
+  outline: 3px solid var(--color-cyan-500);
+  outline-offset: 2px;
+}
+
+/* Ensure interactive elements are keyboard accessible */
+button,
+a,
+input,
+select,
+textarea {
+  cursor: pointer;
+}
+
+button:disabled,
+input:disabled,
+select:disabled,
+textarea:disabled {
+  cursor: not-allowed;
+  opacity: var(--opacity-50);
+}
+
+/* ========================================
+   TEXT ACCESSIBILITY
+   ======================================== */
+
+/* Ensure sufficient line height for readability */
+p,
+li,
+.text-block {
+  line-height: var(--leading-relaxed);
+}
+
+/* Improve readability for long content */
+.readable-content {
+  max-width: 65ch; /* Optimal reading width */
+  line-height: var(--leading-relaxed);
+}
+
+/* Prevent orphans and widows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  orphans: 3;
+  widows: 3;
+}
+
+/* ========================================
+   COLOR CONTRAST UTILITIES
+   ======================================== */
+
+/* High contrast text */
+.text-high-contrast {
+  color: var(--color-black);
+  font-weight: var(--font-semibold);
+}
+
+/* Ensure links are distinguishable */
+a:not(.btn) {
+  text-decoration-skip-ink: auto;
+}
+
+/* ========================================
+   LANDMARK ROLES
+   (Applied via HTML, styles for enhancement)
+   ======================================== */
+
+header[role="banner"],
+nav[role="navigation"],
+main[role="main"],
+aside[role="complementary"],
+footer[role="contentinfo"] {
+  display: block;
+}
+
+/* ========================================
+   ARIA UTILITIES
+   ======================================== */
+
+/* Hidden elements for screen readers */
+[aria-hidden="true"] {
+  display: none;
+}
+
+/* Live regions */
+[aria-live="polite"],
+[aria-live="assertive"] {
+  position: relative;
+}
+
+/* Expanded/collapsed states */
+[aria-expanded="false"] + .collapsible-content {
+  display: none;
+}
+
+[aria-expanded="true"] + .collapsible-content {
+  display: block;
+}
+
+/* Disabled states */
+[aria-disabled="true"] {
+  pointer-events: none;
+  opacity: var(--opacity-50);
+  cursor: not-allowed;
+}
+
+/* ========================================
+   TOUCH & POINTER ACCESSIBILITY
+   ======================================== */
+
+/* Ensure minimum touch target size (44x44px WCAG 2.1 AA) */
+.touch-target {
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Pointer device support */
+@media (pointer: fine) {
+  /* Mouse/trackpad - allow smaller targets */
+  .touch-target {
+    min-width: 32px;
+    min-height: 32px;
+  }
+}
+
+@media (pointer: coarse) {
+  /* Touch devices - enforce larger targets */
+  button,
+  a,
+  input,
+  select,
+  .btn,
+  .navbar-link {
+    min-width: 44px;
+    min-height: 44px;
+    padding: var(--space-3) var(--space-4);
+  }
+}
+
+/* ========================================
+   ERROR & STATUS MESSAGES
+   ======================================== */
+
+/* Accessible error messages */
+.error-message,
+.form-error,
+[role="alert"] {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  background-color: #FEE2E2;
+  border-left: 4px solid var(--color-error);
+  color: #991B1B;
+  font-weight: var(--font-medium);
+}
+
+/* Success messages */
+.success-message,
+[role="status"] {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  background-color: #D1FAE5;
+  border-left: 4px solid var(--color-success);
+  color: #065F46;
+  font-weight: var(--font-medium);
+}
+
+/* Warning messages */
+.warning-message {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  background-color: #FEF3C7;
+  border-left: 4px solid var(--color-warning);
+  color: #92400E;
+  font-weight: var(--font-medium);
+}
+
+/* ========================================
+   TABLES ACCESSIBILITY
+   ======================================== */
+
+/* Responsive table wrapper */
+.table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+/* Table headers */
+th {
+  text-align: left;
+  font-weight: var(--font-bold);
+  padding: var(--space-3);
+  background-color: var(--color-gray-100);
+  border-bottom: 2px solid var(--color-gray-300);
+}
+
+td {
+  padding: var(--space-3);
+  border-bottom: 1px solid var(--color-gray-200);
+}
+
+/* Striped rows for better readability */
+tbody tr:nth-child(even) {
+  background-color: var(--color-gray-50);
+}
+
+/* ========================================
+   IMAGE ACCESSIBILITY
+   ======================================== */
+
+/* Ensure decorative images are hidden from screen readers */
+img[alt=""],
+img[role="presentation"] {
+  /* These should have aria-hidden="true" in HTML */
+}
+
+/* Loading state for images */
+img[loading="lazy"] {
+  background-color: var(--color-gray-100);
+}
+
+/* ========================================
+   FORM ACCESSIBILITY ENHANCEMENTS
+   ======================================== */
+
+/* Required field indicator */
+.form-label-required::after {
+  content: ' *';
+  color: var(--color-error);
+  font-weight: var(--font-bold);
+  margin-left: var(--space-1);
+}
+
+/* Invalid/valid field states with icons */
+.form-input[aria-invalid="true"] {
+  border-color: var(--color-error);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='%23EF4444' viewBox='0 0 20 20'%3E%3Cpath d='M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--space-3) center;
+  padding-right: var(--space-10);
+}
+
+.form-input[aria-invalid="false"] {
+  border-color: var(--color-success);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='%2310B981' viewBox='0 0 20 20'%3E%3Cpath fill-rule='evenodd' d='M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z' clip-rule='evenodd'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--space-3) center;
+  padding-right: var(--space-10);
+}

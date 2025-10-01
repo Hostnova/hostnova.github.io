@@ -1,0 +1,179 @@
+# Hostara Website - .gitignore
+
+# ============================================
+# DEVELOPMENT ENVIRONMENT
+# ============================================
+
+# OS Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# Editor Files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+*~
+
+# ============================================
+# BUILD & DEPENDENCIES
+# ============================================
+
+# Node modules (if using npm for dev tools)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# Logs
+logs/
+*.log
+
+# ============================================
+# TEMPORARY FILES
+# ============================================
+
+# Temporary files
+temp/
+tmp/
+*.tmp
+*.temp
+
+# Cache files
+.cache/
+.parcel-cache/
+.sass-cache/
+
+# ============================================
+# ASSETS & MEDIA
+# ============================================
+
+# Original, unoptimized assets (keep optimized versions only)
+assets/originals/
+assets/raw/
+*.psd
+*.ai
+*.sketch
+*.xd
+*.fig
+
+# Large video files during development
+*.mov
+*.avi
+*.flv
+*.wmv
+
+# Keep only optimized images for production
+# (Uncomment if you want to ignore certain image types)
+# *.tif
+# *.tiff
+# *.raw
+
+# ============================================
+# BACKUPS
+# ============================================
+
+# Backup files
+*.bak
+*.backup
+*_backup
+backup/
+backups/
+
+# ============================================
+# SENSITIVE DATA
+# ============================================
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# API keys and secrets
+secrets/
+*.secret
+credentials.json
+
+# Analytics & tracking IDs (if stored locally)
+analytics-config.js
+
+# ============================================
+# TESTING
+# ============================================
+
+# Test results
+test-results/
+coverage/
+.nyc_output/
+
+# ============================================
+# BUILD OUTPUT
+# ============================================
+
+# Compiled/minified files (if using build tools)
+dist/
+build/
+public/build/
+
+# Minified versions (keep only one version)
+*.min.css
+*.min.js
+# (Uncomment above if you generate minified files separately)
+
+# ============================================
+# DOCUMENTATION WORKING FILES
+# ============================================
+
+# Draft documentation
+drafts/
+_drafts/
+
+# ============================================
+# GITHUB PAGES SPECIFIC
+# ============================================
+
+# GitHub Pages builds this automatically
+_site/
+
+# Jekyll cache
+.jekyll-cache/
+.jekyll-metadata
+
+# ============================================
+# PERFORMANCE & OPTIMIZATION
+# ============================================
+
+# Lighthouse reports
+lighthouse-reports/
+*.lighthouse.html
+
+# Bundle analysis
+bundle-analysis/
+
+# ============================================
+# MISCELLANEOUS
+# ============================================
+
+# Archives
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# System files
+*.pyc
+__pycache__/
+
+# Comments for contributors
+# Add project-specific ignores below this line
+# ============================================
