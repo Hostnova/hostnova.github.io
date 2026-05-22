@@ -68,6 +68,15 @@
       </div>
     </header>
 
+    <!-- Global Floating Top-Right Widget for QR and Research Paper -->
+    <div style="position: fixed; top: 80px; right: 20px; z-index: 9999; display: flex; flex-direction: column; align-items: center; gap: 10px; background: rgba(0, 5, 10, 0.6); padding: 15px; border: 1px solid #00e5ff; border-radius: 8px; backdrop-filter: blur(10px);">
+      <p class="mono-text text-cyan" style="font-size: 0.7rem; margin: 0; letter-spacing: 1px; text-align: center;">// SCAN //</p>
+      <img src="qr-code.png" alt="Website QR Code" style="width: 100px; height: 100px; border: 1px solid #00e5ff; border-radius: 4px; box-shadow: 0 0 10px rgba(0, 229, 255, 0.3);">
+      <a href="research.html" class="btn-secondary mono-text" style="text-decoration: none; font-size: 0.65rem; padding: 8px 12px; margin: 0; text-align: center; border-radius: 4px;">
+        [ RESEARCH PAPER ]
+      </a>
+    </div>
+
     <!-- Presentation Progress Bar -->
     <div class="progress-container">
       <div class="progress-bar" id="presentation-progress"></div>
@@ -142,22 +151,6 @@
               INITIATE SYSTEM PREVIEW
               <span class="arrow-blink">&rarr;</span>
             </button>
-            <br />
-            <a
-              href="research.html"
-              class="btn-secondary mono-text initiate-btn animate-item"
-              style="
-                --delay: 7;
-                text-decoration: none;
-                margin-top: 1rem;
-                display: inline-block;
-                width: 100%;
-                text-align: center;
-                box-sizing: border-box;
-              "
-            >
-              [ VIEW ACADEMIC RESEARCH REPORT ]
-            </a>
           </div>
         </div>
       </section>
@@ -1202,35 +1195,6 @@
             <div class="mission-terminal animate-item" style="--delay: 10">
               <span id="mission-terminal-text"></span>
             </div>
-
-            <!-- QR Code for Website Access -->
-            <div
-              class="qr-container animate-item"
-              style="--delay: 11; margin-top: 1.5rem"
-            >
-              <p
-                class="mono-text text-cyan"
-                style="
-                  font-size: 0.8rem;
-                  margin-bottom: 0.5rem;
-                  letter-spacing: 1px;
-                "
-              >
-                // SCAN TO ACCESS SYSTEM //
-              </p>
-              <img
-                src="qr-code.png"
-                alt="Website QR Code"
-                style="
-                  width: 120px;
-                  height: 120px;
-                  border: 1px solid #00e5ff;
-                  border-radius: 4px;
-                  box-shadow: 0 0 10px rgba(0, 229, 255, 0.3);
-                "
-              />
-            </div>
-          </div>
 
           <div class="conclusion-footer">
             <div class="credits mono-text animate-item" style="--delay: 8">
