@@ -2610,9 +2610,10 @@ h4 {
   #presentation-container {
     perspective: none;
     overflow-y: auto;
+    overflow-x: hidden;
     height: 100vh;
     scroll-behavior: smooth;
-    padding-top: 60px; /* Offset for header */
+    padding-top: 0px; /* Offset for header */
   }
 
   /* Overall Slide Spacing */
@@ -2623,7 +2624,7 @@ h4 {
     pointer-events: auto !important;
     transform: none !important;
     filter: none !important;
-    padding: 40px 15px !important;
+    padding: 30px 15px !important;
     height: auto;
     min-height: 100vh;
     border-bottom: 2px solid rgba(0, 229, 255, 0.2);
@@ -2636,18 +2637,9 @@ h4 {
     overflow-y: visible;
   }
 
-  /* Compress HUD Header/Footer */
+  /* Completely Hide HUD Header/Footer */
   .hud-header {
-    padding: 0 10px;
-    height: auto;
-    min-height: 50px;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 5px;
-    padding-bottom: 5px;
-  }
-  .hud-center-title {
-    display: none; /* Redundant to hide? Will just scale down instead */
+    display: none !important;
   }
 
   /* Remove footer on mobile as they just scroll */
@@ -2694,7 +2686,22 @@ h4 {
 
   /* Sub-components */
   .visual-panel {
-    height: 250px;
+    height: auto !important; /* Allow the panels to scale organically */
+    min-height: 250px;
+    padding-bottom: 15px; /* Prevent text clipping */
+  }
+
+  .panel-body {
+    height: auto !important;
+    overflow-y: visible !important;
+  }
+
+  /* Fit all inner mock terminals and content images cleanly */
+  .svg-container img,
+  .visual-media {
+    max-height: 200px;
+    width: 100%;
+    object-fit: contain;
   }
 
   .conclusion-flow-svg {
