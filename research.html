@@ -1,515 +1,445 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Black Biotechnology: Academic Research Report</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Black Biotechnology: Academic Research Report</title>
 
-    <!-- Academic Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap"
-      rel="stylesheet"
-    />
+  <!-- Modern Academic Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
-    <style>
-      :root {
-        --bg-color: #f0f2f5;
-        --paper-bg: #ffffff;
-        --text-color: #2b2b2b;
-        --heading-color: #1a1a1a;
-        --accent-color: #004d99;
-        --border-color: #e0e0e0;
+  <style>
+    :root {
+      --bg-color: #fafafc;
+      --paper-bg: #ffffff;
+      --text-main: #333333;
+      --text-muted: #666666;
+      --heading-color: #0d1b2a;
+      --accent-color: #005f73;
+      --accent-light: #e0fbfc;
+      --border-light: #eaeaea;
+      --border-dark: #1d3557;
+      
+      --font-serif: 'Crimson Pro', serif;
+      --font-sans: 'Inter', sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.7;
+      font-size: 1.05rem;
+    }
+
+    /* Fixed Top Navigation */
+    .top-nav {
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      height: 60px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-light);
+      display: flex;
+      align-items: center;
+      padding: 0 5%;
+      z-index: 100;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      color: var(--accent-color);
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: opacity 0.2s ease;
+    }
+    .back-btn:hover { opacity: 0.7; }
+
+    /* Layout */
+    .layout-wrapper {
+      display: grid;
+      grid-template-columns: 250px 1fr;
+      gap: 40px;
+      max-width: 1200px;
+      margin: 100px auto 60px;
+      padding: 0 5%;
+      align-items: start;
+    }
+
+    /* Sidebar Table of Contents */
+    .toc-sidebar {
+      position: sticky;
+      top: 100px;
+      padding-right: 20px;
+      border-right: 1px solid var(--border-light);
+    }
+    .toc-title {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--text-muted);
+      margin-bottom: 15px;
+      font-weight: 700;
+    }
+    .toc-list { list-style: none; }
+    .toc-list li { margin-bottom: 12px; }
+    .toc-list a {
+      text-decoration: none;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.4;
+      transition: color 0.2s;
+      display: block;
+    }
+    .toc-list a:hover { color: var(--accent-color); font-weight: 500; }
+
+    /* Main Paper Content */
+    .paper-content {
+      background-color: var(--paper-bg);
+      padding: 60px 80px;
+      border-radius: 4px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    }
+
+    /* University Header */
+    .university-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    .ku-seal {
+      width: 70px;
+      height: 70px;
+      background: var(--border-dark);
+      border-radius: 50%;
+      margin: 0 auto 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 2rem;
+      font-family: var(--font-serif);
+      letter-spacing: -2px;
+    }
+    .university-header h2 {
+      font-family: var(--font-serif);
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--heading-color);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .university-header h3 {
+      font-size: 1rem;
+      color: var(--text-muted);
+      font-weight: 400;
+      margin-top: 5px;
+    }
+
+    /* Title & Meta */
+    .paper-title {
+      font-family: var(--font-serif);
+      font-size: 2.8rem;
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--heading-color);
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      border-top: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border-light);
+      padding: 15px 0;
+      margin-bottom: 50px;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+    .meta-grid p { margin: 0; color: var(--text-muted); }
+    .meta-grid strong { color: var(--heading-color); display: block; margin-bottom: 4px; }
+
+    /* Abstract */
+    .abstract-box {
+      background: var(--accent-light);
+      padding: 30px 40px;
+      border-radius: 4px;
+      margin-bottom: 50px;
+    }
+    .abstract-box h4 {
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent-color);
+      margin-bottom: 15px;
+    }
+    .abstract-box p {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--heading-color);
+      margin: 0;
+      text-align: justify;
+    }
+
+    /* Typography inside paper */
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      color: var(--heading-color);
+      margin: 50px 0 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--border-dark);
+    }
+    .subsection-title {
+      font-family: var(--font-sans);
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--heading-color);
+      margin: 30px 0 15px;
+    }
+    p { margin-bottom: 20px; text-align: justify; }
+    ul, ol { margin-bottom: 25px; padding-left: 20px; }
+    li { margin-bottom: 10px; text-align: justify; }
+    li strong { color: var(--heading-color); }
+
+    /* Pull Quotes */
+    blockquote {
+      border-left: 4px solid var(--accent-color);
+      padding: 10px 0 10px 20px;
+      margin: 30px 0;
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      font-style: italic;
+      color: var(--accent-color);
+    }
+
+    /* References */
+    .references {
+      margin-top: 60px;
+      padding-top: 30px;
+      border-top: 1px solid var(--border-light);
+    }
+    .ref-item {
+      font-size: 0.9rem;
+      margin-bottom: 15px;
+      text-indent: -30px;
+      padding-left: 30px;
+      color: var(--text-muted);
+      text-align: left;
+    }
+
+    /* --- RESPONSIVE DESIGN (MOBILE-FIRST) --- */
+    @media (max-width: 1024px) {
+      .layout-wrapper {
+        grid-template-columns: 1fr;
       }
+      .toc-sidebar {
+        display: none; /* Hide TOC on mobile/tablet to save space */
+      }
+    }
 
+    @media (max-width: 768px) {
       body {
-        font-family: "Merriweather", serif;
-        background-color: var(--bg-color);
-        color: var(--text-color);
-        line-height: 1.8;
-        margin: 0;
-        padding: 2rem 1rem;
-      }
-
-      .paper-container {
-        max-width: 850px;
-        margin: 0 auto;
-        background-color: var(--paper-bg);
-        padding: 4rem 5rem;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-        border-radius: 8px;
-      }
-
-      .back-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-family: "Inter", sans-serif;
-        text-decoration: none;
-        color: #555;
-        font-weight: 600;
-        font-size: 0.9rem;
-        margin-bottom: 2rem;
-        transition: color 0.2s ease;
-      }
-
-      .back-btn:hover {
-        color: var(--accent-color);
-      }
-
-      header.university-header {
-        text-align: center;
-        margin-bottom: 3rem;
-        border-bottom: 2px solid var(--border-color);
-        padding-bottom: 1.5rem;
-      }
-
-      header.university-header h2 {
-        margin-top: 0;
-        font-weight: 700;
-        color: var(--heading-color);
-        letter-spacing: 1px;
-      }
-
-      header.university-header h3 {
-        font-weight: 400;
-        font-size: 1.2rem;
-        color: #444;
-      }
-
-      h1,
-      h2,
-      h3,
-      h4 {
-        font-family: "Inter", sans-serif;
-        color: var(--heading-color);
-        line-height: 1.3;
-      }
-
-      h1.paper-title {
-        font-size: 2.2rem;
-        font-weight: 700;
-        text-align: center;
-        margin-bottom: 1.5rem;
-      }
-
-      .meta-info {
-        font-family: "Inter", sans-serif;
-        text-align: center;
-        margin-bottom: 3rem;
         font-size: 1rem;
-        color: #555;
+        background: var(--paper-bg); /* Seamless scrolling on mobile */
+      }
+      
+      .top-nav {
+        padding: 0 15px;
       }
 
-      .meta-info p {
-        margin: 0.3rem 0;
-        text-align: center;
+      .layout-wrapper {
+        margin: 70px 0 0 0;
+        padding: 0;
+        gap: 0;
       }
 
-      .abstract {
-        background-color: #f8f9fa;
-        padding: 2rem;
-        border-left: 4px solid var(--accent-color);
-        margin-bottom: 3rem;
-        font-style: italic;
+      .paper-content {
+        padding: 20px 20px 50px;
+        box-shadow: none;
+        border-radius: 0;
       }
 
-      .abstract strong {
-        font-family: "Inter", sans-serif;
-        font-size: 1.1rem;
-        font-style: normal;
-        display: block;
-        margin-bottom: 0.5rem;
-        color: var(--heading-color);
+      .ku-seal {
+        width: 50px; height: 50px; font-size: 1.5rem; margin-bottom: 10px;
       }
+      .university-header h2 { font-size: 1.3rem; }
+      .university-header h3 { font-size: 0.85rem; }
 
-      p {
-        text-align: justify;
-        margin-bottom: 1.5rem;
-      }
-
-      ul,
-      ol {
-        margin-bottom: 1.5rem;
-        padding-left: 2rem;
-      }
-
-      li {
-        margin-bottom: 0.5rem;
-        text-align: justify;
-      }
-
-      .section-title {
-        margin-top: 3rem;
-        margin-bottom: 1.5rem;
-        font-size: 1.6rem;
-        border-bottom: 1px solid var(--border-color);
-        padding-bottom: 0.5rem;
-      }
-
-      .subsection-title {
-        margin-top: 2rem;
-        margin-bottom: 1rem;
-        font-size: 1.2rem;
-      }
-
-      .references {
-        margin-top: 4rem;
-      }
-
-      .references p {
+      .paper-title { font-size: 1.8rem; margin-bottom: 20px; text-align: left; }
+      
+      .meta-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
         text-align: left;
-        text-indent: -2rem;
-        padding-left: 2rem;
-        font-size: 0.9rem;
-        margin-bottom: 1rem;
+        padding: 20px 0;
+        margin-bottom: 30px;
       }
-
-      @media (max-width: 768px) {
-        body {
-          padding: 1rem 0; /* Remove side padding on body to let container take full width */
-        }
-
-        .paper-container {
-          padding: 1.5rem 1.2rem;
-          box-shadow: none;
-          border-radius: 0;
-        }
-
-        h1.paper-title {
-          font-size: 1.5rem;
-        }
-
-        header.university-header h2 {
-          font-size: 1.2rem;
-        }
-
-        header.university-header h3 {
-          font-size: 0.95rem;
-        }
-
-        .section-title {
-          font-size: 1.3rem;
-          margin-top: 2rem;
-        }
-
-        .meta-info {
-          font-size: 0.85rem;
-          margin-bottom: 2rem;
-        }
-
-        .abstract {
-          padding: 1.2rem;
-          margin-bottom: 2rem;
-        }
-
-        p,
-        li {
-          text-align: left; /* Justified text looks bad on narrow mobile screens */
-          font-size: 0.95rem;
-          line-height: 1.6;
-        }
-
-        .references {
-          margin-top: 2.5rem;
-        }
-
-        .references p {
-          text-indent: 0;
-          padding-left: 0;
-          margin-bottom: 1.2rem;
-        }
-
-        .back-btn {
-          margin-left: 1.2rem;
-        }
+      
+      .abstract-box {
+        padding: 20px;
+        margin-bottom: 30px;
       }
-    </style>
-  </head>
-  <body>
-    <div style="max-width: 850px; margin: 0 auto">
-      <a href="index.html" class="back-btn">
-        <svg
-          width="16"
-          height="16"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
-          <line x1="19" y1="12" x2="5" y2="12"></line>
-          <polyline points="12 19 5 12 12 5"></polyline>
-        </svg>
-        Return to Presentation
-      </a>
-    </div>
+      .abstract-box p { font-size: 1rem; text-align: left; }
 
-    <div class="paper-container">
+      .section-title { font-size: 1.5rem; margin: 40px 0 15px; }
+      .subsection-title { font-size: 1.1rem; }
+
+      p, li { text-align: left; } /* Remove justify for better mobile readability */
+      
+      blockquote { font-size: 1.1rem; }
+
+      .ref-item {
+        text-indent: 0; padding-left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <nav class="top-nav">
+    <a href="index.html" class="back-btn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      Return to System Dashboard
+    </a>
+  </nav>
+
+  <div class="layout-wrapper">
+    <!-- Desktop Table of Contents -->
+    <aside class="toc-sidebar">
+      <div class="toc-title">Table of Contents</div>
+      <ul class="toc-list">
+        <li><a href="#abstract">Abstract</a></li>
+        <li><a href="#section-1">1. Meaning & Scope</a></li>
+        <li><a href="#section-2">2. Operational Objectives</a></li>
+        <li><a href="#section-3">3. Current Applications</a></li>
+        <li><a href="#section-4">4. Future Prospects</a></li>
+        <li><a href="#section-5">5. Socioeconomic Concerns</a></li>
+        <li><a href="#section-6">6. Conclusion</a></li>
+        <li><a href="#references">References</a></li>
+      </ul>
+    </aside>
+
+    <!-- Main Manuscript -->
+    <main class="paper-content">
+      
+      <!-- Academic Header -->
       <header class="university-header">
+        <div class="ku-seal">KU</div>
         <h2>KENYATTA UNIVERSITY</h2>
-        <h3>
-          Course: BSc BIOCHEMISTRY => SBC 294 - Fundamentals of Biotechnology
-        </h3>
+        <h3>BSc BIOCHEMISTRY // SBC 294 - Fundamentals of Biotechnology</h3>
       </header>
 
-      <div class="meta-info">
-        <h1 class="paper-title">
-          A Comprehensive Analysis of Black Biotechnology:<br />Meaning,
-          Objectives, Applications, and Implications
-        </h1>
-        <p><strong>Group 11 Research Report</strong></p>
-        <p>
-          Loyd Ebenezer, Domnic Makori, Fardosa Abdullahi, Innocent Omondi,
-          Wandera Bwire
-        </p>
-        <p><strong>Date:</strong> May 2026</p>
+      <h1 class="paper-title">A Comprehensive Analysis of Black Biotechnology: Meaning, Objectives, Applications, and Implications</h1>
+
+      <div class="meta-grid">
+        <div class="meta-item">
+          <strong>Research Group</strong>
+          <p>Group 11</p>
+        </div>
+        <div class="meta-item">
+          <strong>Investigators</strong>
+          <p>Loyd E., Domnic M., Fardosa A., Innocent O., Wandera B.</p>
+        </div>
+        <div class="meta-item">
+          <strong>Date of Publication</strong>
+          <p>May 2026</p>
+        </div>
       </div>
 
-      <div class="abstract">
-        <strong>Abstract</strong>
-        This paper provides an empirical educational review of the
-        sub-discipline known as "Black Biotechnology," which focuses
-        fundamentally on biodefense, pathogen surveillance, and the
-        securitization of biological data. It explores how modern biotechnology
-        tools—crucial for civilian biomedical and agricultural progress—are
-        dual-use by nature, posing distinct socio-ethical paradigms when applied
-        to hazardous constructs. As mandated by the SBC 294 course objectives,
-        this document systematically defines the terminology, elaborates on core
-        objectives, unpacks real-world applications, estimates future
-        innovations, and outlines the socioeconomic, ethical, and environmental
-        challenges intrinsic to high-containment biosciences.
+      <div class="abstract-box" id="abstract">
+        <h4>Abstract</h4>
+        <p>This paper provides an empirical educational review of the sub-discipline known as "Black Biotechnology," which focuses fundamentally on biodefense, pathogen surveillance, and the securitization of biological data. It explores how modern biotechnology tools—crucial for civilian biomedical and agricultural progress—are dual-use by nature, posing distinct socio-ethical paradigms when applied to hazardous constructs. As mandated by the SBC 294 course objectives, this document systematically defines the terminology, elaborates on core objectives, unpacks real-world applications, estimates future innovations, and outlines the socioeconomic, ethical, and environmental challenges intrinsic to high-containment biosciences.</p>
       </div>
 
-      <!-- Section 1: Meaning -->
-      <h2 class="section-title">1. Meaning and Scope of Black Biotechnology</h2>
-      <p>
-        Black Biotechnology is a specialized, color-coded classification of
-        biological science explicitly devoted to biosecurity, defense, and the
-        research of high-consequence pathogens. While traditionally associated
-        with the prevention of biological warfare and bioterrorism, the
-        discipline's operational scope extends further to encompass all
-        methodologies related to high-containment biomedical infrastructure
-        (Biosafety Levels 3 and 4), pathogen surveillance grids, and the
-        investigation of highly toxic environments.
-      </p>
-      <p>
-        The core characteristic defining Black Biotechnology is its relationship
-        with the "dual-use dilemma." Biological techniques, such as CRISPR-Cas9
-        genome editing, recombinant DNA synthesis, and virology, possess an
-        innate dual potential. The exact laboratory procedures required to study
-        viral cell-entry mechanisms and synthesize protective vaccines can
-        simultaneously be utilized to artificially evolve those same viruses
-        into highly transmissible or vaccine-resistant weaponized agents.
-        Consequently, Black Biotechnology is governed under strict, often
-        classified, regulatory frameworks unlike standard industrial (white) or
-        agricultural (green) biotechnology.
-      </p>
+      <!-- Section 1 -->
+      <h2 class="section-title" id="section-1">1. Meaning and Scope of Black Biotechnology</h2>
+      <p>Black Biotechnology is a specialized, color-coded classification of biological science explicitly devoted to biosecurity, defense, and the research of high-consequence pathogens. While traditionally associated with the prevention of biological warfare and bioterrorism, the discipline's operational scope extends further to encompass all methodologies related to high-containment biomedical infrastructure (Biosafety Levels 3 and 4), pathogen surveillance grids, and the investigation of highly toxic environments.</p>
+      
+      <blockquote>
+        "The core characteristic defining Black Biotechnology is its inescapable relationship with the dual-use dilemma."
+      </blockquote>
+      
+      <p>Biological techniques, such as CRISPR-Cas9 genome editing, recombinant DNA synthesis, and virology, possess an innate dual potential. The exact laboratory procedures required to study viral cell-entry mechanisms and synthesize protective vaccines can simultaneously be utilized to artificially evolve those same viruses into highly transmissible or vaccine-resistant weaponized agents. Consequently, Black Biotechnology is governed under strict, often classified, regulatory frameworks unlike standard industrial (white) or agricultural (green) biotechnology.</p>
 
-      <!-- Section 2: Objectives -->
-      <h2 class="section-title">2. Operational Objectives</h2>
-      <p>
-        The principal objective of Black Biotechnology is mitigating biological
-        threats through proactive engineering and surveillance. Specifically,
-        these objectives include:
-      </p>
+      <!-- Section 2 -->
+      <h2 class="section-title" id="section-2">2. Operational Objectives</h2>
+      <p>The principal objective of Black Biotechnology is mitigating biological threats through proactive engineering and surveillance. Specifically, these objectives include:</p>
       <ul>
-        <li>
-          <strong>Biodefense and Countermeasure Synthesis:</strong> Rapidly
-          developing, producing, and stockpiling medical countermeasures—such as
-          vaccines, therapeutics, and broad-spectrum antibiotics—to neutralize
-          both naturally emerging pandemics and artificially engineered
-          bioweapons out of military exigency.
-        </li>
-        <li>
-          <strong>Biological Surveillance and Diagnostics:</strong> Establishing
-          real-time detection networks that monitor air, water grids, and global
-          genomic databases for sudden spikes in pathogenic anomalies.
-        </li>
-        <li>
-          <strong>Pathogen Assessment (Threat Forecasting):</strong> Decoding
-          the molecular structures of known biological agents to predict their
-          potential mutation pathways, enabling researchers to stay ahead of
-          natural evolution and artificial modifications.
-        </li>
-        <li>
-          <strong>Biocontainment Architecture:</strong> Continuous innovation in
-          negative-pressure laboratory design, specialized filtration systems,
-          and full-body isolation barriers to protect civilian populations from
-          lethal containment breaches.
-        </li>
-        <li>
-          <strong>Forensic Biotechnology:</strong> Developing precise molecular
-          tracing parameters to identify the origin-point and responsible actors
-          behind a biological outbreak or biological attack.
-        </li>
+        <li><strong>Biodefense and Countermeasure Synthesis:</strong> Rapidly developing, producing, and stockpiling medical countermeasures—such as vaccines, therapeutics, and broad-spectrum antibiotics—to neutralize both naturally emerging pandemics and artificially engineered bioweapons out of military exigency.</li>
+        <li><strong>Biological Surveillance and Diagnostics:</strong> Establishing real-time detection networks that monitor air, water grids, and global genomic databases for sudden spikes in pathogenic anomalies.</li>
+        <li><strong>Pathogen Assessment (Threat Forecasting):</strong> Decoding the molecular structures of known biological agents to predict their potential mutation pathways, enabling researchers to stay ahead of natural evolution and artificial modifications.</li>
+        <li><strong>Biocontainment Architecture:</strong> Continuous innovation in negative-pressure laboratory design, specialized filtration systems, and full-body isolation barriers to protect civilian populations from lethal containment breaches.</li>
+        <li><strong>Forensic Biotechnology:</strong> Developing precise molecular tracing parameters to identify the origin-point and responsible actors behind a biological outbreak or biological attack.</li>
       </ul>
 
-      <!-- Section 3: Current Applications -->
-      <h2 class="section-title">3. Current Applications</h2>
-      <p>
-        Modern defense mechanisms rely heavily on established bioprocesses and
-        physical biochemical systems.
-      </p>
+      <!-- Section 3 -->
+      <h2 class="section-title" id="section-3">3. Current Applications</h2>
+      <p>Modern defense mechanisms rely heavily on established bioprocesses and physical biochemical systems.</p>
+      
       <h3 class="subsection-title">3.1. Medical Biodefense Applications</h3>
-      <p>
-        Current countermeasures involve direct interventions like
-        <em>BioThrax</em>, an FDA-approved vaccine actively administered to
-        military personnel to immunize them against weaponized anthrax (Bacillus
-        anthracis). Beyond pharmaceuticals, hardware technologies such as the
-        Joint Biological Agent Identification and Diagnostic System (JBAIDS)
-        utilize rapid Polymerase Chain Reaction (PCR) in field applications,
-        identifying dozens of life-threatening agents in minutes under
-        non-laboratory combat conditions.
-      </p>
+      <p>Current countermeasures involve direct interventions like <em>BioThrax</em>, an FDA-approved vaccine actively administered to military personnel to immunize them against weaponized anthrax (Bacillus anthracis). Beyond pharmaceuticals, hardware technologies such as the Joint Biological Agent Identification and Diagnostic System (JBAIDS) utilize rapid Polymerase Chain Reaction (PCR) in field applications, identifying dozens of life-threatening agents in minutes under non-laboratory combat conditions.</p>
 
       <h3 class="subsection-title">3.2. Containment and Infrastructure</h3>
-      <p>
-        The architecture of maximum biosafety networks (BSL-4 laboratories)
-        across the globe constitutes a primary application of Black Biotech. In
-        these facilities, researchers manipulate lethal, untreatable hemorrhagic
-        fevers (e.g., Ebola and Lassa viruses) in highly controlled,
-        vacuum-sealed environments.
-      </p>
+      <p>The architecture of maximum biosafety networks (BSL-4 laboratories) across the globe constitutes a primary application of Black Biotech. In these facilities, researchers manipulate lethal, untreatable hemorrhagic fevers (e.g., Ebola and Lassa viruses) in highly controlled, vacuum-sealed environments.</p>
 
       <h3 class="subsection-title">3.3. Convergence with Nanotechnology</h3>
-      <p>
-        At the intersection of Black Biotechnology and nanotechnology, carbon
-        nanotubes (CNTs) and biomelanin serve as profound diagnostic markers.
-        Specialized microbial synthesis produces melanin—a potent chelator—which
-        is deployed as a biosensor layer to track and lock onto toxic heavy
-        metals in the environment. Additionally, researchers utilize
-        functionalized CNTs to detect microscopic concentrations of aerosolized
-        biological agents with extreme electrical sensitivity.
-      </p>
+      <p>At the intersection of Black Biotechnology and nanotechnology, carbon nanotubes (CNTs) and biomelanin serve as profound diagnostic markers. Specialized microbial synthesis produces melanin—a potent chelator—which is deployed as a biosensor layer to track and lock onto toxic heavy metals in the environment. Additionally, researchers utilize functionalized CNTs to detect microscopic concentrations of aerosolized biological agents with extreme electrical sensitivity.</p>
 
-      <!-- Section 4: Future Prospects -->
-      <h2 class="section-title">4. Future Prospects</h2>
-      <p>
-        The trajectory of Black Biotechnology parallels the exponential
-        expansion of artificial intelligence, synthetic biology, and molecular
-        automation.
-      </p>
+      <!-- Section 4 -->
+      <h2 class="section-title" id="section-4">4. Future Prospects</h2>
+      <p>The trajectory of Black Biotechnology parallels the exponential expansion of artificial intelligence, synthetic biology, and molecular automation.</p>
       <ul>
-        <li>
-          <strong>CRISPR-Based Biological Shielding:</strong> Future biodefense
-          posits the integration of Cas12/Cas13 endonucleases acting as
-          programmable "immune shields" that can be commanded to slice apart
-          viral RNA the moment an engineered pathogen enters a host's
-          bloodstream.
-        </li>
-        <li>
-          <strong>AI-Driven Pathogen Surveillance:</strong> Using large learning
-          models trained on global virology databases, artificial intelligence
-          will likely act as a predictive net, isolating zoonotic outbreak
-          vectors and identifying artificially designed nucleotide sequences
-          weeks before traditional clinical detection.
-        </li>
-        <li>
-          <strong>Synthetic Biological Suits:</strong> Military forces and
-          hazardous environment workers may utilize gear seeded with
-          custom-engineered microbes designed to metabolize and neutralize nerve
-          gases or hazardous biomaterials on contact.
-        </li>
-        <li>
-          <strong>Biomimetic Therapy Integration:</strong> Employing advanced
-          photothermal therapies derived from synthesized melanin nanoparticles
-          to seek out and thermally destroy metastatic oncology threats inside
-          complex organisms at a targeted laser threshold.
-        </li>
+        <li><strong>CRISPR-Based Biological Shielding:</strong> Future biodefense posits the integration of Cas12/Cas13 endonucleases acting as programmable "immune shields" that can be commanded to slice apart viral RNA the moment an engineered pathogen enters a host's bloodstream.</li>
+        <li><strong>AI-Driven Pathogen Surveillance:</strong> Using large learning models trained on global virology databases, artificial intelligence will likely act as a predictive net, isolating zoonotic outbreak vectors and identifying artificially designed nucleotide sequences weeks before traditional clinical detection.</li>
+        <li><strong>Synthetic Biological Suits:</strong> Military forces and hazardous environment workers may utilize gear seeded with custom-engineered microbes designed to metabolize and neutralize nerve gases or hazardous biomaterials on contact.</li>
+        <li><strong>Biomimetic Therapy Integration:</strong> Employing advanced photothermal therapies derived from synthesized melanin nanoparticles to seek out and thermally destroy metastatic oncology threats inside complex organisms at a targeted laser threshold.</li>
       </ul>
 
-      <!-- Section 5: Concerns -->
-      <h2 class="section-title">
-        5. Socioeconomic, Ethical, and Environmental Concerns
-      </h2>
-      <p>
-        The pursuit of biosecurity through Black Biotechnology introduces
-        severe, systemic paradoxes spanning several pillars of global human
-        welfare.
-      </p>
+      <!-- Section 5 -->
+      <h2 class="section-title" id="section-5">5. Socioeconomic, Ethical, and Environmental Concerns</h2>
+      <p>The pursuit of biosecurity through Black Biotechnology introduces severe, systemic paradoxes spanning several pillars of global human welfare.</p>
 
       <h3 class="subsection-title">5.1. Socioeconomic Realities</h3>
-      <p>
-        Because constructing, operating, and auditing High Containment
-        infrastructure runs into the hundreds of millions in expenditures, the
-        benefits and the safeguards of advanced biosecurity are overwhelmingly
-        consolidated within wealthy, developed nations. This creates a severe
-        <strong>Global Asymmetry</strong> in the event of a biological disaster
-        or pandemic, leaving developing nations at the catastrophic mercy of
-        privatized, proprietary vaccine intellectual property.
-      </p>
+      <p>Because constructing, operating, and auditing High Containment infrastructure runs into the hundreds of millions in expenditures, the benefits and the safeguards of advanced biosecurity are overwhelmingly consolidated within wealthy, developed nations. This creates a severe <strong>Global Asymmetry</strong> in the event of a biological disaster or pandemic, leaving developing nations at the catastrophic mercy of privatized, proprietary vaccine intellectual property.</p>
 
       <h3 class="subsection-title">5.2. Ethical Frameworks</h3>
-      <p>
-        The central ethical bind lies in the reality that constructing defenses
-        against a weapon usually requires researching how to optimize that
-        weapon. Consequently, 1972 Biological Weapons Convention treaties
-        struggle to audit dual-use research. Furthermore, advancements in
-        desktop DNA synthesizers drastically lower the entry barriers, raising
-        ethical dilemmas regarding who is permitted access to molecular tooling
-        when rogue non-state actors might synthesize a pandemic in a high school
-        lab environment.
-      </p>
+      <p>The central ethical bind lies in the reality that constructing defenses against a weapon usually requires researching how to optimize that weapon. Consequently, 1972 Biological Weapons Convention treaties struggle to audit dual-use research. Furthermore, advancements in desktop DNA synthesizers drastically lower the entry barriers, raising ethical dilemmas regarding who is permitted access to molecular tooling when rogue non-state actors might synthesize a pandemic in a high school lab environment.</p>
 
       <h3 class="subsection-title">5.3. Environmental Risks</h3>
-      <p>
-        The catastrophic risk of a laboratory leak remains an existential
-        environmental threat. Additionally, discharging genetically modified
-        "sensor" organisms into wild biomes to neutralize waste poses complex
-        long-term risks. These synthetic organisms could exhibit unpredicted
-        horizontal gene transfers or massively outcompete natural fauna,
-        disrupting ecological foundations. Moreover, the byproduct waste
-        generated from manufacturing carbon nanostructures for biosensors is
-        highly persistent in aquifers, with largely unstudied macro-toxicity
-        over long generations.
-      </p>
+      <p>The catastrophic risk of a laboratory leak remains an existential environmental threat. Additionally, discharging genetically modified "sensor" organisms into wild biomes to neutralize waste poses complex long-term risks. These synthetic organisms could exhibit unpredicted horizontal gene transfers or massively outcompete natural fauna, disrupting ecological foundations. Moreover, the byproduct waste generated from manufacturing carbon nanostructures for biosensors is highly persistent in aquifers, with largely unstudied macro-toxicity over long generations.</p>
 
-      <!-- Section 6: Conclusion -->
-      <h2 class="section-title">6. Conclusion</h2>
-      <p>
-        Black Biotechnology is fundamentally responsible for standing the line
-        against biological catastrophe, encompassing profound medical,
-        diagnostic, and containment innovations. Nevertheless, the discipline
-        exists on a technological precipice where innovation mirrors
-        weaponization. Moving forward, the secure, equitable, and
-        highly-regulated advancement of biodefense technologies is
-        non-negotiable in preventing human extinction while managing the
-        inherent socioeconomic, ecological, and ethical hazards intrinsic to
-        genetic engineering.
-      </p>
+      <!-- Section 6 -->
+      <h2 class="section-title" id="section-6">6. Conclusion</h2>
+      <p>Black Biotechnology is fundamentally responsible for standing the line against biological catastrophe, encompassing profound medical, diagnostic, and containment innovations. Nevertheless, the discipline exists on a technological precipice where innovation mirrors weaponization. Moving forward, the secure, equitable, and highly-regulated advancement of biodefense technologies is non-negotiable in preventing human extinction while managing the inherent socioeconomic, ecological, and ethical hazards intrinsic to genetic engineering.</p>
 
       <!-- References -->
-      <div class="references">
-        <h2
-          class="section-title"
-          style="margin-top: 0; border: none; font-size: 1.4rem"
-        >
-          References &amp; Bibliography
-        </h2>
-        <p>
-          Rathinam, K. et al. (2021). "Biotechnology in Defense and National
-          Security: Global Paradigms." <em>Journal of Defense Biosciences.</em>
-        </p>
-        <p>
-          Koblentz, G. D. (2020). "The Dual-Use Dilemma and the Future of
-          Biodefense." <em>International Security Metrics.</em>
-        </p>
-        <p>
-          World Health Organization (WHO) (2024).
-          <em
-            >Global Guidance on the Responsible Use of the Life Sciences:
-            Mitigating Biorisks and Governing Dual-Use Research.</em
-          >
-          Geneva: WHO Press.
-        </p>
-        <p>
-          University of Nairobi (2026). Group Assignments Resource Syllabus:
-          <em>SBC 294 Fundamentals of Biotechnology.</em> Course Documentation.
-        </p>
+      <div class="references" id="references">
+        <h2 class="section-title" style="margin-top: 0; border: none; font-size: 1.6rem;">References &amp; Bibliography</h2>
+        <div class="ref-item">Rathinam, K. et al. (2021). "Biotechnology in Defense and National Security: Global Paradigms." <em>Journal of Defense Biosciences.</em></div>
+        <div class="ref-item">Koblentz, G. D. (2020). "The Dual-Use Dilemma and the Future of Biodefense." <em>International Security Metrics.</em></div>
+        <div class="ref-item">World Health Organization (WHO) (2024). <em>Global Guidance on the Responsible Use of the Life Sciences: Mitigating Biorisks and Governing Dual-Use Research.</em> Geneva: WHO Press.</div>
+        <div class="ref-item">Kenyatta University (2026). Group Assignments Resource Syllabus: <em>SBC 294 Fundamentals of Biotechnology.</em> Course Documentation.</div>
       </div>
-    </div>
-  </body>
+
+    </main>
+  </div>
+
+</body>
 </html>
