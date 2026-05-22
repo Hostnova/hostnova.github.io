@@ -1,0 +1,1552 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Black Biotechnology | Security & Biodefense Applications</title>
+    <meta
+      name="description"
+      content="SBC 294 Group Presentation: A deep architectural study of Black Biotechnology, biological countermeasures, pathogen surveillance, and military biodefense."
+    />
+
+    <!-- Modern Fonts from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Share+Tech+Mono&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- System Boot Loading Screen -->
+    <div id="boot-screen">
+      <div class="boot-grid"></div>
+      <div class="boot-terminal-container">
+        <div class="boot-terminal mono-text" id="boot-terminal">
+          <!-- Typed dynamically in JS -->
+        </div>
+        <div class="boot-progress-wrapper">
+          <div class="boot-loader-bar" id="boot-loader-bar"></div>
+        </div>
+        <div class="boot-percentage-bar mono-text">
+          SYSTEM LOADING: <span id="boot-percentage">0%</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Background Particle Engine -->
+    <div class="red-flash-overlay" id="red-flash-overlay"></div>
+    <canvas id="bg-canvas"></canvas>
+    <div class="cyber-grid"></div>
+    <div class="vignette"></div>
+
+    <!-- HUD Overlay -->
+    <header class="hud-header">
+      <div class="hud-logo">
+        <span class="pulse-dot"></span>
+        <span class="mono-text">SYS.STATUS: ACTIVE // CLASSIFIED</span>
+      </div>
+      <div class="threat-level-widget low" id="threat-level-widget">
+        <span class="mono-text">THREAT LEVEL:</span>
+        <div class="threat-blocks">
+          <div class="threat-block filled"></div>
+          <div class="threat-block"></div>
+          <div class="threat-block"></div>
+          <div class="threat-block"></div>
+          <div class="threat-block"></div>
+        </div>
+        <span class="threat-label mono-text">LOW</span>
+      </div>
+      <div class="hud-center-title">
+        <span id="header-slide-title">BLACK BIOTECHNOLOGY</span>
+      </div>
+      <div class="hud-system-time">
+        <span id="current-time" class="mono-text">00:00:00 UTC</span>
+      </div>
+    </header>
+
+    <!-- Presentation Progress Bar -->
+    <div class="progress-container">
+      <div class="progress-bar" id="presentation-progress"></div>
+    </div>
+
+    <!-- Main Slide Container -->
+    <main id="presentation-container">
+      <!-- Slide 1: Title/Cover -->
+      <section class="slide" id="slide-1">
+        <img
+          src="biodefense_command.png"
+          alt=""
+          class="slide-bg-image"
+          loading="lazy"
+        />
+        <div class="slide-content cover-layout">
+          <div class="title-glow-group">
+            <h2
+              class="mono-text glow-red subtitle-category animate-item"
+              style="--delay: 1"
+            >
+              SBC 294 // FUNDAMENTALS OF BIOTECHNOLOGY
+            </h2>
+            <h1 class="main-title animate-item" style="--delay: 2">BLACK</h1>
+            <h1
+              class="main-title outline-title animate-item"
+              style="--delay: 3"
+            >
+              BIOTECHNOLOGY
+            </h1>
+            <p class="title-desc animate-item" style="--delay: 4">
+              Biological security, threat assessment, pathogen surveillance, and
+              biodefense countermeasures.
+            </p>
+          </div>
+
+          <div class="cover-footer">
+            <div
+              class="members-widget glass-card animate-item"
+              style="--delay: 5"
+            >
+              <h3 class="mono-text border-bottom">PROJECT RESEARCH GROUP</h3>
+              <ul class="members-list">
+                <li>
+                  <span class="member-num">01</span> Loyd Ebenezer
+                  <span class="member-id">I72/1073/2024</span>
+                </li>
+                <li>
+                  <span class="member-num">02</span> Domnic Makori
+                  <span class="member-id">I72/1036/2024</span>
+                </li>
+                <li>
+                  <span class="member-num">03</span> Fardosa Abdullahi
+                  <span class="member-id">I72/8943/2024</span>
+                </li>
+                <li>
+                  <span class="member-num">04</span> Innocent Omondi
+                  <span class="member-id">I72/1064/2024</span>
+                </li>
+                <li>
+                  <span class="member-num">05</span> Wandera Bwire
+                  <span class="member-id">I72/5875/2023</span>
+                </li>
+              </ul>
+            </div>
+
+            <button
+              class="btn-primary mono-text initiate-btn animate-item"
+              style="--delay: 6"
+              onclick="nextSlide()"
+            >
+              INITIATE SYSTEM PREVIEW
+              <span class="arrow-blink">&rarr;</span>
+            </button>
+            <br />
+            <a
+              href="research.html"
+              class="btn-secondary mono-text initiate-btn animate-item"
+              style="
+                --delay: 7;
+                text-decoration: none;
+                margin-top: 1rem;
+                display: inline-block;
+                width: 100%;
+                text-align: center;
+                box-sizing: border-box;
+              "
+            >
+              [ VIEW ACADEMIC RESEARCH REPORT ]
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 2: Outline -->
+      <section class="slide" id="slide-2">
+        <div class="slide-content grid-2-1">
+          <div class="info-block">
+            <h2
+              class="mono-text subtitle-category animate-item"
+              style="--delay: 1"
+            >
+              SYSTEM CONFIGURATION
+            </h2>
+            <h1 class="slide-header animate-item" style="--delay: 2">
+              PRESENTATION OUTLINE
+            </h1>
+            <p class="section-lead animate-item" style="--delay: 3">
+              This presentation is structured around the five required headings
+              of the SBC 294 group assignment. Select any sector to jump
+              directly to its telemetry.
+            </p>
+
+            <div
+              class="hud-readout glass-card mono-text animate-item"
+              style="--delay: 4"
+            >
+              <p class="readout-header">// SYSTEM DIAGNOSTICS</p>
+              <p class="readout-line">&gt; SECURE_PROTOCOL: ACTIVE</p>
+              <p class="readout-line">&gt; TARGET_DILEMMA: DUAL-USE ANALYSIS</p>
+              <p class="readout-line">
+                &gt; BIOSAFETY_LEVELS: BSL-1 to BSL-4 LOADED
+              </p>
+              <p class="readout-line">&gt; VECTOR_SURVEILLANCE: CONTINUOUS</p>
+            </div>
+            <div class="animate-item" style="--delay: 5; margin-top: 2rem">
+              <img
+                src="dna_helix.png"
+                alt="DNA Helix Render"
+                class="cinematic-img"
+                style="max-height: 250px"
+              />
+            </div>
+          </div>
+
+          <div class="outline-menu">
+            <div
+              class="outline-item glass-card animate-item"
+              style="--delay: 5"
+              onclick="goToSlide(2)"
+            >
+              <span class="outline-num">01</span>
+              <div class="outline-text">
+                <h3>MEANING</h3>
+                <p>
+                  Definition, scope, and classification within the broader
+                  framework.
+                </p>
+              </div>
+              <span class="menu-arrow">&rarr;</span>
+            </div>
+
+            <div
+              class="outline-item glass-card animate-item"
+              style="--delay: 6"
+              onclick="goToSlide(3)"
+            >
+              <span class="outline-num">02</span>
+              <div class="outline-text">
+                <h3>OBJECTIVES</h3>
+                <p>
+                  Primary scientific, security, and strategic goals driving
+                  innovation.
+                </p>
+              </div>
+              <span class="menu-arrow">&rarr;</span>
+            </div>
+
+            <div
+              class="outline-item glass-card animate-item"
+              style="--delay: 7"
+              onclick="goToSlide(4)"
+            >
+              <span class="outline-num">03</span>
+              <div class="outline-text">
+                <h3>CURRENT APPLICATIONS</h3>
+                <p>
+                  Real-world biodefense, detection, carbon nanotubes, and
+                  melanin.
+                </p>
+              </div>
+              <span class="menu-arrow">&rarr;</span>
+            </div>
+
+            <div
+              class="outline-item glass-card animate-item"
+              style="--delay: 8"
+              onclick="goToSlide(6)"
+            >
+              <span class="outline-num">04</span>
+              <div class="outline-text">
+                <h3>FUTURE PROSPECTS</h3>
+                <p>
+                  CRISPR shields, synthetic biology, and AI pathogen
+                  surveillance.
+                </p>
+              </div>
+              <span class="menu-arrow">&rarr;</span>
+            </div>
+
+            <div
+              class="outline-item glass-card animate-item"
+              style="--delay: 9"
+              onclick="goToSlide(7)"
+            >
+              <span class="outline-num">05</span>
+              <div class="outline-text">
+                <h3>CONCERNS</h3>
+                <p>
+                  Socioeconomic, environmental, and ethical bio-risk challenges.
+                </p>
+              </div>
+              <span class="menu-arrow">&rarr;</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 3: Meaning (What is Black Biotech?) -->
+      <section class="slide" id="slide-3">
+        <img
+          src="crispr_dna_bg.png"
+          alt=""
+          class="slide-bg-image"
+          loading="lazy"
+          style="opacity: 0.15"
+        />
+        <div class="slide-content grid-1-1">
+          <div class="info-block">
+            <h2
+              class="mono-text subtitle-category animate-item"
+              style="--delay: 1"
+            >
+              SECTOR 01 // TAXONOMY
+            </h2>
+            <h1 class="slide-header animate-item" style="--delay: 2">
+              MEANING &amp; CLASSIFICATION
+            </h1>
+
+            <!-- Interactive Tabs -->
+            <div class="tab-interface animate-item" style="--delay: 3">
+              <div class="tab-headers">
+                <button class="tab-btn active" data-tab="tab-core">
+                  CORE DEFINITION
+                </button>
+                <button class="tab-btn" data-tab="tab-scope">
+                  BROADER SCOPE
+                </button>
+                <button class="tab-btn" data-tab="tab-distinction">
+                  KEY DISTINCTION
+                </button>
+              </div>
+
+              <div class="tab-contents">
+                <div class="tab-content active" id="tab-core">
+                  <p>
+                    <strong>Black Biotechnology</strong> applies biological
+                    knowledge and molecular tools within military, defense, and
+                    biosecurity frameworks.
+                  </p>
+                  <p>
+                    This includes the study and synthesis of biological threat
+                    agents, the engineering of advanced biodetection systems,
+                    the formulation of biodefense strategies, and medical
+                    countermeasures (vaccines, therapeutics) designed to
+                    neutralize engineered pathogens.
+                  </p>
+                </div>
+                <div class="tab-content" id="tab-scope">
+                  <p>
+                    Beyond military defense, the taxonomy encompasses
+                    industrial-scale high-hazard containment bioprocesses:
+                  </p>
+                  <ul>
+                    <li>Biosafety containment science (BSL-3, BSL-4)</li>
+                    <li>
+                      Extremophile biotechnology (organisms engineered for
+                      hazardous, high-radiation, or toxicity-dense environments)
+                    </li>
+                    <li>
+                      Carbon-based nanomaterials applied to biological tracking
+                      and diagnostics.
+                    </li>
+                  </ul>
+                </div>
+                <div class="tab-content" id="tab-distinction">
+                  <p>
+                    Unlike Red (medical) or Green (agricultural) biotechnology,
+                    Black Biotechnology operates largely in
+                    <strong>restricted or classified frameworks</strong>.
+                  </p>
+                  <p>
+                    This secrecy is driven by the
+                    <strong>dual-use dilemma</strong>: the identical sequencing
+                    and editing methodologies used to develop protective
+                    immunizations can be inverted to engineer highly
+                    transmissible, vaccine-resistant pathogens.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="visual-panel glass-card molecular-panel animate-item"
+            style="--delay: 4"
+          >
+            <div class="panel-header mono-text border-bottom">
+              <span>VISUALIZATION: CRISPR-CAS9 ENDONUCLEASE</span>
+              <span class="panel-tag cyan">ACTIVE DIAGRAM</span>
+            </div>
+            <div class="panel-body svg-container">
+              <img
+                src="crispr_engineering.png"
+                alt="CRISPR Cas9 Protein"
+                class="cinematic-img"
+              />
+            </div>
+            <div class="panel-footer mono-text border-top text-center">
+              CRISPR-Cas9 acts as the double-edged sword of genetic engineering.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 4: Objectives -->
+      <section class="slide" id="slide-4">
+        <img
+          src="futuristic_biolab.png"
+          alt=""
+          class="slide-bg-image"
+          loading="lazy"
+        />
+        <div class="slide-content vertical-layout">
+          <div class="section-title text-center">
+            <h2
+              class="mono-text subtitle-category animate-item"
+              style="--delay: 1"
+            >
+              SECTOR 02 // GOALS
+            </h2>
+            <h1 class="slide-header animate-item" style="--delay: 2">
+              OPERATIONAL OBJECTIVES
+            </h1>
+            <p class="section-lead animate-item" style="--delay: 3">
+              The dual priorities of biosafety and biodefense drive scientific
+              and regulatory objectives.
+            </p>
+          </div>
+
+          <div class="objectives-grid">
+            <!-- Card 1 -->
+            <div
+              class="objective-card glass-card animate-item"
+              style="--delay: 4"
+            >
+              <div class="card-icon gold-glow">&#x26e8;</div>
+              <h3>BIODEFENSE</h3>
+              <p>
+                Formulating vaccines, antidotes, and genetic countermeasures to
+                defend populations against weaponized pathogens like Anthrax,
+                Smallpox, and Ricin.
+              </p>
+            </div>
+            <!-- Card 2 -->
+            <div
+              class="objective-card glass-card animate-item"
+              style="--delay: 5"
+            >
+              <div class="card-icon cyan-glow">&#x23f2;</div>
+              <h3>BIOSURVEILLANCE</h3>
+              <p>
+                Deploying remote, high-sensitivity diagnostic networks to
+                continuously monitor air, water, and food vectors for anomalous
+                pathogen spikes.
+              </p>
+            </div>
+            <!-- Card 3 -->
+            <div
+              class="objective-card glass-card animate-item"
+              style="--delay: 6"
+            >
+              <div class="card-icon red-glow">&#x26d1;</div>
+              <h3>THREAT ASSESSMENT</h3>
+              <p>
+                Decoding the molecular structure of toxic agents to forecast
+                mutational capabilities, immune escape potentials, and
+                drug-resistance thresholds.
+              </p>
+            </div>
+            <!-- Card 4 -->
+            <div
+              class="objective-card glass-card animate-item"
+              style="--delay: 7"
+            >
+              <div class="card-icon green-glow">&#x269b;</div>
+              <h3>BIOCONTAINMENT</h3>
+              <p>
+                Iterating physical and negative-pressure barrier designs (BSL-3,
+                BSL-4) to insulate laboratory personnel from fatal contagious
+                agents.
+              </p>
+            </div>
+            <!-- Card 5 -->
+            <div
+              class="objective-card glass-card animate-item"
+              style="--delay: 8"
+            >
+              <div class="card-icon purple-glow">&#x2318;</div>
+              <h3>FORENSIC BIOTECH</h3>
+              <p>
+                Synthesizing molecular forensic protocols (deep genomics,
+                proteomics) to identify, trace, and legally audit sources of
+                bioweapons deployment.
+              </p>
+            </div>
+            <!-- Card 6 -->
+            <div
+              class="objective-card glass-card animate-item"
+              style="--delay: 9"
+            >
+              <div class="card-icon blue-glow">&#x1f512;</div>
+              <h3>RESPONSIBLE INNOVATION</h3>
+              <p>
+                Providing policy, encryption, and sequence-screening
+                architectures to regulate CRISPR, gene drives, and AI drug
+                synthesis globally.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 5: Current Applications I (Biodefence & Detection) -->
+      <section class="slide" id="slide-5">
+        <div class="laser-scan-overlay" id="laser-scan-overlay">
+          <div class="laser-line"></div>
+        </div>
+        <img
+          src="futuristic_biolab.png"
+          alt=""
+          class="slide-bg-image"
+          loading="lazy"
+          style="opacity: 0.08"
+        />
+        <div class="slide-content grid-1-1">
+          <div class="info-block scrollable-y">
+            <h2
+              class="mono-text subtitle-category animate-item"
+              style="--delay: 1"
+            >
+              SECTOR 03 // APPLICATIONS A
+            </h2>
+            <h1 class="slide-header animate-item" style="--delay: 2">
+              BIODEFENSE &amp; DETECTION
+            </h1>
+
+            <div
+              class="app-item glass-card active-card animate-item"
+              style="--delay: 3"
+              onclick="setAppVisual('jbaids')"
+            >
+              <span class="badge red">VACCINE</span>
+              <h3>BioThrax® (Anthrax Vaccine Adsorbed)</h3>
+              <p class="app-meta">
+                Manufactured by Emergent BioSolutions // FDA Approved
+              </p>
+              <p>
+                The core vaccine protocol utilized by defense agencies to shield
+                military personnel. It generates active immunogenicity against
+                the Anthrax protective antigen (PA), blocking the lethal toxin
+                assembly from penetrating human cell walls.
+              </p>
+            </div>
+
+            <div
+              class="app-item glass-card animate-item"
+              style="--delay: 4"
+              onclick="setAppVisual('jbaids')"
+            >
+              <span class="badge cyan">DETECTION</span>
+              <h3>JBAIDS (Joint Biological Agent Identification)</h3>
+              <p class="app-meta">
+                PCR Diagnostics // Tactical Field Deployments
+              </p>
+              <p>
+                A portable thermocycler capable of performing automated,
+                real-time polymerase chain reactions (PCR) in field conditions.
+                Detects up to 30 hazardous pathogen strains (including Plague
+                and Tularemia) in under 30 minutes.
+              </p>
+            </div>
+
+            <div
+              class="app-item glass-card animate-item"
+              style="--delay: 5"
+              onclick="setAppVisual('bsl4')"
+            >
+              <span class="badge purple">CONTAINMENT</span>
+              <h3>BSL-4 Maximum Containment Laboratories</h3>
+              <p class="app-meta">
+                USAMRIID &amp; CDC Sites // Sealed Positive-Pressure Environment
+              </p>
+              <p>
+                Air-locked, high-vacuum containment facilities built to examine
+                Class A biothreats (Ebola, Marburg, Lassa). Personnel operate in
+                fully isolated positive-pressure suits supplied with direct
+                breathing air lines.
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="visual-panel glass-card simulator-panel animate-item"
+            style="--delay: 6"
+          >
+            <div class="panel-header mono-text border-bottom">
+              <span id="app-panel-title"
+                >MOCK SYSTEM: JBAIDS DIAGNOSTIC SIMULATOR</span
+              >
+              <span class="panel-tag red animate-pulse" id="app-panel-tag"
+                >STANDBY</span
+              >
+            </div>
+
+            <!-- Tab Panel for Slide 5 -->
+            <div class="panel-body flex-column" id="app-visual-container">
+              <!-- Terminal Container (Default) -->
+              <div
+                class="terminal-body mono-text active-visual"
+                id="visual-jbaids"
+              >
+                <p class="terminal-cyan">&gt; JBAIDS_OS v4.81 Initialized...</p>
+                <p>&gt; Ready for environmental sample analysis.</p>
+                <p>&gt; Click "INJECT SAMPLE" to initiate PCR scan.</p>
+              </div>
+
+              <!-- Image Container (BSL-4 Visual) -->
+              <div class="visual-image-wrapper" id="visual-bsl4">
+                <img
+                  src="bsl4_lab_suit.png"
+                  alt="BSL-4 Researcher in positive pressure suit"
+                  class="visual-media"
+                />
+                <div class="media-overlay-readout mono-text">
+                  SYS_LOC: USAMRIID LEVEL_4 // PRESSURE: +32 Pa [NOMINAL]
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="panel-footer border-top flex-justify-between"
+              id="app-panel-controls"
+            >
+              <button
+                class="btn-primary btn-sm mono-text"
+                id="jbaids-run-btn"
+                onclick="runJbaidsSim()"
+              >
+                INJECT SAMPLE
+              </button>
+              <button
+                class="btn-secondary btn-sm mono-text"
+                id="jbaids-reset-btn"
+                onclick="resetJbaidsSim()"
+              >
+                RESET DIAGNOSTIC
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 6: Current Applications II (Industrial & Nano) -->
+      <section class="slide" id="slide-6">
+        <div class="slide-content grid-1-1">
+          <div
+            class="visual-panel glass-card molecular-panel animate-item"
+            style="--delay: 3"
+          >
+            <div class="panel-header mono-text border-bottom">
+              <span id="nano-panel-title">VISUALIZATION: CARBON NANOTUBE</span>
+              <span class="panel-tag gold" id="nano-panel-tag"
+                >LATTICE SCHEMATIC</span
+              >
+            </div>
+            <div
+              class="panel-body svg-container flex-column"
+              id="nano-visual-container"
+              style="position: relative; padding: 0; overflow: hidden"
+            >
+              <div
+                class="visual-image-wrapper active-visual"
+                id="visual-cnt"
+                style="
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  width: 100%;
+                  height: 100%;
+                  z-index: 5;
+                "
+              >
+                <img
+                  src="carbon_nanotube.png"
+                  alt="Carbon Nanotube Biosensor"
+                  class="visual-media"
+                />
+              </div>
+              <div
+                class="visual-image-wrapper"
+                id="visual-melanin"
+                style="
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  width: 100%;
+                  height: 100%;
+                "
+              >
+                <img
+                  src="melanin_nanoparticles.png"
+                  alt="Melanin Nanoparticles"
+                  class="visual-media"
+                />
+              </div>
+            </div>
+            <div
+              class="panel-footer mono-text border-top text-center"
+              id="nano-panel-desc"
+              style="z-index: 10; position: relative"
+            >
+              CNT geometries are projected onto cylinders to act as
+              high-efficiency bio-transducers.
+            </div>
+          </div>
+
+          <div class="info-block scrollable-y">
+            <h2
+              class="mono-text subtitle-category animate-item"
+              style="--delay: 1"
+            >
+              SECTOR 03 // APPLICATIONS B
+            </h2>
+            <h1 class="slide-header animate-item" style="--delay: 2">
+              INDUSTRIAL &amp; NANO BIOTECH
+            </h1>
+
+            <div
+              class="app-detail glass-card animate-item active-card"
+              style="--delay: 4; cursor: pointer"
+              onclick="setNanoVisual('cnt')"
+            >
+              <h3 class="mono-text color-gold">
+                <span class="bullet-gold">&bull;</span> CARBON NANOTUBES (CNTs)
+              </h3>
+              <p>
+                Hollow carbon cylinders exhibiting massive tensile strength and
+                electrical conductance. Applied in diagnostics as molecular
+                biosensor targets, electronic scaffold matrices, and vectors to
+                carry targeted oncology compounds into tumor cells.
+              </p>
+            </div>
+
+            <div
+              class="app-detail glass-card animate-item"
+              style="--delay: 5; cursor: pointer"
+              onclick="setNanoVisual('melanin')"
+            >
+              <h3 class="mono-text color-gold">
+                <span class="bullet-gold">&bull;</span> MELANIN-BASED BIOSENSORS
+              </h3>
+              <p>
+                Using the chemical properties of natural biological melanin. The
+                pigment exhibits powerful redox active potentials and chelates
+                (binds) toxic heavy metal ions (Lead, Copper, Iron) with extreme
+                accuracy, yielding self-assembling, eco-friendly sensor
+                matrices.
+              </p>
+
+              <!-- Interactive metal ion slider -->
+              <div class="metal-slider-group mono-text">
+                <label for="metal-select">Select Ion:</label>
+                <select id="metal-select" onchange="updateMelaninSensor()">
+                  <option value="Pb">Lead (Pb²⁺)</option>
+                  <option value="Cu">Copper (Cu²⁺)</option>
+                  <option value="Fe">Iron (Fe³⁺)</option>
+                </select>
+                <div class="slider-container">
+                  <input
+                    type="range"
+                    min="0"
+                    max="100"
+                    value="30"
+                    class="custom-slider"
+                    id="metal-level"
+                    oninput="updateMelaninSensor()"
+                  />
+                  <span>Level: <span id="metal-level-val">30</span> ppm</span>
+                </div>
+                <div class="sensor-readout" id="melanin-readout">
+                  Chelating Pb²⁺: Signal Response normal.
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="app-detail glass-card animate-item"
+              style="--delay: 6; cursor: pointer"
+              onclick="setNanoVisual('melanin')"
+            >
+              <h3 class="mono-text color-gold">
+                <span class="bullet-gold">&bull;</span> RECOMBINANT MELANIN
+                PRODUCTION
+              </h3>
+              <p>
+                Microbial platforms (E. coli, yeast) are engineered with
+                tyrosinase genes to synthesize biological melanin on an
+                industrial scale without oil derivatives. Deployed as UV
+                shielding coatings, biocompatible medical bandages, and
+                aerospace radiation protection shields.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 7: Future Prospects -->
+      <section class="slide" id="slide-7">
+        <img
+          src="ai_neural_pathogen.png"
+          alt=""
+          class="slide-bg-image"
+          loading="lazy"
+          style="opacity: 0.2"
+        />
+        <div class="slide-content grid-1-1">
+          <div class="info-block">
+            <h2
+              class="mono-text subtitle-category animate-item"
+              style="--delay: 1"
+            >
+              SECTOR 04 // HORIZON
+            </h2>
+            <h1 class="slide-header animate-item" style="--delay: 2">
+              FUTURE PROSPECTS
+            </h1>
+            <p class="section-lead animate-item" style="--delay: 3">
+              The collision of synthetic biology, machine learning, and gene
+              editing shapes the next decade of defense.
+            </p>
+
+            <div class="future-list">
+              <div
+                class="future-item glass-card active-card animate-item"
+                style="--delay: 4"
+                onclick="setFuturePanel(0)"
+              >
+                <div class="future-title mono-text">
+                  01 // CRISPR BIODEFENSE
+                </div>
+                <p>
+                  Engineering human immune systems with Cas12/Cas13 networks to
+                  dynamically recognize and slice threat pathogen sequences
+                  prior to systemic infection.
+                </p>
+              </div>
+
+              <div
+                class="future-item glass-card animate-item"
+                style="--delay: 5"
+                onclick="setFuturePanel(1)"
+              >
+                <div class="future-title mono-text">
+                  02 // SYNTHETIC BIOLOGY SHIELDS
+                </div>
+                <p>
+                  Designing custom, living micro-organisms that reside on
+                  wearable suits or water supplies to detect, digest, and
+                  neutralize bioweapons on contact.
+                </p>
+              </div>
+
+              <div
+                class="future-item glass-card animate-item"
+                style="--delay: 6"
+                onclick="setFuturePanel(2)"
+              >
+                <div class="future-title mono-text">
+                  03 // PHOTOTHERMAL MELANIN
+                </div>
+                <p>
+                  Using synthetic melanin nanoparticles designed to home in on
+                  malignant cancers, which then convert near-infrared lasers
+                  into tumor-destroying heat.
+                </p>
+              </div>
+
+              <div
+                class="future-item glass-card animate-item"
+                style="--delay: 7"
+                onclick="setFuturePanel(3)"
+              >
+                <div class="future-title mono-text">
+                  04 // AI PATHOGEN SURVEILLANCE
+                </div>
+                <p>
+                  Integrating global genomic stream sensors with transformer
+                  models to isolate and predict viral mutation trajectories
+                  weeks before outbreaks occur.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="visual-panel glass-card data-panel animate-item"
+            style="--delay: 8"
+          >
+            <div class="panel-header mono-text border-bottom">
+              <span id="future-panel-title">TELEMETRY: CRISPR BIODEFENSE</span>
+              <span class="panel-tag cyan" id="future-panel-tag"
+                >AI SIMULATOR</span
+              >
+            </div>
+
+            <!-- Image and Graph Panels -->
+            <div class="panel-body flex-column" id="future-visual-container">
+              <!-- Graph container (Visible by default) -->
+              <div class="sim-graph-wrapper active-visual" id="visual-graph">
+                <div class="sim-graph-container">
+                  <div class="graph-grid"></div>
+                  <svg
+                    id="telemetry-chart"
+                    viewBox="0 0 500 200"
+                    width="100%"
+                    height="100%"
+                  >
+                    <path
+                      id="telemetry-line"
+                      d="M 0,150 Q 100,50 200,100 T 400,30 T 500,120"
+                      fill="none"
+                      stroke="#00e5ff"
+                      stroke-width="3"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      id="telemetry-line-secondary"
+                      d="M 0,150 Q 100,100 200,80 T 400,120 T 500,40"
+                      fill="none"
+                      stroke="#D4AF37"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      opacity="0.6"
+                      stroke-dasharray="4,4"
+                    />
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Image: Melanin Cancer Therapy -->
+              <div class="visual-image-wrapper" id="visual-melanin-therapy">
+                <img
+                  src="melanin_therapy.png"
+                  alt="Melanin Therapy Visual"
+                  class="visual-media"
+                />
+              </div>
+
+              <!-- Image: AI Threat Map -->
+              <div class="visual-image-wrapper" id="visual-ai-map">
+                <img
+                  src="ai_outbreak_map.png"
+                  alt="AI Threat Map Visual"
+                  class="visual-media"
+                />
+              </div>
+
+              <!-- Stats Box (Always visible at bottom) -->
+              <div class="sim-stats">
+                <div class="stat-box">
+                  <span class="stat-label" id="stat-label-mut"
+                    >MUTATION RATIO</span
+                  >
+                  <span class="stat-value text-cyan" id="stat-mut-ratio"
+                    >1.4%</span
+                  >
+                </div>
+                <div class="stat-box">
+                  <span class="stat-label" id="stat-label-eff">EFFICACY</span>
+                  <span class="stat-value text-gold" id="stat-efficacy"
+                    >99.82%</span
+                  >
+                </div>
+                <div class="stat-box">
+                  <span class="stat-label" id="stat-label-lat"
+                    >REACTION LATENCY</span
+                  >
+                  <span class="stat-value" id="stat-latency">4.2 ms</span>
+                </div>
+              </div>
+              <p id="future-panel-desc" class="panel-desc">
+                // Active simulation mapping targeted Cas9/Cas12 endonuclease
+                efficiency against weaponized synthetic constructs.
+              </p>
+            </div>
+            <div class="panel-footer border-top text-center mono-text">
+              <span class="blink-cyan"
+                >CONNECTIVITY SECURE // DATA TRANSFER RATIO: MAX</span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 8: Concerns -->
+      <section class="slide" id="slide-8">
+        <img
+          src="virus_microscope.png"
+          alt=""
+          class="slide-bg-image"
+          loading="lazy"
+        />
+        <div class="slide-content vertical-layout">
+          <div class="section-title text-center">
+            <h2
+              class="mono-text subtitle-category animate-item"
+              style="--delay: 1"
+            >
+              SECTOR 05 // RISK ANALYSIS
+            </h2>
+            <h1 class="slide-header animate-item" style="--delay: 2">
+              SOCIOECONOMIC, ENVIRONMENTAL &amp; ETHICAL CONCERNS
+            </h1>
+            <p class="section-lead animate-item" style="--delay: 3">
+              The immense dual-use capacity of Black Biotech raises severe,
+              globally integrated risks.
+            </p>
+          </div>
+
+          <div class="threat-matrix-grid">
+            <!-- Column 1: Socioeconomic -->
+            <div
+              class="matrix-card glass-card border-left-gold animate-item"
+              style="--delay: 4"
+            >
+              <div class="matrix-header border-bottom">
+                <span class="matrix-tag gold-bg">SOCIOECONOMIC</span>
+                <h3 class="mono-text">ACCESS GAP &amp; INSIDER THREATS</h3>
+                <div class="threat-bar-container">
+                  <div class="threat-bar gold"></div>
+                </div>
+              </div>
+              <ul class="matrix-list">
+                <li>
+                  <strong>Global Asymmetry:</strong> BSL-4 biosafety containment
+                  labs cost hundreds of millions to build and maintain,
+                  concentrating diagnostic and biodefense capability exclusively
+                  in wealthy nations.
+                </li>
+                <li>
+                  <strong>Dual-Use Exploitation:</strong> Powerful commercial
+                  incentives push private labs to develop proprietary genetic
+                  shields, risking monopolization of public safety counters.
+                </li>
+                <li>
+                  <strong>Insider Threat Risks:</strong> Highly trained
+                  personnel inside high-containment military networks possess
+                  the exact access and skills necessary to steal or leak
+                  hazardous genetic scripts.
+                </li>
+              </ul>
+            </div>
+
+            <!-- Column 2: Environmental -->
+            <div
+              class="matrix-card glass-card border-left-red animate-item"
+              style="--delay: 5"
+            >
+              <div class="matrix-header border-bottom">
+                <span class="matrix-tag red-bg">ENVIRONMENTAL</span>
+                <h3 class="mono-text">CONTAINMENT FAILURE &amp; WASTES</h3>
+                <div class="threat-bar-container">
+                  <div class="threat-bar red"></div>
+                </div>
+              </div>
+              <ul class="matrix-list">
+                <li>
+                  <strong>Accidental Breaches:</strong> Laboratory release of
+                  high-contagion synthetic constructs from BSL labs represents a
+                  permanent threat to wildlife and human ecosystems.
+                </li>
+                <li>
+                  <strong>Nanotech Persistence:</strong> The production of
+                  carbon nanotubes and fullerenes generates persistent toxic
+                  waste with poorly mapped long-term soil and water cell
+                  toxicity effects.
+                </li>
+                <li>
+                  <strong>Ecological Displacement:</strong> Synthetic "sensor"
+                  microbes designed for environmental bioremediation could
+                  outcompete wild microbial populations, breaking food chains.
+                </li>
+              </ul>
+            </div>
+
+            <!-- Column 3: Ethical -->
+            <div
+              class="matrix-card glass-card border-left-purple animate-item"
+              style="--delay: 6"
+            >
+              <div class="matrix-header border-bottom">
+                <span class="matrix-tag purple-bg">ETHICAL</span>
+                <h3 class="mono-text">WEAPONIZATION &amp; COMPLIANCE</h3>
+                <div class="threat-bar-container">
+                  <div class="threat-bar purple"></div>
+                </div>
+              </div>
+              <ul class="matrix-list">
+                <li>
+                  <strong>Convention Limitations:</strong> The 1972 Biological
+                  Weapons Convention bans toxic reserves but lacks formal,
+                  teeth-bearing inspection or enforcement protocols.
+                </li>
+                <li>
+                  <strong>Low Entry Barriers:</strong> CRISPR, print-on-demand
+                  DNA, and AI open-source models dramatically lower the
+                  threshold for rogue agents or non-state terror groups to
+                  synthesize pathogens.
+                </li>
+                <li>
+                  <strong>The Dual-Use Dilemma:</strong> A researcher seeking to
+                  construct a vaccine against a theoretical virus must
+                  synthesize that virus first, establishing a permanent ethical
+                  paradox.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 9: Conclusion -->
+      <section class="slide" id="slide-9">
+        <div
+          class="countdown-overlay"
+          id="countdown-overlay"
+          style="display: none"
+        ></div>
+        <div class="classified-stamp" id="classified-stamp">DEBRIEFED</div>
+        <img
+          src="globe_bioshield.png"
+          alt=""
+          class="slide-bg-image"
+          loading="lazy"
+          style="opacity: 0.15"
+        />
+        <div class="slide-content cover-layout">
+          <div class="conclusion-box text-center">
+            <h2
+              class="mono-text subtitle-category glow-cyan animate-item"
+              style="--delay: 1"
+            >
+              PRESENTATION WRAP-UP
+            </h2>
+            <h1 class="main-title animate-item" style="--delay: 2">
+              DETERMINISTIC
+            </h1>
+            <h1
+              class="main-title outline-title animate-item"
+              style="--delay: 3"
+            >
+              MITIGATION
+            </h1>
+
+            <p
+              class="conclusion-lead glass-card animate-item"
+              style="--delay: 4"
+            >
+              "The baseline requirement for operational continuity is absolute
+              control over biological data, engineered genetic sequences, and
+              the physical environments in which they are synthesized."
+            </p>
+
+            <div class="conclusion-summary-grid conclusion-5-col">
+              <svg class="conclusion-flow-svg" viewBox="0 0 1000 100">
+                <path class="flow-line" d="M 100,50 L 900,50" />
+              </svg>
+              <div class="summary-node animate-item" style="--delay: 5">
+                <span class="node-num text-cyan">01</span>
+                <h4>DEFINE</h4>
+                <p>
+                  Military biodefence, biosurveillance, hazardous bioprocesses
+                  and carbon nanomaterials.
+                </p>
+              </div>
+              <div class="summary-node animate-item" style="--delay: 6">
+                <span class="node-num text-gold">02</span>
+                <h4>PROTECT</h4>
+                <p>
+                  Vaccines, detection systems, containment and forensic tracing
+                  of threats.
+                </p>
+              </div>
+              <div class="summary-node animate-item" style="--delay: 7">
+                <span class="node-num text-green">03</span>
+                <h4>APPLY</h4>
+                <p>
+                  BioThrax, JBAIDS, BSL-4, CNT biosensors, and melanin platforms
+                  — active now.
+                </p>
+              </div>
+              <div class="summary-node animate-item" style="--delay: 8">
+                <span class="node-num text-purple">04</span>
+                <h4>INNOVATE</h4>
+                <p>
+                  CRISPR shields, synbiotic suits, melanin photothermal therapy,
+                  AI surveillance.
+                </p>
+              </div>
+              <div class="summary-node animate-item" style="--delay: 9">
+                <span class="node-num text-red">05</span>
+                <h4>GOVERN</h4>
+                <p>
+                  Strong oversight, equitable access and ethical frameworks
+                  prevent misuse.
+                </p>
+              </div>
+            </div>
+
+            <!-- Mission Complete Terminal -->
+            <div class="mission-terminal animate-item" style="--delay: 10">
+              <span id="mission-terminal-text"></span>
+            </div>
+
+            <!-- QR Code for Website Access -->
+            <div
+              class="qr-container animate-item"
+              style="--delay: 11; margin-top: 1.5rem"
+            >
+              <p
+                class="mono-text text-cyan"
+                style="
+                  font-size: 0.8rem;
+                  margin-bottom: 0.5rem;
+                  letter-spacing: 1px;
+                "
+              >
+                // SCAN TO ACCESS SYSTEM //
+              </p>
+              <img
+                src="qr-code.png"
+                alt="Website QR Code"
+                style="
+                  width: 120px;
+                  height: 120px;
+                  border: 1px solid #00e5ff;
+                  border-radius: 4px;
+                  box-shadow: 0 0 10px rgba(0, 229, 255, 0.3);
+                "
+              />
+            </div>
+          </div>
+
+          <div class="conclusion-footer">
+            <div class="credits mono-text animate-item" style="--delay: 8">
+              <span>SBC 294 // FUNDAMENTALS OF BIOTECHNOLOGY</span>
+              <span>UNIVERSITY OF NAIROBI // GROUP 11 PRESENTATION</span>
+            </div>
+            <button
+              class="btn-primary mono-text reset-btn animate-item"
+              style="--delay: 9"
+              onclick="goToSlide(0)"
+            >
+              RESET PRESENTATION
+              <span class="arrow-blink">&larr;</span>
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Presentation Controls & HUD HUD -->
+    <footer class="hud-footer">
+      <div class="footer-left">
+        <button
+          class="control-btn"
+          id="prev-btn"
+          onclick="prevSlide()"
+          title="Previous Slide (Left Arrow)"
+        >
+          &#x25c0;
+        </button>
+        <button
+          class="control-btn"
+          id="next-btn"
+          onclick="nextSlide()"
+          title="Next Slide (Right Arrow)"
+        >
+          &#x25b6;
+        </button>
+        <button
+          class="hud-btn mono-text audio-toggle"
+          id="audio-toggle-btn"
+          onclick="toggleAudio()"
+          style="margin-right: 15px"
+        >
+          <span class="audio-icon">🔇</span> AUDIO OFF
+        </button>
+        <div class="slide-indicator mono-text">
+          SLIDE <span id="current-slide-num">1</span> OF
+          <span id="total-slides-num">9</span>
+        </div>
+      </div>
+
+      <div class="footer-center">
+        <div class="hud-nav-dots" id="nav-dots">
+          <!-- Generated Dynamically -->
+        </div>
+      </div>
+
+      <div class="footer-right">
+        <button
+          class="hud-btn mono-text"
+          onclick="toggleNotes()"
+          id="toggle-notes-btn"
+        >
+          [N] SPEAKER NOTES
+        </button>
+        <button
+          class="hud-btn mono-text"
+          onclick="toggleShortcuts()"
+          id="toggle-shortcuts-btn"
+        >
+          [H] HELP
+        </button>
+      </div>
+    </footer>
+
+    <!-- Teleprompter / Speaker Notes Side Panel -->
+    <aside class="notes-drawer" id="notes-drawer">
+      <div class="drawer-header border-bottom">
+        <h3 class="mono-text">
+          <span class="pulse-dot green"></span> EXECUTIVE SPEECH SCRIPT
+        </h3>
+        <button class="close-btn" onclick="toggleNotes()">&times;</button>
+      </div>
+      <div class="drawer-body" id="speaker-notes-content">
+        <!-- Syncs with active slide via JavaScript -->
+        <div class="notes-slide-content active-notes" id="notes-s1">
+          <h4 class="mono-text text-red">SLIDE 1 // EXECUTIVE INTRO SPEECH</h4>
+          <p class="speech-p">
+            "The operational framework of contemporary biological sciences is
+            defined by the dual-use dilemma. The precise methodologies utilized
+            to sequence, synthesize, and deploy therapeutic countermeasures
+            possess an identical capacity for the weaponization of pathogenic
+            agents. Black biotechnology encompasses the specialized application
+            of biological tools for biodefense, pathogen surveillance, and
+            high-containment security, serving as the primary barrier against
+            state-sponsored biowarfare, sub-national bioterrorism, and targeted
+            biocrimes."
+          </p>
+          <p class="speech-p">
+            "The integration of recombinant DNA technology, rapid genome
+            sequencing, and clustered regularly interspaced short palindromic
+            repeats (CRISPR) has compressed the development timeline for both
+            protective vaccines and engineered biological threats. Target
+            acquisition and genetic engineering are no longer constrained by the
+            barriers of physical isolation; the proliferation of artificial
+            intelligence in predicting molecular structures and modeling
+            outbreaks has expanded the attack surface. Pathogens previously
+            constrained by natural mutation rates can now be optimized for
+            transmissibility, environmental stability, and resistance to
+            available medical countermeasures."
+          </p>
+          <p class="speech-p">
+            "Consequently, the discipline of black biotechnology must operate
+            with absolute determinism. It requires the continuous monitoring of
+            biological vectors, the establishment of precise diagnostic tools,
+            and the immediate deployment of prophylactic and therapeutic
+            interventions. Biological security is not a theoretical construct;
+            it is a continuously executed protocol governing physical
+            containment, data attribution, and regulatory compliance under
+            international frameworks such as the 1972 Biological Weapons
+            Convention. The presentation application initiated today will
+            systematically parse the fundamental mechanics, operational
+            objectives, and required mitigation architectures necessary to
+            maintain biological stability in the face of engineered threats."
+          </p>
+        </div>
+        <!-- Outlines -->
+        <div class="notes-slide-content" id="notes-s2">
+          <h4 class="mono-text text-cyan">SLIDE 2 // THE OUTLINE</h4>
+          <p class="speech-p">
+            "Here we outline the structure of the briefing. The analysis begins
+            with defining the scope of Black Biotechnology. We then move into
+            key strategic objectives driving defense agencies. After that, we
+            analyze current applications deployed in public health and
+            nanotechnology, followed by a horizon-scan of future prospects like
+            CRISPR-based genetic shielding and AI surveillance. Finally, we must
+            evaluate the socioeconomic, environmental, and ethical concerns
+            associated with this technology."
+          </p>
+        </div>
+        <!-- Meaning -->
+        <div class="notes-slide-content" id="notes-s3">
+          <h4 class="mono-text text-cyan">
+            SLIDE 3 // DEFINITION &amp; TAXONOMY
+          </h4>
+          <p class="speech-p">
+            "What defines Black Biotechnology? It is a color-coded
+            classification reserved for biosecurity and defense applications.
+            However, as shown in the layout, the scope extends beyond military
+            biodefense. It covers containment science itself—the BSL labs—as
+            well as the engineering of extremophilic bacteria and the use of
+            carbon nanotubes in sensing. We emphasize the dual-use dilemma here:
+            the same tools used for public protection can be co-opted for
+            weaponization. The CRISPR Cas9 endonuclease diagram on the right
+            represents this duality."
+          </p>
+        </div>
+        <!-- Objectives -->
+        <div class="notes-slide-content" id="notes-s4">
+          <h4 class="mono-text text-cyan">SLIDE 4 // STRATEGIC GOALS</h4>
+          <p class="speech-p">
+            "The strategic objectives of Black Biotechnology are sixfold. First:
+            Biodefense—formulating immunizations and antidotes. Second:
+            Biosurveillance—deploying networks of air and water sensors. Third:
+            Threat Assessment—modeling how pathogens can be modified. Fourth:
+            Biocontainment—developing physical barriers to study dangerous
+            agents. Fifth: Forensic Biotech—using PCR and whole genome
+            sequencing to trace origin vectors of outbreaks. Sixth: Responsible
+            Innovation—building frameworks to prevent misuse of synthetic
+            biology tools."
+          </p>
+        </div>
+        <!-- Applications I -->
+        <div class="notes-slide-content" id="notes-s5">
+          <h4 class="mono-text text-cyan">
+            SLIDE 5 // REAL-WORLD DEFENSE UTILITIES
+          </h4>
+          <p class="speech-p">
+            "Let us examine current deployed applications. We highlight three
+            key systems. First, BioThrax, which is the only FDA-approved vaccine
+            to protect military and first responders against weaponized Bacillus
+            anthracis. Second, the JBAIDS PCR-based diagnostics platform used in
+            the field to identify 30 different threats in 30 minutes. Third,
+            BSL-4 Containment Laboratories such as those at USAMRIID and the
+            CDC, which feature airlocks and positive pressure suits to study
+            lethal viruses like Ebola safely."
+          </p>
+        </div>
+        <!-- Applications II -->
+        <div class="notes-slide-content" id="notes-s6">
+          <h4 class="mono-text text-cyan">
+            SLIDE 6 // INDUSTRIAL &amp; NANO TAXONOMY
+          </h4>
+          <p class="speech-p">
+            "Beyond weapon counter-measures, Black Biotechnology integrates
+            industrial nanomaterials and biological pigments. Carbon nanotubes
+            act as structural components in biosensors due to their high
+            electrical conductivity. Additionally, melanin—nature's black
+            pigment—is engineered recombinantly in E. coli to create
+            bio-degradable electrochemical sensors that bind and detect heavy
+            metal ions in soil and water. Melanin is also manufactured at scale
+            for radiation-shielding coatings in space and UV defense."
+          </p>
+        </div>
+        <!-- Future -->
+        <div class="notes-slide-content" id="notes-s7">
+          <h4 class="mono-text text-cyan">
+            SLIDE 7 // EMERGENCE &amp; THE HORIZON
+          </h4>
+          <p class="speech-p">
+            "Where is the horizon heading? We anticipate four major directions.
+            First: CRISPR-based biodefense, which involves engineering human
+            immune systems to resist biological threats. Second:
+            Zoonotic/synthetic biology shields, utilizing bacteria on suits to
+            degrade weapon agents. Third: Photothermal tumor therapies using
+            synthetic melanin. Fourth: AI-driven genomic sensor surveillance,
+            detecting zoonotic spillovers and pathogen mutations weeks before
+            traditional medical networks."
+          </p>
+        </div>
+        <!-- Concerns -->
+        <div class="notes-slide-content" id="notes-s8">
+          <h4 class="mono-text text-red">SLIDE 8 // DANGER VECTORS</h4>
+          <p class="speech-p">
+            "We must address three core categories of risk. Socioeconomically,
+            the high cost of high-containment infrastructure creates a massive
+            safety gap between wealthy and developing nations. Environmentally,
+            containment failures or leaks of synthetic organisms pose permanent
+            ecological threats, and nanomaterial waste is toxic and
+            bio-persistent. Ethically, the Biological Weapons Convention lacks
+            inspection enforcement, and the dual-use dilemma is an unresolved
+            paradox—to study defenses, scientists must first understand the
+            threat."
+          </p>
+        </div>
+        <!-- Conclusion -->
+        <div class="notes-slide-content" id="notes-s9">
+          <h4 class="mono-text text-red">SLIDE 9 // EXECUTIVE OUTRO SPEECH</h4>
+          <p class="speech-p">
+            "The synthesis of available data indicates that biological threat
+            vectors remain asymmetric, highly kinetic, and geographically
+            unbound. Mitigation requires the rigorous application of defined
+            biosecurity frameworks, isolating dual-use research of concern
+            (DURC) from unauthorized exploitation while preserving the capacity
+            for rapid countermeasure development."
+          </p>
+          <p class="speech-p">
+            "The parameters for successful threat mitigation are deterministic.
+            First, continuous genomic surveillance must be integrated with
+            computational outbreak modeling to detect anomalies in real-time.
+            Second, the production of therapeutic countermeasures must rely on
+            scalable, high-yield bioreactor systems and accelerated genetic
+            engineering pipelines utilizing precise molecular tools. Third,
+            physical and procedural biosafety containment must operate under
+            strict compliance with regional and international oversight,
+            including mandates executed by national authorities and the
+            Biological Weapons Convention."
+          </p>
+          <p class="speech-p">
+            "To neutralize the dual-use threat, operational protocols must
+            prioritize the immediate identification of genetically modified
+            agents, the restriction of hazardous information dissemination, and
+            the execution of pre-compiled response strategies. The baseline
+            requirement for operational continuity is absolute control over
+            biological data, engineered genetic sequences, and the physical
+            environments in which they are synthesized. The protocols detailed
+            in this briefing define the mandatory baseline for executing that
+            control."
+          </p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Keyboard Shortcuts Modal -->
+    <div class="shortcuts-modal" id="shortcuts-modal">
+      <div class="modal-content glass-card">
+        <h3 class="mono-text border-bottom text-cyan">
+          <span class="blink-cyan">&gt;</span> SYSTEM NAVIGATION SCHEMATIC
+        </h3>
+        <table class="shortcuts-table mono-text">
+          <tr>
+            <td>Left Arrow / PageUp / WheelUp</td>
+            <td>Previous Slide</td>
+          </tr>
+          <tr>
+            <td>Right Arrow / PageDown / WheelDown / Space</td>
+            <td>Next Slide</td>
+          </tr>
+          <tr>
+            <td>Key [ 1 - 9 ]</td>
+            <td>Jump to Slide 1 - 9</td>
+          </tr>
+          <tr>
+            <td>Key [ N ]</td>
+            <td>Toggle Speaker Notes Script</td>
+          </tr>
+          <tr>
+            <td>Key [ H ]</td>
+            <td>Toggle This Help Menu</td>
+          </tr>
+          <tr>
+            <td>Escape</td>
+            <td>Close Open Windows</td>
+          </tr>
+        </table>
+        <button
+          class="btn-primary btn-sm mono-text"
+          onclick="toggleShortcuts()"
+        >
+          CLOSE DIAGRAM
+        </button>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="app.js"></script>
+  </body>
+</html>
