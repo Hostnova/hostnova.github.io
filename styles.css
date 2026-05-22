@@ -2606,11 +2606,27 @@ h4 {
     font-size: 1.5rem;
   }
 
+  /* Make presentation scrollable naturally rather than fixed slides */
+  #presentation-container {
+    perspective: none;
+    overflow-y: auto;
+    height: 100vh;
+    scroll-behavior: smooth;
+    padding-top: 60px; /* Offset for header */
+  }
+
   /* Overall Slide Spacing */
   .slide {
-    padding: 70px 15px 90px; /* Leave room for header/footer */
-    overflow-y: auto;
-    align-items: flex-start; /* So content starts at the top rather than center when scrolling */
+    position: relative;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transform: none !important;
+    filter: none !important;
+    padding: 40px 15px !important;
+    height: auto;
+    min-height: 100vh;
+    border-bottom: 2px solid rgba(0, 229, 255, 0.2);
   }
 
   .slide-content {
@@ -2634,13 +2650,11 @@ h4 {
     display: none; /* Redundant to hide? Will just scale down instead */
   }
 
+  /* Remove footer on mobile as they just scroll */
   .hud-footer {
-    padding: 0 10px;
-    height: 70px;
-    flex-direction: column;
-    justify-content: center;
-    gap: 5px;
+    display: none !important;
   }
+
   .footer-center {
     display: none; /* Hide pagination dots on narrow screens to save space */
   }
@@ -2666,13 +2680,16 @@ h4 {
     gap: 15px;
   }
 
-  /* Floating Widget Scaling */
+  /* Hide the global widget on mobile so it doesn't block the screen */
   .floating-widget {
-    top: 65px;
-    right: 10px;
-    padding: 10px;
-    transform: scale(0.65);
-    transform-origin: top right;
+    display: none !important;
+  }
+
+  .mobile-research-btn {
+    display: inline-block !important; /* Only show the special button placed in HTML */
+    width: 100%;
+    margin-top: 15px;
+    box-sizing: border-box;
   }
 
   /* Sub-components */
