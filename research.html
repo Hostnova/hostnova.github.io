@@ -167,8 +167,62 @@
       }
 
       @media (max-width: 768px) {
+        body {
+          padding: 1rem 0; /* Remove side padding on body to let container take full width */
+        }
+
         .paper-container {
-          padding: 2rem;
+          padding: 1.5rem 1.2rem;
+          box-shadow: none;
+          border-radius: 0;
+        }
+
+        h1.paper-title {
+          font-size: 1.5rem;
+        }
+
+        header.university-header h2 {
+          font-size: 1.2rem;
+        }
+
+        header.university-header h3 {
+          font-size: 0.95rem;
+        }
+
+        .section-title {
+          font-size: 1.3rem;
+          margin-top: 2rem;
+        }
+
+        .meta-info {
+          font-size: 0.85rem;
+          margin-bottom: 2rem;
+        }
+
+        .abstract {
+          padding: 1.2rem;
+          margin-bottom: 2rem;
+        }
+
+        p,
+        li {
+          text-align: left; /* Justified text looks bad on narrow mobile screens */
+          font-size: 0.95rem;
+          line-height: 1.6;
+        }
+
+        .references {
+          margin-top: 2.5rem;
+        }
+
+        .references p {
+          text-indent: 0;
+          padding-left: 0;
+          margin-bottom: 1.2rem;
+        }
+
+        .back-btn {
+          margin-left: 1.2rem;
         }
       }
     </style>
@@ -195,8 +249,10 @@
 
     <div class="paper-container">
       <header class="university-header">
-        <h2>KENYATTA UNIVERSITY </h2>
-        <h3>Course: BSc BIOCHEMISTRY => SBC 294 - Fundamentals of Biotechnology</h3>
+        <h2>KENYATTA UNIVERSITY</h2>
+        <h3>
+          Course: BSc BIOCHEMISTRY => SBC 294 - Fundamentals of Biotechnology
+        </h3>
       </header>
 
       <div class="meta-info">
